@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 		// 无参数时输出说明
 		if(argv[1]==NULL){
 			printUsage(argv[0]);
-			return -1;
+			return 0;
 		}
 		else if(argv[2]!=NULL)
 		{
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 void printUsage(char arg[])
 {
 	// 取得可执行文件名
-	char *path;
+	char *path = arg;
 	while(arg = memchr(arg, '\\', strlen(arg)))
 	{
 		arg++;
