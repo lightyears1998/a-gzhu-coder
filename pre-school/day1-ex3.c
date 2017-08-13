@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
 void printUsage(char arg[])
 {   
     // 取得可执行文件名
+    // TODO 处理Linux等以‘/’表示目录层次的环境
     char *path;
     while(arg = memchr(arg,'\\',strlen(arg)))
     {
