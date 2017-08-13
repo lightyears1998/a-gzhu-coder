@@ -1,3 +1,6 @@
+# Visual Studio Code personal settings
+*/.vscode/*
+
 # Prerequisites
 *.d
 
