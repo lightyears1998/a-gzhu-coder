@@ -8,3 +8,16 @@
  * 随便输入一个数，判断它属于哪一范围内的数据类型，例如2147483647属于int，然后输出它的数据类型。
  *
  */
+
+#include <stdio.h>
+
+int main(int argc, char * argv[])
+{
+	// for(int i=0; i<=argc; i++)
+    // {  
+    //     printf("argv[%d]:%s\n", i, argv[i]);  
+	// } 
+	
+	
+	return 0;
+}
