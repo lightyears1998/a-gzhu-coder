@@ -83,5 +83,5 @@ void printMessage(void)
     printf("\nIf characters above aren't displayed properly.\n"
     "Please switch to UTF8 Encoding.\n"
     "Try the follwing command if you are using Windows Command Prompt:\n"
-    ">chcp 65001;");
+    ">chcp 65001;\n");
 }
