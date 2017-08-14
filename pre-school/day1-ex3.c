@@ -55,14 +55,14 @@ void printUsage(char arg[])
 {   
     // 取得可执行文件名
     char *path = arg;
-    while(arg = memchr(arg,'\\',strlen(arg)))
+    while((arg = memchr(arg,'\\',strlen(arg))))
     {
         arg++;
         path = arg;
     }
     // 兼容Linux等以‘/’划分目录层次的环境
     arg = path;
-    while(arg = memchr(arg,'/',strlen(arg)))
+    while((arg = memchr(arg,'/',strlen(arg))))
     {
         arg++;
         path = arg;
