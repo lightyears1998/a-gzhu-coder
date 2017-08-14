@@ -33,3 +33,4 @@
 *.exe
 *.out
 *.app
+!*/bin/*.exe
