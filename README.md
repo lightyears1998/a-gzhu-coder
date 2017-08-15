@@ -16,7 +16,7 @@
 
 | 辅助标记 | 提示 |
 | ------ | ------ |
-| -clargsreq | 'C'ommand-'L'ine 'Arg'uments 'Req'uired <br/> 需要命令行参数 |
+| -clargsreq | Command-Line Arguments Required <br/> 需要命令行参数 |
 
 
 # 使用帮助
