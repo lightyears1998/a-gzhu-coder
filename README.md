@@ -5,7 +5,7 @@
 
 # 文件结构
 
-* **./*/bin** 目录下是在已经编译好可以直接运行的Windows可执行文件
+* **bin/** 已经编译好可以直接运行的Windows可执行文件
 
 # 使用帮助
 
@@ -44,12 +44,14 @@ g++ <C++源文件> -o <欲生成可执行文件的文件名>
 
 -- 例如：
 -- gcc day1-ex1.c -o day1-ex1
+-- 然后运行它：
+-- day1-ex1
 ```
 
 # 可能有用外部链接
 
 * **[CPP Reference][link_cppreference]** C/C++标准参考
-* **[QF Blog: C Begginer Menu][link_blog]** 我和我的两个好朋友一起写的关于C语言入门的博客，还不是很完善，希望能有所帮助 : )
+* **[QF Blog: C Begginer Menu][link_blog]** 我和我的两个好朋友一起写的关于C语言入门的博客，还没有完善，希望能有所帮助 : )
 
 # 许可
 
