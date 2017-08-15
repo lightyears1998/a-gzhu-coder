@@ -18,7 +18,7 @@ int main(void)
     int result = 1;
     for(int c=1; c<=a; c++)
     {
-        result *= c; //等价于 result = result *c;
+        result *= c; // 等价于 result = result *c;
     }
     printf("%d", result);
 
