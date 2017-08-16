@@ -40,13 +40,13 @@ int main(void)
     /* 定义坐标系 */
     struct canvas coordinate = {
         100,
-        100
+        50
     };
 
     /* 定义原点 */
     struct point origin = {
-        50,
-        50
+        40,
+        45
     };
 
     // 心形线方程参数
