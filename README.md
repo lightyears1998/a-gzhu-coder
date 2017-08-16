@@ -1,6 +1,6 @@
 # 关于
 
-从新生群里收集到的题目，自己写的解答。
+从新生群里收集到的题目，我自己写的解答。
 希望这些东西对你学习C/C++有所帮助 ^_^
 
 # 文件结构
@@ -81,6 +81,9 @@ g++ <C++源文件> -o <欲生成可执行文件的文件名>
 
 我的解答和其他归属于我的文件属于公有领域。
 
+# 最后
+
+Hope you enjoy it! (ง •̀_•́)ง
 
 [link_cppreference]: http://en.cppreference.com/w/
 [link_blog]: https://blog.qfstudio.net/index.php/c-and-cpp-menu/
