@@ -8,6 +8,7 @@
  * 具体操作呢就是求 1！+ 2！+ 3！+…… +20！。
  */
 
+//#define __USE_MINGW_ANSI_STDIO 1 
 #include <stdio.h>
 
 int main(void)

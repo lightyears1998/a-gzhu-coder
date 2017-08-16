@@ -13,8 +13,8 @@
 /**
  * 16x6 爱心(?! (´・ω・`) )：
  *
- *      **    **
- *    *****  *****
+ *     **      **
+ *    ****     ****
  *  ****************
  *   **************
  *     **********
@@ -30,29 +30,43 @@ int main(void)
 {
     /* 行，列和初始星星 */
     // 行数和列数必须为偶数
-    int line = 6;
-    int space = 16;
+    int line = 24;
+    int space = 64;
     int star = 4;
-
-    int step = (space - star) / (line / 2);
 
     // 在每一行绘制图形
     for(int l=1; l <= line; l++)
     {
+        int step;
         int counted_star;
         int counted_void;
         // 前半部分
         if(l <= line/2)
         {
             /* 绘制形式 空格 星星 空格 中轴线 空格 星星 空格 */
+            step= (space-star) / (line/2 -1);
             counted_star = space - (line/2 - l) * step;
             counted_void = (line/2 -l) * step;
+            drawing_void( counted_void/4 );
+            drawing_stars( counted_star/2 );
+            drawing_void( counted_void/4 );
+            drawing_void( counted_void/4 );
+            drawing_stars( counted_star/2 );
+            drawing_void( counted_void/4 );
         }
         // 后半部分
         else
         {
-            /* 绘制格式 空格 星星 中轴线 星星 空格 */
+            /* 绘制形式 空格 星星 中轴线 星星 空格 */
+            step = (space - star) / (line/2);
+            counted_star = space - (l-line/2) * step;
+            counted_void = (l-line/2) * step;
+            drawing_void(counted_void/2);
+            drawing_stars(counted_star/2);
+            drawing_stars(counted_star/2);
+            drawing_void(counted_void/2);
         }
+        printf("\n");
     }
     return 0;
 }
@@ -63,6 +77,7 @@ void drawing_void(int count)
     while(i<=count)
     {
         printf(" ");
+        i++;
     }
 }
 
@@ -72,5 +87,6 @@ void drawing_stars(int count)
     while(i<=count)
     {
         printf("*");
+        i++;
     }
 }
