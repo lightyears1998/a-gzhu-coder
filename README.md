@@ -1,7 +1,14 @@
 # 关于
 
+(●’◡’●)ﾉ 
+
 这里有从新生群里收集到的题目，还有我自己写的解答。
 希望这些东西对你学习C/C++有所帮助 ^_^
+
+欢迎指出我的错误，如蒙赐教，不胜感激。欢迎推荐自己的算法♪（＾∀＾●）ﾉ
+
+如果你在学习的过程中遇到了问题，可以给我issue或者在通过其他途径联系我。
+我一定会尽力帮忙，虽然不一定能解决问题。我在群里的id是lightyears，邮箱lightyears1998@hotmail.com
 
 # 文件结构
 
@@ -14,7 +21,9 @@
 | pre-school/ | 学姐（学长）在新生群布置的题目和尝试解答 |
 | snippets/ | 帽子（学长）和仙女（学姐）给出的练习小题目 |
 | */index.md | 题目索引 |
-| */bin/ | 已经编译好的Windows可执行文件 |
+| */bin/ | 已编译的Windows可执行文件 |
+
+有些文件名带有辅助标记。
 
 | 辅助标记 | 提示 |
 | ------ | ------ |
@@ -38,12 +47,13 @@ Dev C++默认以系统编码打开文件，而Windows简体中文版的默认系
 
 ### 在Linux上编译
 
-[Linux上的GCC](/howto/linux-gcc.md)
+[Linux上的GCC](/howto/compile-linux.md)
 
-# 可能有用外部链接
+# 有趣的链接
 
-* **[CPP Reference][link_cppreference]** C/C++标准参考
-* **[QF Blog: C Begginer Menu][link_blog]** 我和我的两个好朋友一起写的关于C语言入门的博客，还没有完善，希望能有所帮助 : )
+* **[CPP Reference][link_cppreference]** C/C++标准参考，在这里可以找到神秘函数的定义和用例，比如[数学库][link_math.h]
+* **[国际C语言混乱代码大赛][link_ioccc]** 试试浙大侯启明教授的[Calculator][link_calculator]
+* **[QF Blog: C Begginer Menu][link_blog]** 我和两个好朋友一起写的博客，介绍了一些基础知识，希望能有所帮助 : )
 
 # 许可
 
@@ -62,4 +72,7 @@ Dev C++默认以系统编码打开文件，而Windows简体中文版的默认系
 Hope you enjoy it! (ง •̀_•́)ง
 
 [link_cppreference]: http://en.cppreference.com/w/
+[link_math.h]: http://en.cppreference.com/w/c/numeric/math
+[link_ioccc]: http://www.ioccc.org/
+[link_calculator]: http://www.ioccc.org/2011/hou/hou.c
 [link_blog]: https://blog.qfstudio.net/index.php/c-and-cpp-menu/
