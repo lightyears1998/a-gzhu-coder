@@ -36,36 +36,9 @@ Dev C++默认以系统编码打开文件，而Windows简体中文版的默认系
 
 ## 命令行工具
 
-### Linux系统上的GCC
+### 在Linux上编译
 
-使用你自己系统的编译器哦。这里介绍GCC编译器的使用。
-如果你不确定系统上有没有安装编译器，在命令行工具中尝试一下下面的命令
-
-```
-gcc --version
-```
-
-如果发现你的系统没有安装GCC编译器，可以尝试使用下面的方法安装
-```
-yum install gcc
-yun install gcc-c++
-
--- 或者
-
-apt-get install gcc
-apt-get install g++
-```
-
-编译文件，请使用
-```
-gcc <C源文件> -o <欲生成可执行文件的文件名>
-g++ <C++源文件> -o <欲生成可执行文件的文件名>
-
--- 例如：
--- gcc day1-ex1.c -o day1-ex1
--- 然后运行它：
--- day1-ex1
-```
+[Linux上的GCC](/howto/linux-gcc.md)
 
 # 可能有用外部链接
 
