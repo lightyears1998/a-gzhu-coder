@@ -50,7 +50,7 @@ int main(void)
     };
 
     // 心形线方程参数
-    int argument = 10;
+    int argument = 16;
 
     /* 定义坐标系点集 */
     struct point points[coordinate.wide * coordinate.length];
@@ -59,7 +59,7 @@ int main(void)
         for(int column=1; column<=coordinate.wide; column++)
         {
             points[ (row-1)*coordinate.wide + column -1 ].x = row - origin.x;
-            points[ (row-1)*coordinate.wide + column -1 ].y = column - origin.y;
+            points[ (row-1)*coordinate.wide + column -1 ].y = (column - origin.y)/2;
             points[ (row-1)*coordinate.wide + column -1 ].flag = 0;
         }
     }
@@ -82,8 +82,8 @@ int main(void)
         }
     }
 
-    /* 逐点打印星星 */
-    for(int i=0; i<= (coordinate.wide * coordinate.length -1); i++)
+    /* 逆序打印星星，让心形正立 */
+    for(int i=(coordinate.wide * coordinate.length -1); i>=0 ; i--)
     {
         if(points[i].flag == 1){
             printf("*");
