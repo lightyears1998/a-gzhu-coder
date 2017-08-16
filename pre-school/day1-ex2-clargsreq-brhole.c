@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void printUsage(char arg[]);
+void print_usage(char arg[]);
 
 int main(int argc, char *argv[])
 {
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
         if(argc==1)
         // 无参数时输出说明
         {
-            printUsage(argv[0]);
+            print_usage(argv[0]);
             return 0;
         }
     }
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     }
 }
 
-void printUsage(char arg[])
+void print_usage(char arg[])
 {
     // 取得可执行文件名
     char *path = arg;

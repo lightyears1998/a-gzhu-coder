@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <string.h>
 
-void printUsage(char arg[]);
-void printMessage(void);
+void print_usage(char arg[]);
+void print_message(void);
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         // 在无参数输入时输出程序说明
         if(argv[1]==NULL) 
         {
-            printUsage(argv[0]);
+            print_usage(argv[0]);
             return -1;
         }
         // 检查参数的数量和格式
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void printUsage(char arg[])
+void print_usage(char arg[])
 {   
     // 取得可执行文件名
     char *path = arg;
@@ -80,10 +80,10 @@ void printUsage(char arg[])
         "如果你在不兼容Ascii的环境中使用这个程序，\n"
         "程序将不会正常工作。");
     
-    printMessage();
+    print_message();
 }
 
-void printMessage(void)
+void print_message(void)
 {
     printf("\n");
     

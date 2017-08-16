@@ -20,8 +20,8 @@
 #include <math.h>
 #include <string.h>
 
-void printUsage(char arg[]);
-void printMessage(void);
+void print_usage(char arg[]);
+void print_message(void);
 
 int main(int argc, char *argv[])
 {
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	{
 		// 无参数时输出说明
 		if(argv[1]==NULL){
-			printUsage(argv[0]);
+			print_usage(argv[0]);
 			return 0;
 		}
 		else if(argv[2]!=NULL)
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void printUsage(char arg[])
+void print_usage(char arg[])
 {
 	// 取得可执行文件名
 	char *path = arg;
@@ -113,10 +113,10 @@ void printUsage(char arg[])
 	"这个小程序判断输入的数值在系统上哪一种整数类型的表达范围中，并输出该整数类型。\n"
 	"当你不提供参数时输出程序的说明");
 
-	printMessage();
+	print_message();
 }
 
-void printMessage(void)
+void print_message(void)
 {
     printf("\n");
     
