@@ -16,6 +16,7 @@
 
 | 辅助标记 | 提示 |
 | ------ | ------ |
+| -brhole | Brain Hole <br/> 脑洞请忽略…… |
 | -clargsreq | Command-Line Arguments Required <br/> 需要命令行参数 |
 
 
