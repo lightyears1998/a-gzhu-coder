@@ -1,7 +1,6 @@
 # 安装和配置
 
 微软为学生提供了免费的Visual Studio： Visual Studio Community。
-我个人认为，VS是Windows平台上最强大的集成开发环境，没有之一。
 
 在微软的官方网站可以获得最新的[VS Community](https://www.visualstudio.com/zh-hans/free-developer-offers/)。截至17年8月，最新版本是Visual Studio 2017 Community。
 
