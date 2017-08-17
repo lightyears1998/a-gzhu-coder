@@ -83,7 +83,7 @@ int main(){
 
 ### 原因
 
-解决方案没有使用新添加的组件
+解决方案没有使用新添加的组件。
 
 ### 解决
 
@@ -95,7 +95,7 @@ int main(){
 
 ### 原因
 
-Visual Studio通过添加文件时选择的文件类型判断文件类型。
+我的理解是，Visual Studio通过添加文件时选择的文件类型判断文件类型。
 向项目添加源代码时，必须选择正确的文件类型。
 （如果添加源文件时使用的后缀名是txt，即使之后将txt改为c或cpp，编译器也不会对它进行编译。）
 
@@ -106,7 +106,7 @@ Visual Studio通过添加文件时选择的文件类型判断文件类型。
 
 如果通过添加“存在的文件”的方式向项目中添加文件，源文件必需具有c或cpp后缀名。
 
-## UTF8中文字符Bug
+## UTF8中含有中文字符时，源文件不能编译而代码感知无错误提示
 
 在我的电脑上，版本15.3.0的Visual Studio编译器不能正确处理以无BOM的UTF-8编码的文件。
 如果你的代码使用无BOM的UTF编码保存，并且在代码中含有中文字符，即使代码编辑器没有检查出错误，也很可能会在编译期间出现一些莫名其妙的错误。
@@ -114,6 +114,15 @@ Visual Studio通过添加文件时选择的文件类型判断文件类型。
 
 > Warning	C4819:	The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss	Compatibility	c:\users\light\documents\visual studio 2017\projects\compatibility\source\day1-ex1-clargsreq-brhole.c	1	
 
+### 原因
+
+我的理解是，MSVC编译器依靠UTF8编码前面的BOM标记来识别UTF8编码。当UTF8编码的文件不带有BOM标记时，MSVC编译器将文件识别的本地操作系统的编码，也就是gb2312编码。这种情况下，MSVC编译器不能正确识别在中文符后面的换行符。
+
 ### 解决
 
 以带BOM的UTF8编码重新保存文件。
+
+选择工具栏中的“文件” -> “另存为...” -> 在“保存”按钮的下拉菜单中选择“以其他编码保存”，然后选择“带签名的UTF8 - 代码页65001”编码。
+
+![另存为](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-save-as.png)
+![以其他编码保存](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-save-as-advanced.png)
