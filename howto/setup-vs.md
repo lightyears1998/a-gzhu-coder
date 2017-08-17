@@ -125,4 +125,5 @@ int main(){
 选择工具栏中的“文件” -> “另存为...” -> 在“保存”按钮的下拉菜单中选择“以其他编码保存”，然后选择“带签名的UTF8 - 代码页65001”编码。
 
 ![另存为](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-save-as.png)
+
 ![以其他编码保存](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-save-as-advanced.png)
