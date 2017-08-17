@@ -1,5 +1,6 @@
 # 安装和配置
 
+Visual Studio是一个功能全面的集成开发环境。
 微软为学生提供了免费的Visual Studio： Visual Studio Community。
 
 在微软的官方网站可以获得最新的[VS Community](https://www.visualstudio.com/zh-hans/free-developer-offers/)。截至17年8月，最新版本是Visual Studio 2017 Community。
@@ -25,8 +26,14 @@ Visual Studio使用“解决方案”(solution)和“项目”(project)来管理
 我们可以一步到位创建C/C++项目和包含它的解决方案。
 从工具栏中选择 “文件” -> “新建” -> “项目...”，这会打开新建项目窗口。展开窗口左边的“Visual C++”节点，选择节点下的“通用”，在右侧选择“空项目”。选择一个你喜欢的名字然后确认。
 
+![一步到位创建解决方案和项目](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-creating_solution_and_projecgt.png)
+
 接下来添加代码文件。
 在“解决方案资源管理器”（如果你看不到它，在工具栏上点击“视图”，再点击“解决方案资源管理器”它就会跑出来啦）中对在项目标签上点击右键，然后选择 “添加” -> “新项目”，在创建新项目的窗口中展开“Visual C++”节点，选择“代码”标签，在右侧窗口中选择“C++源文件(.cpp)”，给它一个你喜欢的名字，然后确认。（如果要创建C语言文件，可以将后缀名从cpp改为c）
+
+![添加代码文件1](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-creating_source_file.png)
+
+![添加代码文件2](https://blog.qfstudio.net/wp-content/uploads/2017/08/gzhu-coder-creating_source_file_c.png)
 
 在代码编辑器中输入你的代码，这里有一些可以参考的代码，可以帮助你测试VS是否被正确配置。
 
