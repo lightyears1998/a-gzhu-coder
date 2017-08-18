@@ -12,6 +12,8 @@
 
 帮助修正拼写和空白错误、统一书写格式、改善项目结构
 
+推荐实用软件（TODO: add apps recommadation list）
+
 ---
 
 承蒙指点，由是感激。
