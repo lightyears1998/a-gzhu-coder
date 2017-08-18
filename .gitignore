@@ -36,4 +36,3 @@ Thumbs.db
 *.exe
 *.out
 *.app
-!*/bin/*.exe
