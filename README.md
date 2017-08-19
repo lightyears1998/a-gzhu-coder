@@ -56,6 +56,11 @@ Dev C++默认以系统编码打开文件，而Windows简体中文版的默认系
 * **[国际C语言混乱代码大赛][link_ioccc]** 试试浙大侯启明教授的[Calculator][link_calculator]
 * **[QF Blog: C Begginer Menu][link_blog]** 我和两个好朋友一起写的博客，介绍了一些基础知识，希望能有所帮助 : )
 
+## 在线判题系统（Online Judge）
+
+* **[杭州电子科技大学OJ][link_hdu_acm]** 题库由浅入深，支持多种语言。可能是最经典的OJ。
+* **[HihoCoder][link_hiho]** 题库由浅入深，支持多种语言，每周组织站内小型赛事，不定期组织挑战赛，奖品颇丰。
+
 # 许可
 
 你可以自由地使用这个代码库中的代码学习，
@@ -77,3 +82,5 @@ Hope you enjoy it! (ง •̀_•́)ง
 [link_ioccc]: http://www.ioccc.org/
 [link_calculator]: http://www.ioccc.org/2011/hou/hou.c
 [link_blog]: https://blog.qfstudio.net/index.php/c-and-cpp-menu/
+[link_hdu_acm]: http://acm.hdu.edu.cn/
+[link_hiho]: https://hihocoder.com/
