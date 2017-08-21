@@ -17,7 +17,7 @@ chcp 65001
 :SETTINGS_BEGIN
 % 设置使用的编译器 %
 set COMPLIER=""
-rem 支持的编译器有"gcc", "cl"
+rem 支持"gcc", "cl"
 
 % 设置GCC %
 set GCC_PATH=C:\MinGW\bin
@@ -39,15 +39,30 @@ if %COMPLIER%=="" (
 )
 
 if %COMPLIER%=="gcc" (
-    goto GCC_SECTION
+    goto :GCC_SECTION
 )
 
 if %COMPLIER%=="cl" (
-    goto CL_SECTION
+    goto :CL_SECTION
 )
 
 :GCC_SECTION
+:GCC_ENV_INIT
 set PATH=%GCC_PATH%;%PATH%
+if exist %OUTPUT_FOLDER% (
+    goto :GCC_ARG_CHECK
+) else (
+    mkdir %OUTPUT_FOLDER%
+)
+
+:GCC_ARG_CHECK
+if "%1"=="" (
+    goto :GCC_BUILD_ALL
+) else (
+    goto :GCC_BUILD_SPECIFY
+)
+
+:GCC_BUILD_ALL
 for %%i in (*.c) do (
     echo 编译 %%i
     gcc.exe %%i -o %OUTPUT_FOLDER%\%%i.exe %EXTRA_ARGS%
@@ -61,6 +76,19 @@ echo 编译完成
 echo.
 goto :FINISHING
 
+:GCC_BUILD_SPECIFY
+for %%a in (%1) do (
+    if %%~xa==.c (
+        echo 编译 %%a
+        gcc.exe %%a -o %OUTPUT_FOLDER%\%%a.exe %EXTRA_ARGS%
+    )
+    if %%~xa==.cpp (
+        echo 编译 %%a
+        g++.exe %%a -o %OUTPUT_FOLDER%\%%a.exe %EXTRA_ARGS%
+    )
+)
+goto :EOF
+
 :CL_SECTION
 :CL_ENV_INIT
 set PATH=%CL_PATH%;%PATH%
@@ -68,9 +96,16 @@ set INCLUDE=%CL_INCLUDE%;%INCLUDE%
 set LIB=%CL_LIB%;%LIB%
 
 if exist %OUTPUT_FOLDER% (
-    goto CL_COMPLIE
+    goto :CL_ARG_CHECK
 ) else (
     mkdir %OUTPUT_FOLDER%
+)
+
+:CL_ARG_CHECK
+if "%1"=="" (
+    goto :CL_COMPLIE
+) else (
+    goto :CL_COMPLIE_SPECIFY
 )
 
 :CL_COMPLIE
@@ -83,6 +118,24 @@ for %%i in (*.c) do (
 )
 echo 编译完成
 echo.
+goto :CL_CLEAN
+
+:CL_COMPLIE_SPECIFY
+for %%a in (%1) do (
+    echo 编译 %%a
+    echo ================================================================
+    cl.exe /Fe%OUTPUT_FOLDER%\%%a.exe %%a %CL_EXTRA_ARGS%
+    echo ================================================================
+    echo.
+)
+echo 编译完成
+echo.
+for %%i in (*.obj) do (
+    del %%i
+)
+echo 清理完成
+echo.
+goto :EOF
 
 :CL_CLEAN
 for %%i in (*.obj) do (
