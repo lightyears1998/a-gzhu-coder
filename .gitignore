@@ -36,4 +36,7 @@ Thumbs.db
 *.exe
 *.out
 *.app
-!*/bin/*.exe
+
+# Build util in Source folder
+build.bat
+!utils/build.bat
