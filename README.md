@@ -54,7 +54,6 @@ Dev C++默认以系统编码打开文件，而Windows简体中文版的默认系
 
 * **[CPP Reference][link_cppreference]** C/C++标准参考，在这里可以找到神秘函数的定义和用例，比如[数学库][link_math.h]
 * **[国际C语言混乱代码大赛][link_ioccc]** 试试浙大侯启明教授的[Calculator][link_calculator]
-* **[QF Blog: C Begginer Menu][link_blog]** 我和两个好朋友一起写的博客，介绍了一些基础知识，希望能有所帮助 : )
 
 ## 在线判题系统（Online Judge）
 
@@ -81,6 +80,5 @@ Hope you enjoy it! (ง •̀_•́)ง
 [link_math.h]: http://en.cppreference.com/w/c/numeric/math
 [link_ioccc]: http://www.ioccc.org/
 [link_calculator]: http://www.ioccc.org/2011/hou/hou.c
-[link_blog]: https://blog.qfstudio.net/index.php/c-and-cpp-menu/
 [link_hdu_acm]: http://acm.hdu.edu.cn/
 [link_hiho]: https://hihocoder.com/
