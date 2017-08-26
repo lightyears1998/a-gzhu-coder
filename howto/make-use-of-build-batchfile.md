@@ -31,7 +31,7 @@ build.bat 目前支持两种编译器：GCC和MSVC编译器。
 
 如果你已经设置了PATH环境变量、INCLUDE环境变量和LIB环境变量，则无需额外设置。
 
-否则，你需要在CL_PATH、CL_INCLUDE、CL_LIB变量中指定路径。参见[变量设置提示](#CL_PATH、CL_INCLUDE、CL_LIB设置提示)。
+否则，你需要在CL_PATH、CL_INCLUDE、CL_LIB变量中指定路径。参见[变量设置提示](#cl_pathcl_includecl_lib设置提示)。
 
 可以设置CL_EXTRA_ARGS变量，这会作为额外的命令行参数传递给MSVC编译器。
 
