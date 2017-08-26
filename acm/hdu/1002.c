@@ -32,8 +32,7 @@
 int main(void)
 {
     int count;
-    scanf("%d", &count);
-    getchar();
+    scanf("%d\n", &count);
 
     for(int i=1; i<=count; i++)
     {
