@@ -4,6 +4,12 @@
  *
  */
 
+/**
+ * 题目分析：
+ * 此题可用于练习程序输入输出
+ *
+ */
+
 #include <stdio.h>
 
 int main(void)
