@@ -7,13 +7,23 @@
 /**
  * 题目分析：
  *
+ * 长整数加法模板题
+ *
  * 题干中“You may assume the length of each integer will not exceed 1000.”表明，
  * 即使是使用LONG LONG INT类型也无法满足处理题目数据的需求。（2^64 ≈ 1.84e19）
  * 我们需要自己编写能接受1000位整数的类型，并且为它实现加法。 
- * 由题干中“the integers are very large”，这里不考虑输入的整数为负的情况。
+ * 由题干中“two positive integers”，这里不考虑输入的整数为负的情况。
  *
  * 还记得半加器吗？
- * 这里用char数组模拟一个整数，数组中的每一个元素模拟整数中的一个位置。
+ * 这里用char数组模拟一个超长整数，数组中的每一个元素模拟整数中的一个位置。
+ * 数组a, b, sum从最后一个元素开始填充数据，高位在前；
+ * 数组temp从第一个元素开始填充数据，高位在前。
+ *
+ * 图示：
+ * a:       [0][0][0][0][0][0][2][3] （23）
+ * b:       [0][0][0][0][0][2][6][7] （267）
+ * sum:     [0][0][0][0][0][2][9][0] （290）
+ * temp:    [2][9][0][0][0][0][0][0] （29或290或2900……）
  *
  */
 
@@ -23,79 +33,98 @@ int main(void)
 {
     int count;
     scanf("%d", &count);
-    getchar();  
+    getchar();
 
     for(int i=1; i<=count; i++)
     {
-        char a[1000]={0}, b[1000]={0}, sum[1001]={0};
-        
-        /* 接受输入 */
+        char a[1000]={0}, b[1000]={0}, sum[1001]={0}, temp[1000];
+
+        /* 获得数据 */
+        access_data:
         {
             char input;
-            char flag=0;
-            int pointer=999;
-            while((input=getchar()) != '\n')
+            int pointer=0;
+            while(input=getchar())
             {
-                if(input!=' ')
+                switch(input)
                 {
-                    input -= 48;
-                    if(flag==0){
-                        a[pointer]=input;
-                    }else{
-                        b[pointer]=input;
+                    default:
+                    {
+                        temp[pointer] = input - 48;
+                        pointer++;
+                        break;
                     }
-                    pointer--;
-                }
-                else
-                {
-                    pointer=999;
-                    flag++;
+                    case ' ':
+                    {
+                        for(int current=0; pointer>0; pointer--)
+                        {
+                            a[999-current] = temp[pointer-1];
+                            current++;
+                        }
+                        break;
+                    }
+                    case '\n':
+                    {
+                        for(int current=0; pointer>0; pointer--)
+                        {
+                            b[999-current] = temp[pointer-1];
+                            current++;
+                        }
+                        goto perform_calculation;
+                    }  
                 }
             }
-        } 
+        }
 
-        /* 进行计算 */
-        char carry = 0;
-        for(int pointer=999; pointer>=0; pointer--)
+        /* 执行运算 */
+        perform_calculation:
         {
-            sum[pointer+1] = a[pointer] + b[pointer] + carry;
-            if(sum[pointer+1]>=10){
-                sum[pointer+1] -= 10;
-                carry = 1;
-            }else{
-                carry = 0;
+            for(int pointer=999; pointer>0; pointer--){
+                if((sum[pointer+1] += (a[pointer] + b[pointer]) ) >= 10){
+                    sum[pointer+1] -= 10;
+                    sum[pointer] = 1;
+                }
             }
-            if(pointer==0 && carry==1){
-                sum[0]=1;
+            if( sum[1]+=(a[0]+b[0]) >= 10 ){
+                sum[1] -= 10;
+                sum[0] = 1;
             }
         }
 
         /* 输出结果 */
-        printf("Case %d:\n", i);
-        for(int pointer=999;pointer>=0;pointer--)
+        output_result:
         {
-            if(a[pointer]!=0){
-                a[pointer]+=48;
-                printf("%c", a[pointer]);
+            int flag = 0;
+            printf("Case %d:\n", i);
+            for(int pointer=0, flag=0; pointer<=999; pointer++)
+            {
+                if(flag || a[pointer]!=0){
+                    flag = 1;
+                    printf("%c", a[pointer]+48);
+                }
             }
-        }
-        printf(" + ");
-        for(int pointer=999;pointer>=0;pointer--)
-        {
-            if(b[pointer]!=0){
-                b[pointer]+=48;
-                printf("%c", b[pointer]);
+            printf(" + ");
+            for(int pointer=0, flag=0; pointer<=999; pointer++)
+            {
+                if(flag || b[pointer]!=0){
+                    flag = 1;
+                    printf("%c", b[pointer]+48);
+                }
             }
-        }
-        printf(" = ");
-        for(int pointer=1000;pointer>=0;pointer--)
-        {
-            if(sum[pointer]!=0){
-                sum[pointer]+=48;
-                printf("%c", sum[pointer]);
+            printf(" = ");
+            for(int pointer=0, flag=0; pointer<=1000; pointer++)
+            {
+                if(flag || sum[pointer]!=0){
+                    flag = 1;
+                    printf("%c", sum[pointer]+48);
+                }
             }
+            printf("\n");
         }
-        printf("\n");
+
+        if(i!=count){
+            printf("\n");
+        }
     }
 
     return 0;
