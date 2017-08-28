@@ -355,4 +355,133 @@ void two(void)
 
 ## 第3章
 
-### 练习3.1：
+### 练习3.1：观察上溢和下溢
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int i = 2147483647;	//32位int的最大值
+	double d1 = 1.79e+308;
+	double d2 = 2.22e-308;
+	
+	printf("整型上溢\n");
+	printf("i=\t%d\n", i);
+	printf("i+1=\t%d\n\n", i);
+	
+	printf("浮点数上溢\n");
+	printf("d1=\t%e\n", d1);
+	printf("d1+1e308=\t%e\n\n", d1 + 1e308);
+
+	printf("浮点数下溢\n");
+	printf("d2=\t%e\n", d2);
+	printf("d2/1.79e+15=\t%e\n", d2 / 1.79e+15);
+	printf("d2/1.79e+16=\t%e", d2 / 1.79e+16);
+
+	return 0;
+}
+
+```
+
+### 练习3.2：Ascii转换
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int ascii;
+	char ch;
+	scanf("%d", ascii);
+	ch = ascii;
+	printf("%c", ch);
+	
+	return 0;
+}
+```
+
+### 练习3.3：Ascii报警和打印文字
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	printf("\a");
+	printf("Started by the sudden sound, Sally shouted, \"By the Great Pumpkin, what was that! \"");
+	
+	return 0;
+}
+
+```
+
+### 练习3.4：输入和输出浮点数
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float d;
+	scanf("%f", &d);
+	printf("The input is %f or %e.", d, d);
+
+	return 0;
+}
+
+```
+
+### 练习3.5：年龄问题
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float sec = 3.156e7;
+	int age;
+	scanf("%d", &age);
+	printf("%f", sec * age);
+
+	return 0;
+}
+
+```
+
+### 练习3.6：水分子问题
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	double mass = 3e-23;
+	int quart = 950;
+	int count;
+	scanf("%d", &count);
+	printf("%le", quart * count / mass );
+	
+	return 0;
+}
+
+```
+
+### 练习3.7：英寸厘米转换
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float intermediate = 2.54;
+	float inch;
+	scanf("%f", &inch);
+	printf("%f", inch * intermediate);
+
+	return 0;
+}
+
+```
+
+## 第4章
