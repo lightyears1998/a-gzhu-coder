@@ -168,7 +168,7 @@ printf("%c", ch);
 
 ### *sizeof()*
 
-*sizeof()*以字节为单位给出类型的大小，使用“%zd”打印*sizeof()*运算符返回的结果。
+*sizeof()* 以字节为单位给出类型的大小，使用“%zd”打印 *sizeof()* 运算符返回的结果。
 
 ```c
 printf("Long类型的占用%zd字节。", sizeof(long));
@@ -205,9 +205,9 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 ## 第2章
 
-### 练习1：输出姓名
+### 练习2.1：输出姓名
 
-```
+```c
 #include <stdio.h>
 
 int main(void)
@@ -222,9 +222,9 @@ int main(void)
 
 ```
 
-### 练习2：输出姓名和地址
+### 练习2.2：输出姓名和地址
 
-```
+```c
 #include <stdio.h>
 
 int main(void)
@@ -237,9 +237,9 @@ int main(void)
 
 ```
 
-### 练习3：输出年龄
+### 练习2.3：输出年龄
 
-```
+```c
 #include <stdio.h>
 
 int main(void)
@@ -253,9 +253,9 @@ int main(void)
 
 ```
 
-### 练习4：输出重复的句子
+### 练习2.4：输出重复的句子
 
-```
+```c
 #include <stdio.h>
 
 void print_sentence(void);
@@ -283,9 +283,9 @@ void print_another_sentence(void)
 
 ```
 
-### 练习5：练习使用变量
+### 练习2.5：练习使用变量
 
-```
+```c
 #include <stdio.h>
 
 int main(void)
@@ -299,9 +299,9 @@ int main(void)
 
 ```
 
-### 练习6：练习使用函数
+### 练习2.6：练习使用函数
 
-```
+```c
 #include <stdio.h>
 
 void smile(void);
@@ -322,9 +322,9 @@ void smile(void)
 
 ```
 
-### 练习7：练习使用函数（2）
+### 练习2.7：练习使用函数（2）
 
-```
+```c
 #include <stdio.h>
 
 void one_three(void);
@@ -355,4 +355,4 @@ void two(void)
 
 ## 第3章
 
-### 练习1：
+### 练习3.1：
