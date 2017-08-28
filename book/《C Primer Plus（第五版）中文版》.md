@@ -64,9 +64,9 @@ C语言也迎来了比C99更新的标准——C11标准，第六版在第五版�
 
 参见[CPP Reference网站中关于main()函数的内容](http://en.cppreference.com/w/c/language/main_function)。
 
-### 标识符（biāo zhì fú, identifier）
+### 标识符（biāo zhì fú）
 
-C语言的标识符可使用小写字母、大写字母、下划线和数字，不能以数字开头，以避免与数值常量混用。
+C语言的标识符（identifier）可使用小写字母、大写字母、下划线和数字，不能以数字开头，以避免与数值常量混用。
 
 推荐使用字母作为变量名的开头，把下划线留给标准库使用。
 
