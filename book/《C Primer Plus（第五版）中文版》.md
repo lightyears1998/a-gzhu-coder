@@ -30,9 +30,9 @@
 ### 历史上著名的公司
 
 - *Microsoft*
-- *Borland*		宝蓝公司
-- *Metrowerks*		出品CodeWorriors
-- *Digital Mars*	出品Digital Mars C/C++编译器
+- *Borland* 宝蓝公司
+- *Metrowerks* 出品CodeWorriors
+- *Digital Mars* 出品Digital Mars C/C++编译器
 
 ### C语言标准
 
