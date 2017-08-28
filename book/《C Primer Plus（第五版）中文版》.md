@@ -46,8 +46,8 @@ C语言也迎来了比C99更新的标准——C11标准，第六版在第五版�
 
 学习内容提要：
 
-- 运算符 *=*
-- 函数 *main()* *printf()*
+- 运算符：*=*
+- 函数：*main()* *printf()*
 - 编写一个简单的C程序。
 - 创建整形变量，为其赋值，并在屏幕上显示该值。
 - 换行字符。
@@ -81,8 +81,8 @@ C语言的标识符（identifier）可使用小写字母、大写字母、下划
 
 学习内容提要：
 
-- 关键字 *int, short, long, unsigned, char, float, double, _Bool, _Complex, _Imaginary*
-- 运算符 *sizeof*
+- 关键字：*int, short, long, unsigned, char, float, double, _Bool, _Complex, _Imaginary*
+- 运算符：*sizeof*
 - 函数 *scanf()*
 - C使用的基本数据类型
 - 整数类型和浮点数类型的区别
@@ -177,6 +177,22 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 ## 第4章 字符串和格式化输入/输出
 
+学习内容提要：
+
+- 函数 *strlen()*
+- 关键字 *const*
+- 字符串。
+- 如何创建和存储字符串。
+- 如何使用 *scanf()* 和 *printf()* 读取和显示字符串。
+- 如何使用 *strlen()* 获取字符串的长度。
+- 使用C预处理器的#define指令和ANSI C的const修饰符创建常量。
+
+### 字符串类型
+
+字符串以空字符（'\0'）结束。在使用 *scanf()* 读取字符串以及使用字符串字面值时，空字符会被自动插入。
+
+**
+
 ### *printf()* 格式说明符
 
 | 整型进位制 | 符号 | 备注 |
@@ -200,6 +216,11 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 | 小数形式的浮点数 | f | |
 | 指数计数法的浮点数 | e | |
 | 指数计数的十六进制浮点数 | a | |
+
+## 第5章 运算符、表达式和语句
+
+- 关键字：*while* *typedef*
+- 运算符：*= - * / % ++ -- (type)*
 
 # 章节编程练习
 
