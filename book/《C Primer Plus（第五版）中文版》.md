@@ -29,15 +29,15 @@
 
 ### 历史上著名的公司
 
-- Microsoft
-- Borland		宝蓝公司
-- Metrowerks	出品CodeWorriors
-- Digital Mars	出品Digital Mars C/C++编译器
+- *Microsoft*
+- *Borland*		宝蓝公司
+- *Metrowerks*		出品CodeWorriors
+- *Digital Mars*	出品Digital Mars C/C++编译器
 
 ### C语言标准
 
-《C2P》（第五版）介绍的是C99标准，时至今日，所有现代的编译器都支持C99标准。
-C语言也迎来了比C99更新的标准——C11标准。
+《C2P（第五版）》介绍的是C99标准，时至今日，所有现代的编译器都支持C99标准。
+C语言也迎来了比C99更新的标准——C11标准，第六版在第五版的基础上对C11标准的内容做了全面更新。
 编译器对C语言标准的支持可以在[CPP Reference][cppreference]网站上查询。
 
 [cppreference]: http://en.cppreference.com/w/
@@ -46,8 +46,8 @@ C语言也迎来了比C99更新的标准——C11标准。
 
 学习内容提要：
 
-- 运算符 =
-- 函数 main() printf()
+- 运算符 *=*
+- 函数 *main()* *printf()*
 - 编写一个简单的C程序。
 - 创建整形变量，为其赋值，并在屏幕上显示该值。
 - 换行字符。
@@ -58,9 +58,9 @@ C语言也迎来了比C99更新的标准——C11标准。
 
 推荐使用`int main(void){ // body }`形式的main()函数：
 
-- void main(){}不符合C语言标准。
-- main(){}不符合C99标准。
-- int main(){}能编译运行，但它不是标准的C语言形式。
+- void main(){} 不符合C语言标准。
+- main(){} 不符合C99标准。
+- int main(){} 能编译运行，但它不是标准的C语言形式。
 
 参见[CPP Reference网站中关于main()函数的内容](http://en.cppreference.com/w/c/language/main_function)。
 
@@ -81,13 +81,13 @@ C语言的标识符可使用小写字母、大写字母、下划线和数字，�
 
 学习内容提要：
 
-- 关键字 int, short, long, unsigned, char, float, double, _Bool, _Complex, _Imaginary
-- 运算符 sizeof
-- 函数 scanf()
+- 关键字 *int, short, long, unsigned, char, float, double, _Bool, _Complex, _Imaginary*
+- 运算符 *sizeof*
+- 函数 *scanf()*
 - C使用的基本数据类型
 - 整数类型和浮点数类型的区别
 - 对上述类型，如何书写常量和声明变量。
-- 使用printf()和scanf()函数读写各种类型数据的值。
+- 使用*printf()*和*scanf()*函数读写各种类型数据的值。
 
 # 章节编程练习
 
