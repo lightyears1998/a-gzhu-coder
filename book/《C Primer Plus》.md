@@ -75,6 +75,18 @@ C语言的标识符可使用小写字母、大写字母、下划线和数字，�
 
 从这个角度看，main和function都不是C语言的标识符，int和char是C语言的标识符。
 
+## 第3章 数据和C
+
+学习内容提要：
+
+- 关键字 int, short, long, unsigned, char, float, double, _Bool, _Complex, _Imaginary
+- 运算符 sizeof
+- 函数 scanf()
+- C使用的基本数据类型
+- 整数类型和浮点数类型的区别
+- 对上述类型，如何书写常量和声明变量。
+- 使用printf()和scanf()函数读写各种类型数据的值。
+
 # 章节编程练习
 
 ## 第2章
