@@ -728,7 +728,7 @@ int main(void)
 
 ## 第4章
 
-### 练习4.1：输入和输出
+### 练习4.1：输入和输出字符串
 
 ```c
 #include <stdio.h>
@@ -745,8 +745,128 @@ int main(void)
 
 	return 0;
 }
+
 ```
 
-### 练习4.2：输入和输出（2）
+### 练习4.2：输入和输出字符串（2）
 
+```c
+#include <stdio.h>
+#include <string.h>
 
+int main(void)
+{
+	char name[40];
+
+	scanf("%s", name);
+
+	printf("\"%s\"\n", name);
+	printf("\"%20s\"\n", name);
+	printf("\"%-20s\"\n", name);
+	printf("%*s\n", strlen(name)+3, name);
+
+	return 0;
+}
+
+```
+
+### 练习4.3：输入和输出浮点数
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float value;
+	scanf("%f", &value);
+
+	printf("a. The input is %.1f or %.1e\n", value, value);
+	printf("b. The input is %+.3f or %.3E\n", value, value);
+
+	return 0;
+}
+
+```
+
+### 练习4.4：混合输入与输出字符串与浮点数
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char name[40];
+	float height;
+
+	scanf("%s %f", name, &height);
+	printf("%s, you are %.3f metre tall.\n", name, height/100);
+
+	return 0;
+}
+
+```
+
+### 练习4.5：格式化字符串输入和输出
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+	char name[40];
+	char family[40];
+
+	scanf("%s%s", name, family);
+	printf("%s %s\n", name, family);
+	printf("%*d %*d\n", strlen(name), strlen(name), strlen(family), strlen(family));
+	printf("%s %s\n", name, family);
+	printf("%-*d %-*d\n", strlen(name), strlen(name), strlen(family), strlen(family));
+
+	return 0;
+}
+
+```
+
+### 练习4.6：浮点数精度测试
+
+```c
+#include <stdio.h>
+#include <float.h>
+
+int main(void)
+{
+	double d = 1.0/3.0;
+	float f = 1.0/3.0;
+
+	printf("Double:\n%.4lf\n%.12lf\n%.16lf\n", d, d, d);
+	printf("Float:\n%.4f\n%.12f\n%.16f\n", f, f, f);
+
+	printf("FLT_DIG: %d\n", FLT_DIG);
+	printf("DBL_DIG: %d\n", DBL_DIG);
+
+	return 0;
+}
+
+```
+
+### 练习4.7：燃料表示
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float mile;
+	float gallon;
+	const float convert_dis = 1.609;
+	const float convert_oil = 3.785;
+
+	scanf("%f%f", &mile, &gallon);
+	printf("%.1f\n", mile/gallon);
+	printf("%.1f\n", (gallon*convert_oil) / (mile*convert_dis) * 100);
+
+	return 0;
+}
+
+```
