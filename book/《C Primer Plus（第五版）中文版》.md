@@ -457,7 +457,7 @@ int main(void)
 	printf("John Lightyears\n");
 	printf("John\n");
 	printf("Lightyears\n");
-	printf("John Lightyears");
+	printf("John Lightyears\n");
 
 	return 0;
 }
@@ -472,7 +472,7 @@ int main(void)
 int main(void)
 {
 	printf("John Lightyears\n");
-	printf("Guangzhou University, 230 Central West Road, Panyu District, Guangzhou");
+	printf("Guangzhou University, 230 Central West Road, Panyu District, Guangzhou\n");
 
 	return 0;
 }
@@ -488,7 +488,7 @@ int main(void)
 {
 	int age = 18;
 	int days = age * 365;
-	printf("我今年%d岁，我生活了%d天。", age, days);
+	printf("我今年%d岁，我生活了%d天。\n", age, days);
 
 	return 0;
 }
@@ -520,7 +520,7 @@ void print_sentence(void)
 
 void print_another_sentence(void)
 {
-	printf("Which nobody can deny!");
+	printf("Which nobody can deny!\n");
 }
 
 ```
@@ -534,7 +534,7 @@ int main(void)
 {
 	int toes = 10;
 	printf("toes is %d, and toes and toes is %d.\n", toes, toes + toes);
-	printf("toes' square is %d.", toes * toes);
+	printf("toes' square is %d.\n", toes * toes);
 
 	return 0;
 }
@@ -576,7 +576,7 @@ int main(void)
 {
 	printf("starting now:\n");
 	one_three();
-	printf("done!");
+	printf("done!\n");
 
 	return 0;
 }
@@ -619,7 +619,7 @@ int main(void)
 	printf("浮点数下溢\n");
 	printf("d2=\t%e\n", d2);
 	printf("d2/1.79e+15=\t%e\n", d2 / 1.79e+15);
-	printf("d2/1.79e+16=\t%e", d2 / 1.79e+16);
+	printf("d2/1.79e+16=\t%e\n", d2 / 1.79e+16);
 
 	return 0;
 }
@@ -637,7 +637,7 @@ int main(void)
 	char ch;
 	scanf("%d", ascii);
 	ch = ascii;
-	printf("%c", ch);
+	printf("%c\n", ch);
 	
 	return 0;
 }
@@ -651,7 +651,7 @@ int main(void)
 int main(void)
 {
 	printf("\a");
-	printf("Started by the sudden sound, Sally shouted, \"By the Great Pumpkin, what was that! \"");
+	printf("Started by the sudden sound, Sally shouted, \"By the Great Pumpkin, what was that! \"\n");
 	
 	return 0;
 }
@@ -667,7 +667,7 @@ int main(void)
 {
 	float d;
 	scanf("%f", &d);
-	printf("The input is %f or %e.", d, d);
+	printf("The input is %f or %e.\n", d, d);
 
 	return 0;
 }
@@ -684,7 +684,7 @@ int main(void)
 	float sec = 3.156e7;
 	int age;
 	scanf("%d", &age);
-	printf("%f", sec * age);
+	printf("%f\n", sec * age);
 
 	return 0;
 }
@@ -702,7 +702,7 @@ int main(void)
 	int quart = 950;
 	int count;
 	scanf("%d", &count);
-	printf("%le", quart * count / mass );
+	printf("%le\n", quart * count / mass );
 	
 	return 0;
 }
@@ -719,7 +719,7 @@ int main(void)
 	float intermediate = 2.54;
 	float inch;
 	scanf("%f", &inch);
-	printf("%f", inch * intermediate);
+	printf("%f\n", inch * intermediate);
 
 	return 0;
 }
@@ -727,3 +727,26 @@ int main(void)
 ```
 
 ## 第4章
+
+### 练习4.1：输入和输出
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char last_name[40];
+	char family_name[40];
+
+	scanf("%s", last_name);
+	scanf("%s", family_name);
+
+	printf("%s %s\n", last_name, family_name);
+
+	return 0;
+}
+```
+
+### 练习4.2：输入和输出（2）
+
+
