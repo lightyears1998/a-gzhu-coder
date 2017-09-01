@@ -927,3 +927,211 @@ int main(void)
 }
 
 ```
+
+## 第5章
+
+### 练习5.1：小时和分钟转换
+
+```c
+#include <stdio.h>
+
+const int M_PER_H = 60;
+
+int main(void)
+{
+	int hrs;
+	int mins;
+	while(scanf("%d", &mins) != EOF)
+	{
+		if(mins <= 0){
+			break;
+		}
+		hrs = mins / M_PER_H;
+		mins -= hrs * M_PER_H;
+		printf("%d:%02d\n", hrs, mins);
+	}
+
+	return 0;
+}
+
+```
+
+### 练习5.2：循环输出
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int num;
+	scanf("%d", &num);
+	int target = num + 10;
+
+	while( num <= target)
+	{
+		printf("%d", num);
+		if(num!=target){
+			printf(" ");
+		}
+		num++;
+	}
+
+	printf("\n");
+
+	return 0;
+}
+
+```
+
+### 练习5.3：天周转换
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int days;
+	int weeks;
+	while(scanf("%d", &days)!=EOF && days>=0)
+	{
+		printf("%d days are ", days);
+		weeks = days / 7;
+		days %= 7;
+		printf("%d weeks, %d days.\n", weeks, days);
+	}
+
+	return 0;
+}
+
+```
+
+### 练习5.4：厘米英寸转换
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float centimeters;
+	int feet;
+	float inches;
+
+	printf("Enter a height in centimeters: ");
+
+	while(scanf("%f", &centimeters)!=EOF && centimeters>0)
+	{
+		inches = centimeters / 2.54;
+		feet = inches / 12;
+		inches -= feet * 12;
+		printf("%.1f cm = %d feet, %.1f inches\n", centimeters, feet, inches);
+		printf("Enter a height in centimeters (<=0 to quit): ");
+	}
+
+	printf("bye\n");
+	
+	return 0;
+}
+
+### 练习5.5：改写addemup.c
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int count = 0, sum = 0;
+	scanf("%d", &count);
+	while(count>0)
+	{
+		sum += count;
+		count--;
+	}
+	printf("%d\n", sum);
+
+	return 0;
+}
+
+```
+
+### 练习5.6：改写addemup.c（2）
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int count = 0, sum = 0;
+	scanf("%d", &count);
+	while(count>0)
+	{
+		sum += count * count;
+		count--;
+	}
+	printf("%d\n", sum);
+
+	return 0;
+}
+
+```
+
+### 练习5.7：计算立方
+
+```c
+#include <stdio.h>
+
+float calc_cube(float side);
+
+int main(void)
+{
+	float side;
+	scanf("%f", &side);
+	printf("%.2f\n", calc_cube(side));
+
+	return 0;
+}
+
+float calc_cube(float side)
+{
+	return side * side * side;
+}
+
+```
+
+### 练习5.8：温度计算
+
+```c
+#include <stdio.h>
+
+void temperatures(double fahrenheit);
+
+int main(void)
+{
+	double fahrenheit;
+	int status = scanf("%lf", &fahrenheit);
+	
+	while(status!=0 && status!=EOF)
+	{
+		temperatures(fahrenheit);
+		status = scanf("%lf", &fahrenheit);
+	}
+
+//! 这样做是不行的：while(status = scanf("%d", &fahrenheit) && status!=0 && status!=EOF)
+//! 这是因为C只保证status值改变的副作用在进入下一条语句前被计算
+
+	return 0;
+}
+
+void temperatures(double fahrenheit)
+{
+	const double C1 = 1.8;
+	const double C2 = 32.0;
+	const double C3 = 273.16;
+
+	printf("Fahrenheit: %.2lf Celsius: %.2lf Kelvin: %.2lf\n",
+		fahrenheit,
+		C1 * fahrenheit + C2,
+		C1 * fahrenheit + C2 + C3	
+	);
+}
+
+```
