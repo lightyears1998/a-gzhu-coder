@@ -2,7 +2,7 @@
 Thumbs.db
 
 # Visual Studio Code personal settings
-*/.vscode/*
+**/.vscode/*
 
 # Prerequisites
 *.d
