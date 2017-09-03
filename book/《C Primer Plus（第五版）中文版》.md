@@ -438,6 +438,11 @@ while( scanf("%d", &num) == 1 )
 
 *do statement while(expression);*
 
+### 循环辅助手段
+
+- *continue* 循环的其余部分被忽略，开始下一次循环；对于for循环，从控制段的更新部分开始；对于while循环，从判断循环表达式开始。
+- *break* 跳出一层循环；对于for循环，不执行控制段的更新部分。
+
 ## 第7章 C控制语句：分支和跳转
 
 学习内容提要：
@@ -452,6 +457,56 @@ while( scanf("%d", &num) == 1 )
 - break、continue和goto跳转。
 - 使用C的字符I/O函数：getchar()和putchar()。
 - 由ctype.h头文件提供的字符分析函数系列。
+
+### if... else...
+
+*if(epression) statement*
+
+*if(expression) statement1 else statement2*
+
+*if(expression1) staement1 else if(expression2) statement2 else statement3*
+
+### 与、或、非
+
+- && 与
+- || 或
+- ! 非
+
+可以使用iso646.h改变拼写逻辑运算符的方法：
+
+- and 与
+- or 或
+- not 非
+
+关系运算符优先级高于逻辑运算符。非运算符的优先级高于与运算符，或运算符优先级最低。与运算符和或运算符标志一个顺序点。
+
+### 条件运算符 ?:
+
+*expression 1 ? expression2 : expression3*
+
+### 多重选择 switch
+
+```
+switch(integer expression)
+{
+	case constant1:
+		statements
+		break;
+	case constant2:
+		statements
+		break;
+	default:
+		statements
+}
+```
+
+case标签必须为整型。如果没有break标签，匹配标签之后的语句都会被执行，直到遇到break标签或switch结构结束。
+
+### goto
+
+*label: statement*
+
+*goto label;*
 
 ## 第8章 字符输入/输出和输入确认
 
