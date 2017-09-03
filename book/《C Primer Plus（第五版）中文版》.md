@@ -517,6 +517,10 @@ case标签必须为整型。如果没有break标签，匹配标签之后的语�
 - 如何重定向将您的程序与文件相连接。
 - 使用户界面更加友好。
 
+### 使用getchar()优化输入输出
+
+*(ch=getchar())!='q'*
+
 ## 第9章 函数
 
 学习内容提要：
@@ -1645,6 +1649,525 @@ int main(void)
 	printf("%d years\n", year);
 
 	return 0;
+}
+
+```
+
+## 第7章
+
+### 练习7.1：字符统计程序
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char ch;
+	int space=0, enter=0, other=0;
+	while(ch=getchar(), ch!='#')
+	{
+		if(ch==' '){
+			space++;
+			continue;
+		}
+		if(ch=='\n'){
+			enter++;
+			continue;
+		}
+		other++;
+	}
+	printf("Space: %d, Enter: %d, Other: %d\n", space, enter, other);
+
+	return 0;
+}
+
+```
+
+### 练习7.2：字符统计（2）
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char ch;
+	int ascii, count=0;
+	while(ch=getchar(), ch!='#')
+	{
+		ascii = ch;
+		printf("[%c] %03d ", ch, ascii);
+		count++;
+		if(count%8==0){
+			putchar('\n');
+		}
+	}
+
+	return 0;
+}
+
+```
+
+### 练习7.3：奇偶统计
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int odd_count=0, odd_sum=0;
+	int even_count=0, even_sum=0;
+	int current;
+	while(scanf("%d", &current), current!=0)
+	{
+		if(current%2!=0){
+			odd_count++;
+			odd_sum += current;
+		}else{
+			even_count++;
+			even_sum += current;
+		}
+	}
+
+	if(odd_count!=0){
+		printf("[Odd]\tCount: %d Average: %f\n", odd_count, (float)odd_sum/odd_count);
+	}else{
+		printf("[Odd]\tCount: %d Average: Not Exist\n", odd_count);
+	}
+	if(even_count!=0){
+		printf("[Even]\tCount: %d Average: %f\n", even_count, (float)even_sum/even_count);
+	}else{
+		printf("[Even]\tCount: %d Average: Not Exist\n", even_count);
+	}
+
+	return 0;
+}
+
+```
+
+### 练习7.4：惊叹替身
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int count=0;
+	char ch;
+	while(ch=getchar(), ch!='#')
+	{
+		if(ch=='!'){
+			printf("!!");
+			count++;
+			continue;
+		}
+		if(ch=='.'){
+			putchar('!');
+			count++;
+			continue;
+		}
+		putchar(ch);
+	}
+	printf("\nReplacement: %d\n", count);
+
+	return 0;
+}
+
+```
+
+### 练习7.5：使用switch重写练习7.3
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int odd_count=0, odd_sum=0;
+	int even_count=0, even_sum=0;
+	int current;
+	while(scanf("%d", &current), current!=0)
+	{
+		switch(current%2)
+		{
+			case 1:{
+				odd_count++;
+				odd_sum += current;
+				break;
+			}
+			case 0:{
+				even_count++;
+				even_sum += current;
+				break;
+			}
+		}
+	}
+
+	switch(odd_count)
+	{
+		case 0:{
+			printf("[Odd]\tCount: %d Average: Not Exist\n", odd_count);
+			break;
+		}
+		default:{
+			printf("[Odd]\tCount: %d Average: %f\n", odd_count, (float)odd_sum/odd_count);
+		}
+	}
+	switch(even_count)
+	{
+		case 0:{
+			printf("[Even]\tCount: %d Average: Not Exist\n", even_count);
+			break;
+		}
+		default:{
+			printf("[Even]\tCount: %d Average: %f\n", even_count, (float)even_sum/even_count);
+		}
+	}
+
+	return 0;
+}
+
+```
+
+### 练习7.6：“诶”检测
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char ch=0, pass=0;
+	int count=0;
+	while(ch=getchar(), ch!='#')
+	{
+		if(pass=='e'&&ch=='i'){
+			count++;
+		}
+		pass = ch;
+	}
+	printf("\nSequence count: %d\n", count);
+
+	return 0;
+}
+
+```
+
+### 练习7.7：工资问题
+
+```c
+#include <stdio.h>
+
+#define BASIC_PAY_GRADE 10
+#define OVERTIME 40
+#define OVERTIME_PAY_GRADE BASIC_PAY_GRADE * 1.5
+#define TAX_CLASS1 300
+#define TAX_CLASS2 150
+#define TAX_CLASS1_RATE 0.15
+#define TAX_CLASS2_RATE 0.2
+#define TAX_CLASS3_RATE 0.15
+
+int main(void)
+{
+	int hour;
+	float pay;
+	scanf("%d", &hour);
+
+	if(hour<=OVERTIME){
+		pay = hour * BASIC_PAY_GRADE;
+	}else{
+		pay = OVERTIME * BASIC_PAY_GRADE + (hour-OVERTIME) * OVERTIME_PAY_GRADE;
+	}
+
+	if(pay<=TAX_CLASS1){
+		pay *= 1-TAX_CLASS1_RATE;
+	}else if(pay<=TAX_CLASS2){
+		pay = TAX_CLASS1 * (1-TAX_CLASS1_RATE) + (pay-TAX_CLASS1) * (1-TAX_CLASS2_RATE);
+	}else{
+		pay = TAX_CLASS1 * (1-TAX_CLASS1_RATE)
+			+ TAX_CLASS2 * (1-TAX_CLASS2_RATE)
+			+ (pay-TAX_CLASS1-TAX_CLASS2) * (1-TAX_CLASS3_RATE)
+		;
+	}
+
+	printf("Income: $%.2f\n", pay);
+
+	return 0;
+}
+
+```
+
+### 练习7.8：工资问题（2）
+
+```c
+#include <stdio.h>
+
+#define OVERTIME 40
+#define OVERTIME_PAY_GRADE basic_pay_grade * 1.5
+#define TAX_CLASS1 300
+#define TAX_CLASS2 150
+#define TAX_CLASS1_RATE 0.15
+#define TAX_CLASS2_RATE 0.2
+#define TAX_CLASS3_RATE 0.15
+
+void print_menu(void);
+
+int main(void)
+{
+	int hour;
+	float basic_pay_grade, pay;
+	int input;
+
+	loop:
+	print_menu();
+	while(scanf("%d", &input), input!=5){
+		switch(input)
+		{
+			case 1:
+				basic_pay_grade = 8.75;
+				break;
+			case 2:
+				basic_pay_grade = 9.33;
+				break;
+			case 3:
+				basic_pay_grade = 10;
+				break;
+			case 4:
+				basic_pay_grade = 11.2;
+				break;
+			default:
+				printf("Sorry, I can only understand 1 to 5.\n");
+				goto loop;
+		}
+		printf("Enter working hours: ");
+		scanf("%d", &hour);
+
+		if(hour<=OVERTIME){
+			pay = hour * basic_pay_grade;
+		}else{
+			pay = OVERTIME * basic_pay_grade + (hour-OVERTIME) * OVERTIME_PAY_GRADE;
+		}
+	
+		if(pay<=TAX_CLASS1){
+			pay *= 1-TAX_CLASS1_RATE;
+		}else if(pay<=TAX_CLASS2){
+			pay = TAX_CLASS1 * (1-TAX_CLASS1_RATE) + (pay-TAX_CLASS1) * (1-TAX_CLASS2_RATE);
+		}else{
+			pay = TAX_CLASS1 * (1-TAX_CLASS1_RATE)
+				+ TAX_CLASS2 * (1-TAX_CLASS2_RATE)
+				+ (pay-TAX_CLASS1-TAX_CLASS2) * (1-TAX_CLASS3_RATE)
+			;
+		}
+	
+		printf("Income: $%.2f\n", pay);
+		print_menu();
+	}
+
+	return 0;
+}
+
+void print_menu(void)
+{
+	printf("*****************************************************************\n");
+	printf("Enter the number corresponding to the desired pay rate or action:\n");
+	printf("1) $8.75/hr                     2) $9.33/hr                      \n");
+	printf("3) $10.00/hr                    4) $11.20/hr                     \n");
+	printf("5) quit                                                          \n");
+	printf("*****************************************************************\n");
+}
+
+```
+
+### 练习7.9：素数问题
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int num;
+	scanf("%d", &num);
+
+	if(num>=1){
+		printf("1 ");
+	}
+	for(int i=2; i<=num; i++)
+	{
+		int count=0;
+		for(int a=1; a<=i; a++){
+			if(i%a==0){
+				count++;
+			}
+		}
+		if(count==2){
+			printf("%d ", i);
+		}
+	}
+
+	printf("\n");
+
+	return 0;
+}
+
+```
+
+### 练习7.10：征税问题
+
+```c
+#include <stdio.h>
+
+int query_classifacation(void);
+double query_income(void);
+double calc_after_tax(double income, double class_1);
+
+int main(void)
+{
+	int status, class;
+	while(class=query_classifacation())
+	{
+		double income, after_tax;
+		switch(class)
+		{
+			case 1:
+				income = query_income();
+				after_tax = calc_after_tax(income, 17850);
+				printf("您的税后收入为$%.2lf\n", after_tax);
+				break;
+			case 2:
+				income = query_income();
+				after_tax = calc_after_tax(income, 23900);
+				printf("您的税后收入为$%.2lf\n", after_tax);
+				break;
+			case 3:
+				income = query_income();
+				after_tax = calc_after_tax(income, 29750);
+				printf("您的税后收入为$%.2lf\n", after_tax);
+				break;
+			case 4:
+				income = query_income();
+				after_tax = calc_after_tax(income, 14875);
+				printf("您的税后收入为$%.2lf\n", after_tax);
+				break;
+			default:
+				printf("对不起，不能理解您的输入。");
+				break;
+		}
+	}
+
+	return 0;
+}
+
+int query_classifacation(void)
+{
+	int class, status;
+	printf("请问您属于哪一种劳动者？\n");
+	printf("1）单身 2）户主 3）已婚，共有 4）已婚，离异\n");
+	status = scanf("%d", &class);
+	if(status==EOF){
+		return 0;
+	}else{
+		return class;
+	}
+}
+
+double query_income(void)
+{
+	double income;
+	printf("请输入您的应缴税收入：$");
+	scanf("%lf", &income);
+	return income;
+}
+
+double calc_after_tax(double income, double class_1)
+{
+	double after_tax;
+	if(income<=class_1){
+		after_tax = income * (1-0.15);
+	}else{
+		after_tax = class_1 * (1-0.15) + (income-class_1) * (1-0.28);
+	}
+	return after_tax;
+}
+
+```
+
+### 练习7.11：蔬果订单
+
+```c
+#include <stdio.h>
+
+int artichoke;
+int sugerbeet;
+int carrot;
+
+void print_menu(void);
+
+int main(void)
+{
+	artichoke = sugerbeet = carrot = 0;
+	print_menu();
+
+	char ch;
+	while((ch=getchar())!='q'){
+		switch(ch)
+		{
+			case 'a':
+				printf("您正在修改朝鲜蓟订单： ");
+				scanf("%d", &artichoke);
+				print_menu();
+				break;
+			case 'b':
+				printf("您正在修改甜菜订单： ");
+				scanf("%d", &sugerbeet);
+				print_menu();
+				break;
+			case 'c':
+				printf("您正在修改胡萝卜订单： ");
+				scanf("%d", &carrot);
+				print_menu();
+				break;
+			case '\n':
+				break;
+			default:
+				printf("对不起，无法理解您的输入。\n");
+				print_menu();
+				break;
+		}
+	}
+
+	double fee = artichoke * 1.25 + sugerbeet * 0.65 + carrot * 0.89;
+	double discount = 0;
+	double transport = 0;
+	int pounds = artichoke + sugerbeet + carrot;
+	
+	if(fee>=100){
+		discount = fee * 0.05;
+		fee *= 0.95;
+	}
+	if(pounds<=5){
+		transport = 3.5;
+	}else if(pounds<20){
+		transport = 10;
+	}else{
+		transport = 8 + pounds * 0.1;
+	}
+
+	printf("朝鲜蓟\t$1.25/pound\t*\t%d\t=\t%.2lf\n", artichoke, (double)artichoke * 1.25);
+	printf("甜菜\t$0.65/pound\t*\t%d\t=\t%.2lf\n", sugerbeet, (double)sugerbeet * 0.65);
+	printf("胡萝卜\t$0.89/pound\t*\t%d\t=\t%.2lf\n", carrot, (double)carrot * 0.89);
+	printf("蔬果总价格\t$%.2lf\n", fee);
+	printf("折扣\t\t$%.2lf\n", discount);
+	printf("运输费用\t$%.2lf\n", transport);
+	printf("订单总价格\t$%.2lf\n", fee+transport);
+
+	return 0;
+}
+
+void print_menu(void)
+{
+	printf("***** 订单状态 ****************\n");
+	printf("a) 朝鲜蓟 \t %d\n", artichoke);
+	printf("b) 甜菜 \t %d\n", sugerbeet);
+	printf("c) 胡萝卜 \t %d\n", carrot);
+	printf("***** 订单状态 ****************\n");
+	printf("q) 订单结算\n");
 }
 
 ```
