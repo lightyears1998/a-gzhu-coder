@@ -1191,3 +1191,405 @@ void temperatures(double fahrenheit)
 }
 
 ```
+
+## 第6章
+
+### 练习6.1：显示小写字母
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+	char alphabet[] = "abcdefghijklmnoprstuvwxyz";
+	for(int i=0; i<strlen(alphabet); i++)
+	{
+		printf("%c", alphabet[i]);
+	}
+
+	return 0;
+}
+
+```
+
+### 练习6.2：嵌套循环
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	for(int i=1; i<=5; i++){
+		for(int c=1; c<=i; c++){
+			printf("$");
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
+
+```
+
+### 练习6.3：嵌套循环（2）
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char lets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int line=5;
+	for(int i=line; i>=0; i--)
+	{
+		for(int b=line; b>=i; b--){
+			printf("%c", lets[b]);
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
+
+```
+
+### 练习6.4：嵌套循环（3）
+
+```c
+#include <stdio.h>
+
+char lets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char lets_lower[] = "abcdefghijklmnopqrstuvwxyz";
+
+int get_index(char c);
+
+int main(void)
+{
+	char input;
+	scanf("%c", &input);
+
+	int line = get_index(input) + 1;
+	for(int l=1; l<=line; l++)
+	{
+		for(int s=line-l; s>0; s--){
+			printf(" ");
+		}
+		for(int c=0; c<=l-1; c++){
+			printf("%c", lets[c]);
+		}
+		for(int c=l-1; c>0; c--){
+			printf("%c", lets[c-1]);
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
+
+int get_index(char c)
+{
+	int i=0;
+	for(; i<=26; i++)
+	{
+		if(c==lets[i] || c==lets_lower[i]){
+			break;
+		}
+	}
+
+	return i;
+}
+
+```
+
+### 练习6.5：表
+
+```c
+#include <stdio.h>
+
+int main(void){
+	int upper;
+	int lower;
+	scanf("%d %d", &lower, &upper);
+
+	for(int i=lower; i<=upper; i++)
+	{
+		printf("%d %d %d\n", i, i*i, i*i*i);
+	}
+
+	return 0;
+}
+
+```
+
+### 练习6.6：回文
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void){
+	char word[40];
+	scanf("%s", word);
+
+	for(int i=strlen(word)-1; i>=0; i--)
+	{
+		printf("%c", word[i]);
+	}
+	printf("\n");
+
+	return 0;
+}
+
+```
+
+### 练习6.7：浮点数与循环
+
+```c
+#include <stdio.h>
+
+int main(void){
+	float a, b;
+	int status;
+
+	while(status=scanf("%f %f", &a, &b), status!=EOF && status==2)
+	{
+		printf("%f\n", (a-b)/(a*b));
+	}
+
+	return 0;
+}
+
+```
+
+### 练习6.8：浮点数、循环与函数
+
+```c
+#include <stdio.h>
+
+float cal(float a, float b);
+
+int main(void){
+	float a, b;
+	int status;
+
+	while(status=scanf("%f %f", &a, &b), status!=EOF && status==2)
+	{
+		printf("%f\n", cal(a, b));
+	}
+
+	return 0;
+}
+
+float cal(float a, float b)
+{
+	return (a-b)/(a*b);
+}
+
+```
+
+### 练习6.9：平方和
+
+```c
+#include <stdio.h>
+
+int main(void){
+	int a, b;
+	int status;
+	printf("Enter lower and upper integer limits: ");
+
+	while(status=scanf("%d %d", &a, &b), status!=EOF && a<b)
+	{
+		int sum = 0;
+		for(int i=a; i<=b; i++)
+		{
+			sum += i*i;
+		}
+		printf("The sums of the squares for %d to %d is %d\n", a, b, sum);
+		printf("Enter next set of limits: ");
+	}
+
+	printf("Done\n");
+
+	return 0;
+}
+
+```
+
+### 练习6.10：反向打印数组
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int nums[8];
+	for(int i=0; i<8; i++){
+		scanf("%d", &nums[i]);
+	}
+	for(int i=7; i>=0; i--){
+		printf("%d ", nums[i]);
+	}
+	printf("\n");
+
+	return 0;
+}
+
+```
+
+### 练习6.11：收敛
+
+```c
+#include <stdio.h>
+
+int sign(int a);
+
+int main(void)
+{
+	double seq_1=0, seq_2=0;
+	int count;
+	scanf("%d", &count);
+
+	for(int a=1; a<=count; a++){
+		seq_1 += 1.0/a;
+	}
+	for(int a=1; a<=count; a++)
+	{
+		seq_2 += 1.0/a * sign(a);
+	}
+	printf("%lf\n%lf\n", seq_1, seq_2);
+
+	return 0;
+}
+
+int sign(int a)
+{
+	if(a%2==1){
+		return 1;
+	}else{
+		return -1;
+	}
+}
+
+```
+
+### 练习6.12：2的幂
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int num[8]={2};
+	int count;
+	for(count=1; count<=7; count++){
+		num[count] = 2 * num[count - 1];
+	}
+	count = 0;
+	do{
+		printf("%d ", num[count]);
+		count++;
+	}while(count<=7);
+	printf("\n");
+
+	return 0;
+}
+
+```
+
+### 练习：6.13：积累
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	double a[8],b[8];
+
+	for(int i=0; i<8; i++){
+		scanf("%lf", &a[i]);
+		printf("%8.2lf ", a[i]);
+	}
+	printf("\n");
+
+	b[0] = a[0];
+	printf("%8.2lf ", b[0]);
+	for(int i=1; i<8; i++){
+		b[i] = a[i] + b[i-1];
+		printf("%8.2lf ", b[i]);
+	}
+
+	printf("\n");
+	return 0;
+}
+
+```
+
+### 练习6.14：反向打印行
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	char ch[256];
+	int count=0;
+	int status;
+	while(status=scanf("%c", &ch[count]), status!=EOF)
+	{
+		if(ch[count]=='\n'){
+			break;
+		}
+		count++;
+	}
+	while(count>0){
+		printf("%c", ch[count-1]);
+		count--;
+	}
+	printf("\n");
+
+	return 0;
+}
+
+```
+
+### 练习6.15：投资
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int daphne=100, deirdre=100, year=0;
+	while(deirdre<=daphne)
+	{
+		year++;
+		daphne += 100 * 0.1;
+		deirdre += deirdre * 0.05;
+	}
+	printf("%d years, daphne: $%d, deirdre: $%d\n", year, daphne, deirdre);
+
+	return 0;
+}
+
+```
+### 练习6.16：赢家
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int account=100, year=0;
+	while(account>0)
+	{
+		account += account * .08;
+		account -= 10;
+		year++;
+	}
+	printf("%d years\n", year);
+
+	return 0;
+}
+
+```
