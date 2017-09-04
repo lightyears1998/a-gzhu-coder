@@ -517,9 +517,49 @@ case标签必须为整型。如果没有break标签，匹配标签之后的语�
 - 如何重定向将您的程序与文件相连接。
 - 使用户界面更加友好。
 
-### 使用getchar()优化输入输出
+### 缓冲区
 
-*(ch=getchar())!='q'*
+缓冲分两种：完全缓冲（fully buffered）I/O和行缓冲（line-buffered）I/O。完全缓冲在缓冲区满时被清空，行缓冲在遇到换行符时清空。
+
+### EOF
+
+在Windows上模拟：Ctrl + Z
+
+在Linux上模拟：Ctrl + D
+
+### 操作系统重定向输入
+
+- `命令 < 输入流 > 输出流`
+- `命令 >> 输出流` 往现有文件末尾追加数据
+- `前一个命令 | 后一个命令` 将前一个命令的输出作为后一个命令的输入
+
+### 良好用户界面
+
+使用单字符IO工具
+
+```c
+while((ch = getchar()) != 'q'){
+	putchar(ch);
+}
+
+```
+
+剔除错误的输入
+
+```c
+int input;
+char ch;
+while(scanf("%d", &input) != 1)
+{
+	while((ch = getchar)!='\n'){
+		putchar(ch); // 剔除错误的输入
+	}
+	printf(" is not an integer.\n");
+}
+
+```
+
+要创建良好的用户界面，需要注意 *scanf()* 总是将空白输入留在输入流中。
 
 ## 第9章 函数
 
