@@ -131,7 +131,7 @@ printf("%ld %ld", a, b);	// 输出 32 32
 |32.F | float | 只有使用F后缀的字面值才被当作float类型 |
 | 0xA.1FP10 | double | 十六进制浮点数，十进制值为 (10 * 16⁰ + 1 * 16⁻¹ + 15 * 16⁻² ) * 2¹⁰ |
 
-只有在用字面值对float类型赋值时才需要字面值后缀。
+对于浮点数，无后缀字面值总是被认定为double或更高精度的类型。要对float变量赋值，建议使用F后缀。
 
 没有八进制浮点数。
 
@@ -364,7 +364,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 - 在表达式里，char和short类型自动转换为int，需要时转换为unsigned int。
 - 在包含两种数据类型的运算中，两个值被转换成两种类型里较高级的类型。
-- 在赋值语句中，计算的最后结果被转换成被赋值的变量的类型（可能导致降级）
+- 在赋值语句中，计算的最后结果被转换成被赋值的变量的类型（可能导致降级）。
 
 可以通过指派运算符强制转型。
 
@@ -559,7 +559,7 @@ while(scanf("%d", &input) != 1)
 
 ```
 
-要创建良好的用户界面，需要注意 *scanf()* 总是将空白输入留在输入流中。
+要创建良好的用户界面，需要注意 *scanf()* 总是将空白输入留在输入流中，在遇到EOF时，函数返回EOF，而且不改变参数的值；*getchar()* 在遇到EOF时返回EOF。
 
 ## 第9章 函数
 
@@ -1897,12 +1897,12 @@ int main(void)
 
 #define BASIC_PAY_GRADE 10
 #define OVERTIME 40
-#define OVERTIME_PAY_GRADE BASIC_PAY_GRADE * 1.5
+#define OVERTIME_PAY_GRADE BASIC_PAY_GRADE * 1.5F
 #define TAX_CLASS1 300
 #define TAX_CLASS2 150
-#define TAX_CLASS1_RATE 0.15
-#define TAX_CLASS2_RATE 0.2
-#define TAX_CLASS3_RATE 0.15
+#define TAX_CLASS1_RATE 0.15F
+#define TAX_CLASS2_RATE 0.2F
+#define TAX_CLASS3_RATE 0.15F
 
 int main(void)
 {
@@ -2208,6 +2208,482 @@ void print_menu(void)
 	printf("c) 胡萝卜 \t %d\n", carrot);
 	printf("***** 订单状态 ****************\n");
 	printf("q) 订单结算\n");
+}
+
+```
+
+### 练习8.1：字符统计程序
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void)
+{
+	char ch;
+	int count=0;
+	while((ch=getchar()) != EOF)
+	{
+		if(isspace(ch)){
+			continue;
+		}
+		count++;
+	}
+	printf("Count: %d", count);
+
+	return 0;
+}
+
+```
+### 练习8.2：回显字符
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void)
+{
+	char ch;
+	int count=0;
+	while((ch=getchar()) != EOF)
+	{
+		count++;
+		if(isprint(ch)){
+			printf("[ %c] %03hhd", ch, ch);
+		}else if(isblank(ch)){
+			switch(ch){
+				case ' ': 
+					printf("[  ] %03hhd", ' ');
+					break;
+				case '\t':
+					printf("[\\t] %03hhd", '\t');
+					break;
+				case '\n':
+					printf("[\\n] %03hhd", '\n');
+					break;
+			}
+		}else{
+			printf("[^%c] %03hhd", ch+64, ch);
+		}
+		if(count%10==0){
+			putchar('\n');
+		}else{
+			putchar(' ');
+		}
+	}
+
+	putchar('\n');
+	return 0;
+}
+
+```
+
+### 练习8.3：统计大小写
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void)
+{
+	char ch;
+	int upper=0, lower=0;
+	while((ch=getchar()) != EOF)
+	{
+		if(isupper(ch)){
+			upper++;
+			continue;
+		}	
+		if(islower(ch)){
+			lower++;
+			continue;
+		}
+	}
+	printf("Upper: %d Lower:%d\n", upper, lower);
+
+	return 0;
+}
+
+```
+
+### 练习8.4：统计平均字母数
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+int main(void)
+{
+	char ch;
+	int total = 0, count = 0;
+	bool inword = false;
+	while((ch=getchar()) != EOF)
+	{
+		if(isalpha(ch))
+		{
+			if(inword){
+				total++;
+			}else{
+				inword = true;
+				total++;
+				count++;
+			}
+		}else{
+			inword = false;
+		}
+	}
+	printf("Total characters: %d Words: %d Average: %.2lf\n", total, count, (double)total/count);
+
+	return 0;
+}
+
+```
+
+### 练习8.5：二分猜测
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int min=1, max=100;
+	int guess = min+(max-min)/2;
+	printf("Pick an integer from 1 to 100. I will try to guess "
+		"it.\nRespond with a y if my guess is right and with"
+		"\na b if your number is bigger than my guess.\n"
+		"Respond with a s if your number is smaller than my guess.\n"
+	);
+	printf("Uh...is your number %d?\n", guess);
+
+	char ch;
+	while((ch=getchar())!='y')
+	{
+		while(getchar()!='\n'){
+			continue;
+		}
+		if(ch=='b'){
+			min=guess;
+			guess = min+(max-min)/2;
+			printf("Well, then, is it %d?\n", guess);
+		}else if(ch=='s'){
+			max=guess;
+			guess = min+(max-min)/2;
+			printf("Well, then, is it %d?\n", guess);
+		}else{
+			printf("Sorry, I understand only y, b or s.\n");
+		}
+	}
+	printf("I knew I could do it!\n");
+
+	return 0;
+}
+
+```
+
+### 练习8.6：返回非空字符
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+char get_first(void);
+
+int main(void)
+{
+	putchar(get_first());
+	putchar('\n');
+
+	return 0;
+}
+
+char get_first(void)
+{
+	char ch;
+
+	while(ch=getchar())
+	{
+		if(isblank(ch)){
+			continue;
+		}
+		return ch;
+	}
+}
+
+```
+
+### 练习8.7：数字菜单
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+#define OVERTIME 40
+#define OVERTIME_PAY_GRADE basic_pay_grade * 1.5F
+#define TAX_CLASS1 300
+#define TAX_CLASS2 150
+#define TAX_CLASS1_RATE 0.15F
+#define TAX_CLASS2_RATE 0.2F
+#define TAX_CLASS3_RATE 0.15F
+
+void print_menu(void);
+
+int main(void)
+{
+	int hour;
+	float basic_pay_grade, pay;
+	int input;
+
+	print_menu();
+	while(input=getchar(), input!=EOF && input!='q')
+	{
+		hour = 0;
+		bool flag = true;
+		while(flag)
+		{
+			while(getchar()!='\n'){
+				continue;
+			}
+
+			switch(input)
+			{
+				case 'a':
+					basic_pay_grade = 8.75F;
+					flag = false;
+					break;
+				case 'b':
+					basic_pay_grade = 9.33F;
+					flag = false;
+					break;
+				case 'c':
+					basic_pay_grade = 10F;
+					flag = false;
+					break;
+				case 'd':
+					basic_pay_grade = 11.2F;
+					flag = false;
+					break;
+				default:
+					printf("Sorry, I can only understand a, b, c, d or q.\n");
+					break;
+			}
+			break;
+		}
+
+		if(flag){
+			continue;
+		}else{
+			flag = true;
+		}
+
+		printf("Enter working hours: ");
+		while(scanf("%d", &hour)!=EOF)
+		{
+			if(hour>0){
+				while(getchar()!='\n'){
+					continue;
+				}
+				break;
+			}else{
+				char ch;
+				printf("Please enter number other than ");
+				while((ch=getchar())!='\n')
+				{
+					putchar(ch);
+				}
+				printf(": ");
+			}
+		}
+
+		if(hour<=OVERTIME){
+			pay = hour * basic_pay_grade;
+		}else{
+			pay = OVERTIME * basic_pay_grade + (hour-OVERTIME) * OVERTIME_PAY_GRADE;
+		}
+	
+		if(pay<=TAX_CLASS1){
+			pay *= 1-TAX_CLASS1_RATE;
+		}else if(pay<=TAX_CLASS2){
+			pay = TAX_CLASS1 * (1-TAX_CLASS1_RATE) + (pay-TAX_CLASS1) * (1-TAX_CLASS2_RATE);
+		}else{
+			pay = TAX_CLASS1 * (1-TAX_CLASS1_RATE)
+				+ TAX_CLASS2 * (1-TAX_CLASS2_RATE)
+				+ (pay-TAX_CLASS1-TAX_CLASS2) * (1-TAX_CLASS3_RATE)
+			;
+		}
+	
+		printf("Income: $%.2f\n", pay);
+		print_menu();
+	}
+
+	return 0;
+}
+
+void print_menu(void)
+{
+	printf("*****************************************************************\n");
+	printf("Enter the number corresponding to the desired pay rate or action:\n");
+	printf("a) $8.75/hr                     b) $9.33/hr                      \n");
+	printf("c) $10.00/hr                    d) $11.20/hr                     \n");
+	printf("q) quit                                                          \n");
+	printf("*****************************************************************\n");
+}
+
+```
+
+### 练习8.8：加减乘除
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+char get_operation(void);
+void eat_line(void);
+float get_first_number(void);
+float ger_second_number(bool ac_zero);
+void echoing(void);
+void add(void);
+void subtract(void);
+void multiply(void);
+void divide(void);
+
+int main(void)
+{
+	char operation;
+	for(;;){
+		operation = get_operation();
+		switch(operation)
+		{
+			case 'a': add(); break;
+			case 's': subtract(); break;
+			case 'm': multiply(); break;
+			case 'd': divide(); break;
+			case 'q': goto finishing;
+		}
+	}
+
+	finishing:
+	return 0;
+}
+
+void echoing(void)
+{
+	int ch;
+	while((ch=getchar()!='\n')){
+		putchar(ch);
+	}
+}
+
+void eat_line(void)
+{
+	while(getchar()!='\n'){
+		continue;
+	}
+}
+
+char get_operation(void)
+{
+	printf("Enter the operation of your choice:\n");
+	printf("a. add          s. subtract\n");
+	printf("m. multiply     d. divide\n");
+	printf("q. quit\n");
+	
+	int ch;
+	for(;;)
+	{
+		ch = getchar();
+		if(isblank(ch)){
+			continue;
+		}
+		eat_line();
+		if(ch=='a'||ch=='s'||ch=='m'||ch=='d'||ch=='q'){
+			break;
+		}else{
+			printf("Sorry, I understand only a, s, m, d and q.\n");
+		}
+	}
+	return (char)ch;
+}
+
+float get_first_number(void)
+{
+	float number;
+	int status;
+
+	printf("Enter first number: ");
+	for(;;)
+	{
+		status = scanf("%g", &number);
+		if(status==EOF){
+			printf("Something was wrong. Please try again: ");
+			continue;
+		}else if(status==0){
+			echoing(); printf(" is not a number.\n");
+			printf("Please enter a number, such as 2.5, -1.78E8 or 3: ");
+			continue;
+		}
+		eat_line();
+		break;
+	}
+
+	return number;
+}
+
+float get_second_number(bool ac_zero)
+{
+	float number;
+	int status;
+
+	printf("Enter second number: ");
+	for(;;)
+	{
+		status = scanf("%g", &number);
+		if(status==EOF){
+			printf("Something was wrong. Please try again: ");
+			continue;
+		}else if(status==0){
+			echoing(); printf(" is not a number.\n");
+			printf("Please enter a number, such as 2.5, -1.78E8 or 3: ");
+			continue;
+		}
+		if(!ac_zero&&number==0){
+			printf("Enter a number other than 0: ");
+			continue;
+		}
+		eat_line();
+		break;
+	}
+
+	return number;
+}
+
+void add(void)
+{
+	float a = get_first_number();
+	float b = get_second_number(true);
+	printf("%g + %g = %g\n", a, b, a+b);
+}
+
+void subtract(void)
+{
+	float a = get_first_number();
+	float b = get_second_number(true);
+	printf("%g - %g = %g\n", a, b, a-b);
+}
+
+void multiply(void)
+{
+	float a = get_first_number();
+	float b = get_second_number(true);
+	printf("%g * %g = %g\n", a, b, a*b);
+}
+
+void divide(void)
+{
+	float a = get_first_number();
+	float b = get_second_number(false);
+	printf("%g / %g = %g\n", a, b, a/b);
 }
 
 ```
