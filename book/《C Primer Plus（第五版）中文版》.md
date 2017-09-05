@@ -3048,7 +3048,7 @@ void Fibonacci(int index)
 		putchar(' ');
 		next += current;
 		current = next - current; 
-		//! 不要写current = -(current-=next); 顺序点不明确。
+		//! 不要写current = -(current-=next); 副作用不明确。
 		printf("%d", current);
 	}
 	putchar('\n');
