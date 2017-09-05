@@ -413,7 +413,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 ### while循环
 
-*while (expression) statement;*
+`while (expression) statement;`
 
 *statement*部分既可以是带有分号的简单语句，也可以是使用花括号包围的一个复杂语句，也可以是一条空语句。
 
@@ -430,13 +430,13 @@ while( scanf("%d", &num) == 1 )
 
 ### for循环
 
-*for(ctrl_1; ctrl_2; ctrl_3) statement;*
+`for(ctrl_1; ctrl_2; ctrl_3) statement;`
 
 控制表达式1在循环开始前执行；控制表达式2为真时开始一次迭代；控制表达式3在一次迭代完成后执行。
 
 ### do while循环
 
-*do statement while(expression);*
+`do statement while(expression);`
 
 ### 循环辅助手段
 
@@ -460,11 +460,11 @@ while( scanf("%d", &num) == 1 )
 
 ### if... else...
 
-*if(epression) statement*
+`if(epression) statement`
 
-*if(expression) statement1 else statement2*
+`if(expression) statement1 else statement2`
 
-*if(expression1) staement1 else if(expression2) statement2 else statement3*
+`if(expression1) staement1 else if(expression2) statement2 else statement3`
 
 ### 与、或、非
 
@@ -482,7 +482,7 @@ while( scanf("%d", &num) == 1 )
 
 ### 条件运算符 ?:
 
-*expression 1 ? expression2 : expression3*
+`expression 1 ? expression2 : expression3`
 
 ### 多重选择 switch
 
@@ -504,9 +504,9 @@ case标签必须为整型。如果没有break标签，匹配标签之后的语�
 
 ### goto
 
-*label: statement*
+`label: statement`
 
-*goto label;*
+`goto label;`
 
 ## 第8章 字符输入/输出和输入确认
 
@@ -576,7 +576,7 @@ while(scanf("%d", &input) != 1)
 
 ### 函数原型
 
-*retrun-type function-name(arguments-list);*
+`retrun-type function-name(arguments-list);`
 
 函数原型中函数的参数可以省略变量名。
 
