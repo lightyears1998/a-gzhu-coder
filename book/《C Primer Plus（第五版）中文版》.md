@@ -2717,3 +2717,341 @@ void divide(void)
 }
 
 ```
+
+## 第9章
+
+### 练习9.1：较小数值
+
+```c
+#include <stdio.h>
+
+double min(double x, double y);
+
+int main(void)
+{
+	printf("%lg\n", min(1, 2));
+	printf("%lg\n", min(2.1E4, 2.22));
+	printf("%lg\n", min(232.12, 3212));
+
+	return 0;
+}
+
+double min(double x, double y)
+{
+	if(x<=y){
+		return x;
+	}else{
+		return y;
+	}
+}
+
+```
+
+### 练习9.2：指定字符输出
+
+```c
+#include <stdio.h>
+
+void chline(char ch, int i, int j);
+
+int main(void)
+{
+	chline('*', 3, 5);
+
+	return 0;
+}
+
+void chline(char ch, int i, int j)
+{
+	for(int k=1; k<=j; k++)
+	{
+		if(k>=i){
+			putchar(ch);
+		}else{
+			putchar(' ');
+		}
+	}
+	putchar('\n');
+}
+
+```
+
+### 练习9.3：横行竖伍
+
+```c
+#include <stdio.h>
+
+void say_words(char ch, int i, int j);
+
+int main(void)
+{
+	say_words('*', 3, 5);
+
+	return 0;
+}
+
+void say_words(char ch, int i, int j)
+{
+	while(j--){
+		int k = i;
+		while(k--){
+			putchar(ch);
+		}
+		putchar('\n');
+	}
+}
+
+```
+
+### 练习9.4：谐均值
+
+```c
+#include <stdio.h>
+
+double harmonic(double a, double b);
+
+int main(void)
+{
+	printf("%lg\n", harmonic(1, 1));
+	printf("%lg\n", harmonic(22, 23));
+	printf("%lg\n", harmonic(443, 334));
+
+	return 0;
+}
+
+double harmonic(double a, double b)
+{
+	return 1/((1/a + 1/b)/2);
+}
+
+```
+
+### 练习9.5：与大同大
+
+```c
+#include <stdio.h>
+
+void larger_of(double * a, double * b);
+
+int main(void)
+{
+	double a = 121.1;
+	double b = 221.9;
+	larger_of(&a, &b);
+	printf("%lg %lg", a, b);
+
+	return 0;
+}
+
+void larger_of(double * a, double * b)
+{
+	if(*a<=*b){
+		*a=*b;
+	}else{
+		*b=*a;
+	}
+}
+
+```
+
+### 练习9.6：字母数值报告
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int get_index(char ch);
+
+int main(void)
+{
+	int ch;
+	int count = 0;
+	while((ch=getchar())!=EOF)
+	{
+		int index = get_index((char)ch);
+		if(index>=1){
+			printf("Y[%02d]", index);
+		}else{
+			printf("N[  ]");
+		}
+		count++;
+		if(count%10){
+			putchar('\t');
+		}else{
+			putchar('\n');
+		}
+	}
+
+	return 0;
+}
+
+int get_index(char ch)
+{
+	ch = (char)toupper(ch);
+	int index = ch - 'A' + 1;
+	if(index<1){
+		return -1;
+	}else{
+		return index;
+	}
+}
+
+```
+
+### 练习9.7：循环计算幂
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+double power(double base, int exponent);
+
+int main(void)
+{
+	printf("%lg\n", power(1, 1));
+	printf("%lg\n", power(0, 1));
+	printf("%lg\n", power(0, 0));
+	printf("%lg\n", power(2, 0));
+	printf("%lg\n", power(2.1, 3));
+	printf("%lg\n", power(2, -3));
+
+	return 0;
+}
+
+double power(double base, int exponent)
+{
+	if(exponent==0){
+		if(base==0){
+			return NAN;
+		}else{
+			return 1;
+		}
+	}
+	if(exponent<0){
+		exponent = -exponent;
+		double result = 1;
+		while(exponent--){
+			result *= base;
+		}
+		return 1/result;
+	}
+	if(exponent>0){
+		double result = 1;
+		while(exponent--){
+			result *= base;
+		}
+		return result;
+	}
+	return NAN;
+}
+
+```
+
+### 练习9.8：递归计算幂
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+double power(double base, int exponent);
+
+int main(void)
+{
+	printf("%lg\n", power(1, 1));
+	printf("%lg\n", power(0, 1));
+	printf("%lg\n", power(0, 0));
+	printf("%lg\n", power(2, 0));
+	printf("%lg\n", power(2.1, 3));
+	printf("%lg\n", power(2, -3));
+
+	return 0;
+}
+
+double power(double base, int exponent)
+{
+	if(exponent==0){
+		if(base==0){
+			return NAN;
+		}else{
+			return 1;
+		}
+	}
+	if(exponent<0){
+		exponent = -exponent;
+		return 1/(base * power(base, exponent-1));
+	}
+	if(exponent>0){
+		return base * power(base, exponent-1);
+	}
+	return NAN;
+}
+
+```
+
+### 练习9.9：进制计算
+
+```c
+#include <stdio.h>
+
+void to_base_n(int number ,int base);
+
+int main(void)
+{
+	to_base_n(3, 2); putchar('\n');
+	to_base_n(11, 2); putchar('\n');
+	to_base_n(256, 2); putchar('\n');
+	to_base_n(256, 8); putchar('\n');
+
+	return 0;
+}
+
+void to_base_n(int number, int base)
+{
+	if(base<2||base>10){
+		return;
+	}
+
+	int current = number % base;
+	if(number/base >= base){
+		to_base_n(number/base, base);
+	}else{
+		putchar('0' + number/base);
+		putchar('0' + current);
+		return;
+	}
+	putchar('0' + current);
+}
+
+```
+
+### 练习9.10：斐波拉契数列
+
+```c
+#include <stdio.h>
+
+void Fibonacci(int index);
+
+int main(void)
+{
+	Fibonacci(1);
+	Fibonacci(2);
+	Fibonacci(10);
+
+	return 0;
+}
+
+void Fibonacci(int index)
+{
+	int current = 1, next = 1;
+	printf("%d", current);
+	while(--index){
+		putchar(' ');
+		next += current;
+		current = next - current; 
+		//! 不要写current = -(current-=next); 顺序点不明确。
+		printf("%d", current);
+	}
+	putchar('\n');
+}
+
+```
