@@ -15,9 +15,9 @@
 
 # 帮助链接
 
-* **[CPP Reference][link_cppreference]** 由志愿者维护的C/C++标准库参考
+* [**CPP Reference**](http://en.cppreference.com/w/) 由志愿者维护的C/C++标准库参考
 
-[external-link.md][/howto/external-link.md]列出了字符表、OJ和其他一些可能对你可能感兴趣的链接。
+[external-link.md](/howto/external-link.md)列出了字符表、OJ和其他一些可能对你可能感兴趣的链接。
 
 # 许可
 
