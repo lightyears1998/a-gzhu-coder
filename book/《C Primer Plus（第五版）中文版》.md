@@ -3165,3 +3165,700 @@ void Fibonacci(int index)
 }
 
 ```
+
+## 第10章
+
+### 练习10.1：
+
+```c
+#include <stdio.h>
+
+#define MONTHS 12
+#define YEARS 5
+
+int main(void)
+{
+	const float rain[YEARS][MONTHS] = {
+		{4.3, 4.3, 4.3, 3.0, 2.0, 1.2, 0.2, 0.2, 0.4, 2.4, 3.5, 6.6},
+		{8.5, 8.2, 1.2, 1.6, 2.4, 0.0, 5.2, 0.9, 0.3, 0.9, 1.4, 7.3},
+		{9.1, 8.5, 6.7, 4.3, 2.1, 0.8, 0.2, 0.2, 1.1, 2.3, 6.1, 8.4},
+		{7.2, 9.9, 8.4, 3.3, 1.2, 0.8, 0.4, 0.0, 0.6, 1.7, 4.3, 6.2},
+		{7.6, 5.6, 3.8, 2.8, 3.8, 0.2, 0.0, 0.0, 0.0, 1.3, 2.6, 5.2}
+	};
+	int year, month;
+	float subtot, total;
+
+	printf(" YEAR       RAINFALL(inches)\n");
+	for(year=0, total=0; year<YEARS; year++)
+	{
+		for(month=0, subtot=0; month<MONTHS; month++)
+		{
+			subtot += *(*(rain+year) + month);
+		}
+		printf("%5d %15.1f\n", 2000+year, subtot);
+		total += subtot;
+	}
+
+	printf("\nThe yearly average is %.1f inches.\n\n", total/YEARS);
+	printf("MONTHLY AVERAGE: \n\n");
+	printf(" Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec\n");
+
+	for(month=0; month<MONTHS; month++)
+	{
+		for(year=0, subtot=0; year<YEARS; year++)
+		{
+			subtot += *(*(rain+year)+month);
+		}
+		printf("%4.1f", subtot/YEARS);
+	}
+
+	putchar('\n');
+
+	return 0;
+}
+
+```
+
+### 练习10.2：拷贝数组
+
+```c
+#include <stdio.h>
+
+void copy_arr(double source[], double targer[], int count);
+void copy_ptr(double * source, double * target, int count);
+
+int main(void)
+{
+	double source[5] = {1.1, 2.2, 3.3, 4.4, 5.5};
+	double target1[5];
+	double target2[5];
+
+	copy_arr(source, target1, 5);
+	copy_ptr(source, target2, 5);
+
+	if(source[4] == target1[4] && source[3] == target2[3]){
+		printf("Done.\n");
+	}
+
+	return 0;
+}
+
+void copy_arr(double source[], double target[], int count)
+{
+	for(int i=0; i<count; i++)
+	{
+		target[i] = source[i];
+	}
+}
+
+void copy_ptr(double * source, double * target, int count)
+{
+	for(int i=0; i<count; i++)
+	{
+		*target = *source;
+		source++;
+		target++;
+	}
+}
+
+```
+
+### 练习10.3：寻找最大数
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	int numbers[5] = {rand(), rand(), rand(), rand(), rand()};
+	int max, count;
+
+	printf("The numbers are ");
+	for(max=numbers[0], count=0; count<5; count++)
+	{
+		if(numbers[count]>max){
+			max = numbers[count];
+		}
+		printf("%d, ", numbers[count]);
+	}
+	printf("and the max is %d.\n", max);
+
+	return 0;
+}
+
+```
+
+### 练习10.4：寻找最大数的索引
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	double numbers[5] = {rand()/10.0, rand()/10.0, rand()/10.0, rand()/10.0, rand()/10.0};
+	double max;
+	int index, count;
+
+	printf("The numbers are ");
+	for(index=0, max=numbers[0], count=0; count<5; count++)
+	{
+		if(numbers[count]>max){
+			max = numbers[count];
+			index = count;
+		}
+		printf("%lg, ", numbers[count]);
+	}
+	printf("and the max is %lg, its index is %d.\n", max, index);
+
+	return 0;
+}
+
+```
+
+### 练习10.5 寻找落差
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	double numbers[5] = {rand()/10.0, rand()/10.0, rand()/10.0, rand()/10.0, rand()/10.0};
+	double max, min;
+	int count;
+
+	printf("The numbers are ");
+	for(max=min=numbers[0], count=0; count<5; count++)
+	{
+		if(numbers[count]>max){
+			max = numbers[count];
+		}
+		if(numbers[count]<min)
+		{
+			min = numbers[count];
+		}
+		printf("%lg, ", numbers[count]);
+	}
+	printf("and max - min = %lg.\n", max - min);
+
+	return 0;
+}
+
+```
+
+### 练习10.6：复制二维数组
+
+```c
+#include <stdio.h>
+
+void copy_arr(double source[], double targer[], int count);
+void copy_ptr(double * source, double * target, int count);
+
+int main(void)
+{
+	double numbers[3][4] = {
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9}
+	};
+	double target[3][3];
+	
+	for(int i=0; i<3; i++)
+	{
+		copy_ptr(numbers[i], target[i], 4);
+		for(int j=0; j<4; j++){
+			// 显示复制后数组内容
+			printf("%lg ", numbers[i][j]);
+		}
+		putchar('\n');
+	}
+
+	return 0;
+}
+
+void copy_arr(double source[], double target[], int count)
+{
+	for(int i=0; i<count; i++)
+	{
+		target[i] = source[i];
+	}
+}
+
+void copy_ptr(double * source, double * target, int count)
+{
+	for(int i=0; i<count; i++)
+	{
+		*target = *source;
+		source++;
+		target++;
+	}
+}
+
+```
+
+### 练习10.7：复制指定的元素
+
+```c
+#include <stdio.h>
+
+void copy_arr(double source[], double targer[], int count);
+void copy_ptr(double * source, double * target, int count);
+
+int main(void)
+{
+	double numbers[7] = {1, 2, 3, 4, 5, 6, 7};
+	double target[3];
+	copy_ptr(numbers+2, target, 3);
+	printf("The copied value are %lg, %lg and %lg.\n", target[0], target[1], target[2]);
+
+	return 0;
+}
+
+void copy_arr(double source[], double target[], int count)
+{
+	for(int i=0; i<count; i++)
+	{
+		target[i] = source[i];
+	}
+}
+
+void copy_ptr(double * source, double * target, int count)
+{
+	for(int i=0; i<count; i++)
+	{
+		*target = *source;
+		source++;
+		target++;
+	}
+}
+
+```
+
+### 练习10.8：二维数组
+
+```c
+#include <stdio.h>
+
+/**
+ * MSVC不支持VLA，有VLA的替代方案，可以不使用VLA。
+ *
+ */
+
+void vla_copy(int rows, int cols, double origin[rows][cols], double target[rows][cols]);
+void vla_show(int rows, int cols, double origin[rows][cols]);
+
+int main(void)
+{
+	double origin[3][5] = {
+		{1, 2, 3, 4, 5},
+		{6, 7, 8, 9, 10},
+		{11, 12, 13, 14, 15}
+	};
+	double target[4][5];
+	vla_copy(3, 5, origin, target);
+	vla_show(4, 5, target);
+
+	return 0;
+}
+
+void vla_copy(int rows, int cols, double origin[rows][cols], double target[rows][cols])
+{
+	int row, col;
+	for(row=0; row<rows; row++)
+	{
+		for(col=0; col<cols; col++)
+		{
+			*(*target + col) = *(*origin + col);
+		}
+		origin++;
+		target++;
+	}
+}
+
+void vla_show(int rows, int cols, double origin[rows][cols])
+{
+	int row, col;
+	for(row=0; row<rows; row++)
+	{
+		putchar('{');
+		for(col=0; col<cols; col++)
+		{
+			printf("%lg, ", *(*origin + col));
+		}
+		printf("\b\b}\n");
+		origin++;
+	}
+}
+
+```
+
+### 练习10.9：元素相加
+
+```c
+#include <stdio.h>
+
+void array_add(int count, int lhs[], int rhs[], int result[]);
+
+int main(void)
+{
+	int lhs[4] = {1, 2, 3, 4};
+	int rhs[4] = {5, 6, 7, 8};
+	int result[4];
+
+	array_add(4, lhs, rhs, result);
+	for(int i=0; i<4; i++)
+	{
+		printf("%d + %d = %d\n", lhs[i], rhs[i], result[i]);
+	}
+
+	return 0;
+}
+
+void array_add(int count, int lhs[], int rhs[], int result[])
+{
+	for(int i=0; i<count; i++){
+		*result++ = *lhs++ + *rhs++;
+	}
+}
+
+```
+
+### 练习10.10：翻倍吧，数组！
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// 等价声明形式
+void array_show(int rows, double (* origin) [5]);
+void array_double(int rows, double (* origin) [5]);
+
+int main(void)
+{
+	double nums[3][5] = {
+		{rand(), rand(), rand(), rand(), rand()},
+		{rand(), rand(), rand(), rand(), rand()},
+		{rand(), rand(), rand(), rand(), rand()}
+	};
+
+	array_show(3, nums);
+	array_double(3, nums);
+	array_show(3, nums);
+
+	putchar('\n');
+	double (*ptr) [5] = (double [2][5]){{1, 2, 3, 4, 5},{6, 7, 8, 9, 10}};
+	array_show(2, ptr);
+	array_double(2, ptr);
+	array_show(2, ptr);
+	
+	return 0;
+}
+
+void array_show(int rows, double origin[][5])
+{
+	printf("{ ");
+	for(int row=0; row<rows; row++)
+	{
+		putchar('{');
+		for(int i=0; i<5; i++){
+			printf("%lg, ", *(*origin+i) );
+		}
+		printf("\b\b}, ");
+		origin++;
+	}
+	printf("\b\b }\n");
+}
+
+void array_double(int rows, double origin[][5])
+{
+	for(int row=0; row<rows; row++)
+	{
+		for(int i=0; i<5; i++){
+			*(*origin+i) *= 2;
+		}
+		origin++;
+	}
+}
+
+```
+
+### 练习10.11：重构rain
+
+```c
+#include <stdio.h>
+
+#define MONTHS 12
+#define YEARS 5
+
+const float rain[YEARS][MONTHS] = {
+	{4.3, 4.3, 4.3, 3.0, 2.0, 1.2, 0.2, 0.2, 0.4, 2.4, 3.5, 6.6},
+	{8.5, 8.2, 1.2, 1.6, 2.4, 0.0, 5.2, 0.9, 0.3, 0.9, 1.4, 7.3},
+	{9.1, 8.5, 6.7, 4.3, 2.1, 0.8, 0.2, 0.2, 1.1, 2.3, 6.1, 8.4},
+	{7.2, 9.9, 8.4, 3.3, 1.2, 0.8, 0.4, 0.0, 0.6, 1.7, 4.3, 6.2},
+	{7.6, 5.6, 3.8, 2.8, 3.8, 0.2, 0.0, 0.0, 0.0, 1.3, 2.6, 5.2}
+};
+
+void show_year(void);
+void show_month(void);
+
+int main(void)
+{
+	show_year();
+	show_month();
+
+	return 0;
+}
+
+void show_year(void)
+{
+	int month, year;
+	float total, subtot;
+
+	printf(" YEAR       RAINFALL(inches)\n");
+	for(year=0, total=0; year<YEARS; year++)
+	{
+		for(month=0, subtot=0; month<MONTHS; month++)
+		{
+			subtot += *(*(rain+year) + month);
+		}
+		printf("%5d %15.1f\n", 2000+year, subtot);
+		total += subtot;
+	}
+	printf("\nThe yearly average is %.1f inches.\n\n", total/YEARS);
+}
+
+void show_month(void)
+{
+	int month, year;
+	float subtot;
+	printf("MONTHLY AVERAGE: \n\n");
+	printf(" Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec\n");
+
+	for(month=0; month<MONTHS; month++)
+	{
+		for(year=0, subtot=0; year<YEARS; year++)
+		{
+			subtot += *(*(rain+year)+month);
+		}
+		printf("%4.1f", subtot/YEARS);
+	}
+	putchar('\n');
+}
+
+```
+
+### 练习10.12：使用数组解决实际问题
+
+```c
+#include <stdio.h>
+
+void eat_line(void);
+void request_dataset(double set[][5]);
+double request_number(void);
+void show_average(double array[], int index);
+double calc_total_average(double set[][5]);
+double find_max(double set[][5]);
+void show_result(double set[][5]);
+
+int main(void)
+{
+	double set[3][5];
+	request_dataset(set);
+	
+	show_result(set);
+
+	return 0;
+}
+
+void eat_line(void)
+{
+	char ch;
+	while((ch=getchar())!='\n')
+	{
+		continue;
+	}
+}
+
+void request_dataset(double set[][5])
+{
+	printf("Please enter fifteen numbers to fill three number sets.\n");
+	set--;
+	for(int i=0; i<15; i++)
+	{
+		int j = i % 5;
+		if(j==0){
+			set++;
+		}
+		(*set)[j] = request_number();
+	}
+}
+
+double request_number(void)
+{
+	double num;
+	
+	while(scanf("%lg", &num)!=1)
+	{
+		eat_line();
+		printf("Invalid input detected. Please try again: \n");
+	}
+
+	return num;
+}
+
+void show_average(double array[], int index)
+{
+	double total = 0;
+	for(int i=0; i<5; i++){
+		total += array[i];
+	}
+	printf("The average number of Array %d is %lg.\n", index, total/5);
+}
+
+double calc_total_average(double set[][5])
+{
+	double total = 0;
+	for(int i=0; i<3; i++){
+		for(int j=0; j<5; j++){
+			total += set[i][j];
+		}
+	}
+
+	return total / 15;
+}
+
+double find_max(double set[][5])
+{
+	double max = set[0][0];
+	for(int i=0; i<3; i++){
+		for(int j=0; j<5; j++){
+			if(max<set[i][j]){
+				max = set[i][j];
+			}
+		}
+	}
+
+	return max;
+}
+
+void show_result(double set[][5])
+{
+	show_average(set[0], 1);
+	show_average(set[1], 1);
+	show_average(set[2], 1);
+
+	printf("The total average of the number set is %lg.\n", calc_total_average(set));
+
+	printf("The max number of the number set is %lg.\n", find_max(set));
+}
+
+```
+
+### 练习10.13：使用变长数组重构练习10.12
+
+```c
+#include <stdio.h>
+
+void eat_line(void);
+void request_dataset(int rows, double set[rows][5]);
+double request_number(void);
+void show_average(double array[], int index);
+double calc_total_average(int rows, double set[rows][5]);
+double find_max(int rows, double set[rows][5]);
+void show_result(int rows, double set[rows][5]);
+
+int main(void)
+{
+	double set[3][5];
+	request_dataset(3, set);
+	
+	show_result(3, set);
+
+	return 0;
+}
+
+void eat_line(void)
+{
+	char ch;
+	while((ch=getchar())!='\n')
+	{
+		continue;
+	}
+}
+
+void request_dataset(int rows, double set[rows][5])
+{
+	printf("Please enter fifteen numbers to fill three number sets.\n");
+	set--;
+	for(int i=0; i<rows*5; i++)
+	{
+		int j = i % 5;
+		if(j==0){
+			set++;
+		}
+		(*set)[j] = request_number();
+	}
+}
+
+double request_number(void)
+{
+	double num;
+	
+	while(scanf("%lg", &num)!=1)
+	{
+		eat_line();
+		printf("Invalid input detected. Please try again: \n");
+	}
+
+	return num;
+}
+
+void show_average(double array[], int index)
+{
+	double total = 0;
+	for(int i=0; i<5; i++){
+		total += array[i];
+	}
+	printf("The average number of Array %d is %lg.\n", index, total/5);
+}
+
+double calc_total_average(int rows, double set[rows][5])
+{
+	double total = 0;
+	for(int i=0; i<rows; i++){
+		for(int j=0; j<5; j++){
+			total += set[i][j];
+		}
+	}
+
+	return total / 15;
+}
+
+double find_max(int rows, double set[rows][5])
+{
+	double max = set[0][0];
+	for(int i=0; i<rows; i++){
+		for(int j=0; j<5; j++){
+			if(max<set[i][j]){
+				max = set[i][j];
+			}
+		}
+	}
+
+	return max;
+}
+
+void show_result(int rows, double set[rows][5])
+{
+	for(int i=0; i<rows; i++){
+		show_average(set[i], i+1);
+	}
+
+	printf("The total average of the number set is %lg.\n", calc_total_average(3, set));
+
+	printf("The max number of the number set is %lg.\n", find_max(3, set));
+}
+
+```
