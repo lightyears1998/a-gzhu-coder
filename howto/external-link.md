@@ -8,9 +8,14 @@
 
 ## 练习
 
-* [**杭州电子科技大学OJ**](http://acm.hdu.edu.cn/) 题库由浅入深，支持多种语言。可能是最经典的OJ。
-* [**HihoCoder**](https://hihocoder.com/) 题库由浅入深，支持多种语言，每周组织站内小型赛事，不定期组织挑战赛，奖品颇丰。
+- [**杭州电子科技大学OJ**](http://acm.hdu.edu.cn/) 题库由浅入深，支持多种语言。可能是最经典的OJ。
+- [**HihoCoder**](https://hihocoder.com/) 题库由浅入深，支持多种语言，每周组织站内小型赛事，不定期组织挑战赛，奖品颇丰。
 
 ## 竞赛
 
-* [**C语言含糊代码大赛**](http://www.ioccc.org/) 试试浙大侯启明教授的[Calculator](http://www.ioccc.org/2011/hou/hou.c)
+- [**C语言含糊代码大赛**](http://www.ioccc.org/) 试试浙大侯启明教授的[Calculator](http://www.ioccc.org/2011/hou/hou.c)
+
+## 广州大学
+
+- [**GZHU-Dress/GZHU-Wikiii**](https://github.com/GZHU-Dress/GZHU-Wikiii) 非官方Wiki，目前仓库中有校历提供下载。
+- [**whitelok/GZHU_Latex_Template**](https://github.com/whitelok/GZHU_Latex_Template) 非官方广州大学本科毕业论文Latex模板
