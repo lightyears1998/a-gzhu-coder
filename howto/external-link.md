@@ -19,3 +19,7 @@
 
 - [**GZHU-Dress/GZHU-Wikiii**](https://github.com/GZHU-Dress/GZHU-Wikiii) 非官方Wiki，目前仓库中有校历提供下载。
 - [**whitelok/GZHU_Latex_Template**](https://github.com/whitelok/GZHU_Latex_Template) 非官方广州大学本科毕业论文Latex模板
+
+## 资讯
+
+- [**超级计算机500强**](https://www.top500.org/)
