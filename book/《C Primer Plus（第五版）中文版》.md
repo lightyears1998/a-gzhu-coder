@@ -3899,3 +3899,42 @@ void show_result(int rows, double set[rows][5])
 }
 
 ```
+
+## 第11章
+
+### 练习11.1：读入n个字符
+
+```c
+#include <stdio.h>
+
+void get_input(char *, int);
+
+int main(void)
+{
+	char string[20];
+	get_input(string, 19);
+	printf("%s", string);
+
+	return 0;
+}
+
+void get_input(char * string, int n)
+{
+	fgets(string, n, stdin);
+}
+
+```
+
+### 练习11.2：
+
+## 第12章
+
+## 第13章
+
+## 第14章
+
+## 第15章
+
+## 第16章
+
+## 第17章
