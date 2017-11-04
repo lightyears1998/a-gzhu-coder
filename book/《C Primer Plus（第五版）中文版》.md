@@ -3904,28 +3904,215 @@ void show_result(int rows, double set[rows][5])
 
 ### 练习11.1：读入n个字符
 
-```c
-#include <stdio.h>
+```cpp
+#include <cstdio>
 
-void get_input(char *, int);
+void input(char *, int);
 
-int main(void)
+int main()
 {
-	char string[20];
-	get_input(string, 19);
-	printf("%s", string);
-
-	return 0;
+    char s[1000];
+    int n;
+    while (scanf("%d ", &n) == 1)
+    {
+        input(s, n);
+        puts(s);
+    }
 }
 
-void get_input(char * string, int n)
+void input(char * s, int n)
 {
-	fgets(string, n, stdin);
+    while (n--) *s++ = getchar();
 }
 
 ```
 
-### 练习11.2：
+### 练习11.2：在空白字符后停止读取
+
+```cpp
+#include <cstdio>
+#include <cctype>
+
+void input(char *, int);
+
+int main()
+{
+    char s[1000];
+    int n;
+    while (scanf("%d ", &n) == 1)
+    {
+        input(s, n);
+        puts(s);
+    }
+}
+
+void input(char * s, int n)
+{
+    int ch;
+    while (n--)
+    {
+        ch = getchar();
+        if (isblank(ch)) break;
+        else *s++ = ch;
+    }
+}
+
+```
+
+### 练习11.3：丢弃空白字符后的输入
+
+```cpp
+#include <cstdio>
+#include <cctype>
+
+bool input(char *);
+
+int main()
+{
+    char s[1000];
+    while (input(s)) puts(s);
+}
+
+bool input(char * s)
+{
+    int ch;
+    while (true)
+    {
+        ch = getchar();
+        if (ch == EOF) return false;
+        if (isblank(ch)) {
+            while (getchar() != '\n');
+            break;
+        }
+        else if (ch == '\n') break;
+        else *s++ = ch;
+    }
+    *s++ = 0;
+    return true;
+}
+
+```
+
+### 练习11.4：搜索字符串中的字符
+
+```cpp
+#include <iostream>
+using namespace std;
+
+char * search(const char *, const char);
+
+int main()
+{
+    char origin[1000];
+    while (gets(origin))
+    {
+        char spci;
+        scanf("%c ", &spci);
+        char * p = search(origin, spci);
+        if (p != NULL) cout << *p << endl;
+        else cout << "NULL" << endl;
+    }
+}
+
+char * search(const char * orgin, const char spci)
+{
+    char ch;
+    while ((ch = *orgin++))
+    {
+        if (ch == '0') break;
+        if (ch != '\0') {
+            if (ch == spci) return (char *)--orgin;
+        }
+    }
+    return NULL;
+}
+
+```
+
+### 练习11.5：搜索字符串中的字符（2）
+
+```cpp
+#include <cstdio>
+#include <iostream>
+using namespace std;
+
+bool is_within(const char *, const char);
+
+int main()
+{
+    char str[1000];
+    while (gets(str))
+    {
+        if (is_within(str, 'A')) cout << "Yes!" << endl;
+        else cout << "No." << endl;
+    }
+}
+
+bool is_within(const char * str, const char ch)
+{
+    while (*str != '\0')
+    {
+        if (*str++ == ch) return true;
+    }
+    return false;
+}
+
+```
+
+### 练习11.6：实现strncpy()
+
+```cpp
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+char * my_strncpy(char * s1, const char * s2, int n)
+{
+    char * head = s1;
+    while (*s1 != '\0') s1++;
+    while (n--)
+    {
+        if (*s2 == '\0') {
+            *s1++ = *s2++;
+            break;
+        }
+        else *s1++ = *s2++;
+    }
+    *s1++ ='\0';
+    return head;
+}
+
+int main()
+{
+    char s2[50];
+    while (scanf("%s", s2) == 1)
+    {
+        char s1[20] = "My strncpy:";
+        my_strncpy(s1, s2, sizeof(s1) - strlen(s1) - 1);
+        cout << s1 << endl;
+    }
+}
+
+```
+
+### 练习11.7：搜索字符串中的字符串
+
+### 练习11.8：反序字符串
+
+### 练习11.9：删除空格
+
+### 练习11.10：实现字符串功能
+
+### 练习11.11：字符统计
+
+### 练习11.12：反序命令行参数
+
+### 练习11.13：命令行参数的幂
+
+### 练习11.14：实现atoi()
+
+### 练习11.15：识别命令行参数的字符串处理程序
 
 ## 第12章
 
