@@ -4192,6 +4192,92 @@ int main()
 
 ## 第12章
 
+### 12.1：不适用全局变量的实现
+
+从略
+
+### 12.2：油耗换算
+
+从略
+
+### 12.3：油耗换算（2）
+
+从略
+
+### 12.4：返回自身被调用的次数
+
+```cpp
+#include <cstdio>
+
+int myself()
+{
+    static int cnt = 0;
+    return ++cnt;
+}
+
+int main()
+{
+    for (int i = 1; i < 10; i++)
+    {
+        printf("The %d times to execute a functon.\n", i);
+        printf("It says %d\n", myself());
+    }
+}
+
+```
+
+### 12.5：随机数降序排列
+
+```cpp
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+using std::sort;
+
+int main()
+{
+    int num[10];
+
+    srand(time(0));
+    for (int i = 0; i < 10; i++) num[i] = rand();
+    sort(num, &num[10]);
+    for (int i = 0; i < 10; i++) printf("%d\n", num[i]);
+}
+
+```
+
+### 12.6：随机数产生器统计
+
+```cpp
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+
+int main()
+{
+    for (int i = 1; i <= 5; i++)
+    {
+        srand(i);
+        printf("Case #%d:\n", i);
+        
+        int cnt[10] = { 0 };
+        for (int j = 0; j < 1000; j++) cnt[rand() % 10]++;
+        for (int j = 0; j < 10; j++) printf("%d ", cnt[j]);
+        printf("\n");
+    }
+}
+
+```
+
+### 12.7：修改和实现
+
+从略
+
+### 12.8：补全程序
+
+从略
+
 ## 第13章
 
 ## 第14章
