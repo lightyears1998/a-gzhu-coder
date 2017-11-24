@@ -20,7 +20,8 @@ public:
 			shanghai = (a * 42 * p / fy / 50 + 2) * 2;
 		if(x == "x4")
 			shanghai = (a * 42 * p / fy / 50 + 2) * 4;
-		if (x == "x0")
+//!     if (x == "x1/0")
+        if (x == "x0")
 			shanghai = 0;
 		if(x == "x1/2")
 			shanghai = (a * 42 * p / fy / 50 + 2) /2;
