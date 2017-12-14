@@ -22,11 +22,6 @@ bool cmp(number a, number b)
     return a.val < b.val;
 }
 
-bool search_cmp(number a, number b)
-{
-    return a.val == b.val;
-}
-
 int main()
 {
     // freopen("in.txt", "r", stdin);
