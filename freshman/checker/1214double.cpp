@@ -1,9 +1,4 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <iomanip>
-#include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <queue>
 using namespace std;
@@ -14,14 +9,14 @@ char map[35][35][35];
 
 struct node
 {
-	int x, y, z;
-	int sum;
+	int x, y, z, sum;
 } ss;
 
 queue<node> q;
 
 int bf()
 {
+
 	while (!q.empty())
 	{
 		ss = q.front();
