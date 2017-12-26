@@ -1,8 +1,9 @@
-// http://120.78.162.102/problem.php?cid=1332&pid=7
-// 错误数据：
-// 5 0 2 5 6 6 7 3 5 1 4
-// 期望 1 0 7
-// 结果 1 0 6
+/** http://120.78.162.102/problem.php?cid=1332&pid=7
+ * 反例数据：
+ * 5 0 2 5 6 6 7 3 5 1 4
+ * 期望 1 0 7
+ * 结果 1 0 6
+**/
 #include<cmath>
 #include<string>
 #include<iostream>
