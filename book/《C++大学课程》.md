@@ -36,7 +36,17 @@ private:
 #include <iostream>
 #include "GradeBook.h"
 
-GradeBook::
+GradeBook::GradeBook(string name)
+    : courseName(name)
+{
+    // ...
+}
+
+void GradeBook::setCourserName(string name) const
+{
+    // ...
+}
+
 ```
 
 ### 链接
