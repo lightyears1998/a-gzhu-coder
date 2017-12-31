@@ -1,24 +1,18 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <algorithm>
 using namespace std;
+
+// 注意此处的range for以及std::find()
 
 int main()
 {
     string s; cin >> s;
-    int cnt = 0;
-
-    for (int i = 0; i < s.length(); i++)
+    string v = "aeiou13579";
+    int res = 0;
+    for (auto c : s)
     {
-        if (isdigit(s[i]))
-        {
-            if ((s[i] - '0') % 2) cnt++;
-        }
-        else
-        {
-            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u') cnt++;
-        }
+        if (find(v.begin(), v.end(), c) != v.end()) ++res;
     }
-
-    cout << cnt << endl;
+    cout << res << endl;
 }
