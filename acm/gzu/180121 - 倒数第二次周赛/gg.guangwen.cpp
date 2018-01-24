@@ -4,14 +4,14 @@
 #include <cstdio>
 #include <algorithm>
 #include <cmath>
-#include <string.h>
 using namespace std;
-int arr[100050],n;char a[20];
+int arr[100050], n; 
+char a[20];
 struct node
 {
 	int val;  //将用来储存某区间最大值
 	int l,r;  //左右儿子编号（区间范围）
-}tree[3000001];
+} tree[3000001];
 
 void build(int root,int l,int r)  //建树
 {
