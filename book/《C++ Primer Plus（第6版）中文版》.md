@@ -94,12 +94,20 @@ struct widget
 
 #### 枚举
 
+枚举类型可用于创建符号常量（新的类型名和枚举量），可用枚举来定义switch语句中的符号常量。
+
 ```cpp
 enum spectrum {red, orange, yellow, green, blue, violet, indigo, ultraviolet};
 
 spectrum band = spectrum(3); // green
 
 ```
+
+可以创建多个值相同的枚举量
+
+每个枚举都有取值范围，可以将枚举变量中的任何整数值赋给枚举变量，即使这个值不是枚举值。
+
+枚举的取值范围的计算：开区间，(min(比最小枚举值小的最大的2的幂次, -1), 比最大枚举值大的最小的2的幂次)
 
 #### 指针
 
@@ -157,7 +165,7 @@ for (int x : {3, 5, 7, 9, 11})
 
 #### 内联函数
 
-两者其一：在函数声明前附加inline，在函数定义前附加inline
+两者其一：在函数声明前附加inline，在函数定义前附加inline；可将内联函数放置于头文件中；同一个函数的所有内联定义都必须相同。
 
 #### 函数参数与临时变量、引用参数和const
 
@@ -226,6 +234,148 @@ auto h(T1 x, T2 y) -> decltype(x + y)
 double xx;
 decltype((xx)) w; // double &
 decltype(xx)   u; // dooble
+
+```
+
+### 第9章：内存模型和名称空间
+
+自给自足原则，包含防护原则
+
+#### 包含防护（guarding）
+
+```cpp
+#ifndef THIS_HEADER_H_
+#define THIS_HEADER_H_
+// 类的定义
+
+#endif
+
+```
+
+#### 存储持续性
+
+- 自动储存持续性
+- 静态存储持续性 自动默认初始化为0（零初始化）
+- 线程存储持续性 thread_local
+- 动态存储持续性 new/delete
+
+编译期间执行常量表达式初始化，运行期间执行动态初始化。
+
+#### 作用域与链接性
+
+内部链接性在翻译单元内共享，外部链接性在翻译单元之间共享，无链接性为局部变量
+
+- 文件作用域
+- 函数原型作用域
+
+#### register
+
+显式地指明变量的储存性是自动的。
+
+#### extern
+
+单定义规则 在多个文件中使用到外部变量的情况下，只需在一个文件中包含该变量的定义，但在其他文件中要使用extern关键字来声明它。
+
+#### static
+
+修饰变量时，在文件作用域中表示内部链接性，在局部声明中表示静态储存持续性。
+
+修饰函数时，可将函数的链接性设置为内部；静态函数将覆盖外部定义。
+
+#### const
+
+在全局变量中，用const修饰，等同于用const static进行修饰，表示内部连续性。
+
+使用extern关键字修饰const表示外部连续性，此时所有用到该变量的翻译单元都必须使用extern关键字标记，同时只有一个文件可对其初始化。
+
+#### 其他关键字
+
+- *cv-限定符* const和volatile
+- *mutable* 即使一个结构或类是const的，某个成员也可以被修改
+
+#### 语言链接性
+
+C语言链接性：
+```cpp
+extern "C" void spaff(int);
+```
+
+C++语言链接性：
+```cpp
+extern void spaff(int);
+extern "C++" void spaff(int);
+
+```
+
+#### 动态储存分配
+
+##### new
+
+单值变量的列表初始化：
+```cpp
+int *pin = new int{ 6 };
+
+```
+
+new失败时引发std::bad_alloc，在旧的标准中返回空指针。
+
+##### 定位new运算符（placement new）
+
+手动指定分配的内存起点，而不是在堆中自动管理。不跟踪已使用哪些内存，不能使用delete删除。
+
+```cpp
+char buf[200];
+
+int *p = new(buf) type_name;
+
+```
+
+#### 名称空间
+
+区分声明区域，潜在作用域和作用域。
+
+命名空间可以是全局的，也可以从属于另一个命名空间。
+
+命名空间是开放的。
+
+区分未限定的名称和限定的名称。
+
+##### using
+
+```cpp
+using Jill::fetch;     // using声明
+using namespace std;   // using编译指令
+
+```
+
+若使用using声明，局部名称将隐藏全局名称，但仍可使用作用域解析操作符。
+
+using编译指令是可传递的。
+
+可以**通过使用未命名的名称空间**来实现链接性为内部的静态变量。未命名的名称空间于全局变量类似，但不能使用using声明或using编译指令使它在其他位置可用。
+
+例如，
+
+```cpp
+static int counts;
+int other();
+
+int main() {};
+int other() {};
+
+```
+
+它采用命名空间的实现是：
+
+```cpp
+namespace
+{
+	int counts;
+}
+int other();
+
+int main() {};
+int other() {};
 
 ```
 
