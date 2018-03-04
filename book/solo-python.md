@@ -4,19 +4,18 @@ https://www.sololearn.com/Play/Python
 
 ## 基本概念
 
-字符串 `'' 或 ""`
-浮点除法 `/ 整除 //`
-取模 浮点取模 `%` 
-乘方 `**`
-不存在自增/自减操作符：整数对象不可变
+- 字符串 `'' 或 ""`
+- 浮点除法 `/ 整除 //`
+- 取模 浮点取模 `%` 
+- 乘方 `**`
+- 不存在自增/自减操作符：整数对象不可变
 
-交互式IO `input('提示')`
+- 交互式IO `input('提示')`
 
 ### 字符串
 
-不能与数字直接相加
-
-与整数的乘法会复制字符串
+- 不能与数字直接相加
+- 与整数的乘法会复制字符串
 
 ### 类型
 
@@ -28,12 +27,12 @@ https://www.sololearn.com/Play/Python
 
 #### 布尔类型
 
-True False
+*True* *False*
 
 整数与浮点数直接比较的浮点误差存在，但误差远小于1e-9。
 
 and(&&) not(!) or(||) 可用于连接布尔表达式，优先级最低；
-and的优先级高于or，与C++保持一致
+and的优先级高于or，与C++保持一致。
 
 ## 控制语句
 
@@ -94,11 +93,32 @@ List间加法乘法操作有效。
 
 ```
 
-`in` 操作符判断元素是否在List内
+- `in` 操作符判断元素是否在List内
+- `append()` `len()` 
+- `insert()` 原位置元素后移
+- `index()`
 
-`append()` `len()` 
-`insert()` 原位置元素后移
-`index()`
+### None
+
+未定义返回类型的函数返回None
+
+None被转换成bool值的false
+
+### Dictionary
+
+```python
+ages = {"Dave": 24, "Mary":42, "John":58}
+
+print("Mary" in ages)      # True
+print("Will" not in ages)  # True
+
+ages.get("Dave")
+ages.get("Hurry")          # 返回None
+ages.get("Hurry", 34)      # 返回34
+
+```
+
+只有不变的（immutable）对象才能作为Dictionary的键，否则抛出KeyError。
 
 ## 函数与工具函数
 
@@ -126,22 +146,25 @@ shout("spam")
 
 ### Modules
 
-`import random`
-`from math import pi`
-`from math import sqrt as rt`
+```python
+import random
+from math import pi
+from math import sqrt as rt
+
+```
 
 ### range()
 
-`range(n)` 生成[0, n)的列表
-`range(i, j)` 生成[i, j)的列表
-`range(i, j, k)` 生成[i, j)的列表，元素间隔2
+- `range(n)` 生成[0, n)的列表
+- `range(i, j)` 生成[i, j)的列表
+- `range(i, j, k)` 生成[i, j)的列表，元素间隔2
 
 ## 异常
 
 ```python
 
 try:
-
+	# Something
 except:
 	raise # 重新抛出异常
 except(Error, Error):
@@ -155,6 +178,9 @@ assert exp # 断言失败即抛出异常
 assert exp, "额外说明"
 
 ```
+
+异常处理是按配对的。
+
 
 ## 文件IO
 
@@ -192,5 +218,29 @@ file.close()
 
 file = open("filename.txt", "r")
 print(file.readlines(16)) # 返回list，按行分割，元素包含换行符
+
+```
+
+### write()
+
+`file.write(content)`
+
+不附加换行符，返回写入文件的字符数量。
+
+### 保证close()方法最终被调用
+
+使用异常处理机制：
+```python
+try:
+	file = open("in.txt");
+finally:
+	file.close();
+
+```
+
+使用with... as...机制：
+```python
+with open("in.txt") as file:
+	printf(f.readlines())
 
 ```
