@@ -379,6 +379,111 @@ int other() {};
 
 ```
 
+#### 内联名称空间
+
+自动将内层的标识符放至外层作用域
+
+```cpp
+namespace X {
+inline namespace Y {
+void foo();
+}  // namespace Y
+}  // namespace X
+
+```
+
+### 第10章：类与对象
+
+注意到定义于类声明中的函数都成为内联函数，也可以在类声明之外定义成员函数，使之成为内联函数。
+
+```cpp
+class Stock
+{
+private:
+	void set_tot();
+}
+
+inline void Stock::set_tot()
+{
+	...
+}
+
+```
+
+#### 构造函数和析构函数
+
+```cpp
+
+Stock stock("Nano Element", 2, 3);
+Stock stock = ("Nano Element", 2, 3); // 可能会创建临时变量
+Stock stock {"Nano Element", 2, 3};
+
+```
+
+可以使用列表初始化；
+
+可以使用std::initialize_list的类，表示任意长度的列表。
+
+#### 类作用域
+
+像下面这样定义常量是不可行的，因为类的定义只是描述了对象的形式，并没有创建对象，也就没有存放值的空间。
+
+```cpp
+class Backery
+{
+private:
+	const int Months = 12;
+	double cost[Months];
+}
+
+```
+
+做法是为类声明一个枚举类型，或者使用static来修饰
+
+```cpp
+class Backery
+{
+private:
+	enum {Month = 12}; // 并不会创建类数据成员，即对象实例中不包含枚举
+	double cost[Months];
+}
+
+```
+
+```cpp
+class Backery
+{
+private:
+	static const int Months = 12;
+	double cost[Months];
+}
+
+```
+
+作用域内枚举可以防止名称冲突
+
+```cpp
+
+// 可能产生名称冲突
+enum egg {Small, Medium, Large, Jumbo};
+enum t_shirt { Small, Medium, Large, Jumbo};
+
+// 下列枚举的作用域为类
+
+enum class egg {Small, Medium, Large, Jumbo};
+enum struct t_shirt {Small, Medium, Large, Jumbo};
+
+egg choice = egg::Small;
+
+```
+
+作用域类枚举不能隐式转换为整型，可指定底层枚举类型。
+
+```cpp
+enum class : short pizza{Small, Medium, Large, XLarge};
+
+```
+
 ### 附：输入输出工具
 
 **cin**;
