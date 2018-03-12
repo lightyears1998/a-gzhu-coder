@@ -553,7 +553,50 @@ Time opearator +(double, const Time&) const;
 
 #### 返回对象
 
-返回指向const对象的引用。。。
+编程陷阱预防：返回const对象
+
+```cpp
+// 如果为force的类型定义了operator +()
+net = force1 + force2;
+force1 + force2 = net;
+
+```
+
+#### 定位new运算符
+
+定位new运算符不能与常规delete运算符配合使用，
+删除对象时需要显式调用对象的析构函数。
+
+#### 嵌套声明
+
+在类中嵌套结构或类声明，可以使作用域仅限于类中。
+
+#### 成员初始化列表和类内初始化
+
+类中定义的const常量，可以初始化，但不能给它赋值。
+
+只有构造函数可以使用成员初始化列表语法。
+
+使用成员初始化列表的例子：
+```cpp
+Queue::Queue(int qs) : qsize(qs) {
+	front = rear = NULL;
+	items = 0;
+}
+
+```
+
+成员初始化列表初始化的对象不仅仅限于常量；但常量和被声明为引用的类成员也必须使用成员初始化语法。
+
+C++11的类内初始化允许初始化以更直观的形式初始化：
+```cpp
+class Classy
+{
+	int mem1 = 10;
+	const int mem2 = 20;
+}
+
+```
 
 ### 附：输入输出工具
 
