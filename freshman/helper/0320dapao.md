@@ -30,8 +30,8 @@ GCD LCM
 * POJ2001 Shortest Prefix
 
 ## 其他推荐
-* 平时需要练习DP、贪心等没有固定的模板
-* 51Nod上面的算法题目可以从简单难度开始做
+* 基础拓展练习 https://www.patest.cn/contests/gplt
+* 平时需要练习DP、贪心等没有固定的模板，51Nod上面的算法题目可以从简单难度开始做
 * VJ群组里面有许多书的练习题 https://vjudge.net/group/challenge
 
 赠君一句话：加油！
