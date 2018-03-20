@@ -2,6 +2,7 @@
 注意剪枝
 
 广大OJ “稍简单搜索”
+拓展 https://vjudge.net/article/352
 
 ## 数论 
 GCD LCM
