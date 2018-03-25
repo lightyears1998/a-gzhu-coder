@@ -2,7 +2,9 @@
 
 《C++大学课程》这本书是kehao的
 
-电子工业出版社2016年7月（原著第9版，Ninth Edition）
+电子工业出版社2016年7月（原著第9版，Ninth Edition)
+
+- [Deitel C++资源中心](http://www.deitel.com/cplusplus)
 
 # 笔记
 
@@ -36,9 +38,19 @@ private:
 #include <iostream>
 #include "GradeBook.h"
 
-GradeBook::
+GradeBook::GradeBook(string name)
+    : courseName(name)
+{
+    // ...
+}
+
+void GradeBook::setCourserName(string name) const
+{
+    // ...
+}
+
+## 异常
+
+头文件 <stdexcpet>
+
 ```
-
-### 链接
-
-- [Deitel C++资源中心](http://www.deitel.com/cplusplus)

@@ -1,0 +1,4 @@
+move-left
+for-8
+	move-down
+end
