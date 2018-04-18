@@ -622,6 +622,11 @@ cin.get(name, ArSize).get();
 - `put()`
 - `setf(ios_base::fixed, ios_base::floatfield);`
 
+**flags**
+
+- setioflags(ios_base::fixed|ios::showpoint)
+- setprecision(2)
+
 文件IO **ofstream**
 
 ```cpp
