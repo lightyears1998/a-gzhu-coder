@@ -659,7 +659,7 @@ public:
 
 当类的生命包含纯虚函数时，不能创建该类的对象。纯虚函数可以有定义，因为所有派生类的方法可以与基类一致，则可以在基类中统一定义。
 
-####　继承和动态内存分配
+#### 继承和动态内存分配
 
 派生类不使用new，不需要为派生类定义构造函数、析构函数或复制构造函数。
 
@@ -742,7 +742,72 @@ newhire.Worker::show();
 
 #### 类模板
 
-// to be continued...
+```cpp
+template <class T>
+class Stack
+{
+	// details omitted
+}
+
+template <class T>
+Stack<T>::Stack() {
+	// details omitted
+}
+
+template <class T>
+Stack<T>::function(int arg1) {  // 在类外需要使用完整的类型声明
+	// details omitted
+}
+
+```
+
+注意模板必须与特定的模板实例化请求一起使用，
+最通用的办法是将模板的信息放置在一个头文件中（定义与实现不要分离）。
+
+在工程实践中也可以分离定义，前提是要求将使用到的模板显式实例化。
+
+##### 非类型参数
+
+```cpp
+
+template <class T, int n>
+class Array {
+private: 
+	T ar[n];
+	
+	// ...
+}
+
+template <class T, int n>
+T& Array<T,n>::function() {
+	// ...
+}
+
+```
+
+非类型参数（或称表达式参数）可以是整形、枚举、引用或者指针。
+
+#### 模板多功能性
+
+##### 递归使用模板
+
+Array<ArrayK<int, 5>, 10> twodee;
+
+##### 使用多个类型参数
+
+template <class T1, class T2> ...
+
+##### 默认类型模板参数
+
+template <class T, class T2 = int> class Typo {..};
+
+#### 模板的具体化
+
+// Todo here
+
+1. **隐式实例化**
+2. **显式实例化**
+3. **显式具体化**
 
 ### 附注：输入输出工具
 
@@ -785,6 +850,7 @@ IO格式更改与恢复
 
 ```cpp
 
-未完待续。。。
+fmtflags fmt = cout.flags();
+cout.flags(fmt);
 
 ```
