@@ -120,6 +120,24 @@ ages.get("Hurry", 34)      # 返回34
 
 只有不变的（immutable）对象才能作为Dictionary的键，否则抛出KeyError。
 
+### Tuple
+
+元组与list行为类似，但是immutable对象。使用小括号而不是方括号。也可以不使用小括号，直接使用逗号分隔元素即可。
+
+```py
+
+# list
+list = ["one", "two"]
+
+# dictionary
+dictionary = {1:"one", 2:"two"}
+
+# tuple
+tuple = ("one", "two")
+tuple = "one", "two"
+
+```
+
 ## 函数与工具函数
 
 ```python
