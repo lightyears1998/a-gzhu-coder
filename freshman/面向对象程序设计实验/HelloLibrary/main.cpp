@@ -1,3 +1,5 @@
+// main.cpp
+
 #include "book.h"
 #include "toolchain.h"
 #include <cstring>
@@ -7,7 +9,7 @@
 #include <vector>
 using namespace std;
 
-const static string dat_path = "book.txt";
+const static string dat_path = "bookf.dat";
 const static string log_path = "log.txt";
 ofstream log_file;
 fstream file;
@@ -57,11 +59,11 @@ void init()
 	if (file.is_open()) {
 		log("图书记录已经存在");
 
-		// 从文件中读取图书信息
 		while (true)
 		{
 			Book nxt;
 
+			nxt.serial = parse_raw_string(file);
 			nxt.title = parse_raw_string(file);
 			nxt.press = parse_raw_string(file);
 			nxt.author = parse_raw_string(file);
@@ -78,8 +80,7 @@ void init()
 
 	atexit(dispose);
 	
-	log("程序初始化");
-	log("关键文件初始化成功");
+	log("程序完成初始化");
 }
 
 void menu()
@@ -106,6 +107,7 @@ void explore()
 void append()
 {
 	Book nxt;
+	input(nxt.serial, "编号");
 	input(nxt.title, "书名");
 	input(nxt.press, "出版社");
 	input(nxt.author, "作者");
@@ -120,36 +122,42 @@ void append()
 
 void locate()
 {
-	unsigned idx; input(idx, "图书编号");
-	if (idx >= books.size())
+	string serial; input(serial, "图书编号");
+	for (auto it = books.begin(); it != books.end(); ++it)
 	{
-		cout << "不存在编号为" << idx << "的图书" << endl;
-		system("pause");
+		if (it->serial == serial) {
+			show(*it, it-books.begin());
+			system("pause");
 
-		log(string("找不到编号为") + to_string(idx) + string("的图书"));
-		return;
+			log(string("显示标题为") + serial + string("的图书"));
+			return;
+		}
 	}
-	show(books[idx], idx);
+	cout << "不存在标题为" << serial << "的图书" << endl;
 	system("pause");
 
-	log(string("显示标题为") + books[idx].title + string("的图书")); 
+	log("不存在标题为" + serial + "的图书");
 }
 
 void erase()
 {
-	unsigned idx; input(idx, "图书编号");
-	if (idx >= books.size())
+	string serial; input(serial, "图书编号");
+	for (auto it = books.begin(); it != books.end(); ++it)
 	{
-		cout << "不存在编号为" << idx << "的图书" << endl;
-		system("pause");
+		if (it->serial == serial) {
+			books.erase(it);
+			cout << "删除了编号为" << serial << "的图书" << endl;
+			system("pause");
 
-		log(string("找不到编号为") + to_string(idx) + string("的图书"));
-		return;
+			log(string("删除标题为") + serial + string("的图书"));
+			return;
+		}
 	}
-	books.erase(books.begin() + idx);
+	cout << "不存在编号为" << serial << "的图书" << endl;
+	system("pause");
 
-	log(string("删除标题为") + books[idx].title + string("的图书")); 
-
+	log(string("找不到编号为") + serial + string("的图书"));
+	return;
 }
 
 void dispose()
@@ -161,9 +169,10 @@ void dispose()
 	file.seekp(0, ios::beg);
 	for (unsigned i=0; i<books.size(); ++i)
 	{
-		file.write(books[i].title.c_str(), strlen(books[i].title.c_str())+1);
-		file.write(books[i].press.c_str(), strlen(books[i].press.c_str())+1);
-		file.write(books[i].author.c_str(), strlen(books[i].author.c_str())+1);
+		file.write(books[i].serial.c_str(), strlen(books[i].serial.c_str()) + 1);
+		file.write(books[i].title.c_str(), strlen(books[i].title.c_str()) + 1);
+		file.write(books[i].press.c_str(), strlen(books[i].press.c_str()) + 1);
+		file.write(books[i].author.c_str(), strlen(books[i].author.c_str()) + 1);
 		file.write((char *)&books[i].price, sizeof(double));
 	}
 

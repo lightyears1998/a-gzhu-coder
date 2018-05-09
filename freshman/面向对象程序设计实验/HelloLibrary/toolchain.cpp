@@ -1,3 +1,5 @@
+// toolchain.cpp
+
 #include "toolchain.h"
 
 string timestamp()
@@ -35,6 +37,7 @@ string parse_raw_string(fstream &file)
 void show(const Book &book, unsigned idx)
 {
 	cout << "<-- " << idx << endl;
+	cout << "编号：" << book.serial << endl;
 	cout << "书名：" << book.title << endl;
 	cout << "出版社：" << book.press << endl;
 	cout << "作者：" << book.author << endl;
