@@ -175,7 +175,7 @@ from math import sqrt as rt
 
 - `range(n)` 生成[0, n)的列表
 - `range(i, j)` 生成[i, j)的列表
-- `range(i, j, k)` 生成[i, j)的列表，元素间隔2
+- `range(i, j, k)` 生成[i, j)的列表，元素间隔k
 
 ## 异常
 
