@@ -5,7 +5,7 @@ https://www.sololearn.com/Play/Python
 ## 基本概念
 
 - 字符串 `'' 或 ""`
-- 浮点除法 `/ 整除 //`
+- 浮点除法 `/` 整除 `//`
 - 取模 浮点取模 `%` 
 - 乘方 `**`
 - 不存在自增/自减操作符：整数对象不可变
@@ -31,7 +31,7 @@ https://www.sololearn.com/Play/Python
 
 整数与浮点数直接比较的浮点误差存在，但误差远小于1e-9。
 
-and(&&) not(!) or(||) 可用于连接布尔表达式，优先级最低；
+`and(&&)`, `not(!)`, `or(||)` 可用于连接布尔表达式，优先级最低；
 and的优先级高于or，与C++保持一致。
 
 ## 控制语句
@@ -175,7 +175,7 @@ from math import sqrt as rt
 
 - `range(n)` 生成[0, n)的列表
 - `range(i, j)` 生成[i, j)的列表
-- `range(i, j, k)` 生成[i, j)的列表，元素间隔2
+- `range(i, j, k)` 生成[i, j)的列表，元素间隔k
 
 ## 异常
 
