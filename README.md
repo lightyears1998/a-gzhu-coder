@@ -10,6 +10,7 @@ It is fancy meetting you here! (ง •̀_•́)ง
 
 ## 想去做的事情
 
+- [X] 作为一个ACM-ICPC选手参加Contest
 - [ ] 修好宿舍的路由器
 - [ ] 掌握C++ / Java / Python / PHP / C#
 - [ ] 写一个时间管理软件Primum
