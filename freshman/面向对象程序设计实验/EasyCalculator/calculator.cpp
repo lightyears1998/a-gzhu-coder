@@ -7,7 +7,7 @@
 #include "calculator.h"
 using namespace std;
 
-struct symbol
+struct Symbol
 {
     bool isvalue;
     union {
@@ -16,7 +16,7 @@ struct symbol
     };
 };
 
-void show(const symbol &syb)
+void show(const Symbol &syb)
 {
     if (syb.isvalue) cout << syb.value;
     else cout << syb.optype;
@@ -29,7 +29,7 @@ map<char, int> oprank = {
     {'+', 2}, {'-', 2}, {'*', 4}, {'/', 4},
     {'(', -1}, {')', -1}
 };  // 定义运算符优先级别
-vector<symbol> symbols, prefix_exp;
+vector<Symbol> symbols, prefix_exp;
 
 // 将字符转化为数字符号
 auto tonumber = [](const string &expression, unsigned &idx) {
@@ -67,7 +67,7 @@ auto tooptype = [](const string &expression, unsigned &idx) {
     if (find(opa.begin(), opa.end(), expression[idx]) == opa.end())
         return false;
 
-    symbols.push_back(symbol{false, {.optype = expression[idx]}});
+    symbols.push_back(Symbol{false, {.optype = expression[idx]}});
     return true;
 };
 
@@ -90,7 +90,7 @@ bool resolve(const string &expression)
     }
 
     // 将中缀符号转换为前缀符号
-    stack<symbol> opstack, midstack;
+    stack<Symbol> opstack, midstack;
     for (auto it = symbols.rbegin(); it != symbols.rend(); ++it)
     {
         // 处理数字
