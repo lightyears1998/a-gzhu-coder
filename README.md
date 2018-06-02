@@ -11,6 +11,7 @@ It is fancy meetting you here! (ง •̀_•́)ง
 ## 想去做的事情
 
 - [X] 以一名ACM-ICPC选手的身份参加Regional Contest
+- [ ] 捡起三年前遗忘的数学和物理
 - [ ] 掌握C++, Java, Python, PHP, C#
 - [ ] 掌握html, CSS, javascript
 - [ ] 修好宿舍的路由器
