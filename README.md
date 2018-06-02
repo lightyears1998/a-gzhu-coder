@@ -15,7 +15,8 @@ It is fancy meetting you here! (ง •̀_•́)ง
 - [ ] 掌握html, CSS, javascript
 - [ ] 修好宿舍的路由器
 - [ ] 重构“现代”教学软件系统
-- [ ] 写一套时间管理软件Primum Family
-- [ ] 造键盘速度练习工具和一套练习文本
+- [ ] 打造键盘速度练习工具和一套练习文本
 - [ ] 在Windows上写一个坦克大战，并且移植到Linux上
+- [ ] 使用News+维护个人信息流
+- [ ] 写一套时间管理软件the Primum Family
 - [ ] Make a real game with Unity
