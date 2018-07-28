@@ -25,6 +25,8 @@ Android应用运行在自己的安全沙箱内。（每个应用是操作系统�
 - *边距* dimens.xml
 - *控件* `findViewById(R.id.text_view);`
 
+![Activity生命周期](/camo/note/android_activity.png)
+
 ## 外观
 
 ### 原型设计
