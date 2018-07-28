@@ -48,7 +48,7 @@
 ## 软件基础
 
 - 个人文件夹 `/home/usrname`
-- 文档 `/usr/share/doc/`
+- man文档 `/usr/share/doc/` info文档 `/usr/share/info/`
 
 ### Run-level
 
@@ -87,7 +87,7 @@
 ### Manual
 
 - `man -f command` `whatis command` 列出command的手册
-- `man -k keyword` `apropos command` 根据关键字列出command的手册
+- `man -k keyword` `man -K keyword-in-text` `apropos command` 根据关键字列出command的手册
 - `man [1-9] command`
 - 使用`man man`查看9类数字说明符对应的含义
 - `/string` `?string` 向下、向上查询字符串
@@ -100,6 +100,11 @@
 - `N P` 前后导航
 - `U` 向上
 
+### Terminal
+
+- $ normal user
+- \# Root user
+
 ### 编辑器
 
 `vi`, `nano`, `vim`
@@ -108,5 +113,9 @@
 
 ### 忘记密码？单用户维护模式
 
-编辑GRUB引导，在`kernel`部分添加`single`参数
-passwd
+1. 编辑GRUB引导，在`kernel`部分添加`single`参数
+2. 取得root权限登陆系统，使用`passwd`命令修改密码
+
+### 欢迎界面
+
+- tty `/etc/issue` `man issue` `man getty`
