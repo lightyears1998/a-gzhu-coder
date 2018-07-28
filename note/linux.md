@@ -119,3 +119,5 @@
 ### 欢迎界面
 
 - tty `/etc/issue` `man issue` `man getty`
+
+## 用户与用户组
