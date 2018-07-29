@@ -48,6 +48,10 @@ AndroidManifest.xml
 </manifest>
 ```
 
+ShapeDrawable
+
+
+
 ## 外观
 
 ### 原型设计
@@ -55,6 +59,14 @@ AndroidManifest.xml
 墨刀 mockplus
 
 ### 9-patch
+
+将图片放入Resource文件夹内，然后使用Create 9-patch png.
+
+### 反编译
+
+apktool
+
+dex2jar
 
 ## 常用组件
 
@@ -74,6 +86,123 @@ startActivity(intent);
 Intenet intent = getIntent();
 String Message = intent.getStringExtra("MSG_TAG");
 ```
+
+### TextView
+
+属性
+
+- gravity 空间内容对其方式
+
+文本属性
+
+- text 
+- textColor
+- textStyle
+- textSize 以sp为单位
+- background
+
+阴影属性
+
+阴影效果是运行时属性，不会在设计器中体现
+
+- shawdowColor, shawdowRadius 阴影颜色与模糊程度
+- shawdowDx, shawdowDy 水平偏移与竖直偏移
+
+边框 自定义Shape左为Background
+
+http://www.runoob.com/w3cnote/android-tutorial-edittext.html
+
+drawableXxx
+
+autolink
+
+融合Html
+
+部分可点击TextView：SpannableString
+
+### EditText
+
+属性
+
+- hint
+- textColorHint
+- selectAllOnFocus
+- inputType
+- singleLine
+
+### Button
+
+```java
+class MyActivity extends AppCompactActivity
+    implements View.OnClickListener
+{
+    @Override
+    public void OnCreated(Bundle savedInstanceState)
+    {
+        findViewById(R.id.button).setOnClickListener(this);
+    }
+
+    @Override
+    public void OnClick(View view)
+    {
+        // Related opearations...
+    }
+}
+
+```
+
+自定义Button http://www.runoob.com/w3cnote/android-tutorial-button-imagebutton.html
+
+### ImageView
+
+属性
+
+- src 内容，不会自动拉伸
+- background 背景，根据View宽度自动拉伸
+
+### RadioButton & CheckBox
+
+RadioGroup `getChildCount()` `getChildAt()`
+
+RadioButton / CheckBox `isChecked()`
+
+### ToggleButton
+
+属性
+
+- checked
+- textOn, textOff
+
+### Switch
+
+开关
+
+### ProgressBar
+
+```java
+getMax();
+getProgress();
+getSecondaryProgress();  // 类似与视频缓冲进度
+increasementProgressBy(int diff);
+isIndeterminate();  // 是否处于不确定模式下
+setIndeterminate(boolean bool)  // 设置不确定模式
+```
+
+### SeekBar
+
+拖动条
+
+### RatingBar
+
+星级评分条
+
+### ScrollView
+
+`fullScroll()`
+
+### Date and Time
+
+TextClock, AnalogClock, Chronometer, DatePicker, TimePicker, CalendarView
 
 ## 常用布局
 
