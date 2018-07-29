@@ -79,7 +79,7 @@ String Message = intent.getStringExtra("MSG_TAG");
 
 ### DrawerView
 
-#### Layout布局
+布局根节点必须是DrawerLayout
 
 主题NoActionBar化
 
@@ -90,4 +90,31 @@ String Message = intent.getStringExtra("MSG_TAG");
 </style>
 ```
 
-包含自定义Toolbar:app_bar
+自定义Toobar
+
+`onCreate()`
+```java
+Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+setSupportActionBar(toolbar);
+```
+
+渲染菜单
+
+`onCreateOptionMenu(Menu menu)`
+```java
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+}
+```
+
+Appbar与Drawer联动
+
+```java
+DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+);
+drawer.addDrawerListener(toggle);
+toggle.syncState();
+```
