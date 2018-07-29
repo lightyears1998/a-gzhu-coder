@@ -1,6 +1,9 @@
-> Picking up! Picking up!
-> 重新翻开这本《Thinking in Java》，一切回到当年的味道
+> 言语创造了思想，思想是人类对宇宙的度量
 
 ## 基本数据类型
 
-> “一切都是对象”  -- by Bruce Eckel \<\<Thinking in Java\>\> Chapter II
+> 一切都是对象
+
+boolean(Boolean), char(Character), byte(Byte), short(Short), int(Integer), long(Long), float(Float), double(Double), void(Void)
+
+BigInteger, BigDecimal
