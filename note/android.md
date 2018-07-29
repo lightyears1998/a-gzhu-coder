@@ -109,11 +109,48 @@ LinearLayout不能在同一水平线上布置一左一右的两个控件
 
 ### RelativeLayout
 
-- gravity
-- 根据父容器定位
-- 根据兄弟组件定位
-- margin（外边距）
-- padding（内填充）
+- gravity / ignoreGravity
+- 根据父容器定位 layout_alignParentXxx (Left | Right | Bottom | Top) layout_centerInParent (Horizontal | Vertical)
+- 根据兄弟组件定位 layout_toXxxOf (Left | Right) layout_above(below) layout_alignXxx (Left | Right | Top | Bottom)
+- layout_margin（外边距）
+- layout_padding（内填充）
+
+*梅花布局*
+
+### TableLayout
+
+属性
+
+- collapseColumns 指定隐藏行
+- shrinkColumns 指定可收缩行
+- stretchColumns 制定可伸展行
+
+单元格
+
+- layout_column
+- layout_span
+
+### FrameLayout
+
+属性
+
+- foreground 前景色/前景图像
+- foregroundGravity
+
+### GridLayout
+
+属性
+
+- columnCount, rowCount
+
+对于布局中的View
+
+- layout_row, layout_column 设置行列 0-based
+- layout_rowSpan, layout_columnSpan 设置跨行，设置跨列
+
+### AbsoluteLayout
+
+专业适配当前屏幕
 
 ### DrawerLayout
 
