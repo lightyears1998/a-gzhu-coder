@@ -19,7 +19,7 @@ It's fancy meetting you here! (ง •̀_•́)ง
 ## 想去做的事情
 
 - [X] 以校队成员的身份参加ICPC竞赛
-- [ ] 捡起上大学之前遗落的的数学和物理
+- [ ] 学习数学与物理
 - [ ] 学习C++, Java, Python, PHP和C#
 - [ ] 学习html, CSS和javascript
 - [ ] 修好宿舍的路由器
