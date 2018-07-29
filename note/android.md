@@ -109,7 +109,11 @@ LinearLayout不能在同一水平线上布置一左一右的两个控件
 
 ### RelativeLayout
 
-
+- gravity
+- 根据父容器定位
+- 根据兄弟组件定位
+- margin（外边距）
+- padding（内填充）
 
 ### DrawerLayout
 
@@ -152,3 +156,7 @@ ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 drawer.addDrawerListener(toggle);
 toggle.syncState();
 ```
+
+## 源
+
+http://www.runoob.com/w3cnote/android-tutorial-intro.html
