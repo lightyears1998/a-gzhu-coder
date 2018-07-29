@@ -26,7 +26,7 @@ Android应用运行在自己的安全沙箱内。（每个应用是操作系统�
 - *控件* `findViewById(R.id.text_view);`
 - *属性* `?attr/...`
 
-![Activity生命周期](/camo/note/android_activity.png)
+![Activity生命周期](/camo/note/android_activity.png)]
 
 AndroidManifest.xml
 ```xml
@@ -75,9 +75,43 @@ Intenet intent = getIntent();
 String Message = intent.getStringExtra("MSG_TAG");
 ```
 
-## 常用视图
+## 常用布局
 
-### DrawerView
+### LinearLayout
+
+match_parent == fill_parent
+
+布局自身
+
+- layout_gravaty
+- layout_width
+- layout_height
+- divider
+- *showDivider* none, beginning, end, middle（每两个组件之间）
+- dividerPadding
+
+子元素的对齐方式
+
+- *orientaion* horizontal(default), vertical
+- *gravity* 
+
+layout_width与layout_weight组合
+
+- 对于在horizontal对齐的LinearLayout内的两个View，如果View的layout_width被设置为0dp，并设置了layout_weight属性，将按权重分配layout_width
+- 如果容器内View被设置为match_parent，并设置了layout_weight属性，设有4份View，每份View的最终权重为(1-(份数-1)*(权重/权重之和))；如View权重1, 2, 3，则最终Layout_width为2, 1, 0
+- wrap_content则视情况而定，居于前述两种情况之间
+
+LinearLayout不能在同一水平线上布置一左一右的两个控件
+
+属性
+
+- `baselineAligned` 子View是否根据baseline对齐
+
+### RelativeLayout
+
+
+
+### DrawerLayout
 
 布局根节点必须是DrawerLayout
 
