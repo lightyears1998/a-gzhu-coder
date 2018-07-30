@@ -26,7 +26,7 @@ Android应用运行在自己的安全沙箱内。（每个应用是操作系统�
 - *控件* `findViewById(R.id.text_view);`
 - *属性* `?attr/...`
 
-![Activity生命周期](/camo/note/android_activity.png)]
+![Activity生命周期](/camo/note/android_activity.png)
 
 AndroidManifest.xml
 ```xml
