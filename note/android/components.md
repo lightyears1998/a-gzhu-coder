@@ -13,6 +13,39 @@ Intenet intent = getIntent();
 String Message = intent.getStringExtra("MSG_TAG");
 ```
 
+### AssetManager
+
+路径不需要以"/"开头
+
+### Toast
+
+`Toast.makeText(context, "hint", Toast.LENGTH_LONG).show()` 
+
+### Notification
+
+状态栏通知
+
+### AlertDialog
+
+对话框
+
+### ProgressDialog
+
+### DatePickerDialog
+
+### TimePickerDialog
+
+### PopupWindow
+
+IO blocked
+
+### Menu
+
+- OptionMenu
+- ContextMenu
+- SubMenu
+- PopupMenu
+
 ### TextView
 
 属性
@@ -268,7 +301,46 @@ public class SettingsActivity extends AppCompatActivity
 
 结合SQLite简化流程
 
+### BaseAdapter
+
+```java
+
+public class AnimalAdapter extends BaseAdapter {
+    private LinkedList<Animal> data;
+    private Context context;
+
+    public AnimalAdapter(LinkedList<Animal> data, Context context) {
+        this.data = date;
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return date.size();
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        convertView = LayoutInflater.from(context).inflate(R.layout.item_list_animal, parent, false);
+        // 视图中各项资源操作
+        return convertView;
+    }
+}
+
+
+```
+
+
 ### ListView绑定BaseAdapter
+
+绑定
+
+```java
+
+setAdapter(new AnimalAdapter(linkedlist, this));
+
+```
+
 
 监听单击事件
 
@@ -283,6 +355,40 @@ class MyActivity implements AdapterView.OnItemClickListener {
 
 ```
 
-### AssetManager
+### BaseAdapter优化
 
-路径不需要以"/"开头
+1. 复用ConvertView
+2. 创建静态类ViewHolder以减少`findViewById()`的使用
+
+复用BaseAdapter
+
+1. 使用泛型
+
+#### 参考
+
+1. http://www.imooc.com/learn/372
+2. http://www.runoob.com/w3cnote/android-tutorial-customer-baseadapter.html
+
+### ListView数据更新
+
+`NotifyDataSetChanged()`
+
+### GridView
+
+网格视图
+
+### Spinner
+
+列表视图
+
+### AutoCompleteTextView
+
+自动完成文本域
+
+### ExpandableListView
+
+可折叠列表
+
+### ViewFlipper
+
+翻转视图 用于制作用户第一次登陆的引导页面等
