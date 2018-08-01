@@ -49,8 +49,12 @@ SET character_set_connection=gbk;
 修改默认编码 `/etc/my.cnf`
 
 `HELP contents`
+
 `SHOW ENGINES`
+
 `SHOW VARIABLES LIKE 'storage_engine'`
+
+数据表的行数由最小的行数决定
 
 ## 数据类型和运算符
 
@@ -220,12 +224,81 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' IN (
 
 #### 常见错误
 
-嵌套在FROM子句中的SELECT语句需要为derived table指定别名
+嵌套在FROM子句中的SELECT语句需要为derived table指定别名 `(子查询) AS 别名`
 
 - 错误：`SELCET * FROM (SELECT * FORM 表名)`
-- 正确：`SELCET * FROM (SELECT * FORM 表名 AS 别名)`
+- 正确：`SELCET * FROM (SELECT * FORM 表名) AS 别名`
 
-### 函数 
+### GROUP BY
+
+分组查询：根据字段分组查询后合并结果
+
+- `SELECT subjectNo, AVG(studentResult) from result group by subjectNo`
+- `SELECT COUNT(*), gradeId FROM student GROUP BY gradeId;`
+
+使用`HAVING`对分组后的数据进行筛选，无法使用`WHERE`对分组后的数据进行筛选
+
+```sql
+SELECT COUNT(*) '人数', gradeId '年级', sex '性别'
+FROM student
+GROUP BY gradeId
+HAVING COUNT(*) > 2;
+```
+
+执行顺序：`WHERE` -\> `GROUP BY` -\> 聚合函数 -\> `HAVING`
+
+### 连接查询
+
+- **内连接** 根据表中共同的列来进行匹配
+- **外连接** 至少返回一个表中的所有记录，根据匹配条件有选择地从另一个表中返回记录
+
+#### 内连接
+
+使用`WHERE`的内连接
+
+```sql
+SELECT student.studentName, result.subjectNo, result.studentResult
+FROM student, result
+WHERE student.studentNo = result.studentNo;  
+```
+
+使用`[INNER] JOIN ... ON ..`的内连接
+
+```sql
+SELECT studentName, subjectNo, studentResult
+FROM student
+INNER JOIN result ON student.studentNo = result.studentNo;
+```
+
+或使用别名，其中若连接中的两个表或多个表中查询的字段不重复则不需要对这一列不需要指定别名。
+
+```sql
+SELECT S.studentName, R.subjectNo, R.studentResult
+FROM student as S
+INNER JOIN result as R ON S.studentNo = R.studentNo;
+```
+
+可以对多个表使用内连接
+
+```sql
+SELECT S.studentName, SU.subjectName, R.studentResult
+FROM student AS S
+INNER JOIN result AS R ON S.studentNo = R.studentNo
+INNER JOIN subject AS SU ON SU.subjectNo = R.subjectNo;
+```
+
+### 外连接
+
+`<LEFT | RIGHT> OUTER JOIN ... ON`
+
+```sql
+SELECT S.studentName, R.studentResult
+FROM student AS S
+LEFT OUTER
+JOIN result AS R ON S.studentNo = R.studentNo;
+```
+
+## 函数 
 
 聚合函数
 
