@@ -198,7 +198,7 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' = (
 );
 ```
 
-#### IN
+### IN
 
 如果子查询返回的值多于一个，可以使用`IN`
 
@@ -212,7 +212,7 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' IN (
 
 还有`NOT IN`。
 
-#### EXISTS
+### EXISTS
 
 `SELECT FROM 表名 WHRER EXISTS(子查询)`
 
