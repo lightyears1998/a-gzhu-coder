@@ -328,6 +328,69 @@ JOIN result AS R ON S.studentNo = R.studentNo;
 - `CEIL(x)`, `FLOOR(x)`
 - `RAND()`
 
+## 事务 Transaction
+
+将一系列数据操作左为整体处理，如果某一事务提交成功则该事务的所有数据更改均会提交，成为数据库中的永久组成部分；如果事务执行时遇到错误且必须去取消或回滚，则数据将全部恢复到操作前的状态，所有数据的更改均被清除。
+
+- 原子性 事务的各个元素是不可分割的
+- 一致性 事务完成时数据处于一致状态，事务不能使数据储存处于不稳定的状态
+- 隔离性 所有并发事务彼此隔离；事务不应该以任何方式依赖或影响其他事务
+- 持久性 一旦事务提交，对数据库的影响是永久的
+
+InnoDB对事物的支持：REDO日志、UNDO日志
+
+```sql
+BEGIN;  // 或 START TRANSACTION;
+
+COMMIT;
+ROLLBACK;
+```
+
+未显式开启事务时，每条SQL语句都作为单独的事务执行完毕自动提交。
+
+MySQL设置自动提交 `SET autocommit = 0 | 1;`
+
+## 视图
+
+- 创建视图 `CREATE VIEW 视图名（形如view_xxx或v_xxx）AS <SELECT 语句>`
+- 删除视图 `DROP VIEW [IF EXISTS] 视图名`
+- 查看视图 `SELECT * FROM 视图名`
+
+视图可以嵌套另一个视图，对视图数据的添加修改和查询直接影响表中的数据。
+
+## 索引
+
+- 普通索引 允许重复和空值
+- 唯一索引 不允许重复，允许空值
+- 主键索引 单一主键时自动创建主键索引，主键索引非空不重复
+- 复合索引 将多个列组合作为索引；在查询中只有使用了组合索引中最左边的字段时，索引才会被使用
+- 全文索引 主要用于在CAHR, TEXT等数据中全文检索数据
+- 空间索引 MyISAM only，对空间数据类型建立的索引
+
+创建和使用索引
+
+- 创建索引 `CREATE [UNQIUE | FULLTEXT | SPATIAL |] INDEX 索引名 ON 表名(字段名[字符串类型可以指定索引长度])`
+- 删除索引 `DROP INDEX 表名.索引名`
+- 查看索引 `SHOW INDEX FROM 表名` 
+
+## 备份
+
+备份
+
+- `mysqldump -u usrname -h host -p dbname[tbname1, ...] > filename.sql`
+
+或保存到外部文件
+
+```sql
+SELECT * FROM ...
+INTO OUTFILE 'filename' [OPTIONS]
+```
+
+恢复
+
+- `mysql -u -p [dbname] < filename.sql`
+- 登陆MySQL后，`source filename`
+
 ## 源
 
 - [Example](https://github.com/lightyears1998/quiet-space/tree/master/playground/mysql)
