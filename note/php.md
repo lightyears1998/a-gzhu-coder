@@ -442,9 +442,55 @@ if (isset($_GET['name'])) {
 - 创建session `session_start()`
 - 终结session `session_destroy()`
 
-## 常用工具函数
+## 时间与日期
+
+> 格林尼治时间1970年1月1日0时0分0秒
+
+### 设定时区
+
+PHP默认时区为格林尼治时间 GMT+0
+
+1. php.ini date.timezone Asia/Shanghai
+2. `date_default_timezone_set("Asia/Shanghai")`
+
+### 工具函数
 
 - `time()` 返回自Unix纪元到当前时间的秒数
+- `date(fromat [, timestamp])`
+- `mktime(hour, minute, second, month, day, year)`
+- `strtotime(string, now当前时间戳)` 将字符串解析为Unix时间戳
+- `getdate(timestamp)` 获取包含日期信息的数组
+- `checkdate(month, day, year)` 确认日期是否有效
+- `strftime(format [, timestamp])` 输出指定格式的日期和时间
+
+示例
+
+- `date('Y-m-d H:i:s')` 2018-08-04 15:32:16 
+- `date('D', mktime(0, 0, 0, 8, 8, 2018))`
+- `strtotime('next Monday')`, `strtotime(+1 week)`, `strtotime('now')`, `strtotime(2008.8.8)` 
+
+### 工具对象
+
+- DateTime 常量定义了国际标准中使用的时间格式，如DateTime::COOKIE等；附加许多有用的方法。
+- DateTimeImmutable 多数方法返回一个新的DateTimeImmutable对象，本身不会改变。
+- DateTimeZone 时区相关运算
+- DateInterval 表示一段时间，主要用于DateTime的add/sub/diff方法。
+- DatePeriod 表示一组相同时间间隔的时间
+
+获得2018年1月1日至2018年12月31日的每个星期五
+
+```php
+$start_date = new DateTime('2018-1-1');
+$start_date->modify('next Friday');
+$end_date = new DateTime('2018-12-31');
+$interval = new DateInterval('P7D');  // 相隔7天
+
+$date_period = new DatePeriod($start_date, $interval, $end_date);
+foreach ($date_period as $date)
+{
+    echo $date->format('Y-m-d')."<br>";
+}
+```
 
 ## 源
 
