@@ -184,6 +184,8 @@ echo $str;  // 输出test并附加换行符
 
 - 定义数组 `array{"a"=>"apple", "b"=>"banana"}; ` 短定义语法 `['a'=>1, 'b'=>2]`
 - 访问数组元素 `array[key]`, `array{key}`
+- 打印数组 `var_dump()`, `print_r()`
+
 
 ### 对象
 
@@ -306,3 +308,21 @@ $myfunction = function() {
 ```
 
 在函数中可以通过`global`关键字获取全局变量，使用`static`关键字定义静态变量。
+
+## 表单处理
+
+全局变量 `$_GET`, `$_POST`, `$_REQUEST`(GET，POST和COOKIE)
+
+文本框和文本域
+
+```php
+if (isset($_GET['name'])) { 
+    // ...
+}
+```
+
+单选按钮radiobutton，值由value属性设定
+
+复选框checkbox，值由value属性设定，name属性应该以“[]”结尾（使得PHP以数组方式解析，避免值覆盖的问题；注意PHP中的标识符不包括“[]”）。
+
+下拉列表，值由option的内容设定

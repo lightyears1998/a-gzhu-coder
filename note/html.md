@@ -141,6 +141,8 @@ text, checkbox, radio, hidden, password, submit, reset
 </form>
 ```
 
+如果忽略action属性，表单提交到当前url。表单中的各项内容是根据name属性来区分的。
+
 botton, textarea, select
 
 ```html
