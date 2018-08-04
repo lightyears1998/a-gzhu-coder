@@ -1,10 +1,17 @@
 Note For HTML
 =============
 
+## 验证服务
+
+- https://validator.w3.org/
+
+### 资源
+
+- http://csszengarden.com/
+
 ## 标签
 
-`<a href="..."> </a>`
-
+- 锚 `<a href="..."> </a>`
 - 注释 `<!-- 注释 -->`
 - 标题“块级元素” `<h1>`  `<h6>`
 - 段落 `<p>`
@@ -47,14 +54,29 @@ abbr,  acronym, address, bdo(bi-direction override), blockquote, q(quote), cite,
 
 ### 列表
 
-- 列表 ol, ul
+- 列表 ol, ul, dl(description list)
 - 列表项目 li
 
+## 特殊字符
+
+- " `&quot;`
+- & `&amp`
+- Empty space `&nbsp`
+- `&#数字`
+
+## 结构元素
+
+header, nav, main(div), footer
+
 ## 样式表
+
+链接到样式表
 
 ```
 <head> <link rel="stylesheet" type="text/css" href="mystyle.css"> </head>
 ```
+
+嵌入样式表 
 
 ```
 <head>
@@ -64,6 +86,8 @@ p {color: blue}
 </style>
 </head>
 ```
+
+在style属性中设置样式
 
 ```
 <p style="color: red; margin-left: 20px"> This is a paragraph </p>
