@@ -57,8 +57,35 @@ echo $hello;    // 输出world
 
 - 赋值 `=` 赋值总是按值传递
 - 引用赋值 `$a = &$b`
-- NULL合并运算符 `$name = $_GET['name'] ?? false` 不存在时返回`false`，否则返回`$_GET['name']`
-- 太空船操作符 `$a <=> $b` 当`$a`分别小于、等于或大于`$b`时，分别返回-1, 0或1 
+- 三元运算 `? : `
+- NULL合并运算符，简化`isset()` `$name = $_GET['name'] ?? false` 不存在时返回`false`，否则返回`$_GET['name']`
+- 太空船操作符（组合比较符） `$a <=> $b` 当`$a`分别小于、等于或大于`$b`时，分别返回-1, 0或1，比较的规则沿用PHP常规比较规则
+
+慎用比较
+
+- `!=` `<>` 数据类型转换后不相等
+- `==` 数据类型转换后相等
+- `===` 数据类型及值全等
+
+```php
+$a = 1;
+$b = '1 test';
+echo $a == $b;  // 返回TRUE
+echo $a === $b;  // 返回FALSE 
+```
+
+逻辑运算符
+
+`&&`, `AND`, `||`, `OR`, `!`, `NOT`
+
+`&&`比`AND`优先级高，以此类推。
+
+错误控制运算符 `@` 
+
+```php
+@mkdir('dir_name');  // 即使出现错误也会继续执行下去
+```
+
 
 ## 数据类型
 
@@ -172,3 +199,110 @@ echo $str;  // 输出test并附加换行符
 
 - `is_null()`
 - `unset()`
+
+## 流程控制
+
+```php
+if (exp) 
+else if (exp)
+elseif (exp)
+```
+
+```php
+switch(exp) {
+    case 1:
+    case 2: break;
+    default:
+}
+```
+
+```php
+while (exp) {
+    // body
+}
+
+do {
+    // body
+} while (exp);
+```
+
+```php
+for (exp1; exp2; exp3) {
+    // body
+}
+```
+
+```php
+foreach($数组 as $数组元素) {
+    // body
+}
+
+foreach($数组 as $键值 => $元素值) {
+    // body
+}
+```
+
+## 函数
+
+```php
+function foo($arg1, $arg2, $arg3, ...)
+{
+    return $val;
+}
+```
+
+函数具有全局作用域，可以在一个函数内定义而在这个函数外调用。
+
+```php
+function foo(&$var){
+    // 通过引用传递参数
+}
+```
+
+```php
+function foo($var = 'default') {}  // 默认参数
+```
+
+参数类型声明
+
+传入参数的类型错误时，PHP7抛出`Type Error`异常，PHP5报告致命错误。
+
+可声明的参数类型：（对象或接口）`class`, `interface`, （数组）`array`, （回调函数）`callable`, （标量类型）`bool`, `int`, `string`, `float`
+
+```php
+function foo(int $var1, bool $var2, string $var3) {}
+```
+
+`call_user_func($fun)` 运行回调函数
+
+可变参数列表
+
+```php
+function foo(...$vars) {}
+```
+
+返回值类型声明
+
+```php
+function foo() : int {}
+```
+
+可变函数
+
+```php
+$functions = ['fun1', 'fun2', 'fun3'];
+foreach($functions as $fun)
+{
+    $fun();
+}
+```
+
+匿名函数
+
+```php
+$myfunction = function() {
+    // body
+};
+```
+
+在函数中可以通过`global`关键字获取全局变量，使用`static`关键字定义静态变量。
