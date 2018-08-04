@@ -13,7 +13,7 @@ Note For HTML
 
 - 锚 `<a href="..."> </a>`
 - 注释 `<!-- 注释 -->`
-- 标题“块级元素” `<h1>`  `<h6>`
+- 标题“块级元素” `<h1>` ... `<h6>`
 - 段落 `<p>`
 - 折行 `<br />`
 - 水平线 `<hr />`
@@ -33,16 +33,11 @@ Note For HTML
 
 `<p style="font-family:arial; color:red; font-size:20px;">A paragraph.</p>`
 
-## 样式
-
-- font-family
-- font-size
-
 ### 文本格式化标签
 
 b, big, em, i, small, strong, sub, sup, ins, del
 
-### 计算机输出标签
+### 计算机相关标签
 
 code, kbd(keyboard document), samp(sample), tt(teletype text), var, pre
 
@@ -67,31 +62,6 @@ abbr,  acronym, address, bdo(bi-direction override), blockquote, q(quote), cite,
 ## 结构元素
 
 header, nav, main(div), footer
-
-## 样式表
-
-链接到样式表
-
-```
-<head> <link rel="stylesheet" type="text/css" href="mystyle.css"> </head>
-```
-
-嵌入样式表 
-
-```
-<head>
-<style type="text/css">
-h1 {color: red}
-p {color: blue}
-</style>
-</head>
-```
-
-在style属性中设置样式
-
-```
-<p style="color: red; margin-left: 20px"> This is a paragraph </p>
-```
 
 ## 链接
 
