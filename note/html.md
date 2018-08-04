@@ -18,7 +18,7 @@ Note For HTML
 - 折行 `<br />`
 - 水平线 `<hr />`
 
-只对Internet Explorer有效的条件注释
+块级元素`div`，内联显示元素`span`
 
 ## 属性
 
