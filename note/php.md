@@ -66,6 +66,7 @@ echo $hello;    // 输出world
 - `!=` `<>` 数据类型转换后不相等
 - `==` 数据类型转换后相等
 - `===` 数据类型及值全等
+- `!==`
 
 ```php
 $a = 1;
@@ -178,6 +179,77 @@ echo $str;  // 输出test并附加换行符
 
 字符串的连接使用`.`操作符，而不是`+`操作符。
 
+### 常用字符串函数
+
+下标从0开始。
+
+mbstring模块提供字符串函数的`mb_`版本
+
+长度
+
+- `strlen(字符串)` 返回字符串占用的*字节*数
+- `mb_strlen(字符串, 'UTF8')`  返回字符串的长度，输出8
+
+检索，找不到返回false，否则返回下标
+
+- 区分大小写 `strpos()`, `strrpos()`
+- insensitive 不区分大小写 `stripos()`, `strripos()`
+
+截取
+
+`substr(字符串, 起始位置 [, 截取长度])`
+
+- 负数：从-1开始自字符串最后一个字符开始倒数
+- `substr('abcdef', -1)` 返回f
+- `substr('abcdef', 1, -2)` 返回bcd，注意不是bcdf
+
+替换
+
+`str_replace(搜索字符串needle, 替换字符串replace, 被寻找字符串haystack [, 计数count])`
+
+- `str_replace(',', '', '1,000,000')` 删除逗号
+- `str_replace('red', 'black', '<font style="red">')` 替换红色为黑色
+
+`substr_replace(目标字符串string, 替换字符串replace, 起始位置start [, 替换长度])`
+
+- 替换长度为0：相当于插入
+- 负数：倒数
+
+清理空格或其他字符
+
+`trim(目标字符串, 需要删除的字符串)`, `ltrim()`, `rtrim()`
+
+- `trim('abc12a3cd', 'a..z')` 注意是两个点，输出12a3
+
+切分和组合字符串
+
+- `explode(分隔符, 字符串)` 字符串打散为数组 
+- `implode(数组)`, `implode(分隔符, 数组)` 数组聚合成字符串
+
+转义与反转义
+
+- `addslashes()`, `addcslashes()`, `stripslashes()`, `stripcslashes()`
+- `quotemeta()` 将.\\+*?\[^]($)前加反斜线转义
+
+进制转换
+
+- `bin2hex()`, `hex2bin()`
+
+分割
+
+- `chunk_split()` 指定字串长度打断字符
+- `wordwrap()` 含有避免单词被打断的选项
+- `str_split()` 分割字符串，不需要指定分割符的`explode()`
+- `split()` 支持正则表达式的字符串分割
+
+哈希
+
+- `md5()`, `crc32()`, `sha1()`, `hash()`
+
+处理csv
+
+- `str_getcsv()` 解析csv为一个数组
+
 ### 数组
 
 数组：有序映射
@@ -186,6 +258,37 @@ echo $str;  // 输出test并附加换行符
 - 访问数组元素 `array[key]`, `array{key}`
 - 打印数组 `var_dump()`, `print_r()`
 
+php支持多维数组
+
+#### 数字索引数组
+
+自动设置键名
+
+```php
+$food = array("饼干", "巧克力", "蛋糕");
+$food[] = "瓜子";  // 设置键名为3
+```
+
+此外还有关联索引数组
+
+#### 数组指针
+
+数组中有内部指针，指向当前的元素。foreach不会移动数组内部指针。
+
+`current()`, `each()`以数字索引数组和关联索引数组形式返回键名和键值，并移动, `end()`, `next()`, `prev()`
+
+#### 工具函数
+
+- `count(array [, mode])` 计算数组中元素的个数，mode=1时递归统计多维数组的元素
+- 数字索引数组排序 `sort(array, [, sortingtype])`, `rsort()` 可设定多种排序类型
+- 关联索引数组键值排序 `asort()`, `arsort()` 保持键值对，按值进行排序
+- 关联索引数组键名排序 `ksort()`, `krsort()` 保持键值对，按键名排序
+- 添加元素 `array_push()` 向末尾追加元素 `array_unshift()` 向开头添加元素，往弹夹里压子弹
+- 删除元素 `array_pop()`, `array_shift()`
+- 删除重复元素，即使键名不同 `array_unique()`
+- 查询数组元素 `in_array()`
+- 返回键名/键值数组 `array_keys()`, `array_values()`
+- 删除数组中的元素 `unset($array[key])`
 
 ### 对象
 
@@ -326,3 +429,23 @@ if (isset($_GET['name'])) {
 复选框checkbox，值由value属性设定，name属性应该以“[]”结尾（使得PHP以数组方式解析，避免值覆盖的问题；注意PHP中的标识符不包括“[]”）。
 
 下拉列表，值由option的内容设定
+
+## Cookie
+
+`setcookie(name, value, expire, path, domain, secure);`
+
+- `setcookie("user", "Chloe", time()+7200, '''', 'yourdomain.com', 1);` 启用安全传输
+- `setcookie("user", "", time()-3600);` 删除Cookie
+
+## Session
+
+- 创建session `session_start()`
+- 终结session `session_destroy()`
+
+## 常用工具函数
+
+- `time()` 返回自Unix纪元到当前时间的秒数
+
+## 源
+
+- 清华大学出版社 2017 《PHP+MySQL网站开发从零开始学》 樊爱宛，黄凯 如果熟悉C语言学习PHP会很方便，很喜欢这本书的风格
