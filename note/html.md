@@ -1,6 +1,8 @@
 Note For HTML
 =============
 
+html5允许空标签没有结束标签
+
 ## 验证服务
 
 - https://validator.w3.org/
@@ -127,3 +129,47 @@ alt="Sun" />
 ```
 
 ismap属性 `<img src="" ismap />`
+
+## 表单
+
+text, checkbox, radio, hidden, password, submit, reset
+
+```html
+<form action="service.php">
+<input type="text" name="email" id="email">
+<input type="submit"> <input type="reset">
+</form>
+```
+
+botton, textarea, select
+
+```html
+<select>
+    <option>默认选项</option>
+    <option value="IE">Internet Explorer</option>
+</select>
+```
+
+fieldset, legend
+
+tabindex, accesskey
+
+## 音频和视频
+
+```html
+<audio controls="controls">
+    <source src="...mp3" type="audio/mpeg"></source>
+    <source src="...ogg" type="audio/ogg"></source>
+<audio>
+```
+
+```html
+<audio controls="controls" poster="sparky.jpg">
+    <source src="...m4v" type="audio/mp4">
+    <source src="...ogv" type="audio/ogg">
+<audio>
+```
+
+## 源
+
+- 清华大学出版社 2017 《学习HTML5》 Felke-Morris / 潘玉琪
