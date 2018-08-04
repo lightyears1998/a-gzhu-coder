@@ -71,8 +71,13 @@ echo $hello;    // 输出world
 工具函数
 
 - `gettype()`
-- `type_name()`
-- `floatval()`
+- `(boolean)`, `(bool)`, `(integer)`, `(int)`, `(float)`, `(double)`, `(string)`
+- `floatval()`, `intval()`, `floatval()`, `strval()`
+
+变量类型转换
+
+- 自动转换 `(type)$var`
+- 强制转换 `settype($var, 'int')`
 
 ### 布尔型
 
@@ -90,3 +95,80 @@ echo输出时，对于TRUE的变量输出1，对于FALSE变量输出空字符串
 
 任何其他值都被认为时TRUE（包括任何资源）
 
+### 整型
+
+```php
+$num = 1234;
+$num = 0234;  // 八进制
+$num = 0x34;  // 十六进制
+```
+
+高精度拓展：BC Math，GMP
+
+### 浮点型
+
+### 字符串
+
+- 单引号字符串 `'string'`
+- 双引号字符串 `"string"`
+
+用双引号定义的字符串，其中的变量会被解析，并且转义特殊字符。
+
+heredoc
+
+```php
+<<<EOT
+多行字符串
+EOT
+```
+
+heredoc会对其中变量解析并且转义特殊字符
+
+```php
+$a = 'test'
+$str = <<<EOD
+a = $a\n
+EOD;
+echo $str;  // 输出test并附加换行符
+```
+
+nowdoc
+
+```php
+<<<'EOT'
+多行字符串
+EOT
+```
+nowdoc不解析变量也不转义
+
+```php
+$a = 'test'
+$str = <<<EOD
+a = $a\n
+EOD;
+echo $str;  // 输出test并附加换行符
+```
+
+字符串的连接使用`.`操作符，而不是`+`操作符。
+
+### 数组
+
+数组：有序映射
+
+- 定义数组 `array{"a"=>"apple", "b"=>"banana"}; ` 短定义语法 `['a'=>1, 'b'=>2]`
+- 访问数组元素 `array[key]`, `array{key}`
+
+### 对象
+
+`new`
+
+### 资源
+
+`$handle = fopen($filename, $filemode);`
+
+### 无类型
+
+未被赋值或被赋值为NULL，或被`unset()`的变量
+
+- `is_null()`
+- `unset()`
