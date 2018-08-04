@@ -171,7 +171,7 @@ nowdoc不解析变量也不转义
 
 ```php
 $a = 'test'
-$str = <<<EOD
+$str = <<<'EOD'
 a = $a\n
 EOD;
 echo $str;  // 输出test并附加换行符
