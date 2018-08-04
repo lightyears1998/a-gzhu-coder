@@ -73,6 +73,25 @@ name / id: label (href="#label")
 <a href="mailto:someone@microsoft.com?cc=someoneelse@microsoft.com&bcc=andsomeoneelse2@microsoft.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!">发送邮件！</a>
 ```
 
+## 图像
+
+图标
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+figure
+
+```html
+<figure>
+<img />
+<figcaption>图注</figcaption>
+</figure>
+```
+
+柱状图 meter
+
+进度条 progress
+
 ## 图像映射
 
 ```
