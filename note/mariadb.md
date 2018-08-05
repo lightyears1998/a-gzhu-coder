@@ -95,22 +95,29 @@ CREATE TABLE [IF NOT EXISTS] 'tbname' (
 	字段名 数据类型 [字段属性 | 约束] [索引] [注释],
 	...,
 ) [COMMENT='这里前面有等号'] [CHARSET=...];
-
 ```
 
+`SHOW CREATE TABLE 表名[\G]` 查看创建表的语句
+
 对于多字段主键，可以先定义完字段，再定义主键`PRIMARY KEY(id, name)`
+
+定义外键 `FOREIGN KEY(col1, col2) REFERENCES 主表名 (col1, col2)`
+
+`ALTER TABLE DROP FOREIGN KEY 外键约束名称`
 
 表的维护
 
 - `SHOW TABLES` 
-- `DESCRIBE 表名` 查看表的定义（表中定义的字段），不能查看数据库的“定义”
+- `DESCRIBE 表名` `DESC 表名` 查看表的定义（表中定义的字段），不能查看数据库的“定义”
 - `DROPE TABLE [IF EXISTS] 表名`
 
 表的重命名和字段的修改
 
 - `ALTER TABLE 旧表名 RENAME [TO] 新表名;` [TO]可省略无影响
 - `ALTER TABLE 表名 ADD 字段名 数据类型 [属性]`
-- `ALTER TABLE 表名 CHANGE 原字段名 新字段名 数据类型（不能为空） [属性]`
+- `ALTER TABLE 表名 MODIFY 字段名 数据类型` 改变字段数据类型
+- `ALTER TABLE 表名 MODIFY 字段名 数据类型 FIRST | AFTER 字段名` 改变字段的排列顺序
+- `ALTER TABLE 表名 CHANGE 原字段名 新字段名 数据类型（不能为空） [属性]` 改变字段名或字段数据类型
 - `ALTER TABLE 表名 DROP 字段名`
 
 添加主键约束 `ALTER TABLE 表名 ADD CONSTRAINT 字段名（形如，pk_表名） PRIMARY KEY 表名(字段名)`
@@ -134,13 +141,15 @@ UNSIGNED也是一种约束
 
 ### 表的储存引擎
 
-InnoDB, MyISAM
+InnoDB, MyISAM, Memory, Archive
 
 ```sql
 CREATE TABLE tbname (
 	# 省略代码
 ) ENGINE=InnoDB;
 ```
+
+`ALTER TABLE 表名 ENGINE=<引擎名>`
 
 ### INSERT
 
@@ -186,7 +195,7 @@ FROM 表名
 
 ### LIMIT
 
-`LIMIT [[位置偏移量], 行数]`
+`LIMIT [[位置偏移量offset], 行数row_count]`
 
 第1条记录的位置偏移量是0。
 
@@ -215,6 +224,22 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' IN (
 ```
 
 还有`NOT IN`。
+
+### BETWEEN AND
+
+`SELECT name FROM student WHERE id BETWEEN 1706300001 AND 1806300001`
+
+还有`NOT BETWEEN AND`
+
+### LIKE
+
+匹配查询，`%`任意多个字符，`_`任意一个字符
+
+`SELECT * FROM books WHRER name LIKE '%大全'`
+
+### DISTINCT
+
+`DISTINCT`必须放在查询语句的开头，可以与`COUNT()`结合使用，返回不重复的字段
 
 ### EXISTS
 
