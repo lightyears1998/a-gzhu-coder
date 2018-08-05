@@ -239,7 +239,15 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' IN (
 
 ### DISTINCT
 
-`DISTINCT`必须放在查询语句的开头，可以与`COUNT()`结合使用，返回不重复的字段
+`DISTINCT`必须放在查询语句的开头，可以与`COUNT()`结合使用，返回不重复的字段；反义词是`ALL`
+
+`SELECT DISTINCT author FROM books WHRER name LIKE '%大全'`
+
+### SOME
+
+`SOME`亦作`ANY`，表示为满足任意一个条件
+
+`SELECT * FROM books WHRER price > SOME(5, 15, 20)` 表示查询价格大于5的数据
 
 ### EXISTS
 
@@ -271,6 +279,12 @@ HAVING COUNT(*) > 2;
 ```
 
 执行顺序：`WHERE` -\> `GROUP BY` -\> 聚合函数 -\> `HAVING`
+
+### UNION
+
+`UNION`合并多个查询的结果并去除重复项目，合并时表对应的字段和数据类型必须相同
+
+`UNION ALL`不去除重复
 
 ### 连接查询
 
