@@ -523,6 +523,20 @@ foreach ($date_period as $date)
 - `rename()` 重命名文件或目录
 - `file_exists()` 检查文件或目录是否存在
 
+### 国际化
+
+主要由mb_string和intl完成国际化
+
+- `mb_detect_encoding()`, `mb_check_encoding(字符串, 编码)` 检查字符串是否在指定的编码内有效, `mb_convert_encoding(字符串, 编码 [, 原编码（字符串或数组）])`
+- `mb_parse_str()` 解析GET字符串并转换为数组
+- `mb_strcut()` 按字节数截取字符串
+
+intl
+
+- Collator 比较字符串
+- NumberFormatter 中文数字大小写转换
+- IntlDateFormatter 中文日期和时间
+
 ## 源
 
 - 清华大学出版社 2017 《PHP+MySQL网站开发从零开始学》 樊爱宛，黄凯 如果熟悉C语言学习PHP会很方便，很喜欢这本书的风格
