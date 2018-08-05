@@ -492,6 +492,37 @@ foreach ($date_period as $date)
 }
 ```
 
+## 文件和目录
+
+文件资源
+
+- `fopen(filename, mode)` mode: r, w, a, x, c;
+- `feof(handle)`
+- `fread(handle, length)`
+- `fclose(handle)`
+- `file_get_contents(handle)` 读入string
+- `file_put_contents(handle, string [, mode])` mode: FILE_USE_INCLUDE_PATH, FILE_APPEND, LOCX_EX
+- `file(handle [, flags])` 将文件读入数组 flags: FILE_USE_INCLUDE_PATH, FILE_IGNORE_NEW_LINES, FILE_SKIP_EMPTY_LINES
+
+文件名
+
+- `copy(src, dst)` 复制文件
+- `unlink(filename)` 删除文件
+- `is_file(filename)` 检查文件是否存在及正常（具有x权限）
+- `stat(filename)` 返回关于文件的信息数组
+
+目录操作
+
+- `opendir(path)` 打开目录，返回目录资源
+- `closedir(handle)`
+- `readdir(handle)` 返回目录下的所有文件名
+- `mkdir(filename [, mode [, recursive]])`, `rmdir(path)`
+
+文件和目录
+
+- `rename()` 重命名文件或目录
+- `file_exists()` 检查文件或目录是否存在
+
 ## 源
 
 - 清华大学出版社 2017 《PHP+MySQL网站开发从零开始学》 樊爱宛，黄凯 如果熟悉C语言学习PHP会很方便，很喜欢这本书的风格
