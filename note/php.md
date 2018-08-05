@@ -584,6 +584,39 @@ GD2
 
 PHP还有自己的一套修正符可以使用
 
+## 数据库
+
+### Mysqli
+
+- `new mysqli(host, usrname, pwd, dbname, port)`, `mysqli::close()`
+- `select_db(dbname)`
+- `query(sql)`
+- `error` 错误信息
+
+结果集
+
+- 使用数字索引数组或关联索引数组均可访问
+- `num_rows`
+- `fetch_row()`
+
+```php
+while ($row = $result->fetch_row())
+{
+    // body
+}
+```
+
+
+### RedBeanPHP
+
+零配置ORM（对象关系管理）类库，兼容MySQL和SQLite等
+
+CRUD：Create, retrieve, update, delete
+
+## Composer
+
+类库管理器
+
 ## 源
 
 - 清华大学出版社 2017 《PHP+MySQL网站开发从零开始学》 樊爱宛，黄凯 如果熟悉C语言学习PHP会很方便，很喜欢这本书的风格
