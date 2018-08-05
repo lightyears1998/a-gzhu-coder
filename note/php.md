@@ -537,6 +537,53 @@ intl
 - NumberFormatter 中文数字大小写转换
 - IntlDateFormatter 中文日期和时间
 
+## zip
+
+- `zip_open()`, `zip_close()`
+
+`zip_read()`, `zip_entry_name()`
+
+```php
+$zip = zip_open('filename.zip');
+if ($zip) {
+    while ($zip_entry = zip_read($zip)) {
+        echo '文件名'.zip_entry_name($zip_entry)."\n";
+    }
+    zip_close($zip);
+}
+```
+
+ZipArchive类 强大的工具类
+
+## 图形图像处理
+
+GD2
+
+## 正则表达式
+
+- int `preg_match(pattern, subject)` 搜索subject，如果搜索到返回1，否则返回0
+- string `preg_repalce(pattern, replacement, subject)` 搜索subject中的匹配串，并用replacemnet代替所有匹配串
+- array `preg_split(pattern, subject)` 以字符串集合形式返回匹配结果
+
+### 规则
+
+元字符包括：`^$[]\.|?*+()`
+
+- `^head`, `tail$` 定义头部和尾部
+- `.` 匹配除`\n`外的任何单个字符
+- `[]` 匹配指定范围内单个字符，匹配范围形如`aeiou`, `a-z`
+- `|` 或操作 在多项之间选择一个进行操作 `(a|e|i|o|u|oo)`
+- `\` 转义
+- `()` 标记子表达式的开始位置和结束位置
+- `*` 匹配左边的子表达式0次或多次
+- `+` 匹配左边的子表达式至少1次
+- `?` 匹配左边的子表达式0次或1次
+- `{a,b}` 匹配左边的子表达式[a,b]次，如果b省略则是∞
+
+### 修正符
+
+PHP还有自己的一套修正符可以使用
+
 ## 源
 
 - 清华大学出版社 2017 《PHP+MySQL网站开发从零开始学》 樊爱宛，黄凯 如果熟悉C语言学习PHP会很方便，很喜欢这本书的风格
