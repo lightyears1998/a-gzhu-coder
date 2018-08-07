@@ -2,6 +2,12 @@
 
 Android应用运行在自己的安全沙箱内。（每个应用是操作系统的不同用户，每个应用在其自己的Linux进程内运行，每个进程具有自己的虚拟机） *最小权限原则*
 
+体系结构
+1. 应用层 Applications
+2. 应用框架层 Application Framework(Activity Manager, ...)
+3. 库文件与Android运行时 Libraries and Android Runtime(SQLite, Dalvik Virtual Machine, ...)
+4. Linux内核 Linux Kernel(drivers, ...)
+
 基本组件
 
 - *Activity* 具有用户界面的单一屏幕
@@ -25,8 +31,6 @@ Android应用运行在自己的安全沙箱内。（每个应用是操作系统�
 - *边距* dimens.xml
 - *控件* `findViewById(R.id.text_view);`
 - *属性* `?attr/...`
-
-![Activity生命周期](/camo/note/android_activity.png)
 
 AndroidManifest.xml
 ```xml

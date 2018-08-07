@@ -60,6 +60,11 @@ IO blocked
 - textSize 以sp为单位
 - background
 
+
+autoLink
+- all, none
+- phone, web, email, map
+
 阴影属性
 
 阴影效果是运行时属性，不会在设计器中体现
@@ -89,6 +94,10 @@ autolink
 - inputType
 - singleLine
 
+支持HTML标签 <b>, <i>, <u>
+
+`getText().toString()`
+
 ### Button
 
 ```java
@@ -110,7 +119,9 @@ class MyActivity extends AppCompactActivity
 
 ```
 
-自定义Button http://www.runoob.com/w3cnote/android-tutorial-button-imagebutton.html
+### ImageButton
+
+通过src属性链接到文件
 
 ### ImageView
 
@@ -125,12 +136,40 @@ RadioGroup `getChildCount()` `getChildAt()`
 
 RadioButton / CheckBox `isChecked()`
 
+注意到RadioButton的Listener与CheckBox的Listener处于不同的包中
+
+```java
+// android.widget.RadioGroup.OnCheckedChangeListener
+// 注意方法签名中的checkedId是R类分配的id
+
+public void onCheckedChanged(RadioGroup group, int checkedId) {
+	switch (checkedId) {
+		case R.id.radioButton:
+			textView.setText("One");
+			break;
+		case R.id.radioButton2:
+			textView.setText("Two");
+			break;
+		case R.id.radioButton3:
+			textView.setText("Three");
+			break;
+	}
+}
+```
+
+```java
+// android.widget.CompoundButton.OnCheckedChangeListener
+
+```
+
 ### ToggleButton
 
 属性
 
 - checked
-- textOn, textOff
+- textOn, textOff 按下按钮，断开按钮时显示的文本
+
+`check()`是否被选中
 
 ### Switch
 
@@ -163,6 +202,11 @@ setIndeterminate(boolean bool)  // 设置不确定模式
 
 TextClock, AnalogClock, Chronometer, DatePicker, TimePicker, CalendarView
 
+#### DatePicker
+
+属性
+- startYear, endYear
+- 
 
 ### ArrayAdapter
 
@@ -383,7 +427,22 @@ class MyActivity implements AdapterView.OnItemClickListener {
 
 ### AutoCompleteTextView
 
-自动完成文本域
+自动完成文本域，提示用户自动完成的强大功能
+
+创建和绑定适配器
+
+```java
+private ArrayAdapter<String> buildAdapter() {
+	String data[] = {
+			"Beijing", "Shanghai", "Guangzhou", "China", "Tianjin"
+	};
+	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, data);
+	return adater;
+}
+
+AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
+autoCompleteTextView.setAdapter(buildAdapter());
+```
 
 ### ExpandableListView
 

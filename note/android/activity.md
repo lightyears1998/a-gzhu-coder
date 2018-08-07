@@ -1,0 +1,1 @@
+![Activity生命周期](/camo/note/android_activity.png)
