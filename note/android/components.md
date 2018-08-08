@@ -79,11 +79,52 @@ new Thread() {
 
 #### 大视图通知
 
-参考InboxStyle, BigPictrueStyle
+1. 设置builder
+2. 设置style
+3. 发送通知
+
+```java
+NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId);
+builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+
+switch ((int)Math.floor(Math.random()*3)) {
+    case 0:
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        inboxStyle.setBigContentTitle("这是一条大型标题哦");
+        inboxStyle.addLine("第一条通知");
+        inboxStyle.addLine("第二条通知");
+        inboxStyle.addLine("第三条通知");
+        inboxStyle.setSummaryText("本次一共发送了3条通知");
+        builder.setStyle(inboxStyle);
+        break;
+    case 1:
+        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        bigTextStyle.setBigContentTitle("这是一条大标题");
+        bigTextStyle.setSummaryText("下面是一条大标题");
+        builder.setStyle(bigTextStyle);
+        break;
+    case 2:
+        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
+        bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground));
+        bigPictureStyle.setSummaryText("下面是一张很大的图片");
+        builder.setStyle(bigPictureStyle);
+        break;
+}
+
+manager.notify(4, builder.build());
+```
 
 #### 自定义通知
 
 参考RemoteView以及`setContent()`
+
+```java
+
+```
+
+并不是所有的控件都可以在通知区域显示 比如switch就不行
+
+通知区域的高度是有限的，不能无限占用
 
 ### Dialog
 
