@@ -298,6 +298,8 @@ class MyActivity extends AppCompactActivity
 
 ```
 
+也可以在xml中定义点击处理事件
+
 ### ImageButton
 
 通过src属性链接到文件

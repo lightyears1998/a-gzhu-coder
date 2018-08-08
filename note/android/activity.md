@@ -1,6 +1,13 @@
 ![Activity生命周期](/camo/note/android_activity.png)
 
-onCreate, onRestart, onStart, （可见时）onResume, （被其他Activity不完全遮挡）onPause, （不可见时）onStop, onDestroy
+onCreate, onRestart, onStart, （可见时）onResume, （被其他Activity不完全遮挡，执行后可以被销毁）onPause, （不可见时）onStop, onDestroy
+
+- Resumed 在用户最前端
+- Paused 可见但失去用户焦点
+- Stopped 不可见
+- Destroyed 销毁
+
+重写生命周期方法时，需要显式调用父类方法
 
 ## Intent
 
@@ -60,9 +67,51 @@ int iValue = intent.getIntExtra("iKey");
 
 ## Bundle
 
-```java
+Bundle可以捆绑在Intent中，提供额外的数据
 
+```java
+Bundle bundle = new Bundle();
+bundle.putString("Key", "Value");
+intent.putExtras(bundle);
+```
+
+```java
+Bundle = intent.getExtras();
+bundle.getString("Key");
 ```
 
 ## 带返回值启动Activity
 
+- 在源中请求 `startActivityForResult(Intent intent, int requestCode)`
+- 回传数据 `setResult(int resultCode, Intent data)`
+- 在源中处理回传信息 `onActivityResult(int requestCode, int resultCode, Intent data)`
+
+在源中请求
+```java
+Intent intent = new Intent(this, NextActivity.class);
+startActivityForResult(intent, 1);
+```
+
+回传数据
+```java
+Intent intent = new Intent();
+intent.putExtra("result", ((EditText)findViewById(R.id.editText)).getText().toString().trim());
+setResult(Activity.RESULT_OK, intent);
+finish();
+```
+
+在源中处理回传信息
+```java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+        Toast.makeText(this, data.getStringExtra("result"), Toast.LENGTH_LONG).show();
+    }
+}
+```
+
+## Task 与 Back Stack
+
+Task由执行某一个共同任务时与用户交互产生的多个Activity组成的集合；Back Stack根据Activity后进先出的顺序压栈和弹栈。
