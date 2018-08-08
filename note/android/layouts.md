@@ -116,3 +116,9 @@ ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 drawer.addDrawerListener(toggle);
 toggle.syncState();
 ```
+
+### ViewPager
+
+容器类 经常与Fragment一起使用
+
+需要PageAdapter 存在FragmentPageAdapter以及FragmentStatePageAdapter

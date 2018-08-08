@@ -21,19 +21,108 @@ String Message = intent.getStringExtra("MSG_TAG");
 
 `Toast.makeText(context, "hint", Toast.LENGTH_LONG).show()` 
 
+自定义Toast
+
+```java
+View layout = getLayoutInflater().inflate(R.layout.dialog, null);
+Toast toast = new Toast(this);
+toast.setGravity(Gravity.BOTTOM, 0, 20);
+toast.setDuration(Toast.LENGTH_LONG);
+toast.setView(layout);
+toast.show();
+```
+
 ### Notification
 
 状态栏通知
 
-### AlertDialog
+### Dialog
 
 对话框
 
-### ProgressDialog
+1. 创建builder对象，并设置对话框参数
+2. 设置所显示的内容
+3. 为对话框中的空间绑定监听器
+4. 使用builder生成Dialog对象
+5. 调用builder的show方法显示对话框
 
-### DatePickerDialog
+#### AlertDialog
 
-### TimePickerDialog
+```java
+AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+builder.setTitle("这是一场开发者测试");
+builder.setMessage("我是新手开发者Jack");
+builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        Log.i("TAG", "用户点击了确认按钮");
+    }
+});
+
+builder.show();
+AlertDialog alertDialog = builder.create();
+alertDialog.show();
+
+```
+
+#### ProgressDialog
+
+#### DatePickerDialog
+
+1. 创建DatePickerDialog.OnDateSetListener
+2. 创建DatePickerDialog
+3. show()
+
+```java
+Calendar calendar = Calendar.getInstance();
+int year = calendar.get(Calendar.YEAR);
+int month = calendar.get(Calendar.MONTH);
+int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        textView.setText("" + year + " " + month + " " + dayOfMonth);
+    }
+};
+
+DatePickerDialog dialog = new DatePickerDialog(this, onDateSetListener, 2018, 8, 8);
+dialog.show();
+```
+
+#### TimePickerDialog
+
+#### 自定义Dialog
+
+1. `setView()`
+2. `inflate()`
+
+```java
+LayoutInflater inflater = LayoutInflater.from(this);
+final View dialogView = inflater.inflate(R.layout.dialog, null);
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setTitle("自定义对话框控件");
+builder.setView(dialogView);
+
+builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(((TextView)dialogView.findViewById(R.id.editText1)).getText());
+        builder.setMessage(((TextView)dialogView.findViewById(R.id.editText2)).getText());
+        builder.show();
+    }
+});
+
+builder.show();
+```
+
+#### Dialog生命周期管理
+
+为Dialog对象分配一个唯一id，当使用`showDialog(int id)`显示对话框时，Activity检查持有该id的Dialog对象是否存在，如果存在则直接显示
+
+- 重写`onCreateDialog(int id)`
+- 可以操作`onPrepareDialog(int id, Dialog dialog)`
 
 ### PopupWindow
 
@@ -205,8 +294,17 @@ TextClock, AnalogClock, Chronometer, DatePicker, TimePicker, CalendarView
 #### DatePicker
 
 属性
-- startYear, endYear
-- 
+- startYear, endYear 均是包含区间
+
+月份设置 0~11
+
+`datePicker.init(year, month, day, listener)`
+
+#### TimePicker
+
+`setIs24HourView()`
+
+`OnTimeChangedListener`
 
 ### ArrayAdapter
 
