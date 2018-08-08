@@ -36,6 +36,68 @@ toast.show();
 
 状态栏通知
 
+#### NotificationManager and NotificationChannel
+
+创建通知之前需要设置NotificationManager和Channel
+
+```java
+channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+manager.createNotificationChannel(channel);
+```
+
+#### 普通通知
+
+```java
+NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId);
+builder.setContentTitle("这是通知的标题")
+        .setSmallIcon(R.drawable.ic_launcher_foreground)  // 必须设置小图标
+        .setContentText("这是通知的内容")
+        .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
+
+Intent intent = new Intent(this, NextActivity.class);
+intent.putExtra("msg", "通知的内容");
+
+// PendingIntent.FLAG_ONE_SHOT 一次性通知
+PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
+builder.setContentIntent(pendingIntent);
+manager.notify(1, builder.build());
+```
+
+#### 进度条通知
+
+```java
+new Thread() {
+    @Override
+    public void run() {
+        int notificationId = 100;
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, channelId);
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("正在滚动进度条");
+        for (int i=0; i<=100; ++i) {
+            builder.setProgress(100, i, false);
+            manager.notify(notificationId, builder.build());
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        builder.setContentTitle("滚动完成");
+        manager.notify(notificationId, builder.build());
+    }
+}.start();
+```
+
+#### 大视图通知
+
+参考InboxStyle, BigPictrueStyle
+
+#### 自定义通知
+
+参考RemoteView以及`setContent()`
+
 ### Dialog
 
 对话框
