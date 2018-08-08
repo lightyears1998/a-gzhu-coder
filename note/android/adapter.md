@@ -2,9 +2,11 @@
 
 适配器，适配器控件与数据之间的桥梁
 
+MVC：Model（数据源）， View（视图）， Control（适配器）
+
 ## ArrayAdapter
 
-处理只含有文字信息的情况
+处理只含有文字信息的情况，使用数组或`List<String>`形式的数据源
 
 预定义资源 android.R.layout.Xxx
 
@@ -52,7 +54,7 @@ ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.arr
 
 ## SimpleAdapter
 
-列表项较为复杂，或列表项含有不同类型的控件的情况
+列表项较为复杂，或列表项含有不同类型的控件的情况，使用`List<Map>`形式的数据源
 
 创建ListItem中每个Item的布局
 
@@ -141,9 +143,9 @@ public class SettingsActivity extends AppCompatActivity
 
 ## SimpleCursorAdapter
 
-结合SQLite简化流程
+结合SQLite简化流程，使用Cursor作为数据源
 
-## BaseAdapter
+## 自定义Adapter：继承BaseAdapter
 
 ```java
 
@@ -167,11 +169,56 @@ public class AnimalAdapter extends BaseAdapter {
         // 视图中各项资源操作
         return convertView;
     }
+
+    // getItem()和getItemId()可根据需要进行编写
 }
 ```
 
+# 与适配器关联的View
 
-## 参考
+## ListView
+
+数据更新 `NotifyDataSetChanged()`
+
+### 示例：绑定BaseAdapter
+
+绑定
+
+```java
+// AnimalAdapter参见自定义Adapter一节
+setAdapter(new AnimalAdapter(linkedlist, this));
+```
+
+监听单击事件
+
+```java
+class MyActivity implements AdapterView.OnItemClickListener {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int positon, long id)
+    {
+        Toast.makeText(this, "You click" + position, Toast.LENGTH_SHORT).show();
+    }
+}
+
+```
+
+### 优化：BaseAdapter优化
+
+1. 复用ConvertView
+2. 创建静态类ViewHolder以减少`findViewById()`的使用
+3. 尝试使用泛型
+
+## Spinner
+
+加载数据
+
+1. 在xml文件中预先定义
+2. 与ArrayAdapter关联
+
+### 示例：绑定ArrayAdapter
+
+
+# 参考
 
 1. http://www.imooc.com/learn/372
 2. http://www.runoob.com/w3cnote/android-tutorial-customer-baseadapter.html

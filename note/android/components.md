@@ -398,48 +398,6 @@ TextClock, AnalogClock, Chronometer, DatePicker, TimePicker, CalendarView
 
 `OnTimeChangedListener`
 
-### ListView
-
-数据更新 `NotifyDataSetChanged()`
-
-#### ListView绑定BaseAdapter
-
-绑定
-
-```java
-setAdapter(new AnimalAdapter(linkedlist, this));
-```
-
-监听单击事件
-
-```java
-class MyActivity implements AdapterView.OnItemClickListener {
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int positon, long id)
-    {
-        Toast.makeText(this, "You click" + position, Toast.LENGTH_SHORT).show();
-    }
-}
-
-```
-
-#### BaseAdapter优化
-
-1. 复用ConvertView
-2. 创建静态类ViewHolder以减少`findViewById()`的使用
-
-复用BaseAdapter
-
-1. 使用泛型
-
-### GridView
-
-网格视图
-
-### Spinner
-
-列表视图
-
 ### AutoCompleteTextView
 
 自动完成文本域，提示用户自动完成的强大功能
