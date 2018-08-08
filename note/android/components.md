@@ -1,18 +1,5 @@
 ## 常用组件
 
-### Intent
-
-```java
-Intent intent = new Intent(this, AnotherActivity.class);
-intent.putExtra("MSG_TAG", "EXTRA_MESSAGE");
-startActivity(intent);
-```
-
-```java
-Intenet intent = getIntent();
-String Message = intent.getStringExtra("MSG_TAG");
-```
-
 ### AssetManager
 
 路径不需要以"/"开头
