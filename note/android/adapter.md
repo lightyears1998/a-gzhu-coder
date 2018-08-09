@@ -176,6 +176,56 @@ public class AnimalAdapter extends BaseAdapter {
 
 # 与适配器关联的View
 
+## Spinner
+
+加载数据
+
+1. 在xml文件中预先定义
+2. 与ArrayAdapter关联
+
+### 在xml文件中定义
+
+1. 在`res/values`中定义xml文件，结构`resourse -> string-array -> item`
+2. 通过设定`entries`属性为`@array/spinner_item`来引用
+
+### 示例：绑定ArrayAdapter
+
+设置适配器
+
+```java
+Spinner alphaSpinner = findViewById(R.id.spinner);
+Spinner betaSpinner = findViewById(R.id.spinner2);
+
+String[] data = {"one", "two", "three"};
+
+final ArrayAdapter<CharSequence> alphaAdapter = ArrayAdapter.createFromResource(this, R.array.spinner, android.R.layout.simple_spinner_item);
+alphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+ArrayAdapter<String> betaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
+
+alphaSpinner.setAdapter(alphaAdapter);
+betaSpinner.setAdapter(betaAdapter);
+```
+
+设置监听器
+```java
+alphaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        // 通过适配器获取item
+        String item = (String)alphaAdapter.getItem(position);
+        Log.i("TAG", item);
+        // 通过适配器控件获取item
+        String str = (String)adapterView.getItemAtPosition(position);
+        Log.i("TAG", str);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+});
+```
+
 ## ListView
 
 数据更新 `NotifyDataSetChanged()`
@@ -202,21 +252,52 @@ class MyActivity implements AdapterView.OnItemClickListener {
 
 ```
 
+此外还有OnNothingSelectedListener
+
 ### 优化：BaseAdapter优化
 
-1. 复用ConvertView
-2. 创建静态类ViewHolder以减少`findViewById()`的使用
-3. 尝试使用泛型
+复用ConvertView，并创建静态类ViewHolder以减少`findViewById()`的使用
 
-## Spinner
+1. 定义静态类ViewHolder
+2. 检测convertView是否为空；若为空，将布局文件渲染成convertView，将ConvertView与ViewHolder关联，`setTag()`；若不为空，`getTag()`。
+3. 设置ViewHolder。
 
-加载数据
+```java
+public class MyAdapter extends BaseAdapter {
+    @Override
+    public Object getItem(int position) {
+        return list.get(position);
+    }
 
-1. 在xml文件中预先定义
-2. 与ArrayAdapter关联
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-### 示例：绑定ArrayAdapter
+    @Override
+    public int getCount() {
+        return list.size();
+    }
 
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null)
+        {
+            convertView = LayoutInflater.from(MainActivity.this).inflate(R.layout.list_item, null);
+            viewHolder = new ViewHolder();
+            viewHolder.textView = convertView.findViewById(R.id.textView);
+            viewHolder.imageView = convertView.findViewById(R.id.imageView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        viewHolder.imageView.setImageResource((int)list.get(position).get("img"));
+        viewHolder.textView.setText((String)list.get(position).get("text"));
+        return convertView;
+    }
+}
+```
 
 # 参考
 
