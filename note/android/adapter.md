@@ -299,6 +299,51 @@ public class MyAdapter extends BaseAdapter {
 }
 ```
 
+## GridView 
+
+可以向两个方向滚动的控件，需要绑定BaseAdapter
+
+用法与ListView类似
+
+```java
+public class MyAdapter extends BaseAdapter
+{
+    @Override
+    public Object getItem(int position) {
+        return list.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return list.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(MainActivity.this).inflate(R.layout.grid_item, null);
+            viewHolder = new ViewHolder();
+            viewHolder.imageView = convertView.findViewById(R.id.imageView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder)convertView.getTag();
+        }
+        viewHolder.imageView.setImageResource((int)list.get(position).get("img"));
+        return convertView;
+    }
+}
+
+static class ViewHolder {
+    ImageView imageView;
+}
+```
+
 # 参考
 
 1. http://www.imooc.com/learn/372
