@@ -28,3 +28,16 @@ LocalBroacastManager
 ## Service
 
 没有界面且能长时间运行于后台的应用组件
+
+## 电话与短信
+
+- SMSManager
+- TelephoneManager
+
+## 媒体
+
+MeidaPlayer
+
+## Sensor
+
+SensorManager
