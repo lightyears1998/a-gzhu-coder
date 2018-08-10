@@ -16,6 +16,8 @@ Android应用运行在自己的安全沙箱内。（每个应用是操作系统�
 - *BoardcastReceiver* 广播接收器
 - *Intent* 消息传递者
 
+默认情况下，同一个应用程序的所有应用程序组件都运行在相同的进程和线程中。
+
 文件组织
 
 - *res/* 自动生成对应的Resource ID
@@ -52,14 +54,18 @@ AndroidManifest.xml
 </manifest>
 ```
 
-### ShapeDrawable
+## 权限
 
-### 反编译
+在manifest清单中加入
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+## ShapeDrawable
+
+## 反编译
 
 apktool
 
 dex2jar
-
-### Logcat
-
-verbose, debug, info, warn, error

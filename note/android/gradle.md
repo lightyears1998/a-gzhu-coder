@@ -31,6 +31,12 @@ Project Structure窗口
 
 `gradlew.bat` gradle wrapper
 
+## 依赖配置
+
+### 等价配置
+
+`implementation group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'` 等价于 `implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'`
+
 ## 源
 
 - 电子工业出版社 2017 《巧用Gradle构建Android应用 Gradle Receipe for Android》 Ken Kousen，李建 书是好书，但是翻译实在不敢恭维；这是因为基础知识不足不能深入理解书的主题
