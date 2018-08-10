@@ -1,3 +1,5 @@
+# Activity
+
 ![Activity生命周期](/camo/note/android_activity.png)
 
 onCreate, onRestart, onStart, （可见时）onResume, （被其他Activity不完全遮挡，执行后可以被销毁）onPause, （不可见时）onStop, onDestroy
@@ -87,12 +89,14 @@ bundle.getString("Key");
 - 在源中处理回传信息 `onActivityResult(int requestCode, int resultCode, Intent data)`
 
 在源中请求
+
 ```java
 Intent intent = new Intent(this, NextActivity.class);
 startActivityForResult(intent, 1);
 ```
 
 回传数据
+
 ```java
 Intent intent = new Intent();
 intent.putExtra("result", ((EditText)findViewById(R.id.editText)).getText().toString().trim());
@@ -101,6 +105,7 @@ finish();
 ```
 
 在源中处理回传信息
+
 ```java
 @Override
 protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

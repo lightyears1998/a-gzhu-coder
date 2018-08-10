@@ -50,7 +50,18 @@ qName：带有前缀的限定名称
 4. 将自定义的handler注册到XML Reader中 `MyHandler handler = new MyHandler(); reader.setContentHandler(handler);`
 5. 将XML文档转变成InputStream，解析正式开始 `parser.parser(is);`
 
+#### Pull
+
+Android内置的XML解析器 允许应用程序主动从解析器中获取事件
+
 ### Json的解析
+
+Javasripet Object Notation
+
+- 对象 `{key: value}`
+- 数组 `[val1, val2, val3]`
+
+键和值使用双引号包围
 
 #### `org.json` 
 
@@ -58,4 +69,10 @@ qName：带有前缀的限定名称
 - JsonStringer
 - JsonArray
 
+#### GSON
+
+`toJson()`, `fromJson()`
+
 #### `FastJson`
+
+阿里巴巴出品
