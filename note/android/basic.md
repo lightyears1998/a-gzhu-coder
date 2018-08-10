@@ -58,8 +58,18 @@ AndroidManifest.xml
 
 在manifest清单中加入
 
+网络
+
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
+```
+
+读写外部储存
+
+```xml
+<uses-permission android:name="android.permssion.MOUNT_UNMOUNT_FILESYSTEMS" />
+<uses-permission android:name="android.permssion.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permssion.WRITE_EXTERNAL_STORAGE" />
 ```
 
 ## ShapeDrawable
