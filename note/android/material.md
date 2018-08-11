@@ -36,4 +36,4 @@ RTL
 
 ## 支持库
 
-
+注解 `@NonNull`, `@Nullable`, `@ColorRes`, `@IntDef`
