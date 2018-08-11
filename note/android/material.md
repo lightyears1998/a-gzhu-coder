@@ -47,3 +47,7 @@ User-Centered Design
 3. 以用户为中心 满足用户体验
 4. 不断迭代
 5. 设计包含多学科技能和不同视角
+
+# 颜色
+
+http://zhongguose.com
