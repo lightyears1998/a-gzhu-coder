@@ -26,6 +26,8 @@ layout_width与layout_weight组合
 
 LinearLayout不能在同一水平线上布置一左一右的两个控件
 
+给予已指定weight的子View设置0dp的高度，可以优化测量
+
 属性
 
 - `baselineAligned` 子View是否根据baseline对齐

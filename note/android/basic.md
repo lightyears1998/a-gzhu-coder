@@ -54,6 +54,12 @@ AndroidManifest.xml
 </manifest>
 ```
 
+## API级别
+
+https://developer.android.com/guide/topics/manifest/uses-sdk-element
+
+- Android 5.0 (21)
+
 ## 权限
 
 在manifest清单中加入
