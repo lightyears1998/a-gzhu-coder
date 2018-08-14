@@ -1,3 +1,10 @@
+# Assets
+
+AssetsManager `getAssets()`
+
+- `list()`
+- `oepn()`
+
 # SharedPreferences
 
 `data/data/package_name/shared_prefs`
