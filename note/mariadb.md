@@ -74,6 +74,20 @@ SET character_set_connection=gbk;
 
 如果不指定CHAR的宽度，默认值是灾难性的1。
 
+## 用户管理
+
+创建用户
+
+```sql
+CREATE USER 'user' IDENTIFIED BY 'password';
+``` 
+
+管理权限
+
+```sql
+GRANT ALL PRIVILEGES ON dbname.* TO uesr;
+```
+
 ## DDL
 
 ### 操作数据库
