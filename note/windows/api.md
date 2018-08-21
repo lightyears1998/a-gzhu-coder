@@ -3,7 +3,24 @@
 - [API List](https://docs.microsoft.com/zh-cn/windows/desktop/api/index)
 - [Playground](https://github.com/lightyears1998/quiet-space/tree/master/playground/w32)
 
-## 数据类型
+## [数据类型](https://docs.microsoft.com/zh-cn/windows/desktop/LearnWin32/windows-coding-conventions)
+
+### 匈牙利命名法
+
+`m_`, `g_`, `l_` 成员、全局和局部函数
+
+- 'n' / 'i' = INT
+- 'l' = LONG
+- 'u' = UNSIGNED
+- 'ch' = CHAR
+- 'b' = BOOL
+- 'f' = FLOAT
+- 'd' = DOUBLE
+- 'w' = WORD(2 bytes) / UNSIGNED SHORT
+- 'dw' = DWORD(4 bytes) / UNSIGNED LONG
+- 'p' = pointer
+- 'lp' = long pointer
+- 'lpsz' = long pointer to string that is zero-terminated / LPSTR
 
 ### HANDLE
 
