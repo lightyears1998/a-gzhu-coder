@@ -1,3 +1,5 @@
+# Illustrator笔记
+
 fill artboard in window
 
 view / show bounding box
@@ -37,3 +39,13 @@ gradiants
 gradiant tool
 
 recolor artwork
+
+可以在路径上创建文本
+可以使文本变成矢量路径以编辑
+Direct select tool很方便地拖动锚点
+
+open path 开放路径 端点的锚点未连接
+direction handle / control handle 控制路径的形
+pencil tool 自带路径 有smooth选项
+可以重新绘制路径
+alt直线
