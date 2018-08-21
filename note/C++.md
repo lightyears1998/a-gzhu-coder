@@ -11,7 +11,6 @@
 - `\ooo`
 - `\xhhh`
 - Unicode `\u00000000`
-- ISO 10464 `\U0000000000000000`
 
 ### wchar_t、char16_t和char32_t
 
