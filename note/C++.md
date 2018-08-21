@@ -2,6 +2,14 @@
 
 基础部分参见[C语言笔记](C.md)
 
+## Chpater 0 起源
+
+C++起初是作为“包含类的C语言”出现的，后来成为一门独当一面的语言。
+
+## Chapter 1 基本概念
+
+源文件拓展名`.h`, `.cpp`, `.hpp`
+
 ## Chapter 1 数据类型
 
 - 常量表 `climits`
@@ -387,7 +395,7 @@ int other() {};
 
 namespace
 {
-	int counts;
+    int counts;
 }
 int other();
 
@@ -566,7 +574,7 @@ this指针无效，可以使用类名访问，也可以使用对象访问。
 ### 特殊成员函数
 
 1. 默认构造函数 `Time() = default;`
-2. 默认析构函数 
+2. 默认析构函数
 3. 复制构造函数 `Time(const Time &);` 逐个复制数据成员
 4. 赋值运算符
 5. 地址运算符

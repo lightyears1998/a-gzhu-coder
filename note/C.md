@@ -1,7 +1,5 @@
 # C语言笔记
 
-msys2真好用
-
 ## Chapter 0 起源
 
 > C语言主要是由贝尔电话实验室的丹尼斯·M·里奇（Dennis M.Ritchie）开发的，从1969年开始设计并于1973年开发完成。……它是一种早期的程序设计语言B语言的后继者。B是BCPL（Basic CPL）语言的一种精简版本，而BCPL来源于CPL（Combined Programming Language）。
@@ -10,7 +8,13 @@ msys2真好用
 
 [cppreference]: http://en.cppreference.com/w/
 
-## Chapter 1 概述
+## Chapter 1 基本概念
+
+源文件拓展名`.h`, `.c`
+
+源文件需要经过编译器编译和链接成为可执行文件
+
+Windows上有`msys2`项目提供的`gcc`以及微软的`MSVC`编译器`cl`
 
 ### main() 函数
 

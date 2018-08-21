@@ -1,10 +1,26 @@
 # Python笔记
 
-## 基本概念
+## Chpater 0 概述
+
+> 从减少程序开发人员的工作上来说，Python似乎做到了这一点。
+
+某种程度上可视为改良的LISP。
+
+## Chapter 1 基本概念
+
+目前主流的Python版本有Python2和Python3，语法不兼容。
+
+Python脚本文件`.py`通过Python解释器`python`边解释边运行。
+
+在官方解释器*CPython*之外存在其他Python解释器，具有相当程度的性能优势，如*PyPy*。
+
+在Python中，数字类型是不可变的对象，因此数字类型没有自增和自减操作符。
+
+## Chapter 2 数据类型
 
 - 字符串 `'' 或 ""`
 - 浮点除法 `/` 整除 `//`
-- 取模 浮点取模 `%` 
+- 取模 浮点取模 `%`
 - 乘方 `**`
 - 不存在自增/自减操作符：整数对象不可变
 
@@ -34,22 +50,23 @@ and的优先级高于or，与C++保持一致。
 
 ## 控制语句
 
-### if
+### `if`
+
 ```python
 if exp:
-	# Something
+    # Something
 
 if exp:
-	# Something
+    # Something
 else:
-	# Something
+    # Something
 
 if exp:
-	# Something
-elif exp2: 
-	# Something
+    # Something
+elif exp2:
+    # Something
 else:
-	# Something
+    # Something
 
 ```
 
@@ -58,7 +75,7 @@ else:
 ```python
 i = 0
 while i <= 5:
-	i = i + 1
+    i = i + 1
 
 ```
 
@@ -69,10 +86,10 @@ foreach语法
 ```python
 
 for word in words
-	# Something
+    # Something
 
 for i in range(5)
-	# Something
+    # Something
 
 ```
 
@@ -84,7 +101,6 @@ for i in range(5)
 
 List间加法乘法操作有效。
 
-
 ```python
 
 ['1', '2', '3', ] # List中只有3个元素
@@ -92,7 +108,7 @@ List间加法乘法操作有效。
 ```
 
 - `in` 操作符判断元素是否在List内
-- `append()` `len()` 
+- `append()` `len()`
 - `insert()` 原位置元素后移
 - `index()`
 
@@ -141,23 +157,21 @@ tuple = "one", "two"
 ```python
 
 def fun(arg1, arg2):
-	# 函数体
+    # 函数体
 
 ```
 
 ### Docstrings
 
 ```python
-
 def shout(word):
   """
   Print a word with an
   exclamation mark following it.
   """
   print(word + "!")
-    
-shout("spam")
 
+shout("spam")
 ```
 
 ### Modules
@@ -180,13 +194,13 @@ from math import sqrt as rt
 ```python
 
 try:
-	# Something
+    # Something
 except:
-	raise # 重新抛出异常
+    raise # 重新抛出异常
 except(Error, Error):
 
 finally:
-	# 即使产生未捕获的异常时也会执行
+    # 即使产生未捕获的异常时也会执行
 
 raise NameError("Invilid Name!")
 
@@ -196,7 +210,6 @@ assert exp, "额外说明"
 ```
 
 异常处理是按配对的。
-
 
 ## 文件IO
 
@@ -250,9 +263,9 @@ print(file.readlines(16)) # 返回list，按行分割，元素包含换行符
 ```python
 
 try:
-	file = open("in.txt");
+    file = open("in.txt");
 finally:
-	file.close();
+    file.close();
 
 ```
 
@@ -261,7 +274,7 @@ finally:
 ```python
 
 with open("in.txt") as file:
-	printf(f.readlines())
+    printf(f.readlines())
 
 ```
 

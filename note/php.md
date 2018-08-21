@@ -1,5 +1,13 @@
 # PHP笔记
 
+## Chpater 0 概述
+
+语法上与C语言相近，用于网页服务器的脚本语言
+
+## Chapter 1 基本概念
+
+PHP通过PHP解释器解释执行，通常是结合Apache或Nginx在Linux或Windows操作系统上使用。
+
 ## 基础
 
 - `<?php expression; ?>`
@@ -34,7 +42,7 @@ echo $hello;    // 输出world
 定义常量
 
 - `define('NAME', 'PHP');` 定义NAME为字符串常量“PHP”
-- `const NAME='PHP';` 
+- `const NAME='PHP';`
 
 辨析
 
@@ -49,7 +57,7 @@ echo $hello;    // 输出world
 
 内置常量
 
-- `__DIR__` 
+- `__DIR__`
 - `__FILE__`
 - `__LINE__`
 - `PHP_VERSION`, `PHP_OS`
@@ -59,7 +67,7 @@ echo $hello;    // 输出world
 
 - 赋值 `=` 赋值总是按值传递
 - 引用赋值 `$a = &$b`
-- 三元运算 `? : `
+- 三元运算 `? :`
 - NULL合并运算符，简化`isset()` `$name = $_GET['name'] ?? false` 不存在时返回`false`，否则返回`$_GET['name']`
 - 太空船操作符（组合比较符） `$a <=> $b` 当`$a`分别小于、等于或大于`$b`时，分别返回-1, 0或1，比较的规则沿用PHP常规比较规则
 
@@ -74,7 +82,7 @@ echo $hello;    // 输出world
 $a = 1;
 $b = '1 test';
 echo $a == $b;  // 返回TRUE
-echo $a === $b;  // 返回FALSE 
+echo $a === $b;  // 返回FALSE
 ```
 
 逻辑运算符
@@ -83,12 +91,11 @@ echo $a === $b;  // 返回FALSE
 
 `&&`比`AND`优先级高，以此类推。
 
-错误控制运算符 `@` 
+错误控制运算符 `@`
 
 ```php
 @mkdir('dir_name');  // 即使出现错误也会继续执行下去
 ```
-
 
 ## 数据类型
 
@@ -169,6 +176,7 @@ nowdoc
 多行字符串
 EOT
 ```
+
 nowdoc不解析变量也不转义
 
 ```php
@@ -225,7 +233,7 @@ mbstring模块提供字符串函数的`mb_`版本
 
 切分和组合字符串
 
-- `explode(分隔符, 字符串)` 字符串打散为数组 
+- `explode(分隔符, 字符串)` 字符串打散为数组
 - `implode(数组)`, `implode(分隔符, 数组)` 数组聚合成字符串
 
 转义与反转义
@@ -256,7 +264,7 @@ mbstring模块提供字符串函数的`mb_`版本
 
 数组：有序映射
 
-- 定义数组 `array{"a"=>"apple", "b"=>"banana"}; ` 短定义语法 `['a'=>1, 'b'=>2]`
+- 定义数组 `array{"a"=>"apple", "b"=>"banana"};` 短定义语法 `['a'=>1, 'b'=>2]`
 - 访问数组元素 `array[key]`, `array{key}`
 - 打印数组 `var_dump()`, `print_r()`
 
@@ -310,7 +318,7 @@ $food[] = "瓜子";  // 设置键名为3
 ## 流程控制
 
 ```php
-if (exp) 
+if (exp)
 else if (exp)
 elseif (exp)
 ```
@@ -421,7 +429,7 @@ $myfunction = function() {
 文本框和文本域
 
 ```php
-if (isset($_GET['name'])) { 
+if (isset($_GET['name'])) {
     // ...
 }
 ```
@@ -455,7 +463,7 @@ PHP默认时区为格林尼治时间 GMT+0
 1. php.ini date.timezone Asia/Shanghai
 2. `date_default_timezone_set("Asia/Shanghai")`
 
-### 工具函数
+### 工具函数2
 
 - `time()` 返回自Unix纪元到当前时间的秒数
 - `date(fromat [, timestamp])`
@@ -467,9 +475,9 @@ PHP默认时区为格林尼治时间 GMT+0
 
 示例
 
-- `date('Y-m-d H:i:s')` 2018-08-04 15:32:16 
+- `date('Y-m-d H:i:s')` 2018-08-04 15:32:16
 - `date('D', mktime(0, 0, 0, 8, 8, 2018))`
-- `strtotime('next Monday')`, `strtotime(+1 week)`, `strtotime('now')`, `strtotime(2008.8.8)` 
+- `strtotime('next Monday')`, `strtotime(+1 week)`, `strtotime('now')`, `strtotime(2008.8.8)`
 
 ### 工具对象
 
@@ -607,7 +615,6 @@ while ($row = $result->fetch_row())
     // body
 }
 ```
-
 
 ### RedBeanPHP
 
