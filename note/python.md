@@ -1,6 +1,4 @@
-# 自学Python
-
-https://www.sololearn.com/Play/Python
+# Python笔记
 
 ## 基本概念
 
@@ -248,7 +246,9 @@ print(file.readlines(16)) # 返回list，按行分割，元素包含换行符
 ### 保证close()方法最终被调用
 
 使用异常处理机制：
+
 ```python
+
 try:
 	file = open("in.txt");
 finally:
@@ -257,8 +257,14 @@ finally:
 ```
 
 使用with... as...机制：
+
 ```python
+
 with open("in.txt") as file:
 	printf(f.readlines())
 
 ```
+
+## 链接
+
+- SoloLearn Python <https://www.sololearn.com/Play/Python>

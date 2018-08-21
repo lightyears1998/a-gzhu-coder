@@ -2,15 +2,15 @@
 
 msys2真好用
 
-## C语言的起源
+## Chapter 0 起源
 
 > C语言主要是由贝尔电话实验室的丹尼斯·M·里奇（Dennis M.Ritchie）开发的，从1969年开始设计并于1973年开发完成。……它是一种早期的程序设计语言B语言的后继者。B是BCPL（Basic CPL）语言的一种精简版本，而BCPL来源于CPL（Combined Programming Language）。
-> 
+>
 > 参见[《编码》](history/《编码：隐匿在计算机软硬件背后的语言》.md)396页
 
 [cppreference]: http://en.cppreference.com/w/
 
-## 语言概述
+## Chapter 1 概述
 
 ### main() 函数
 
@@ -35,7 +35,7 @@ C语言的标识符（identifier）可使用小写字母、大写字母、下划
 
 从这个角度看，main和function都不是C语言的标识符，int和char是C语言的标识符。
 
-## 数据类型
+## Chapter 2 数据类型
 
 ### 位、字节与字
 
@@ -66,18 +66,18 @@ C语言的标识符（identifier）可使用小写字母、大写字母、下划
 long a = 32;
 long b = 32L;
 
-printf("%ld %ld", a, b);	// 输出 32 32
+printf("%ld %ld", a, b);    // 输出 32 32
 
 ```
 
 | 字面值 | 数据类型 | 备注 |
 | --- | --- | --- |
 | 32.64 | double | |
-| .32<br />0.32 | double | |
-| 3.2E3<br />3.2e3| double | = 3.2 * 10³ |
+| .32 <br> 0.32 | double | |
+| 3.2E3 <br> 3.2e3| double | = 3.2 * 10³ |
 |32. | double | 默认情况下浮点数字面值总是被当作double类型 |
 |32.F | float | 只有使用F后缀的字面值才被当作float类型 |
-| 0xA.1FP10 | double | 十六进制浮点数，十进制值为 (10 * 16⁰ + 1 * 16⁻¹ + 15 * 16⁻² ) * 2¹⁰ |
+| 0xA.1FP10 | double | 十六进制浮点数，十进制值为 `(10 * 16⁰ + 1 * 16⁻¹ + 15 * 16⁻² ) * 2¹⁰` |
 
 对于浮点数，无后缀字面值总是被认定为double或更高精度的类型。要对float变量赋值，建议使用F后缀。
 
@@ -110,9 +110,9 @@ printf("%c", ch);
 | --- | --- | --- |
 | 'c' | 字符字面值 | c |
 | '\n' | 转义字符 | （换行） |
-| '\0143'<br />'\143' | 转义字符<br /> 格式为“\0ooo”或"\ooo"，其中“ooo”为八进制数 | c |
-| '\x63'<br />'\0x63' | 转义字符<br /> 格式为“\xhh”，其中“hh”为十六进制数 | c |
-| 99<br />0143<br />0x63 | 整型数值 | c |
+| '\0143' <br> '\143' | 转义字符 <br> 格式为“\0ooo”或"\ooo"，其中“ooo”为八进制数 | c |
+| '\x63' <br> '\0x63' | 转义字符 <br> 格式为“\xhh”，其中“hh”为十六进制数 | c |
+| 99 <br> 0143 <br> 0x63 | 整型数值 | c |
 
 ### *sizeof()*
 
@@ -127,7 +127,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 ```
 
-## 字符串和格式化输入/输出
+## Chapter 3 字符串和格式化输入/输出
 
 ### 字符串类型
 
@@ -196,7 +196,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 | 有符号十进制 | d 或 i | |
 | 无符号十进制 | u |
 | 有符号八进制 | o | |
-| 有符号十六进制 | x 或 X | | 
+| 有符号十六进制 | x 或 X | |
 | --- | --- | --- |
 | int | N.A. | |
 | long | l | |
@@ -247,7 +247,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 在 *limits.h* 和 *float.h* 头文件中定义了有关整型和浮点型数大小限制的信息。
 
-## 运算符、表达式和语句
+## Chapter 4 运算符、表达式和语句
 
 ### 基本运算符
 
@@ -304,7 +304,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 - 变量多次出现在同一个表达式里
 - 变量出现在同一个函数的多个参数中
 
-## 控制语句：循环
+## Chapter 5 控制语句：循环
 
 每次循环都被称为一次*迭代*。
 
@@ -318,7 +318,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 如果关系表达式为真，值为1；反之，值为0。
 
-如果比较的双方有一方是常量，可以把常量放在左边，有助于发现错误。` 5 == canoes `
+如果比较的双方有一方是常量，可以把常量放在左边，有助于发现错误。`5 == canoes`
 
 ### 逻辑真与假
 
@@ -342,7 +342,7 @@ printf("Long类型的占用%zd字节。", sizeof(long));
 
 ```c
 while( scanf("%d", &num) == 1 )
-	/* 跳过整数输入 */
+    /* 跳过整数输入 */
 ;
 
 ```
@@ -362,7 +362,7 @@ while( scanf("%d", &num) == 1 )
 - *continue* 循环的其余部分被忽略，开始下一次循环；对于for循环，从控制段的更新部分开始；对于while循环，从判断循环表达式开始。
 - *break* 跳出一层循环；对于for循环，不执行控制段的更新部分。
 
-## 第7章 C控制语句：分支和跳转
+## Chapter 6 分支和跳转
 
 学习内容提要：
 
@@ -377,7 +377,7 @@ while( scanf("%d", &num) == 1 )
 - 使用C的字符I/O函数：getchar()和putchar()。
 - 由ctype.h头文件提供的字符分析函数系列。
 
-### if... else...
+### `if... else...`
 
 `if(epression) statement`
 
@@ -399,24 +399,26 @@ while( scanf("%d", &num) == 1 )
 
 关系运算符优先级高于逻辑运算符。非运算符的优先级高于与运算符，或运算符优先级最低。与运算符和或运算符标志一个顺序点。
 
-### 条件运算符 ?:
+### 条件运算符 `?`
 
 `expression 1 ? expression2 : expression3`
 
 ### 多重选择 switch
 
-```
+```cpp
+
 switch(integer expression)
 {
-	case constant1:
-		statements
-		break;
-	case constant2:
-		statements
-		break;
-	default:
-		statements
+    case constant1:
+        statements
+        break;
+    case constant2:
+        statements
+        break;
+    default:
+        statements
 }
+
 ```
 
 case标签必须为整型。如果没有break标签，匹配标签之后的语句都会被执行，直到遇到break标签或switch结构结束。
@@ -427,7 +429,7 @@ case标签必须为整型。如果没有break标签，匹配标签之后的语�
 
 `goto label;`
 
-## 字符输入/输出和输入确认
+## Chapter 7 字符输入/输出和输入确认
 
 ### 缓冲区
 
@@ -451,7 +453,7 @@ case标签必须为整型。如果没有break标签，匹配标签之后的语�
 
 ```c
 while((ch = getchar()) != 'q'){
-	putchar(ch);
+    putchar(ch);
 }
 
 ```
@@ -463,17 +465,17 @@ int input;
 char ch;
 while(scanf("%d", &input) != 1)
 {
-	while((ch = getchar)!='\n'){
-		putchar(ch); // 剔除错误的输入
-	}
-	printf(" is not an integer.\n");
+    while((ch = getchar)!='\n'){
+        putchar(ch); // 剔除错误的输入
+    }
+    printf(" is not an integer.\n");
 }
 
 ```
 
 要创建良好的用户界面，需要注意 *scanf()* 总是将空白输入留在输入流中，在遇到EOF时，函数返回EOF，而且不改变参数的值；*getchar()* 在遇到EOF时返回EOF。
 
-## 函数
+## Chapter 8 函数
 
 学习内容提要：
 
@@ -506,7 +508,7 @@ while(scanf("%d", &input) != 1)
 
 函数可以递归调用。在return语句之前的递归称为尾递归。
 
-## 数组和指针
+## Chapter 9 数组和指针
 
 学习内容提要：
 
@@ -539,10 +541,10 @@ while(scanf("%d", &input) != 1)
 
 ```c
 type identifier[X][Y] = {
-	{elem11, elem12, elem13, ..., elem1y},
-	{elem21, elem22, elem23, ..., elem2y},
-	...,
-	{elemx1, elemx2, elemx3, ..., elemxy}
+    {elem11, elem12, elem13, ..., elem1y},
+    {elem21, elem22, elem23, ..., elem2y},
+    ...,
+    {elemx1, elemx2, elemx3, ..., elemxy}
 }
 ```
 
@@ -595,9 +597,9 @@ const int ** pp;
 int * p;
 const int n = 10;
 
-pp = &p;	// 不允许
-*pp = &n;	// 使p指向n
-*p = 11;	// n被修改
+pp = &p;    // 不允许
+*pp = &n;   // 使p指向n
+*p = 11;    // n被修改
 ```
 
 #### 基本操作
@@ -641,7 +643,7 @@ pp = &p;	// 不允许
 
 可以使用复合文字初始化一个指针，或者使用复合文字作为实际参数传递给参量形式匹配的函数。
 
-## 字符串和字符串函数
+## Chapter 10 字符串和字符串函数
 
 > 绝大多数程序员认为这很搞笑，但仅限于这出现在别人的程序中时。
 
@@ -653,7 +655,7 @@ pp = &p;	// 不允许
 | fgets(char *, int n, stdin) | 读取字符串直到遇到换行符或读取完 **(n-1)** 个字符，n指定 **数组最大可容纳的字符数（包括空字符在内）**而不是最大可读取的字符数，保留换行符，添加空字符 |
 | puts(char *) | 输出字符串，添加换行符 |
 | fputs(char *, stdout) | 输出字符串，不添加换行符 |
-| <string.h> | --- |
+| `<string.h>` | --- |
 | strlen(char *) | 字符串长度 |
 | strcat(char *, const char *) | 将第二个字符串链接到第一个字符串后面，返回值是第一个字符串 |
 | strncat(char *, const char *, int) | 连接字符串，指定最大可添加的字符数（注意为空字符保留位置） |
@@ -668,13 +670,13 @@ pp = &p;	// 不允许
 | strpbrk(char *, char *) | 返回指向在第一个字符串中存放第二个字符串任意一个字符的位置的指针，未找到则返回空指针 |
 | strrchr(char *, int c) | 返回指向字符最后一次出现在字符串中的位置的指针 |
 | strstr(char *, char *) | 返回第一个字符串中第一次出现第二个字符串的位置 |
-| <stdlib.h> | --- |
+| `<stdlib.h>` | --- |
 | atoi(char *)| Alphanumeric to integer，将字符串转换为整数并返回 |
 | atol, atof等 | 返回long、float类型 |
 | strtol, strtoul, strtod | 可以报告第一个不是数字的字符的位置 |
-| ftoa, itoa等 | 不是标准函数 | 
+| ftoa, itoa等 | 不是标准函数 |
 
-## 储存类、链接和内存管理
+## Chapter 11 储存类、链接和内存管理
 
 学习内容提要：
 
@@ -687,7 +689,7 @@ pp = &p;	// 不允许
 
 - 代码块作用域
 - 函数原型作用域（如VLA）
-- 函数作用域（仅适用于goto语句使用的标签） 
+- 函数作用域（仅适用于goto语句使用的标签）
 - 文件作用域（全局变量）
 
 ### 链接
@@ -709,13 +711,13 @@ pp = &p;	// 不允许
 
 ### *malloc()* 和 *free()*
 
-` double * ptr = (double *)malloc(n * sizeof(double)); ` 成功分配内存则返回一个指向第一个分配内存空间的指针，否则返回空指针。应当显式地进行类型指派。
+`double * ptr = (double *)malloc(n * sizeof(double));` 成功分配内存则返回一个指向第一个分配内存空间的指针，否则返回空指针。应当显式地进行类型指派。
 
-` free(ptr); ` 释放占用的内存空间
+`free(ptr);` 释放占用的内存空间
 
 *malloc()* 的等价语句是 *calloc()* 。
 
-` double * ptr =  (double *)calloc(n, sizeof(double));` 返回值与 *malloc()* 相似。
+`double * ptr =  (double *)calloc(n, sizeof(double));` 返回值与 *malloc()* 相似。
 
 ### 类型限定词
 
@@ -727,21 +729,21 @@ pp = &p;	// 不允许
 
 只用于指针，表示该指针是访问数据块的唯一方式。
 
-在函数原型中，参数的 *restrict* 要求保证指针是它指向的内容的唯一的访问方式。 ` void * memcpy(void * restrict s1, const void * restrict s2, size_t n); ` 和 ` void * memmove(void * s1, const void * s2, size_t n);` *memcpy()* 要求两个位置之间不重叠， *memmove()* 允许重叠。
+在函数原型中，参数的 *restrict* 要求保证指针是它指向的内容的唯一的访问方式。 `void * memcpy(void * restrict s1, const void * restrict s2, size_t n);` 和 `void * memmove(void * s1, const void * s2, size_t n);` *memcpy()* 要求两个位置之间不重叠， *memmove()* 允许重叠。
 
 ### static
 
-` double stick(double ar[static 20]); `
+`double stick(double ar[static 20]);`
 
 函数原型中的 *static* 表示数组至少具有20个元素。
 
 ### 函数原型中的const和restrict
 
-` void ofmouth(int * const a1, int * restrict a2, int n); ` 的等价形式是：
+`void ofmouth(int * const a1, int * restrict a2, int n);` 的等价形式是：
 
-` void ofmouth(int a1[const], int a2[restrict], int n); `
+`void ofmouth(int a1[const], int a2[restrict], int n);`
 
-## 第13章 文件输入/输出
+## Chapter 12 文件输入/输出
 
 学习内容提要：
 
@@ -760,7 +762,7 @@ stdin, stdout, stderr
 
 ### fopen()
 
-` FILE * fopen(const char * PATH, const char * FORMAT); `
+`FILE * fopen(const char * PATH, const char * FORMAT);`
 
 打开文件成功则返回文件指针，否则返回NULL
 

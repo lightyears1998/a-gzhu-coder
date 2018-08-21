@@ -1,4 +1,8 @@
-## 数据类型
+# C++笔记
+
+基础部分参见[C语言笔记](C.md)
+
+## Chapter 1 数据类型
 
 - 常量表 `climits`
 
@@ -61,10 +65,10 @@ string:
 ```cpp
 struct torgle_register
 {
-	unsigned int SN: 4;
-	unsigned int   : 4; // 不使用的位
-	bool goodIn    : 4;
-	bool goodTorgle: 4;
+    unsigned int SN: 4;
+    unsigned int   : 4; // 不使用的位
+    bool goodIn    : 4;
+    bool goodTorgle: 4;
 };
 
 ```
@@ -76,15 +80,15 @@ struct torgle_register
 ```cpp
 struct widget
 {
-	char brand[20];
-	int type;
-	union
-	{
-		long id_num;
-		char id_char[20];
-	}
+    char brand[20];
+    int type;
+    union
+    {
+        long id_num;
+        char id_char[20];
+    }
 }
-``` 
+```
 
 #### 枚举
 
@@ -106,7 +110,9 @@ spectrum band = spectrum(3); // green
 #### 指针
 
 小心：
+
 ```cpp
+
 int* p1, p2;
 int *p1, *p2;
 
@@ -124,12 +130,14 @@ int *p1, *p2;
 
 中括号语法不检查下标越界，成员函数at()检查下标越界
 
-## 循环和关系表达式
+## Chapter 2 循环和关系表达式
 
 使用术语“顺序”代替“顺序点”。
 
 延时循环：
+
 ```cpp
+
 int sec; cin >> sec;
 clock_t start = clock();
 clock_t delay = sec * CLOCKS_PER_SEC;
@@ -139,23 +147,23 @@ cout << "Done." << endl;
 ```
 
 范围循环：
+
 ```cpp
+
 for (int x : {3, 5, 7, 9, 11})
 {
-	cout << x << endl;
+    cout << x << endl;
 }
 
 ```
 
-## 分支语句和逻辑运算符
+## Chapter 3 分支语句和逻辑运算符
 
 生产环境中的bool表达式 `value == varible`
 
-## 函数
+## Chapter 4 函数
 
 > 容忍逻辑上无法自圆其说的观点正是人类思维活动的特点
-
-## 函数探幽
 
 ### 内联函数
 
@@ -180,6 +188,7 @@ void swap(T &a, T &b) { };
 显式具体化和显式实例化
 
 ```cpp
+
 // 非模板形式
 void swap(job &a, job &b) { };
 
@@ -203,23 +212,27 @@ template void swap<int> (int, int);
 ### decltype
 
 用于确认变量的类型：
+
 ```cpp
+
 template <typename T1, typename T2>
 void ft(T1 x, T2 y)
 {
-	decltype(x+y) xpy = x + y;
+    decltype(x+y) xpy = x + y;
 }
 ```
 
 结合后置返回类型声明函数的返回类型：
 
-```
+```cpp
+
 template <typename T1, typename T2>
 auto h(T1 x, T2 y) -> decltype(x + y)
 { /* 函数体 */ };
 
+```
 
-##### decltype确认类型的顺序
+### decltype确认类型的顺序
 
 1. 对于没有使用括号的标识符，与标识符的类型相同
 2. 对于函数调用，与函数的返回值类型相同
@@ -227,13 +240,14 @@ auto h(T1 x, T2 y) -> decltype(x + y)
 4. 对于表达式，与表达式的类型相同
 
 ```cpp
+
 double xx;
 decltype((xx)) w; // double &
 decltype(xx)   u; // dooble
 
 ```
 
-## 内存模型和名称空间
+## Chapter 4 内存模型和名称空间
 
 自给自足原则，包含防护原则
 
@@ -292,12 +306,17 @@ decltype(xx)   u; // dooble
 ### 语言链接性
 
 C语言链接性：
+
 ```cpp
+
 extern "C" void spaff(int);
+
 ```
 
 C++语言链接性：
+
 ```cpp
+
 extern void spaff(int);
 extern "C++" void spaff(int);
 
@@ -308,7 +327,9 @@ extern "C++" void spaff(int);
 #### new
 
 单值变量的列表初始化：
+
 ```cpp
+
 int *pin = new int{ 6 };
 
 ```
@@ -364,6 +385,7 @@ int other() {};
 它采用命名空间的实现是：
 
 ```cpp
+
 namespace
 {
 	int counts;
@@ -380,6 +402,7 @@ int other() {};
 自动将内层的标识符放至外层作用域
 
 ```cpp
+
 namespace X {
 inline namespace Y {
 void foo();
@@ -388,7 +411,7 @@ void foo();
 
 ```
 
-## 类与对象
+## Chapter 5 类与对象
 
 注意到定义于类声明中的函数都成为内联函数，也可以在类声明之外定义成员函数，使之成为内联函数。
 
@@ -396,12 +419,12 @@ void foo();
 class Stock
 {
 private:
-	void set_tot();
+    void set_tot();
 }
 
 inline void Stock::set_tot()
 {
-	...
+    ...
 }
 
 ```
@@ -427,11 +450,12 @@ Stock stock {"Nano Element", 2, 3};
 像下面这样定义常量是不可行的，因为类的定义只是描述了对象的形式，并没有创建对象，也就没有存放值的空间。
 
 ```cpp
+
 class Backery
 {
 private:
-	const int Months = 12;
-	double cost[Months];
+    const int Months = 12;
+    double cost[Months];
 }
 
 ```
@@ -442,8 +466,8 @@ private:
 class Backery
 {
 private:
-	enum {Month = 12}; // 并不会创建类数据成员，即对象实例中不包含枚举
-	double cost[Months];
+    enum {Month = 12}; // 并不会创建类数据成员，即对象实例中不包含枚举
+    double cost[Months];
 }
 
 ```
@@ -452,8 +476,8 @@ private:
 class Backery
 {
 private:
-	static const int Months = 12;
-	double cost[Months];
+    static const int Months = 12;
+    double cost[Months];
 }
 
 ```
@@ -482,7 +506,7 @@ enum class : short pizza{Small, Medium, Large, XLarge};
 
 ```
 
-## 第11章：使用类
+## Chapter 6 使用类
 
 不要返回指向局部变量和临时对象的引用。
 
@@ -492,7 +516,7 @@ enum class : short pizza{Small, Medium, Large, XLarge};
 class Time
 {
 public:
-	Time opearator +(const Time&) const;
+    Time opearator +(const Time&) const;
 }
 
 
@@ -584,8 +608,8 @@ force1 + force2 = net;
 
 ```cpp
 Queue::Queue(int qs) : qsize(qs) {
-	front = rear = NULL;
-	items = 0;
+    front = rear = NULL;
+    items = 0;
 }
 
 ```
@@ -597,13 +621,13 @@ C++11的类内初始化允许初始化以更直观的形式初始化：
 ```cpp
 class Classy
 {
-	int mem1 = 10;
-	const int mem2 = 20;
+    int mem1 = 10;
+    const int mem2 = 20;
 }
 
 ```
 
-## 类继承
+## Chapter 7 类继承
 
 ### 派生
 
@@ -649,11 +673,11 @@ virtual方法和基类指针/引用的特性，使得创建一个基类指针数
 
 ```cpp
 
-class BaseEllipse 
+class BaseEllipse
 {
 public:
-	virtual double Area() const = 0; // 纯虚函数定义
-	...
+    virtual double Area() const = 0; // 纯虚函数定义
+    ...
 }
 
 ```
@@ -668,9 +692,9 @@ public:
 
 ### 派生类型
 
-* **公有继承**：基类的公有成员成为派生类的公有成员，保护成员成为派生类的保护成员，只能通过基类接口访问私有成员，能够隐式向上转换。
-* **保护继承**： 基类的公有成员和私有成员成为派生类的保护成员，只能通过基类接口访问基类私有成员。只能在派生类中隐式向上转换。
-* **私有继承**：基类的公有成员和保护成员成为派生类中的私有成员，只能通过基类接口访问基类私有成员，不能隐式向上转换。
+- **公有继承** 基类的公有成员成为派生类的公有成员，保护成员成为派生类的保护成员，只能通过基类接口访问私有成员，能够隐式向上转换。
+- **保护继承** 基类的公有成员和私有成员成为派生类的保护成员，只能通过基类接口访问基类私有成员。只能在派生类中隐式向上转换。
+- **私有继承** 基类的公有成员和保护成员成为派生类中的私有成员，只能通过基类接口访问基类私有成员，不能隐式向上转换。
 
 ## C++中的代码重用
 
@@ -682,13 +706,13 @@ public:
 
 class  MyClass : private BaseClass {
 public:
-	using BaseClass::min;
-	...
+    using BaseClass::min;
+    ...
 }
 
 ```
 
-## 多重继承
+## Chapter 8 多重继承
 
 注意需要使用public修饰符限定每一个基类。
 
@@ -723,11 +747,11 @@ class SingerWaiter : public Singer, public Waiter {... };
 
 // 不合法的
 SingerWaiter(const Worker &wk, int p = 0, int v = Singer::other)
-				: Waiter(wk, p), Singer(wk, v) { };
+                : Waiter(wk, p), Singer(wk, v) { };
 
 // 合法的
 SingerWaiter(const Worker &wk, int p = 0, int v = Singer::other)
-				: Worker(wk), Waiter(wk, p), Singer(wk, v) { };
+                : Worker(wk), Waiter(wk, p), Singer(wk, v) { };
 
 ```
 
@@ -747,17 +771,17 @@ newhire.Worker::show();
 template <class T>
 class Stack
 {
-	// details omitted
+    // details omitted
 }
 
 template <class T>
 Stack<T>::Stack() {
-	// details omitted
+    // details omitted
 }
 
 template <class T>
 Stack<T>::function(int arg1) {  // 在类外需要使用完整的类型声明
-	// details omitted
+    // details omitted
 }
 
 ```
@@ -773,15 +797,15 @@ Stack<T>::function(int arg1) {  // 在类外需要使用完整的类型声明
 
 template <class T, int n>
 class Array {
-private: 
-	T ar[n];
-	
-	// ...
+private:
+    T ar[n];
+
+    // ...
 }
 
 template <class T, int n>
 T& Array<T,n>::function() {
-	// ...
+    // ...
 }
 
 ```
@@ -792,19 +816,17 @@ T& Array<T,n>::function() {
 
 #### 递归使用模板
 
-Array<ArrayK<int, 5>, 10> twodee;
+`Array<ArrayK<int, 5>, 10> twodee;`
 
 #### 使用多个类型参数
 
-template <class T1, class T2> ...
+`template <class T1, class T2> ...`
 
 #### 默认类型模板参数
 
-template <class T, class T2 = int> class Typo {..};
+`template <class T, class T2 = int> class Typo {..};`
 
 ### 模板的具体化
-
-// Todo here
 
 1. **隐式实例化**
 2. **显式实例化**
@@ -825,16 +847,17 @@ get()（不是getline()）读取空行后设置失效位(failbit)
 get(), getline()输入行的字符比指定容量多时，将设置失效位
 
 ```cpp
+
 cin.get(name, ArSize).get();
 
 ```
 
-**cout, wcout**;
+宽字符输出 **cout, wcout**
 
 - `put()`
 - `setf(ios_base::fixed, ios_base::floatfield);`
 
-**flags**
+IO符号 **flags**
 
 - setioflags(ios_base::fixed|ios::showpoint)
 - setprecision(2)
@@ -856,11 +879,10 @@ cout.flags(fmt);
 
 ```
 
-
-
 ### 分离接口与实现
 
 ```cpp
+
 // GradeBook.h
 #include <string>
 
@@ -878,6 +900,7 @@ private:
 ```
 
 ```cpp
+
 // GradeBook.cpp
 #include <iostream>
 #include "GradeBook.h"
@@ -895,6 +918,6 @@ void GradeBook::setCourserName(string name) const
 
 ```
 
-### 异常
+## Chpater 9 异常处理
 
-头文件 <stdexcpet>
+头文件 `<stdexcpet>`
