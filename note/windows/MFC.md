@@ -23,7 +23,7 @@ MFC不适用于Windows RT（以Win8为代表的Metro UI）
 
 包括各种字符集的版本、各种处理器架构的版本以及精简了控件的版本。
 
-MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc-library-versions#automatic-linking-of-mfc-library-versions) 
+MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc-library-versions#automatic-linking-of-mfc-library-versions)
 
 [静态库命名约定](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc-library-versions#mfc-static-library-naming-conventions) `uAFXcd.lib`
 
@@ -44,7 +44,7 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 ### 基于框架的生成：典型构建顺序
 
-https://docs.microsoft.com/zh-cn/cpp/mfc/sequence-of-operations-for-building-mfc-applications
+<https://docs.microsoft.com/zh-cn/cpp/mfc/sequence-of-operations-for-building-mfc-applications>
 
 ### CWinApp：应用程序类
 
