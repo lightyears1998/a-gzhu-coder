@@ -14,14 +14,19 @@
 
 另外在下面简单记录一套可操作的工作环境。
 
-## Programming
+## 通用环境设置
 
 - **字体** Adobe Source Code Pro
 
 ### Git
 
-- `git config "core.ignorecase" false`
-- `git config "core.autocrlf" true`
+```bash
+git config "core.ignorecase" false
+git config "core.autocrlf" true
+git config "commit.gpgsign" true
+git config "gpg.program" "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+git config "user.signingkey" "26D4F2F9"
+```
 
 ### Editors
 
