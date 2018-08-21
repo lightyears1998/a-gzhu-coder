@@ -1,3 +1,5 @@
+# LaTeX笔记
+
 ## LaTeX版本
 
 LaTeX3正在开发中
@@ -13,4 +15,4 @@ LaTeX2e是LaTeX2的改进版
 
 ## 资源
 
-http://en.wikibooks.org/wiki/LaTeX
+<http://en.wikibooks.org/wiki/LaTeX>
