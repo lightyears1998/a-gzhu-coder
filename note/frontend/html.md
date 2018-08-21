@@ -1,5 +1,4 @@
-Note For HTML
-=============
+# Hyper Text Markup Language笔记
 
 html5允许空标签没有结束标签
 
@@ -171,6 +170,10 @@ tabindex, accesskey
     <source src="...ogv" type="audio/ogg">
 <audio>
 ```
+
+## 参考资料
+
+- [Mozilla HTML参考](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 ## 源
 

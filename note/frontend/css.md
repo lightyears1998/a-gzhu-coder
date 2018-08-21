@@ -1,5 +1,4 @@
-Note for CSS
-============
+# Cascading Style Sheet笔记
 
 ## 基本格式
 
@@ -125,3 +124,7 @@ margin, boarder, padding
 渐变
 
 - background-image: linear-gradient(to bottom, #FFFFFF, #00FF00);
+
+## 链接
+
+- [Mozilla CSS参考](https://developer.mozilla.org/en-US/docs/Web/CSS)
