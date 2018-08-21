@@ -49,3 +49,5 @@ direction handle / control handle 控制路径的形
 pencil tool 自带路径 有smooth选项
 可以重新绘制路径
 alt直线
+
+curvature tool
