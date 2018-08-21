@@ -1,11 +1,20 @@
-# 重要的Windows API索引
+# Win32
 
 - [API List](https://docs.microsoft.com/zh-cn/windows/desktop/api/index)
 - [Playground](https://github.com/lightyears1998/quiet-space/tree/master/playground/w32)
 
-## windows.h
+## 数据类型
 
-还引入了
+### HANDLE
+
+- *INVALID_HANDLE_VALUE*
+- `GetStdHandle()` `STD_INPUT_HANDLE`, `STD_OUTPUT_HANDLE`
+
+## 头文件
+
+### windows.h
+
+同时引入了
 
 - `windef.h` 基本类型定义
 - `winbase.h` 内核函数
@@ -21,8 +30,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 ```
 
+## 用户交互函数
+
 ## [MessageBox](https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-messagebox)
 
-`MessageBox(HWND hParent, LPCSTR lpText, LPCSTR lpCaption, UINT uType)` 
+`MessageBox(HWND hParent, LPCSTR lpText, LPCSTR lpCaption, UINT uType)`
 
-uType常量定义以`MB_`开头，记住常用的
+uType常量定义以`MB_`开头，常用`MB_OK`
