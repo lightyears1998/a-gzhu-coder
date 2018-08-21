@@ -9,7 +9,7 @@ double click ioslate group
 
 reshape tool 化直为曲
 
-rotate tool 
+rotate tool
 reference point
 
 shape builder tool 结合shape 移除部分shape
@@ -17,10 +17,10 @@ shape builder tool 结合shape 移除部分shape
 align
 再次选择 key object
 
-Image Trace 
+Image Trace
 traced artwork
 
-eraser / scissors / knife tool 
+eraser / scissors / knife tool
 selection only
 
 object > lock > selection
