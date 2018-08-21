@@ -6,7 +6,7 @@ MFC头文件`\atlmfc\include`，实现文件`\atlmfc\mfc\src`，根目录类似�
 
 MFC不适用于Windows RT（以Win8为代表的Metro UI）
 
-## 相关基本概念
+## Chapter 1 相关基本概念
 
 - *Win32* includes *Win95* and *WinNT*
 - *WinRT*
@@ -71,6 +71,18 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 - GDI+
 - 文件拖放
 - 追踪最近使用的文件
+
+### 文档模板和文档-视图创建过程
+
+<https://docs.microsoft.com/zh-cn/cpp/mfc/document-templates-and-the-document-view-creation-process>
+
+## Chpater 2 工具
+
+### 宏
+
+- `HIBYTE()`, `LOBYTE()` 16位数值中的高位和低位
+- `TEXT()` UNICODE字符支持
+- `MAKEWORD()` 将两个16数值合成32位数值
 
 ## 链接
 

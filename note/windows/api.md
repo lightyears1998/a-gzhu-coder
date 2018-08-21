@@ -27,7 +27,7 @@
 - *INVALID_HANDLE_VALUE*
 - `GetStdHandle()` `STD_INPUT_HANDLE`, `STD_OUTPUT_HANDLE`
 
-## 头文件
+## 头文件与工具函数
 
 ### windows.h
 
@@ -47,10 +47,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 ```
 
-## 用户交互函数
+### 用户交互函数
 
 ## [MessageBox](https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-messagebox)
 
 `MessageBox(HWND hParent, LPCSTR lpText, LPCSTR lpCaption, UINT uType)`
 
 uType常量定义以`MB_`开头，常用`MB_OK`
+
+## 示例
+
+1. 注册窗口，处理消息循环 <https://github.com/lightyears1998/quiet-space/blob/master/playground/mfc/ch1/ch1ex2WindowsAndMessage/%E6%BA%90.cpp>
