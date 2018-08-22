@@ -8,13 +8,11 @@
 
 PHP通过PHP解释器解释执行，通常是结合Apache或Nginx在Linux或Windows操作系统上使用。
 
-## 基础
-
 - `<?php expression; ?>`
 - 直接输出表达式的值 `<?= expression ?>`
 - `echo expression;`
 
-注释
+### 注释
 
 - 单行注释 `//` `#`
 - 多行注释 `/* */` 不要嵌套多行注释
@@ -39,7 +37,7 @@ echo $hello;    // 输出world
 
 ### 常量
 
-定义常量
+有两种方式定义常量
 
 - `define('NAME', 'PHP');` 定义NAME为字符串常量“PHP”
 - `const NAME='PHP';`
@@ -61,9 +59,9 @@ echo $hello;    // 输出world
 - `__FILE__`
 - `__LINE__`
 - `PHP_VERSION`, `PHP_OS`
-- TRUE, FALSE
+- `TRUE`, `FALSE`
 
-## 运算
+### 运算符
 
 - 赋值 `=` 赋值总是按值传递
 - 引用赋值 `$a = &$b`
@@ -97,7 +95,7 @@ echo $a === $b;  // 返回FALSE
 @mkdir('dir_name');  // 即使出现错误也会继续执行下去
 ```
 
-## 数据类型
+## Chapter 2 数据类型
 
 运行时决定
 
@@ -315,7 +313,7 @@ $food[] = "瓜子";  // 设置键名为3
 - `is_null()`
 - `unset()`
 
-## 流程控制
+## Chapter 3 流程控制
 
 ```php
 if (exp)
@@ -357,7 +355,7 @@ foreach($数组 as $键值 => $元素值) {
 }
 ```
 
-## 函数
+## Chapter 4 函数
 
 ```php
 function foo($arg1, $arg2, $arg3, ...)
@@ -422,7 +420,7 @@ $myfunction = function() {
 
 在函数中可以通过`global`关键字获取全局变量，使用`static`关键字定义静态变量。
 
-## 表单处理
+## Chpater 5 表单处理
 
 全局变量 `$_GET`, `$_POST`, `$_REQUEST`(GET，POST和COOKIE)
 
@@ -440,19 +438,19 @@ if (isset($_GET['name'])) {
 
 下拉列表，值由option的内容设定
 
-## Cookie
+## Chpater 6 Cookie
 
 `setcookie(name, value, expire, path, domain, secure);`
 
 - `setcookie("user", "Chloe", time()+7200, '''', 'yourdomain.com', 1);` 启用安全传输
 - `setcookie("user", "", time()-3600);` 删除Cookie
 
-## Session
+## Chpater 7 Session
 
 - 创建session `session_start()`
 - 终结session `session_destroy()`
 
-## 时间与日期
+## Chpater 8 时间与日期
 
 > 格林尼治时间1970年1月1日0时0分0秒
 
@@ -502,7 +500,7 @@ foreach ($date_period as $date)
 }
 ```
 
-## 文件和目录
+## Chpater 9 文件和目录
 
 文件资源
 
@@ -547,7 +545,7 @@ intl
 - NumberFormatter 中文数字大小写转换
 - IntlDateFormatter 中文日期和时间
 
-## zip
+## Chpater 10 zip
 
 - `zip_open()`, `zip_close()`
 
@@ -565,11 +563,11 @@ if ($zip) {
 
 ZipArchive类 强大的工具类
 
-## 图形图像处理
+## Chpater 11 图形图像处理
 
 GD2
 
-## 正则表达式
+## Chapter 12 正则表达式
 
 - int `preg_match(pattern, subject)` 搜索subject，如果搜索到返回1，否则返回0
 - string `preg_repalce(pattern, replacement, subject)` 搜索subject中的匹配串，并用replacemnet代替所有匹配串
@@ -594,7 +592,7 @@ GD2
 
 PHP还有自己的一套修正符可以使用
 
-## 数据库
+## Chpater 13 数据库
 
 ### Mysqli
 
@@ -622,9 +620,7 @@ while ($row = $result->fetch_row())
 
 CRUD：Create, retrieve, update, delete
 
-## Composer
-
-类库管理器
+## Chapter 14 Composer 项目依赖管理
 
 ## 源
 
