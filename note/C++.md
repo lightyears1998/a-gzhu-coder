@@ -10,9 +10,11 @@ C++起初是作为“包含类的C语言”出现的，后来成为一门独当�
 
 源文件拓展名`.h`, `.cpp`, `.hpp`
 
+源代码通过编译器`g++`等编译和链接之后成为可执行文件。
+
 ## Chapter 1 数据类型
 
-- 常量表 `climits`
+- 数据类型范围信息 `climits`
 
 ### 转义序列
 
@@ -32,6 +34,8 @@ char16_t ch1 = u'q';
 char32_t ch2 = U'\U0000222B';
 ```
 
+在MSVC编译器里，`wchar_t`是UTF-16LE字符（Windows平台原生字符），`char16_t`是UTF-16字符，`char32_t`是UTF-32字符。
+
 ### 强制类型转换
 
 ```cpp
@@ -46,26 +50,12 @@ static_cast<type>(name)
 
 列表初始化数组时可以省略等号，可不在大括号内包含任何东西即可将所有元素置零。
 
-#### 字符串类型
-
-c-string:
-
-- strcat();
-- strcpy();
-
-string:
-
-- `+`
-- `+=`
-
 #### 原始字符串
 
 默认定界符 `R"(... )"`
 
 自定义定界符可在默认定界符之间加入除空格、括号、斜杠、控制字符（制表符等）之外的任意字符。
-例如 `R"+*(... )+*"`
-
-字符串前缀的组合顺序任意
+例如 `R"delimiter(... )delimiter"`
 
 #### 位字段
 
@@ -73,7 +63,7 @@ string:
 struct torgle_register
 {
     unsigned int SN: 4;
-    unsigned int   : 4; // 不使用的位
+    unsigned int   : 4;  // 不使用的位
     bool goodIn    : 4;
     bool goodTorgle: 4;
 };
@@ -101,11 +91,13 @@ struct widget
 
 枚举类型可用于创建符号常量（新的类型名和枚举量），可用枚举来定义switch语句中的符号常量。
 
+定义的符号常量在枚举的作用域内有效。
+
 ```cpp
 enum spectrum {red, orange, yellow, green, blue, violet, indigo, ultraviolet};
 
-spectrum band = spectrum(3); // green
-
+spectrum band = spectrum(3);  // green
+spectrum band = green;
 ```
 
 可以创建多个值相同的枚举量
@@ -116,16 +108,14 @@ spectrum band = spectrum(3); // green
 
 #### 指针
 
-小心：
+注意区分
 
 ```cpp
-
 int* p1, p2;
 int *p1, *p2;
-
 ```
 
-方括号数组表示法/指针表示法
+方括号数组表示法 / 指针表示法
 
 #### new & delete
 
@@ -144,24 +134,20 @@ int *p1, *p2;
 延时循环：
 
 ```cpp
-
 int sec; cin >> sec;
 clock_t start = clock();
 clock_t delay = sec * CLOCKS_PER_SEC;
 while (clock() - start < delay) continue;
 cout << "Done." << endl;
-
 ```
 
 范围循环：
 
 ```cpp
-
 for (int x : {3, 5, 7, 9, 11})
 {
     cout << x << endl;
 }
-
 ```
 
 ## Chapter 3 分支语句和逻辑运算符
@@ -178,19 +164,18 @@ for (int x : {3, 5, 7, 9, 11})
 
 ### 函数参数与临时变量、引用参数和const
 
-仅当参数为const引用时，才生成临时变量。
+仅当参数为const引用时，才不生成临时变量。
 
 ### 函数模板
 
 ```cpp
 template <typename T>
 void swap(T &a, T &b) { };
-
 ```
 
 实例化是编译器为函数模板生成具体代码的过程，具体化是编写函数模板的过程。
 
-显式实例化在函数原型声明中以template修饰，显示具体化在函数原型中以template<>修饰。
+显式实例化在函数原型声明中以`template`修饰，显示具体化在函数原型中以`template<>`修饰。
 
 显式具体化和显式实例化
 
@@ -207,14 +192,12 @@ void swap(T &a, T &b) { };
 template <> void swap(job &a, job &b) { };
 template <> void swap<job>(job &a, job &b) { };
 
-// 显式示例化声明
+// 显式实例化声明
 template void swap<int> (int, int);
 
 ```
 
 编译器确认可行函数的过程：完全匹配和最佳匹配、提升转换、标准转换、用户定义转换。“最具体”指找到可行函数需要的转换最少。
-
-引导编译器做出选择：在模板函数和非模板函数同时存在时，`lesser<>()`引导编译器选择模板函数版本而不是非模板函数。
 
 ### decltype
 
@@ -235,7 +218,9 @@ void ft(T1 x, T2 y)
 
 template <typename T1, typename T2>
 auto h(T1 x, T2 y) -> decltype(x + y)
-{ /* 函数体 */ };
+{
+    /* 函数体 */
+};
 
 ```
 
@@ -254,7 +239,7 @@ decltype(xx)   u; // dooble
 
 ```
 
-## Chapter 4 内存模型和名称空间
+## Chapter 5 内存模型和名称空间
 
 自给自足原则，包含防护原则
 
@@ -265,7 +250,7 @@ decltype(xx)   u; // dooble
 #define THIS_HEADER_H_
 // 类的定义
 
-#endif
+#endif  // THIS_HEADER_H_
 
 ```
 
@@ -310,48 +295,58 @@ decltype(xx)   u; // dooble
 - *cv-限定符* const和volatile
 - *mutable* 即使一个结构或类是const的，某个成员也可以被修改
 
-### 语言链接性
-
-C语言链接性：
+`mutable`的示例
 
 ```cpp
+struct K
+{
+    mutable int i = 12;
+    int x = 12;
+};
 
-extern "C" void spaff(int);
-
+int main()
+{
+    const K k;
+    k.i = 32;  // 可行
+    k.x = 43;  // 不可行
+}
 ```
 
-C++语言链接性：
+### 语言链接性
+
+C语言链接性
 
 ```cpp
+extern "C" void spaff(int);
+```
 
+C++语言链接性
+
+```cpp
 extern void spaff(int);
 extern "C++" void spaff(int);
-
 ```
 
 ### 动态储存分配
 
 #### new
 
-单值变量的列表初始化：
+单值变量的列表初始化
 
 ```cpp
-
 int *pin = new int{ 6 };
-
 ```
 
-new失败时引发std::bad_alloc，在旧的标准中返回空指针。
+new失败时引发`std::bad_alloc`异常，在旧的标准中返回空指针。
 
 #### 定位new运算符（placement new）
 
-手动指定分配的内存起点，而不是在堆中自动管理。不跟踪已使用哪些内存，不能使用delete删除。
+手动指定分配的内存起点，而不是在堆中自动管理。不跟踪已使用哪些内存，不能使用`delete`释放（因为`delete`只能释放自动分配的内存）。
 
 ```cpp
 char buf[200];
 
 int *p = new(buf) type_name;
-
 ```
 
 ### 名称空间
@@ -360,7 +355,7 @@ int *p = new(buf) type_name;
 
 命名空间可以是全局的，也可以从属于另一个命名空间。
 
-命名空间是开放的。
+命名空间是开放的。任何人都可以往名称空间中加入新的内容。
 
 区分未限定的名称和限定的名称。
 
@@ -369,7 +364,6 @@ int *p = new(buf) type_name;
 ```cpp
 using Jill::fetch;     // using声明
 using namespace std;   // using编译指令
-
 ```
 
 若使用using声明，局部名称将隐藏全局名称，但仍可使用作用域解析操作符。
@@ -386,13 +380,11 @@ int other();
 
 int main() {};
 int other() {};
-
 ```
 
-它采用命名空间的实现是：
+它采用命名空间的实现如下
 
 ```cpp
-
 namespace
 {
     int counts;
@@ -401,7 +393,6 @@ int other();
 
 int main() {};
 int other() {};
-
 ```
 
 ### 内联名称空间
@@ -409,18 +400,52 @@ int other() {};
 自动将内层的标识符放至外层作用域
 
 ```cpp
-
-namespace X {
-inline namespace Y {
-void foo();
-}  // namespace Y
+namespace X
+{
+    inline namespace Y
+    {
+        void foo();
+    }  // namespace Y
 }  // namespace X
-
 ```
 
-## Chapter 5 类与对象
+一个利用内联名称空间实现的实用的功能如下
 
-注意到定义于类声明中的函数都成为内联函数，也可以在类声明之外定义成员函数，使之成为内联函数。
+```cpp
+// V98.h
+namespace V98
+{
+    void f();  // 实现基本功能
+}
+
+// V99.h
+inline namespace V99
+{
+    void f();  // 改良实现
+}
+
+// Mine.h
+namespace Mine
+{
+#include "V98.h"
+#include "V99.h"
+}
+
+// main.cpp
+#include "Mine.h"
+using namespace Mine;
+
+int main()
+{
+    f();  // 默认版本，V99版
+    V98::f();  // V98版
+    V99::f();  // 可以通过完整方式访问
+}
+```
+
+## Chapter 6 类与对象
+
+注意到定义于类声明中的函数都成为内联函数，也可以在类声明之外定义成员函数，使之成为内联函数，只需要有一处`inline`标记。
 
 ```cpp
 class Stock
@@ -433,38 +458,33 @@ inline void Stock::set_tot()
 {
     ...
 }
-
 ```
-
-- **explicit** 禁用构造器形参的隐式类型转换
 
 ### 构造函数和析构函数
 
+- **explicit** 禁用构造器形参的隐式类型转换
+
 ```cpp
-
 Stock stock("Nano Element", 2, 3);
-Stock stock = ("Nano Element", 2, 3); // 可能会创建临时变量
+Stock stock = ("Nano Element", 2, 3);  // 可能会创建临时变量
 Stock stock {"Nano Element", 2, 3};
-
 ```
 
 可以使用列表初始化；
 
-可以使用std::initialize_list的类，表示任意长度的列表。
+可以利用`std::initialize_list`实现任意长度的初始化列表。
 
 ### 类作用域
 
 像下面这样定义常量是不可行的，因为类的定义只是描述了对象的形式，并没有创建对象，也就没有存放值的空间。
 
 ```cpp
-
 class Backery
 {
 private:
     const int Months = 12;
     double cost[Months];
 }
-
 ```
 
 做法是为类声明一个枚举类型，或者使用static来修饰
@@ -476,7 +496,6 @@ private:
     enum {Month = 12}; // 并不会创建类数据成员，即对象实例中不包含枚举
     double cost[Months];
 }
-
 ```
 
 ```cpp
@@ -486,34 +505,29 @@ private:
     static const int Months = 12;
     double cost[Months];
 }
-
 ```
 
-作用域内枚举可以防止名称冲突
+利用**作用域内枚举**，或称**强类型枚举**可以防止名称冲突
 
 ```cpp
-
 // 可能产生名称冲突
 enum egg {Small, Medium, Large, Jumbo};
 enum t_shirt { Small, Medium, Large, Jumbo};
 
 // 下列枚举的作用域为类
-
 enum class egg {Small, Medium, Large, Jumbo};
-enum struct t_shirt {Small, Medium, Large, Jumbo};
+enum struct t_shirt {Small, Medium, Large, Jumbo};  // 此处class关键子与struct关键字是等效的
 
 egg choice = egg::Small;
-
 ```
 
-作用域类枚举不能隐式转换为整型，可指定底层枚举类型。
+传统枚举值可以隐式转换为整型，而作用域类枚举不能隐式转换为整型，亦无法与整数比较，可指定底层枚举类型。
 
 ```cpp
-enum class : short pizza{Small, Medium, Large, XLarge};
-
+enum class : short pizza { Small, Medium, Large, XLarge };
 ```
 
-## Chapter 6 使用类
+## Chapter 7 使用类
 
 不要返回指向局部变量和临时对象的引用。
 
@@ -528,7 +542,6 @@ public:
 
 
 Time opearator +(double, const Time&) const;
-
 ```
 
 1. 重载后的运算符至少有一个是用户定义的操作类型
@@ -538,6 +551,8 @@ Time opearator +(double, const Time&) const;
 5. 下列运算符只能通过成员函数重载：赋值运算符、函数调用运算符、下标运算符、通过指针访问类成员的运算符（->）
 
 重载运算符需要小心二义性。
+
+注意重载自增操作符时，默认重载的是前缀自增操作符，重载后缀自增操作符需要使用`Type& operator ++(int)`形式的声明。
 
 ### 友元
 
@@ -565,7 +580,7 @@ Time opearator +(double, const Time&) const;
 
 this指针无效，可以使用类名访问，也可以使用对象访问。
 
-## 类和动态内存分配
+## Chapter 8 类和动态内存分配
 
 > “开始时还是正常的，但逐渐变得异常，最终导致了灾难性的后果。”
 
@@ -593,13 +608,12 @@ this指针无效，可以使用类名访问，也可以使用对象访问。
 // 如果为force的类型定义了operator +()
 net = force1 + force2;
 force1 + force2 = net;
-
 ```
 
 ### 定位new运算符
 
 定位new运算符不能与常规delete运算符配合使用，
-删除对象时需要显式调用对象的析构函数。
+从而删除对象时需要显式调用对象的析构函数。
 
 ### 嵌套声明
 
@@ -618,7 +632,6 @@ Queue::Queue(int qs) : qsize(qs) {
     front = rear = NULL;
     items = 0;
 }
-
 ```
 
 成员初始化列表初始化的对象不仅仅限于常量；但常量和被声明为引用的类成员也必须使用成员初始化语法。
@@ -631,32 +644,31 @@ class Classy
     int mem1 = 10;
     const int mem2 = 20;
 }
-
 ```
 
-## Chapter 7 类继承
+## Chapter 9 类继承
 
 ### 派生
 
 派生类需要添加自己的构造函数。
 
-创建派生类对象之前，首先创建基类对象。在派生类的构造函数中，如果不调用基类的构造函数，程序使用基类默认构造函数。派生类构造函数中通过成员初始化列表将必要参数传递给基类构造函数。
+创建派生类对象之前，首先创建基类对象。创建的过程如同烙饼需要从里层开始。在派生类的构造函数中，如果不调用基类的构造函数，程序使用基类默认构造函数。派生类构造函数中通过成员初始化列表将必要参数传递给基类构造函数。
 
-析构对象的顺序与创建对象的顺序相反，先析构派生类对象，再析构基类对象。析构函数的调用手机是自动的。
+析构对象的顺序与创建对象的顺序相反，先析构派生类对象，再析构基类对象，如同吃烙饼从外层吃起。析构函数的调用是自动的。
 
 派生类对象可以使用基类的非私有方法。可以使用作用域解析运算符指定执行的方法。
 
-基类指针或引用可以不进行显式类型转换而指向/引用派生类对象。也就是说可以利用基类指针数组方便地管理基类和派生类。将派生类指针或引用转换为基类指针或引用称为**向上强制转换（upcasting）**，在共有继承关系中无需显式类型转换，相反的过程称为**向下强制转换**，需要显式类型转换。
+基类指针或引用可以不进行显式类型转换而指向或是引用派生类对象。也就是说可以利用基类指针数组方便地管理基类和派生类。将派生类指针或引用转换为基类指针或引用称为**向上强制转换（upcasting）**，在共有继承关系中无需显式类型转换，相反的过程称为**向下强制转换**，需要显式类型转换。
 
 ### 虚方法
 
-如果不使用virtual，程序根据引用类型或者指针类型选择方法；如果使用virtual，根据引用或指针指向的对象的具体类型来选择方法。
+如果不使用`virtual`，程序根据引用类型或者指针类型选择方法；如果使用`virtual`，根据引用或指针指向的对象的具体类型来选择方法。
 
-方法在基类中被声明为virtual，在派生类中自动生成为虚方法。
+方法在基类中被声明为`virtual`，在派生类中自动生成为虚方法。
 
-virtual只用于类声明的定义中，而没有用于方法定义中。
+`virtual`只用于类声明的定义中，而没有用于方法定义中。
 
-virtual方法和基类指针/引用的特性，使得创建一个基类指针数组来管理基类和派生类对象十分方便。
+`virtual`方法和基类指针/引用的特性，使得创建一个基类指针数组来管理基类和派生类对象十分方便。
 
 建议析构函数声明为虚函数：除非类不用于基类。如果析构函数不是虚函数，则只调用对应于指针类型的析构函数。如果析构函数是虚的，将调用对应类型的析构函数，并自动调用基类对象的析构函数。
 
@@ -664,9 +676,9 @@ virtual方法和基类指针/引用的特性，使得创建一个基类指针数
 
 1. **构造函数** 不能是虚函数，定义为虚函数没有任何意义。
 2. **析构函数** 工程上必须是虚函数。通常应该给基类提供一个虚析构函数，即使它不需要析构函数。
-3. **友元** 友元不是虚函数，因为友元不是成员函数。只有成员函数可以成为虚函数。
-4. **没有重新定义** 如果在派生类中没有重新定义虚函数，则使用该函数的基类版本。
-5. **重新定义将隐藏函数** 重新定义继承的方法不是重载，无论参数列表是否相同，该操作将隐藏所有同名的基类方法。经验方法：一、如果重新定义继承的方法，则应确保与原函数的类型相同；如果返回类型是基类引用或者指针，则可以修改为指向派生类的引用或指针，称为“返回类型协变”。此例外仅适用于返回值，不适用于参数。二、如果基类声明被重载了，则应该在派生类中重新定义所有基类版本。
+3. **友元不会是虚函数** 因为友元不是成员函数。只有成员函数可以成为虚函数。
+4. **如果没有重新定义** 如果在派生类中没有重新定义虚函数，则使用该函数的基类版本。
+5. **重新定义将隐藏同名的所有基类函数** 重新定义继承的方法不是重载，无论参数列表是否相同，该操作将隐藏所有同名的基类方法。经验方法：一、如果重新定义继承的方法，则应确保与原函数的类型相同；如果返回类型是基类引用或者指针，则可以修改为指向派生类的引用或指针，称为“返回类型协变”。此例外仅适用于返回值，不适用于参数。二、如果基类声明被重载了，则应该在派生类中重新定义所有基类版本。
 
 ### 静态联编和动态联编
 
@@ -679,14 +691,11 @@ virtual方法和基类指针/引用的特性，使得创建一个基类指针数
 纯虚函数：未实现的函数。
 
 ```cpp
-
 class BaseEllipse
 {
 public:
     virtual double Area() const = 0; // 纯虚函数定义
-    ...
 }
-
 ```
 
 当类的生命包含纯虚函数时，不能创建该类的对象。纯虚函数可以有定义，因为所有派生类的方法可以与基类一致，则可以在基类中统一定义。
@@ -703,23 +712,21 @@ public:
 - **保护继承** 基类的公有成员和私有成员成为派生类的保护成员，只能通过基类接口访问基类私有成员。只能在派生类中隐式向上转换。
 - **私有继承** 基类的公有成员和保护成员成为派生类中的私有成员，只能通过基类接口访问基类私有成员，不能隐式向上转换。
 
-## C++中的代码重用
+## Chapter 10 C++中的代码重用
 
 ### using重新定义访问权限
 
 使用保护继承和私有继承时，若要让基类的方法在派生类外可用，可以在派生类的公有部分添加声明：
 
 ```cpp
-
 class  MyClass : private BaseClass {
 public:
     using BaseClass::min;
     ...
 }
-
 ```
 
-## Chapter 8 多重继承
+## Chapter 11 多重继承
 
 注意需要使用public修饰符限定每一个基类。
 
@@ -730,10 +737,8 @@ public:
 使用类型转换来指定要使用的对象。
 
 ```cpp
-
 Worker * pw1 = (Waiter *) &ed; // the Worker in the Waiter
 Worker * pw2 = (Singer *) &ed; // the Worker in the Singer
-
 ```
 
 ### 虚基类
@@ -751,7 +756,6 @@ class SingerWaiter : public Singer, public Waiter {... };
 使用虚基类要求在必要时显式地调用公有基类的构造函数，自动信息传递不起作用。因为自动传递信息时从两条路径传递到基类。这样的语法对于非虚基类是非法的，但对于虚基类则必须这样做。
 
 ```cpp
-
 // 不合法的
 SingerWaiter(const Worker &wk, int p = 0, int v = Singer::other)
                 : Waiter(wk, p), Singer(wk, v) { };
@@ -759,7 +763,6 @@ SingerWaiter(const Worker &wk, int p = 0, int v = Singer::other)
 // 合法的
 SingerWaiter(const Worker &wk, int p = 0, int v = Singer::other)
                 : Worker(wk), Waiter(wk, p), Singer(wk, v) { };
-
 ```
 
 ### 有多个方法
@@ -767,9 +770,7 @@ SingerWaiter(const Worker &wk, int p = 0, int v = Singer::other)
 使用作用域解析操作符澄清名称引用。
 
 ```cpp
-
 newhire.Worker::show();
-
 ```
 
 ### 类模板
@@ -794,30 +795,28 @@ Stack<T>::function(int arg1) {  // 在类外需要使用完整的类型声明
 ```
 
 注意模板必须与特定的模板实例化请求一起使用，
-最通用的办法是将模板的信息放置在一个头文件中（定义与实现不要分离）。
+最通用的办法是将模板的信息放置在一个头文件`hpp`中（定义与实现不要分离）。
 
 在工程实践中也可以分离定义，前提是要求将使用到的模板显式实例化。
 
 #### 非类型参数
 
-```cpp
+非类型参数（或称表达式参数）可以是整型、枚举、引用或者指针。
 
+```cpp
 template <class T, int n>
 class Array {
 private:
     T ar[n];
 
     // ...
-}
+};
 
 template <class T, int n>
 T& Array<T,n>::function() {
     // ...
 }
-
 ```
-
-非类型参数（或称表达式参数）可以是整形、枚举、引用或者指针。
 
 ### 模板多功能性
 
@@ -839,9 +838,15 @@ T& Array<T,n>::function() {
 2. **显式实例化**
 3. **显式具体化**
 
-## 附录：输入输出工具
+## Chpater 12 异常处理
 
-**cin**;
+头文件 `<stdexcpet>`
+
+---
+
+## Chpater 13 输入输出工具
+
+### `cin`
 
 - `getline(buf, num)` 丢弃换行符
 - `get(buf, num)` 换行符留在输入队列中
@@ -849,82 +854,34 @@ T& Array<T,n>::function() {
 - `clear()`
 - `fail(), eof()` 检测到EOF后，cin的failbit和eofbit都置1；
 
-get()（不是getline()）读取空行后设置失效位(failbit)
+get()（不是getline()）读取空行后设置失效位(failbit)，需要使用`cin.clear()`恢复。
 
 get(), getline()输入行的字符比指定容量多时，将设置失效位
 
 ```cpp
-
 cin.get(name, ArSize).get();
-
 ```
 
-宽字符输出 **cout, wcout**
+### 宽字符输出 `cout`, `wcout`
 
 - `put()`
 - `setf(ios_base::fixed, ios_base::floatfield);`
 
-IO符号 **flags**
+### IO符号 `flags`
 
-- setioflags(ios_base::fixed|ios::showpoint)
-- setprecision(2)
+- `setioflags(ios_base::fixed|ios::showpoint)`
+- `setprecision(2)`
 
-文件IO **ofstream**
+### 文件IO `fstream`
 
 ```cpp
 ofstream fout = open(name);
 fout.close();
-
 ```
 
-IO格式更改与恢复
+### IO格式更改与恢复
 
 ```cpp
-
 fmtflags fmt = cout.flags();
 cout.flags(fmt);
-
 ```
-
-### 分离接口与实现
-
-```cpp
-
-// GradeBook.h
-#include <string>
-
-class GradeBook
-{
-public:
-    explicit GradeBook(std::string);
-    void setCourserName();
-    std::string getCourseName() const;
-    void displayMessage() const;
-private:
-    std::string courseName;
-};
-
-```
-
-```cpp
-
-// GradeBook.cpp
-#include <iostream>
-#include "GradeBook.h"
-
-GradeBook::GradeBook(string name)
-    : courseName(name)
-{
-    // ...
-}
-
-void GradeBook::setCourserName(string name) const
-{
-    // ...
-}
-
-```
-
-## Chpater 9 异常处理
-
-头文件 `<stdexcpet>`
