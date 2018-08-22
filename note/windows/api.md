@@ -1,4 +1,4 @@
-# Win32
+# Win32 API参考
 
 - [API List](https://docs.microsoft.com/zh-cn/windows/desktop/api/index)
 - [Playground](https://github.com/lightyears1998/quiet-space/tree/master/playground/w32)
@@ -21,6 +21,10 @@
 - 'p' = pointer
 - 'lp' = long pointer
 - 'lpsz' = long pointer to string that is zero-terminated / LPSTR
+
+此外还有
+
+- `fn` 函数
 
 ### HANDLE
 
