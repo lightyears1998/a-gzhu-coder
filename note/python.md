@@ -16,15 +16,24 @@ Python脚本文件`.py`通过Python解释器`python`边解释边运行。
 
 在Python中，数字类型是不可变的对象，因此数字类型没有自增和自减操作符。
 
-## Chapter 2 数据类型
+Python的表达式子可以省略分号；如果在一行中存在多个语句，则最后一个语句之前的分号是必须的。
 
-变量不需要声明类型。变量就是变量，没有所谓类型。变量“类型”指变量所指向的内存中的对象的类型。
+## Chapter 2 数据类型与变量
 
-基本类型
+变量不需要声明类型，标志符使用字母数字和下划线。
 
-- **整型**
-- **浮点型**
-- **字符串** 用`''`或`""`来声明，单引号与双引号作为定界符需要成对出现，两者无区别
+变量就是变量，没有所谓类型。变量“类型”指变量所指向的内存中的对象的类型。
+
+六种基本数据类型
+
+- *Number* 包括`int`, `float`, `bool`以及`complex`，内建大整数支持
+- *String* 使用成对出现的单引号或双引号创建
+- *Tuple* 使用小括号`()`创建
+- *List* 使用中括号`[]`创建
+- *Dictionary* 使用花括号`{}`配合冒号作为分隔符创建
+- *Set* 使用花括号`{}`或者`set()`创建
+
+前三种数据类型：*Number*，*String*，*Tuple*是不可变类型（immutable）；后三种：*List*，*Dictionary*，*Set*是可变类型（mutable）。
 
 可以采用多变量赋值语法
 
@@ -32,38 +41,80 @@ Python脚本文件`.py`通过Python解释器`python`边解释边运行。
 a, b, c = 2, 3, "5"
 ```
 
-## Chpater 3 运算符
+使用`type()`查看变量类型。
 
+变量定义之后可以删除定义，`del name_of_variable`。
+
+### None 无类型
+
+未定义返回类型的函数返回`None`
+
+`None`可被转换成布尔类型值的`False`
+
+### Number 数字
+
+- `True`, `False`在参与数字运算时分别转化为1和0
+- 转换 `int()`, `bin()`
+- 布尔表达式 `and(&&)`, `not(!)`, `or(||)` and的优先级高于or，与C++保持一致。
+- 四则运算
 - 浮点除法 `/` 整除 `//`
 - 取模 浮点取模 `%`
 - 乘方 `**`
-- 不存在自增/自减操作符：整数对象不可变
 
-- 交互式IO `input('提示')`
+### String 字符串
 
-### 字符串
+用`''`或`""`来声明，单引号与双引号作为定界符需要成对出现，两者无区别。
 
 - 不能与数字直接相加
-- 与整数的乘法会复制字符串
+- 与整数的乘法，如`str * 3`会复制字符串
 
-### 类型
+### Tuple 元组
 
-类型转换 `int()`
+元组与list行为类似，但是immutable对象。使用小括号而不是方括号。也可以不使用小括号，直接使用逗号分隔元素即可。
 
-变量无需声明类型，合法的变量名使用数字、字母和下划线，大小写敏感。
+```py
+# list
+list = ["one", "two"]
 
-删除定义 `del name_of_a_varible`
+# dictionary
+dictionary = {1:"one", 2:"two"}
 
-#### 布尔类型
+# tuple
+tuple = ("one", "two")
+tuple = "one", "two"
+```
 
-*True* *False*
+### List 列表
 
-整数与浮点数直接比较的浮点误差存在，但误差远小于1e-9。
+List使用方括号`[]`定义，下标从0开始。
 
-`and(&&)`, `not(!)`, `or(||)` 可用于连接布尔表达式，优先级最低；
-and的优先级高于or，与C++保持一致。
+```py
+['1', '2', '3', ]  # List中只有3个元素
+```
 
-## 控制语句
+List间加法乘法操作有效。
+
+- `in` 操作符判断元素是否在List内
+- `append()` `len()`
+- `insert()` 原位置元素后移
+- `index()`
+
+### Dictionary 字典
+
+```py
+ages = {"Dave": 24, "Mary":42, "John":58}
+
+print("Mary" in ages)      # True
+print("Will" not in ages)  # True
+
+ages.get("Dave")
+ages.get("Hurry")          # 返回None
+ages.get("Hurry", 34)      # 返回34
+```
+
+只有不变的（immutable）对象才能作为Dictionary的键，否则抛出KeyError。
+
+## Chapter 3 控制语句
 
 ### `if`
 
@@ -82,101 +133,36 @@ elif exp2:
     # Something
 else:
     # Something
-
 ```
 
-### while
+### `while`
 
 ```python
 i = 0
 while i <= 5:
     i = i + 1
-
 ```
 
 ### for
 
-foreach语法
+Python中没有C语言风格的`for`，注意到Python中的`for`实际上为`foreach`
 
 ```python
-
 for word in words
     # Something
 
 for i in range(5)
     # Something
-
 ```
 
-## 数据类型
-
-### List
-
-下标从0开始。
-
-List间加法乘法操作有效。
+## Chpater 4 函数
 
 ```python
-
-['1', '2', '3', ] # List中只有3个元素
-
-```
-
-- `in` 操作符判断元素是否在List内
-- `append()` `len()`
-- `insert()` 原位置元素后移
-- `index()`
-
-### None
-
-未定义返回类型的函数返回None
-
-None被转换成bool值的false
-
-### Dictionary
-
-```python
-ages = {"Dave": 24, "Mary":42, "John":58}
-
-print("Mary" in ages)      # True
-print("Will" not in ages)  # True
-
-ages.get("Dave")
-ages.get("Hurry")          # 返回None
-ages.get("Hurry", 34)      # 返回34
-
-```
-
-只有不变的（immutable）对象才能作为Dictionary的键，否则抛出KeyError。
-
-### Tuple
-
-元组与list行为类似，但是immutable对象。使用小括号而不是方括号。也可以不使用小括号，直接使用逗号分隔元素即可。
-
-```py
-
-# list
-list = ["one", "two"]
-
-# dictionary
-dictionary = {1:"one", 2:"two"}
-
-# tuple
-tuple = ("one", "two")
-tuple = "one", "two"
-
-```
-
-## 函数与工具函数
-
-```python
-
 def fun(arg1, arg2):
     # 函数体
-
 ```
 
-### Docstrings
+### Docstrings 函数注释
 
 ```python
 def shout(word):
@@ -189,25 +175,17 @@ def shout(word):
 shout("spam")
 ```
 
-### Modules
+### Modules 模块
 
 ```python
 import random
 from math import pi
 from math import sqrt as rt
-
 ```
 
-### range()
-
-- `range(n)` 生成[0, n)的列表
-- `range(i, j)` 生成[i, j)的列表
-- `range(i, j, k)` 生成[i, j)的列表，元素间隔k
-
-## 异常
+## Chapter 5 异常
 
 ```python
-
 try:
     # Something
 except:
@@ -221,17 +199,23 @@ raise NameError("Invilid Name!")
 
 assert exp # 断言失败即抛出异常
 assert exp, "额外说明"
-
 ```
 
 异常处理是按配对的。
 
-## 文件IO
+## Chapter 6 工具函数
 
-### open() close()
+### range()
+
+- `range(n)` 生成[0, n)的列表
+- `range(i, j)` 生成[i, j)的列表
+- `range(i, j, k)` 生成[i, j)的等差列表，公差为k
+
+## Chapter 7 文件IO
+
+### `open()` and `close()`
 
 ```python
-
 # write mode
 open("filename.txt", "w")
 
@@ -243,26 +227,21 @@ open("filename.txt")
 open("filename.txt", "wb")
 
 file.close()
-
 ```
 
 ### read()
 
 ```python
-
 file = open("filename.txt", "r")
 print(file.read(16)) # 按字节数量读取
 print(file.read())   # 读取剩余文本
 print(file.read())   # 输出空串
 file.close()
-
 ```
 
 ```python
-
 file = open("filename.txt", "r")
 print(file.readlines(16)) # 返回list，按行分割，元素包含换行符
-
 ```
 
 ### write()
@@ -278,19 +257,16 @@ print(file.readlines(16)) # 返回list，按行分割，元素包含换行符
 ```python
 
 try:
-    file = open("in.txt");
+    file = open("in.txt")
 finally:
-    file.close();
-
+    file.close()
 ```
 
 使用with... as...机制：
 
 ```python
-
 with open("in.txt") as file:
     printf(f.readlines())
-
 ```
 
 ## 链接
