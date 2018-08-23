@@ -1,23 +1,24 @@
 # Hyper Text Markup Language笔记
 
-html5允许空标签没有结束标签
+## 参考资料
 
-## 验证服务
-
-- https://validator.w3.org/
+- [语法验证](https://validator.w3.org/)
+- [Mozilla HTML参考](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 ### 资源
 
-- http://csszengarden.com/
+- [CSS禅意花园](http://csszengarden.com/)
 
 ## 标签
+
+html5允许空标签没有结束标签。
 
 - 锚 `<a href="..."> </a>`
 - 注释 `<!-- 注释 -->`
 - 标题“块级元素” `<h1>` ... `<h6>`
 - 段落 `<p>`
-- 折行 `<br />`
-- 水平线 `<hr />`
+- 折行 `<br>`
+- 水平线 `<hr>`
 
 块级元素`div`，内联显示元素`span`
 
@@ -44,9 +45,9 @@ code, kbd(keyboard document), samp(sample), tt(teletype text), var, pre
 
 ### 引用标签
 
-abbr,  acronym, address, bdo(bi-direction override), blockquote, q(quote), cite, dfn(define)
+abbr, acronym, address, bdo(bi-direction override), blockquote, q(quote), cite, dfn(define)
 
-`<p><abbr title="World Health Organization">WHO</abbr> 成立于 1948 年。</p> `
+`<p><abbr title="World Health Organization">WHO</abbr> 成立于 1948 年。</p>`
 
 ### 列表
 
@@ -69,8 +70,9 @@ header, nav, main(div), footer
 target: _blank（新页面打开） _top（跳出框架）
 name / id: label (href="#label")
 
-发送邮件：
-```
+发送邮件
+
+```html
 <a href="mailto:someone@microsoft.com?cc=someoneelse@microsoft.com&bcc=andsomeoneelse2@microsoft.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!">发送邮件！</a>
 ```
 
@@ -78,7 +80,7 @@ name / id: label (href="#label")
 
 图标
 
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+`<link rel="icon" href="favicon.ico" type="image/x-icon">`
 
 figure
 
@@ -95,7 +97,7 @@ figure
 
 ## 图像映射
 
-```
+```html
 <img
 src="/i/eg_planets.jpg"
 border="0" usemap="#planetmap"
@@ -159,8 +161,8 @@ tabindex, accesskey
 
 ```html
 <audio controls="controls">
-    <source src="...mp3" type="audio/mpeg"></source>
-    <source src="...ogg" type="audio/ogg"></source>
+    <source src="...mp3" type="audio/mpeg">
+    <source src="...ogg" type="audio/ogg">
 <audio>
 ```
 
@@ -170,11 +172,3 @@ tabindex, accesskey
     <source src="...ogv" type="audio/ogg">
 <audio>
 ```
-
-## 参考资料
-
-- [Mozilla HTML参考](https://developer.mozilla.org/en-US/docs/Web/HTML)
-
-## 源
-
-- 清华大学出版社 2017 《学习HTML5》 Felke-Morris / 潘玉琪

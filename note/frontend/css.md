@@ -113,7 +113,7 @@ margin, boarder, padding
 - background-attachment
 - background-clip 背景图像的绘制区域
 - background-origin 背景图像的位置
-- background-size 
+- background-size
 
 圆角和阴影
 
