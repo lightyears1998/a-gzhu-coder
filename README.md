@@ -18,7 +18,7 @@ It's fancy meetting you here! (ง •̀_•́)ง
 
 ## 想去做的事情
 
-- [X] 成为ACM校队的一员，参加ICPC竞赛
+- [X] 成为ACM校队的一员，[参加ICPC竞赛](https://blog.qfstudio.net/2018/08/a-journey-to-the-west/)
 - [X] 设置宿舍的路由器
 - [ ] 补全基础技能：英语、数学和物理
 - [ ] 学习工具语言：C++, Java, Python, PHP和C#
