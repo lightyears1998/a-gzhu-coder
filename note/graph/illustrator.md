@@ -1,11 +1,22 @@
 # Illustrator笔记
 
-fill artboard in window
+## Chapter 1 概念
 
-view / show bounding box
+- View
+- Bounding box
+- Object, Group, Artboard
 
-object / group
-double click ioslate group
+## Chapter 2 工具
+
+### UI工具栏
+
+- View
+  - Show bounding box
+  - Fill artboard in windows
+
+### 鼠标
+
+- 双击 隔离Group
 
 reshape tool 化直为曲
 
@@ -51,3 +62,21 @@ pencil tool 自带路径 有smooth选项
 alt直线
 
 curvature tool
+
+Join path ctrl + j
+
+Join Tool 可拓展，可截取地连接路径
+
+Arrange命令 重新排列图案
+
+Outline / GPU Preview
+
+Layers特性
+
+Artboard tool
+
+Share
+
+- Package功能
+- PDF
+- 其他图像格式
