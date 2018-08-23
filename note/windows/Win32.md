@@ -25,6 +25,8 @@
 此外还有
 
 - `fn` 函数
+- `wparam`, `lparam` word or long as parameter
+- `cb` count bytes
 
 ### HANDLE
 
@@ -42,12 +44,33 @@
 - `wingdi.h` 图形设备接口函数
 - `winuser.h` 用户接口函数，包括`MessageBox()`
 
-```cpp
+WinMain
 
+```cpp
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     MessageBox(NULL, TEXT("Message"), TEXT("Caption"), 0);
 }
+```
+
+如果无法生成，检查链接器的系统设定中的“子系统”项目。
+
+若出现未加载符号的提示，在调试选项中选择加载符号即可。
+
+注册窗口
+
+1. 填充`WNDCLASS`结构体
+2. 注册窗口 `RegisterClass()`
+3. 创建并显示窗口 `CreateWindow()`, `ShowWindow()`, `UpdateWindow()`
+4. 进入消息循环，发送特定消息与窗口过程
+
+```cpp
+
+```
+
+窗口过程函数
+
+```cpp
 
 ```
 
