@@ -23,6 +23,8 @@ PHP通过PHP解释器解释执行，通常是结合Apache或Nginx在Linux或Wind
 - 以美元符号开头
 - 标识符由字母数字或下划线组成，不能以数字开头
 
+变量在声明时不需要附加类型信息。
+
 ### 可变变量
 
 变量的变量名可以动态地设置和使用
@@ -51,7 +53,7 @@ echo $hello;    // 输出world
 
 工具方法
 
-- `definded()` 检查某常量是否存在
+- `definded(常量名字符串)` 检查某常量是否存在
 
 内置常量
 
@@ -80,7 +82,7 @@ echo $hello;    // 输出world
 $a = 1;
 $b = '1 test';
 echo $a == $b;  // 返回TRUE
-echo $a === $b;  // 返回FALSE
+echo $a === $b;  // 返回FALSE，不产生输出
 ```
 
 逻辑运算符
@@ -105,18 +107,18 @@ echo $a === $b;  // 返回FALSE
 
 工具函数
 
-- `gettype()`
+- `gettype()` 返回boolean, integer, double, string等字符串
 - `(boolean)`, `(bool)`, `(integer)`, `(int)`, `(float)`, `(double)`, `(string)`
-- `floatval()`, `intval()`, `floatval()`, `strval()`
+- `floatval()`, `intval()`, `floatval()`, `strval()` 注意`int()`等是未定义的方法
 
 变量类型转换
 
-- 自动转换 `(type)$var`
-- 强制转换 `settype($var, 'int')`
+- 自动转换 `(type)$var` 作用是临时的
+- 强制转换 `settype($var, 'int')` 作用是持久的
 
 ### 布尔型
 
-值取TRUE, FALSE，赋值时可不区分大小写
+值取`TRUE`, `FALSE`，赋值时可不区分大小写
 
 echo输出时，对于TRUE的变量输出1，对于FALSE变量输出空字符串。
 
@@ -149,12 +151,21 @@ $num = 0x34;  // 十六进制
 
 用双引号定义的字符串，其中的变量会被解析，并且转义特殊字符。
 
+```php
+$hel = 'hel';
+echo "$hel lo"  // 可解析
+echo "$hello"   // 不可解析，提示未定义变量
+```
+
 heredoc
 
 ```php
 <<<EOT
 多行字符串
 EOT
+
+// EOT无引号包围，如同使用单引号包围
+// 注意最后的EOT标记必须单独成一行，即没有缩进，其后也没有其他字符
 ```
 
 heredoc会对其中变量解析并且转义特殊字符
@@ -193,27 +204,34 @@ echo $str;  // 输出test并附加换行符
 
 mbstring模块提供字符串函数的`mb_`版本
 
-长度
+#### 长度
 
 - `strlen(字符串)` 返回字符串占用的*字节*数
 - `mb_strlen(字符串, 'UTF8')`  返回字符串的长度，输出8
 
-检索，找不到返回false，否则返回下标
+#### 检索
 
-- 区分大小写 `strpos()`, `strrpos()`
+找不到返回false，否则返回下标
+
+- 区分大小写检索 `strpos()`, `strrpos()` 注意不是C风格的`strchr()`或`strstr()`
 - insensitive 不区分大小写 `stripos()`, `strripos()`
 
-截取
+#### 截取
 
-`substr(字符串, 起始位置 [, 截取长度])`
+`substr(字符串string, 起始位置start [, 截取长度length])`
 
-- 负数：从-1开始自字符串最后一个字符开始倒数
-- `substr('abcdef', -1)` 返回f
-- `substr('abcdef', 1, -2)` 返回bcd，注意不是bcdf
+- start若为负数，则从字符串结尾位置向前倒数第Start个字符开始
+- string长度小于start则返回`FALSE`
+- length若为负数，则string结尾处的length个字符会被省略；若start不在剩余的字符串中则返回`FALSE`
 
-替换
+示例
 
-`str_replace(搜索字符串needle, 替换字符串replace, 被寻找字符串haystack [, 计数count])`
+- `substr('abcdef', -1)` 返回`f`
+- `substr('abcdef', 1, -2)` 返回`bcd`，注意不是`bcdf`
+
+#### 替换
+
+`str_replace(搜索字符串needle, 替换字符串replace, 被寻找字符串haystack [, 计数count])` Replace needle with replace in heystack.
 
 - `str_replace(',', '', '1,000,000')` 删除逗号
 - `str_replace('red', 'black', '<font style="red">')` 替换红色为黑色
@@ -223,38 +241,38 @@ mbstring模块提供字符串函数的`mb_`版本
 - 替换长度为0：相当于插入
 - 负数：倒数
 
-清理空格或其他字符
+#### 清理空格或其他字符
 
-`trim(目标字符串, 需要删除的字符串)`, `ltrim()`, `rtrim()`
+`trim(目标字符串, 以字符串形式提供需要删除的字符)`, `ltrim()`, `rtrim()`
 
-- `trim('abc12a3cd', 'a..z')` 注意是两个点，输出12a3
+- `trim('abc12a3cd', 'a..z')` 注意是两个点，输出`12a3`
 
-切分和组合字符串
+#### 切分和组合字符串
 
-- `explode(分隔符, 字符串)` 字符串打散为数组
-- `implode(数组)`, `implode(分隔符, 数组)` 数组聚合成字符串
+- `explode(分隔符, 字符串)` 字符串打散为数组，注意参数的顺序（这样设置可能是想强调两个参数都需要吧）
+- `implode(数组)`, `implode(分隔符, 数组)` 数组聚合成字符串，注意参数的顺序使得与`explode()`对应，注意可以不设置分割符
 
-转义与反转义
+#### 转义与反转义
 
 - `addslashes()`, `addcslashes()`, `stripslashes()`, `stripcslashes()`
-- `quotemeta()` 将.\\+*?\[^]($)前加反斜线转义
+- `quotemeta()` 将`.\+*?[^]($)`前加反斜线转义
 
-进制转换
+#### 进制转换
 
 - `bin2hex()`, `hex2bin()`
 
-分割
+#### 分割
 
 - `chunk_split()` 指定字串长度打断字符
 - `wordwrap()` 含有避免单词被打断的选项
 - `str_split()` 分割字符串，不需要指定分割符的`explode()`
 - `split()` 支持正则表达式的字符串分割
 
-哈希
+#### 哈希
 
 - `md5()`, `crc32()`, `sha1()`, `hash()`
 
-处理csv
+#### 处理csv
 
 - `str_getcsv()` 解析csv为一个数组
 
