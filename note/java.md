@@ -22,8 +22,148 @@ boolean(Boolean), char(Character), byte(Byte), short(Short), int(Integer), long(
 
 BigInteger, BigDecimal
 
-## Chapter 3 类
+### 包装器方法
+
+- Integer等 `toString()`, `toBinaryString()`
+- Character `isLowerCase()`
+
+### 字面值
+
+指数计数法与C++形式相同
+
+### 赋值
+
+对基本类型的赋值是按值传递，对对象“赋值”时传递的是引用。
+
+### 数组
+
+```java
+int[] arr = {... };  // 推荐，花括号初始化等价于使用new
+int arr[] = {... };  // 符合C/C++习惯
+```
+
+不允许指定数组的大小，因为我们只持有引用。
+
+```java
+int[] arr = new int[元素个数];
+```
+
+使用花括号语法初始化对象数组
+
+```java
+Integer[] arr = {
+    new Integer(1),
+    new Integer(2),
+    3  // 自动装箱
+};
+```
+
+每种类型的数组的固有对象是`length`。
+
+### 枚举Enum
+
+@TODO To be continued
+
+## Chapter 3 流程控制
+
+Java中`if-else`, `while`, `do-while`, `for`, `switch`形式上与C++保持一致。
+
+注意Java中的逗号操作符只在`for`中使用。
+
+Java中的`foreach`与C++保持一致，形式上是`for (char c : string)`
+
+### “goto”与标签
+
+Java中没有`goto`，但把`break`和`continue`结合标签使用
+
+```java
+label1:
+outer-iteration {
+    // ...
+    inner-iteration {
+        // ...
+        break;            // 跳出内层循环
+        continue;         // 内层循环重新开始
+        continue label1;  // 从外层循环重新开始
+        break lable1;     // 结束外层循环
+    }
+}
+```
+
+合理利用可以减少flag的传递。
+
+## Chapter 4 类
 
 ### 初始化
 
-Java为类的基本数据成员提供默认的初始化。
+Java为类的基本数据成员提供默认的初始化，Java保证必要的初始化必须进行。
+
+- **指定初始化** 在声明类成员处赋值
+
+对静态初始化的组织
+
+```java
+static int i;
+static {
+    i = 12;
+}
+```
+
+### 构造器
+
+基本内容与C++保持一致。
+
+### 清理：终结处理和垃圾回收
+
+Java中的`finalize()`方法会在对象被回收之前调用。
+
+仅仅使用`finalize()`应对类似C语言的内存分配的清理工作，或者进行对象回收的“终结条件”验证。
+
+使用`System.gc()`执行垃圾回收。
+
+#### 垃圾清理概要
+
+- 引用计数与堆栈或静态储存区追溯
+- “停止-赋值”、“标记-清理”
+- JIT, lazy evalution
+
+### 方法
+
+#### 可变参数列表
+
+可变参数列表可以接受0个参数。
+
+数组形式
+
+```java
+void func(Object[] objs) {
+    for (Object obj : objs) {
+        // ...
+    }
+}
+```
+
+省略号语法
+
+```java
+void func(Object... objs) {
+    for (Object obj : objs) {
+        // ...
+    }
+}
+```
+
+由于可变参数列表可以接受0个参数，Java中存在自动装箱机制，因此重载方法接受基本数据类型时可能遇到因为0个参数而无法判定调用哪个重载方法的问题。
+
+## Chapter 5 常用类
+
+### java.util.Arrays
+
+- `Arrays.toString()` 打印数组
+
+### java.util.Random
+
+```java
+Random rand = new Random(47);
+rand.nextInt(100);  // [0, 100) 左闭右开
+```
