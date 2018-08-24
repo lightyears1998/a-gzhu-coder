@@ -44,10 +44,13 @@
 
 ## Chapter 4 绘图
 
+设置Graphics Toolkit
+
 `graphics_toolkit("gnuplot")` 备选："qt"及"gnuplot"
 
-`title('标题')`
-`xlabel()` `ylabel()`
+- `title('标题')`
+- `xlabel()` `ylabel()`
+- `plot(x, y)`
 
 ## Chapter 5 逻辑
 
@@ -115,4 +118,4 @@ plot([25:1:55], fun(P, [25:1:55]), 'LineWidth', 5);
 
 ### Playground示例
 
-- 大一下学期地物理实验 <https://github.com/lightyears1998/a-gzhu-coder/tree/master/period/freshman/%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C>
+- 大一下学期的物理实验 <https://github.com/lightyears1998/a-gzhu-coder/tree/master/period/freshman/%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C>

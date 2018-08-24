@@ -81,7 +81,7 @@ a;  // 1
 
 ## Chapter 3 数据类型
 
-JavaScript中定义了7中数据类型
+JavaScript中定义了7种数据类型
 
 - number 数值
 - string 字符串
