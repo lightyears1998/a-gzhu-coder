@@ -68,6 +68,20 @@ a, b, c = 2, 3, "5"
 - 不能与数字直接相加
 - 与整数的乘法，如`str * 3`会复制字符串
 
+#### `format()`
+
+```py
+nums = [4, 5, 6]
+msg = "Numbers: {0}, {1}, {2}".format(nums[0], nums[1], nums[2])
+
+msg = "({x}, {y})".format(x=5, y=2)
+```
+
+#### 字符串工具函数
+
+- `分隔符.join([字符串列表])` 形如PHP中的`implode()`，利用分割符合并字符串
+- `startswith()`, `endswith()`
+
 ### Tuple 元组
 
 元组与list行为类似，但是immutable对象。使用小括号而不是方括号。也可以不使用小括号，直接使用逗号分隔元素即可。
@@ -94,16 +108,35 @@ List使用方括号`[]`定义，下标从0开始。
 
 List间加法乘法操作有效。
 
-工具函数
+#### 列表工具函数
 
 - `in` 操作符判断元素是否在List内
 - `len()` 返回List的长度
 
-方法
+#### 方法
 
 - `append()`
 - `insert()` 原位置元素后移
 - `index()` 返回值的第一个索引位置，不存在时抛出`ValueError`
+
+#### Slicing 切片
+
+- `[bgn:end:step]` 以步长step包含元素[bgn, end)，三个参数都不是必要的
+- 注意bgn可以大于end（所以上面那个区间的写法是错的😅），生成的方向总是从bgn到end，且不包含end
+- 如果索引index为负数，它是指从后往前数第index个字符；`[2:-2]`生成[2, 倒数第二个字符)
+- `[::-1]` 反转数组，如果步长为负数，那么List会反向生成
+- Tuple及字符串也有类似方法
+
+#### Comprehensions 列表解析器
+
+从数学的集合语法（set-builder notation）中脱胎的列表解析器
+
+```py
+cubes = [i**3 for i in range(5)]                     # [0, 1, 8, 27, 64]
+evens = [i**2 for i in range(10) if i**2 % 2 == 0 ]  # [0, 4, 16, 36, 64]
+```
+
+滥用列表解析器可能产生MemoryError，可使用generator缓解。
 
 ### Dictionary 字典
 

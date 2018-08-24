@@ -222,7 +222,7 @@ mbstring模块提供字符串函数的`mb_`版本
 
 - start若为负数，则从字符串结尾位置向前倒数第Start个字符开始
 - string长度小于start则返回`FALSE`
-- length若为负数，则string结尾处的length个字符会被省略；若start不在剩余的字符串中则返回`FALSE`
+- length若为负数，则string结尾处的length个字符会被省略（与Python中Slicing的右开区间保持一致）；若start不在剩余的字符串中则返回`FALSE`
 
 示例
 
@@ -249,8 +249,8 @@ mbstring模块提供字符串函数的`mb_`版本
 
 #### 切分和组合字符串
 
-- `explode(分隔符, 字符串)` 字符串打散为数组，注意参数的顺序（这样设置可能是想强调两个参数都需要吧）
-- `implode(数组)`, `implode(分隔符, 数组)` 数组聚合成字符串，注意参数的顺序使得与`explode()`对应，注意可以不设置分割符
+- `explode(分隔符glue, 字符串str)` 字符串打散为数组，注意参数的顺序（这样设置可能是想强调两个参数都需要吧）
+- `implode(数组)`, `implode(分隔符glue, 数组arr)` 数组聚合成字符串，注意参数的顺序使得与`explode()`对应，注意可以不设置分割符
 
 #### 转义与反转义
 
