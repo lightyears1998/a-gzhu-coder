@@ -1,3 +1,5 @@
+# Resource资源管理笔记
+
 ## 资源限定符
 
 务必指定默认的资源限定符（特定密度的资源除外）
@@ -87,7 +89,7 @@ dp单位基于MDPI，一个dp即一个MDPI屏幕上的一个像素
 ```xml
 <resources>
     <item name="tag_view_holder" type="id" />
-</resources> 
+</resources>
 ```
 
 ## 菜单

@@ -1,12 +1,12 @@
-## 常用组件
+# Components常用组件笔记
 
-### AssetManager
+## AssetManager
 
 路径不需要以"/"开头
 
-### Toast
+## Toast
 
-`Toast.makeText(context, "hint", Toast.LENGTH_LONG).show()` 
+`Toast.makeText(context, "hint", Toast.LENGTH_LONG).show()`
 
 自定义Toast
 
@@ -19,11 +19,11 @@ toast.setView(layout);
 toast.show();
 ```
 
-### Notification
+## Notification
 
 状态栏通知
 
-#### NotificationManager and NotificationChannel
+### NotificationManager and NotificationChannel
 
 创建通知之前需要设置NotificationManager和Channel
 
@@ -33,7 +33,7 @@ manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 manager.createNotificationChannel(channel);
 ```
 
-#### 普通通知
+### 普通通知
 
 ```java
 NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId);
@@ -51,7 +51,7 @@ builder.setContentIntent(pendingIntent);
 manager.notify(1, builder.build());
 ```
 
-#### 进度条通知
+### 进度条通知
 
 ```java
 new Thread() {
@@ -77,7 +77,7 @@ new Thread() {
 }.start();
 ```
 
-#### 大视图通知
+### 大视图通知
 
 1. 设置builder
 2. 设置style
@@ -114,7 +114,7 @@ switch ((int)Math.floor(Math.random()*3)) {
 manager.notify(4, builder.build());
 ```
 
-#### 自定义通知
+### 自定义通知
 
 参考RemoteView以及`setContent()`
 
@@ -126,7 +126,7 @@ manager.notify(4, builder.build());
 
 通知区域的高度是有限的，不能无限占用
 
-### Dialog
+## Dialog
 
 对话框
 
@@ -136,7 +136,7 @@ manager.notify(4, builder.build());
 4. 使用builder生成Dialog对象
 5. 调用builder的show方法显示对话框
 
-#### AlertDialog
+### AlertDialog
 
 ```java
 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -155,9 +155,9 @@ alertDialog.show();
 
 ```
 
-#### ProgressDialog
+### ProgressDialog
 
-#### DatePickerDialog
+### DatePickerDialog
 
 1. 创建DatePickerDialog.OnDateSetListener
 2. 创建DatePickerDialog
@@ -180,9 +180,9 @@ DatePickerDialog dialog = new DatePickerDialog(this, onDateSetListener, 2018, 8,
 dialog.show();
 ```
 
-#### TimePickerDialog
+### TimePickerDialog
 
-#### 自定义Dialog
+### 自定义Dialog
 
 1. `setView()`
 2. `inflate()`
@@ -207,25 +207,25 @@ builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 builder.show();
 ```
 
-#### Dialog生命周期管理
+### Dialog生命周期管理
 
 为Dialog对象分配一个唯一id，当使用`showDialog(int id)`显示对话框时，Activity检查持有该id的Dialog对象是否存在，如果存在则直接显示
 
 - 重写`onCreateDialog(int id)`
 - 可以操作`onPrepareDialog(int id, Dialog dialog)`
 
-### PopupWindow
+## PopupWindow
 
 IO blocked
 
-### Menu
+## Menu
 
 - OptionMenu
 - ContextMenu
 - SubMenu
 - PopupMenu
 
-### TextView
+## TextView
 
 属性
 
@@ -233,14 +233,14 @@ IO blocked
 
 文本属性
 
-- text 
+- text
 - textColor
 - textStyle
 - textSize 以sp为单位
 - background
 
-
 autoLink
+
 - all, none
 - phone, web, email, map
 
@@ -253,7 +253,7 @@ autoLink
 
 边框 自定义Shape左为Background
 
-http://www.runoob.com/w3cnote/android-tutorial-edittext.html
+<http://www.runoob.com/w3cnote/android-tutorial-edittext.html>
 
 drawableXxx
 
@@ -263,7 +263,7 @@ autolink
 
 部分可点击TextView：SpannableString
 
-### EditText
+## EditText
 
 属性
 
@@ -273,11 +273,11 @@ autolink
 - inputType
 - singleLine
 
-支持HTML标签 <b>, <i>, <u>
+支持HTML标签 `<b>`, `<i>`, `<u>`
 
 `getText().toString()`
 
-### Button
+## Button
 
 ```java
 class MyActivity extends AppCompactActivity
@@ -300,18 +300,18 @@ class MyActivity extends AppCompactActivity
 
 也可以在xml中定义点击处理事件
 
-### ImageButton
+## ImageButton
 
 通过src属性链接到文件
 
-### ImageView
+## ImageView
 
 属性
 
 - src 内容，不会自动拉伸
 - background 背景，根据View宽度自动拉伸
 
-### RadioButton & CheckBox
+## RadioButton & CheckBox
 
 RadioGroup `getChildCount()` `getChildAt()`
 
@@ -324,17 +324,17 @@ RadioButton / CheckBox `isChecked()`
 // 注意方法签名中的checkedId是R类分配的id
 
 public void onCheckedChanged(RadioGroup group, int checkedId) {
-	switch (checkedId) {
-		case R.id.radioButton:
-			textView.setText("One");
-			break;
-		case R.id.radioButton2:
-			textView.setText("Two");
-			break;
-		case R.id.radioButton3:
-			textView.setText("Three");
-			break;
-	}
+    switch (checkedId) {
+        case R.id.radioButton:
+            textView.setText("One");
+            break;
+        case R.id.radioButton2:
+            textView.setText("Two");
+            break;
+        case R.id.radioButton3:
+            textView.setText("Three");
+            break;
+    }
 }
 ```
 
@@ -343,7 +343,7 @@ public void onCheckedChanged(RadioGroup group, int checkedId) {
 
 ```
 
-### ToggleButton
+## ToggleButton
 
 属性
 
@@ -352,11 +352,11 @@ public void onCheckedChanged(RadioGroup group, int checkedId) {
 
 `check()`是否被选中
 
-### Switch
+## Switch
 
 开关
 
-### ProgressBar
+## ProgressBar
 
 ```java
 getMax();
@@ -367,38 +367,39 @@ isIndeterminate();  // 是否处于不确定模式下
 setIndeterminate(boolean bool)  // 设置不确定模式
 ```
 
-### SeekBar
+## SeekBar
 
 拖动条
 
-### RatingBar
+## RatingBar
 
 星级评分条
 
-### ScrollView
+## ScrollView
 
 `fullScroll()`
 
-### Date and Time
+## Date and Time
 
 TextClock, AnalogClock, Chronometer, DatePicker, TimePicker, CalendarView
 
-#### DatePicker
+### DatePicker
 
 属性
+
 - startYear, endYear 均是包含区间
 
 月份设置 0~11
 
 `datePicker.init(year, month, day, listener)`
 
-#### TimePicker
+### TimePicker
 
 `setIs24HourView()`
 
 `OnTimeChangedListener`
 
-### AutoCompleteTextView
+## AutoCompleteTextView
 
 自动完成文本域，提示用户自动完成的强大功能
 
@@ -406,21 +407,21 @@ TextClock, AnalogClock, Chronometer, DatePicker, TimePicker, CalendarView
 
 ```java
 private ArrayAdapter<String> buildAdapter() {
-	String data[] = {
-			"Beijing", "Shanghai", "Guangzhou", "China", "Tianjin"
-	};
-	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, data);
-	return adater;
+    String data[] = {
+            "Beijing", "Shanghai", "Guangzhou", "China", "Tianjin"
+    };
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, data);
+    return adater;
 }
 
 AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
 autoCompleteTextView.setAdapter(buildAdapter());
 ```
 
-### ExpandableListView
+## ExpandableListView
 
 可折叠列表
 
-### ViewFlipper
+## ViewFlipper
 
 翻转视图 用于制作用户第一次登陆的引导页面等

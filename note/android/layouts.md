@@ -1,3 +1,5 @@
+# Layouts笔记
+
 ## 常用布局
 
 ### LinearLayout
@@ -16,7 +18,7 @@ match_parent == fill_parent
 子元素的对齐方式
 
 - *orientaion* horizontal(default), vertical
-- *gravity* 
+- *gravity*
 
 layout_width与layout_weight组合
 
@@ -40,7 +42,7 @@ LinearLayout不能在同一水平线上布置一左一右的两个控件
 - layout_margin（外边距）
 - layout_padding（内填充）
 
-*梅花布局*
+另外，*梅花布局*
 
 ### TableLayout
 
@@ -93,6 +95,7 @@ LinearLayout不能在同一水平线上布置一左一右的两个控件
 自定义Toobar
 
 `onCreate()`
+
 ```java
 Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 setSupportActionBar(toolbar);
@@ -101,6 +104,7 @@ setSupportActionBar(toolbar);
 渲染菜单
 
 `onCreateOptionMenu(Menu menu)`
+
 ```java
 public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.main, menu);

@@ -1,4 +1,4 @@
-# Activity
+# Activity笔记
 
 ![Activity生命周期](/camo/note/android_activity.png)
 
@@ -43,8 +43,8 @@ int iValue = intent.getIntExtra("iKey");
 
 ### Category属性
 
-- CATEGORY_HOME 
-- CATEGORY_LAUNCHER 
+- CATEGORY_HOME
+- CATEGORY_LAUNCHER
 - CATEGORY_GADGET 可以作为其他Activity的一部分插入
 
 ### Data属性

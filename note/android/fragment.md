@@ -1,12 +1,14 @@
+# Fragment笔记
+
 ## 生命周期
 
 - `onAttach(Activity)` 与一个Activity相关联，`getActivity()`
 - `onCreate(Bundle)`
 - `onCreateView(Layoutinflater, ViewGroup, Bundle)` 返回与Fragment相关的View
-- `onActivityCreated(Bundle)` 
+- `onActivityCreated(Bundle)`
 - `onViewStateResourced(Bundle)` Fragment其View层次的所有保存状态都已恢复时触发
 - `onStart()` 触发同步Activity
-- `onResume()` 触发同步Activity 
+- `onResume()` 触发同步Activity
 - `onPause()` 触发同步
 - `onStop()` 触发同步
 - `onDestroyView()` 触发同步
@@ -29,7 +31,7 @@ public class TextViewFragment extends Fragment {
         Budle args = new Bundle();
         args.putString(KEY_TEXT, text);
         f.setArguments(args);
-        
+
         return f;
     }
 
@@ -121,7 +123,7 @@ public class SampleDialogFragment extends DialogFragment {
         }
     }
 
-    @Override 
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;

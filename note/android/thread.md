@@ -1,3 +1,5 @@
+# Thread线程笔记
+
 UI线程模型（单一线程模型） 主线程负责所有用户界面的显示以及用户操作的响应事件，是应用程序从Android的UI工具包（Android.widget和Android.view）中所有组件的交互线程。不能在主线程之外访问UI工具包。因此主线程又称为UI线程。如果UI线程被阻塞了超过约5秒，应用程序就会被判定为“应用程序没有响应”ANR。
 
 1. 不能阻塞主线程
@@ -30,13 +32,13 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-# 解决方案
+## 解决方案
 
 1. 工作线程尝试访问UI线程，并委托UI线程更新UI
 2. 工作线程与UI线程之间通信，让工作线程发送消息给UI线程，让UI线程根据消息更新UI
 3. 使用AsyncTask
 
-## 方案1：从工作线程访问UI线程
+### 方案1：从工作线程访问UI线程
 
 1. `Activity.runOnUiThread(Runnable)`
 2. `View.post(Runnable)`
@@ -68,9 +70,9 @@ new Thread() {
 }.start();
 ```
 
-## 方案3：使用AsyncTask
+### 方案3：使用AsyncTask
 
-`AsyncTask<T param, T progress, T result>` 
+`AsyncTask<T param, T progress, T result>`
 
 - param 发送给异步任务所需的参数类型
 - progress 后台运算过程中进度的参数类型
@@ -87,7 +89,7 @@ new Thread() {
 
 上述4步骤中的方法不能手动调用，故AsyncTask实例必须在UI线程中创建，`execute()`方法必须在UI线程中调用。
 
-### 示例：下载图片并展示进度
+#### 示例：下载图片并展示进度
 
 ```java
 @Override
@@ -146,7 +148,7 @@ public class MyAsyncTask extends AsyncTask<String, Integer, byte[]> {
 }
 ```
 
-### 示例：取消异步任务
+#### 示例：取消异步任务
 
 调用`cancel(boolean)`来取消异步任务：调用此方法后`isCanceled()`返回true，并且异步任务结束后运行`onCancel(Object)`而不是`onPostExecute()`
 

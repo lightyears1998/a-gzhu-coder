@@ -297,6 +297,7 @@ $food[] = "瓜子";  // 设置键名为3
 - 查询数组元素 `in_array()`
 - 返回键名/键值数组 `array_keys()`, `array_values()`
 - 删除数组中的元素 `unset($array[key])`
+- 统计数组中的值出现的次数 `array_count_values($array)`
 
 ### 对象
 
@@ -370,6 +371,17 @@ function foo($arg1, $arg2, $arg3, ...)
 function foo(&$var){
     // 通过引用传递参数
 }
+```
+
+缺省参数只能位于函数参数表末端
+
+```php
+<?php
+function sum($c=5, $b=3, $a) {
+    echo$a."+ ".$b." + ".$c." = ".($a+$b+$c);
+}
+sum(1);  // raise ArgumentCountError
+?>
 ```
 
 ```php

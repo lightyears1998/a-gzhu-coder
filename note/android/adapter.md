@@ -1,10 +1,12 @@
-# Adapter
+# Adapter笔记
 
 适配器，适配器控件与数据之间的桥梁
 
 MVC：Model（数据源）， View（视图）， Control（适配器）
 
-## ArrayAdapter
+## 常见Adapter
+
+### ArrayAdapter
 
 处理只含有文字信息的情况，使用数组或`List<String>`形式的数据源
 
@@ -52,7 +54,7 @@ ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.arr
 
 ```
 
-## SimpleAdapter
+### SimpleAdapter
 
 列表项较为复杂，或列表项含有不同类型的控件的情况，使用`List<Map>`形式的数据源
 
@@ -79,7 +81,7 @@ ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.arr
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        
+
         <!-- 标题 -->
         <TextView
             android:id="@+id/caption"
@@ -141,11 +143,11 @@ public class SettingsActivity extends AppCompatActivity
 
 ```
 
-## SimpleCursorAdapter
+### SimpleCursorAdapter
 
 结合SQLite简化流程，使用Cursor作为数据源
 
-## 自定义Adapter：继承BaseAdapter
+### 自定义Adapter：继承BaseAdapter
 
 ```java
 
@@ -174,21 +176,21 @@ public class AnimalAdapter extends BaseAdapter {
 }
 ```
 
-# 与适配器关联的View
+## 与适配器关联的View
 
-## Spinner
+### Spinner
 
 加载数据
 
 1. 在xml文件中预先定义
 2. 与ArrayAdapter关联
 
-### 在xml文件中定义
+#### 在xml文件中定义
 
 1. 在`res/values`中定义xml文件，结构`resourse -> string-array -> item`
 2. 通过设定`entries`属性为`@array/spinner_item`来引用
 
-### 示例：绑定ArrayAdapter
+#### 示例：绑定ArrayAdapter
 
 设置适配器
 
@@ -207,6 +209,7 @@ betaSpinner.setAdapter(betaAdapter);
 ```
 
 设置监听器
+
 ```java
 alphaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
     @Override
@@ -226,7 +229,7 @@ alphaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() 
 });
 ```
 
-## ListView
+### ListView
 
 数据更新 `NotifyDataSetChanged()`
 
@@ -299,7 +302,7 @@ public class MyAdapter extends BaseAdapter {
 }
 ```
 
-## GridView 
+### GridView
 
 可以向两个方向滚动的控件，需要绑定BaseAdapter
 
@@ -343,8 +346,3 @@ static class ViewHolder {
     ImageView imageView;
 }
 ```
-
-# 参考
-
-1. http://www.imooc.com/learn/372
-2. http://www.runoob.com/w3cnote/android-tutorial-customer-baseadapter.html

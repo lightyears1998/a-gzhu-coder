@@ -1,17 +1,19 @@
-# Assets
+# Files文件IO笔记
+
+## Assets
 
 AssetsManager `getAssets()`
 
 - `list()`
 - `oepn()`
 
-# SharedPreferences
+## SharedPreferences
 
 `data/data/package_name/shared_prefs`
 
 储存键值对，不支持自定义类型的储存；实质是封装了xml储存
 
-## 基本使用
+### 基本使用
 
 1. 获取SharedPreferences对象，使用`get`系列方法
 
@@ -23,11 +25,11 @@ AssetsManager `getAssets()`
 3. 使用`put`系列方法
 4. `commit()`
 
-## 首选项功能
+### 首选项功能
 
 封装了方便的首选项功能
 
-# 内部储存
+## 内部储存
 
 `data/data/package_name/files/`
 
@@ -35,7 +37,7 @@ AssetsManager `getAssets()`
 
 空间有限且资源宝贵
 
-## 读写
+### 读写
 
 FileOutputStream和FileInputStream对象 `openFileInput(String filename)`, `openFileOutput(String filename, int mode)`
 
@@ -45,19 +47,19 @@ FileOutputStream和FileInputStream对象 `openFileInput(String filename)`, `open
 - `deleteFiles()` 删除文件
 - `fileList()` 返回当前应用存放的所有私有文件名称
 
-# 外部储存
+## 外部储存
 
 全局可用的储存空间，通常是SD Card
 
 需要申请权限
 
-## 检查外部储存挂载
+### 检查外部储存挂载
 
 `Environment.getExternalStorageState()`
 
 `Environment.MEDIA_MOUNTED`
 
-## 获取路径
+### 获取路径
 
 主要有两种路径
 
@@ -66,11 +68,11 @@ FileOutputStream和FileInputStream对象 `openFileInput(String filename)`, `open
 
 `Environment.getExternalStorageDirectory().getAbsolutePath()`
 
-## 获取空间大小
+### 获取空间大小
 
 通过文件系统统计类`StatFs`获取
 
-## 目录结构
+### 目录结构
 
 公有目录`Environment.getExternalStoragePublicDirectory(String type)`
 
@@ -87,13 +89,13 @@ FileOutputStream和FileInputStream对象 `openFileInput(String filename)`, `open
 
 可以使用自定义目录
 
-## 访问私有目录文件
+### 访问私有目录文件
 
 `getExternalFilesDir()`
 
 只要知道路径，就可以通过常规的IO流读写文件
 
-# SQLite
+## SQLite
 
 `data/data/package_name/databases/`
 
@@ -101,7 +103,7 @@ SQLite通过文件保存数据，文件名即数据库名
 
 SQLite支持无类型数据
 
-## 操作步骤
+### 操作步骤
 
 1. 创建SQLiteDatabase对象 `openDatabase(path, factory, flags)` factory为null则使用默认的工厂
 2. 执行语句
@@ -117,15 +119,15 @@ SQLite支持无类型数据
 - `getType()` 返回字段的数据类型
 - `close()`
 
-### SimpleCursorAdapter
+#### SimpleCursorAdapter
 
 将Cursor中的数据与控件进行简易匹配的适配器，继承于CursorAdapter
 
-### 事务
+#### 事务
 
 - `inTransaction()`, `setTransactionSuccessful()`
 
-## 数据库的创建和更新：SQLiteOpenHelper
+### 数据库的创建和更新：SQLiteOpenHelper
 
 - `onCreate()`, `onUpgrade()` 版本
 - `getReadableDatabase()`, `getWriteableDatabase()` 创建数据库对象

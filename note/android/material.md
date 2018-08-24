@@ -1,6 +1,8 @@
+# Material设计笔记
+
 > “材质”就像是理性空间和运动系统的统一理论。“材质”植根于现实触觉，来源于对纸和油墨的研究，加上技术性的提升，也加入了更多不可思议的想象力。
 
-# 基本概念
+## 基本概念
 
 纸 在二维平面上拓展
 
@@ -22,23 +24,23 @@
 
 RTL
 
-## ViewGroup
+### ViewGroup
 
 `getChildCount()`, `getChildAt()`
 
-### AdapterView
+#### AdapterView
 
 循环机制：避免convertView
 
-### Toolbar
+#### Toolbar
 
 现在称为Appbar
 
-## 支持库
+### 支持库
 
 注解 `@NonNull`, `@Nullable`, `@ColorRes`, `@IntDef`
 
-# UCD
+## UCD
 
 User-Centered Design
 
@@ -48,6 +50,6 @@ User-Centered Design
 4. 不断迭代
 5. 设计包含多学科技能和不同视角
 
-# 颜色
+## 颜色
 
-http://zhongguose.com
+- 中国色彩 <http://zhongguose.com>

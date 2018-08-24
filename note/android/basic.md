@@ -1,8 +1,9 @@
-## 基本概念
+# 基本概念笔记
 
 Android应用运行在自己的安全沙箱内。（每个应用是操作系统的不同用户，每个应用在其自己的Linux进程内运行，每个进程具有自己的虚拟机） *最小权限原则*
 
 体系结构
+
 1. 应用层 Applications
 2. 应用框架层 Application Framework(Activity Manager, ...)
 3. 库文件与Android运行时 Libraries and Android Runtime(SQLite, Dalvik Virtual Machine, ...)
@@ -35,6 +36,7 @@ Android应用运行在自己的安全沙箱内。（每个应用是操作系统�
 - *属性* `?attr/...`
 
 AndroidManifest.xml
+
 ```xml
 <manifest package="com.example.app">
     <application
@@ -56,7 +58,7 @@ AndroidManifest.xml
 
 ## API级别
 
-https://developer.android.com/guide/topics/manifest/uses-sdk-element
+<https://developer.android.com/guide/topics/manifest/uses-sdk-element>
 
 - Android 5.0 (21)
 
