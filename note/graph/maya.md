@@ -4,16 +4,16 @@
 - Maya Binary比MayaAscii格式紧凑一些，但不支持前向兼容
 - 了解自动保存和递归保存等
 
-## User Interface Basic 
+## User Interface Basic
 
 Viewport Navigation
 
-- *Alt + 左键* 视角 
+- *Alt + 左键* 视角
 - *Alt + 中键* 摄像机位置
 - *Alt + 右键* 远近
 - *F / A* 聚焦或全部显示
 - *Space* 分镜头 / 快捷菜单
-- *长按右键* 上下文快捷菜单 
+- *长按右键* 上下文快捷菜单
 
 工具和窗口的快捷键
 
