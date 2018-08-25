@@ -1,6 +1,6 @@
 # MariaDB笔记
 
-## 概念
+## Chapter 0 概念
 
 row, record, table, database
 
@@ -32,7 +32,20 @@ SQL
 
 默认字符集是latin1（西欧语言），默认字符集是latin1_swedish_ci；可更改为utf8, utf8_general_ci。
 
-## 指令
+### 安装
+
+#### 在CentOS7上安装
+
+```sh
+yum install mariadb-server
+sudo systemctl start mariadb
+sudo systemctl status mariadb
+sudo systemctl enable mariadb
+sudo mysql_secure_installation
+mysqladmin -u root -p version
+```
+
+## Chapter 1 命令行指令
 
 `mysql -u root -p`
 
@@ -58,10 +71,10 @@ SET character_set_connection=gbk;
 
 数据表的行数由最小的行数决定
 
-## 数据类型和运算符
+## Chapter 2 数据类型和运算符
 
-- *=* 赋值 / 等于（关系比较符）
-- *<\>* *!=*（非标准） 不等于
+- *`=`* 赋值 / 等于（关系比较符）
+- *`<>`* *`!=`*（非标准） 不等于
 
 数值数据类型
 
@@ -76,7 +89,7 @@ SET character_set_connection=gbk;
 
 如果不指定CHAR的宽度，默认值是灾难性的1。
 
-## 用户管理
+## Chpater 3 用户管理
 
 创建用户
 
@@ -90,7 +103,7 @@ CREATE USER 'user' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON dbname.* TO uesr;
 ```
 
-## DDL
+## Chapter 4 DDL
 
 ### 操作数据库
 
@@ -153,7 +166,7 @@ InnoDB支持外键，MyISAM不支持外键；外键关联的表要求都是InnoD
 
 UNSIGNED也是一种约束
 
-## DML
+## Chpater 5 DML
 
 ### 表的储存引擎
 
@@ -189,7 +202,7 @@ CREATE TABLE 新表 (
 - `DELETE FROM 表名 [WHRER ... ]`
 - `TRUNCATE TABLE 表名` 标志列会重新开始编号
 
-## DQL
+## Chapter 6 DQL
 
 ```sql
 SELECT <字段名 | 表达式 | 函数 | 常量>
@@ -249,7 +262,7 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' IN (
 
 ### LIKE
 
-匹配查询，`%`任意多个字符，`_`任意一个字符
+匹配查询，`%`任意多个字符（包括0个），`_`任意一个字符
 
 `SELECT * FROM books WHRER name LIKE '%大全'`
 
@@ -353,7 +366,9 @@ LEFT OUTER
 JOIN result AS R ON S.studentNo = R.studentNo;
 ```
 
-## 函数
+LEFT OUTTER JOIN返回结果包含左表的所有行
+
+## Chapter 7 函数
 
 聚合函数
 
@@ -383,7 +398,7 @@ JOIN result AS R ON S.studentNo = R.studentNo;
 - `CEIL(x)`, `FLOOR(x)`
 - `RAND()`
 
-## 事务 Transaction
+## Chapter 8 事务 Transaction
 
 将一系列数据操作左为整体处理，如果某一事务提交成功则该事务的所有数据更改均会提交，成为数据库中的永久组成部分；如果事务执行时遇到错误且必须去取消或回滚，则数据将全部恢复到操作前的状态，所有数据的更改均被清除。
 
@@ -405,7 +420,7 @@ ROLLBACK;
 
 MySQL设置自动提交 `SET autocommit = 0 | 1;`
 
-## 视图
+## Chpater 9 视图
 
 - 创建视图 `CREATE VIEW 视图名（形如view_xxx或v_xxx）AS <SELECT 语句>`
 - 删除视图 `DROP VIEW [IF EXISTS] 视图名`
@@ -413,7 +428,7 @@ MySQL设置自动提交 `SET autocommit = 0 | 1;`
 
 视图可以嵌套另一个视图，对视图数据的添加修改和查询直接影响表中的数据。
 
-## 索引
+## Chapter 10 索引
 
 - 普通索引 允许重复和空值
 - 唯一索引 不允许重复，允许空值
@@ -428,7 +443,7 @@ MySQL设置自动提交 `SET autocommit = 0 | 1;`
 - 删除索引 `DROP INDEX 表名.索引名`
 - 查看索引 `SHOW INDEX FROM 表名`
 
-## 备份
+## Chapter 11 备份
 
 备份
 
