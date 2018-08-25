@@ -25,6 +25,8 @@
 
 图片能否用于印刷，取决于“文档大小”；能否用于网页，取决于“像素大小”。
 
+- PPI vs DPI <http://blog.jeswang.org/blog/2013/08/07/ppi-vs-dpi-you-shi-yao-qu-bie/>
+
 ### 2.3 图层
 
 `F7`
