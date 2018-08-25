@@ -101,7 +101,7 @@ echo $a === $b;  // 返回FALSE，不产生输出
 
 运行时决定
 
-- 四种标量类型：布尔型（boolean），整型（integer），浮点型（float, double或real），字符串型（string）
+- 四种标量类型：布尔型（boolean），整型（integer），浮点型（double，float或real），字符串型（string）
 - 两种符合类型：数组（array），对象（object）
 - 两种特殊类型：资源（resource），无类型（NULL）
 
@@ -122,15 +122,15 @@ echo $a === $b;  // 返回FALSE，不产生输出
 
 echo输出时，对于TRUE的变量输出1，对于FALSE变量输出空字符串。
 
-当值被转换成boolean类型时，被认为时false的值的类型
+当值被转换成boolean类型时，被认为是FALSE的值的类型
 
-- FALSE
+- `FALSE`
 - 0, 0.0, 空字符串, 字符串“0”
 - 不包括任何元素的数组array
 - NULL（包括尚未赋值的变量）
 - 从空标记生成的SimpleXML对象
 
-任何其他值都被认为时TRUE（包括任何资源）
+任何其他值都被认为是TRUE（包括任何资源）
 
 ### 整型
 
@@ -164,7 +164,7 @@ heredoc
 多行字符串
 EOT
 
-// EOT无引号包围，如同使用单引号包围
+// EOT无引号包围，如同使用双引号包围
 // 注意最后的EOT标记必须单独成一行，即没有缩进，其后也没有其他字符
 ```
 
@@ -195,6 +195,9 @@ a = $a\n
 EOD;
 echo $str;  // 输出test并附加换行符
 ```
+
+- Hereodc: Here is a document and parse is needed.
+- Nowdoc: The document is now parsed.
 
 字符串的连接使用`.`操作符，而不是`+`操作符。
 

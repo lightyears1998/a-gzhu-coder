@@ -82,7 +82,7 @@ SET character_set_connection=gbk;
 
 ```sql
 CREATE USER 'user' IDENTIFIED BY 'password';
-``` 
+```
 
 管理权限
 
@@ -107,9 +107,9 @@ GRANT ALL PRIVILEGES ON dbname.* TO uesr;
 
 ```sql
 CREATE TABLE [IF NOT EXISTS] 'tbname' (
-	'colName' INT(4) PRIMARY KEY COMMENT '这里前面没有等号',
-	字段名 数据类型 [字段属性 | 约束] [索引] [注释],
-	...,
+    'colName' INT(4) PRIMARY KEY COMMENT '这里前面没有等号',
+    字段名 数据类型 [字段属性 | 约束] [索引] [注释],
+    ...,
 ) [COMMENT='这里前面有等号'] [CHARSET=...];
 ```
 
@@ -123,7 +123,7 @@ CREATE TABLE [IF NOT EXISTS] 'tbname' (
 
 表的维护
 
-- `SHOW TABLES` 
+- `SHOW TABLES`
 - `DESCRIBE 表名` `DESC 表名` 查看表的定义（表中定义的字段），不能查看数据库的“定义”
 - `DROPE TABLE [IF EXISTS] 表名`
 
@@ -138,7 +138,7 @@ CREATE TABLE [IF NOT EXISTS] 'tbname' (
 
 添加主键约束 `ALTER TABLE 表名 ADD CONSTRAINT 字段名（形如，pk_表名） PRIMARY KEY 表名(字段名)`
 
-添加字段约束 `ALTER TABLE 表名 ADD CONSTRAINT 字段名（形容，fk_从表名_主表名） FOREIGN KEY(外键字段) REFERENCES 主标名（主表字段） `
+添加字段约束 `ALTER TABLE 表名 ADD CONSTRAINT 字段名（形容，fk_从表名_主表名） FOREIGN KEY(外键字段) REFERENCES 主标名（主表字段）`
 
 ### 字段约束
 
@@ -161,7 +161,7 @@ InnoDB, MyISAM, Memory, Archive
 
 ```sql
 CREATE TABLE tbname (
-	# 省略代码
+    # 省略代码
 ) ENGINE=InnoDB;
 ```
 
@@ -176,7 +176,7 @@ CREATE TABLE tbname (
 
 ```sql
 CREATE TABLE 新表 (
-	SELECT 字段1, 字段2, ... FROM 原表
+    SELECT 字段1, 字段2, ... FROM 原表
 );
 ```
 
@@ -221,9 +221,9 @@ FROM 表名
 
 ```sql
 SELECT 'studentName' FROM 'student' WHERE 'studentNo' = (
-	SELECT 'studentNo' FROM 'result'
-		INNER JOIN 'subjcet' ON result.subjectNO = subject.subjectNo
-		WHERE 'studentResult'=60 AND 'subjectName'='LogicJava'
+    SELECT 'studentNo' FROM 'result'
+        INNER JOIN 'subjcet' ON result.subjectNO = subject.subjectNo
+        WHERE 'studentResult'=60 AND 'subjectName'='LogicJava'
 );
 ```
 
@@ -233,9 +233,9 @@ SELECT 'studentName' FROM 'student' WHERE 'studentNo' = (
 
 ```sql
 SELECT 'studentName' FROM 'student' WHERE 'studentNo' IN (
-	SELECT 'studentNo' FROM 'result'
-		INNER JOIN 'subjcet' ON result.subjectNO = subject.subjectNo
-		WHERE 'studentResult'=60 AND 'subjectName'='LogicJava'
+    SELECT 'studentNo' FROM 'result'
+        INNER JOIN 'subjcet' ON result.subjectNO = subject.subjectNo
+        WHERE 'studentResult'=60 AND 'subjectName'='LogicJava'
 );
 ```
 
@@ -353,7 +353,7 @@ LEFT OUTER
 JOIN result AS R ON S.studentNo = R.studentNo;
 ```
 
-## 函数 
+## 函数
 
 聚合函数
 
@@ -426,7 +426,7 @@ MySQL设置自动提交 `SET autocommit = 0 | 1;`
 
 - 创建索引 `CREATE [UNQIUE | FULLTEXT | SPATIAL |] INDEX 索引名 ON 表名(字段名[字符串类型可以指定索引长度])`
 - 删除索引 `DROP INDEX 表名.索引名`
-- 查看索引 `SHOW INDEX FROM 表名` 
+- 查看索引 `SHOW INDEX FROM 表名`
 
 ## 备份
 

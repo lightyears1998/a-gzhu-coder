@@ -1,6 +1,6 @@
 # Micrsoft Foundation Class
 
-采用C++编写，对Win32和COM API提供面向对象的包装器
+采用C++编写，对Win32和COM API提供面向对象的包装器，早期名称Application Frameworks(AFX)。
 
 MFC头文件`\atlmfc\include`，实现文件`\atlmfc\mfc\src`，根目录类似于`C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726`
 
@@ -75,6 +75,12 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 ### 文档模板和文档-视图创建过程
 
 <https://docs.microsoft.com/zh-cn/cpp/mfc/document-templates-and-the-document-view-creation-process>
+
+### 类体系
+
+层次结构图参见 <https://docs.microsoft.com/zh-cn/cpp/mfc/hierarchy-chart>
+
+![简明类层次结构图]](/camo/note/windows/hierarchy-chart.jpg)
 
 ## Chpater 2 工具
 
