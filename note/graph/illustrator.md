@@ -13,69 +13,87 @@
 - View
   - Show bounding box
   - Fill artboard in windows
+- Outline / GPU Preview
 
 ### 鼠标
 
 - 双击 隔离Group
 
-reshape tool 化直为曲
+### Reshape tool 化直为曲
 
-rotate tool
-reference point
+- Rotate tool
+- Reference point
 
-shape builder tool 结合shape 移除部分shape
+### Shape builder tool
 
-align
-再次选择 key object
+结合shape 移除部分shape
 
-Image Trace
-traced artwork
+- align
+- 再次选择 key object
 
-eraser / scissors / knife tool
-selection only
+### Image Trace
 
-object > lock > selection
+- traced artwork
 
-stroke fill
+### Eraser / Scissors / Knife tool
 
-double click color picker
-eyedropper
+只对选中部分生效 Selection only
 
-swatches 全局性 double click
+- object > lock > selection
+- stroke fill
 
-stroke fill
-arrow head
+- double click color picker
 
-gradiants
-gradiant tool
+### eyedropper
 
-recolor artwork
+### swatches 全局性 double click
 
-可以在路径上创建文本
-可以使文本变成矢量路径以编辑
-Direct select tool很方便地拖动锚点
+- stroke fill
+- arrow head
 
-open path 开放路径 端点的锚点未连接
-direction handle / control handle 控制路径的形
-pencil tool 自带路径 有smooth选项
-可以重新绘制路径
-alt直线
+### Gradiants
 
-curvature tool
+- gradiant tool
 
-Join path ctrl + j
+### Recolor artwork
 
-Join Tool 可拓展，可截取地连接路径
+- 可以在路径上创建文本
+- 可以使文本变成矢量路径以编辑
+- Direct select tool很方便地拖动锚点
 
-Arrange命令 重新排列图案
+### Open path 开放路径
 
-Outline / GPU Preview
+- 端点的锚点未连接
+- direction handle / control handle 控制路径的形
+- pencil tool 自带路径 有smooth选项
+- 可以重新绘制路径
+- 按住alt直线
 
-Layers特性
+### Curvature tool
 
-Artboard tool
+- Join path ctrl + j
 
-Share
+### Join Tool 可拓展，可截取地连接路径
+
+### Arrange命令 重新排列图案
+
+### Image
+
+- Place, link
+- Crop
+
+### Effects
+
+- Windows -> appearance
+- Vector Effect, Raster Effect(ok on Vector)
+
+### Brushes
+
+### Layers特性
+
+### Artboard tool
+
+### Share
 
 - Package功能
 - PDF
