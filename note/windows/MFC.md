@@ -82,7 +82,64 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 ![简明类层次结构图]](/camo/note/windows/hierarchy-chart.jpg)
 
-## Chpater 2 工具
+## Chapter 1x 基础代码
+
+### 编译环境
+
+1. 项目属性中调整“MFC的使用”
+2. 链接器选项中调整“子系统”
+
+### 预编译头与头文件
+
+- 头文件 `afxwin.h` 定义了包括CWinApp在内的类
+- 标准预编译头 `stdafx.h`
+
+### CWinApp
+
+有且只有一个应用程序类，并需要一个全局对象实例。
+
+1. .InitInstance()
+    1. 创建主窗口
+    2. 显示窗口，更新窗口
+
+2. .Run() 执行应用程序的消息循环
+
+3. .Idle()
+
+4. .ExitInstance()
+
+### 消息映射
+
+1. 在处理该消息的类中使用消息宏`DECLARE_MESSAGE_MAP`声明对消息映射的支持，并在该宏之前声明消息处理函数
+    ```cpp
+    protected:
+        afx_msg void OnPaint();
+        DECALARE_MESSAGE_MAP()
+    ```
+2. 使用`BEGIN_MESSAGE_MAP`和`END_MESSAGE_MAP`在类声明之后的地方定义该类支持的消息映射入口点。其中`BEGIN_MESSAGE_MAP`的第一个参数用于指定支持消息映射的用户派生类，第二个参数指定派生类的基类。
+    ```cpp
+    BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
+        ON_WM_PAINT()
+    END_MESSAGE_MAP()
+    ```
+3. 定义消息处理函数
+    ```cpp
+    void CMainFrame::OnPaint()
+    {
+        CPaintDC dc(this);
+        CRect    rc;
+        GetClientRect(&rc);
+        dc.DrawText(...);
+    }
+    ```
+
+### 基础框架
+
+参见Playgroud / Chapter 1 / 1.4.2
+
+## Chapter 2 对话框
+
+## 附录 工具小结
 
 ### 宏
 
