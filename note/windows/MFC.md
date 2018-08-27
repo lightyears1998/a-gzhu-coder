@@ -139,6 +139,115 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 ## Chapter 2 对话框
 
+从基类CDialog派生
+
+- **模式对话框**是当对话框弹出时，用户必须在对话框中做出相应的操作，在退出对话框之前，对话框所在的应用程序不能继续执行。
+- 相对应的概念是 **无模式对话框**
+
+消息
+
+- *WM_INITDIALOG* 对话框显示之前向父窗口发送的消息
+
+方法
+
+- *DoModal()* 显示（和终止）模式对话框，返回`IDOK`, `IDCANCEL`等值
+
+### 通用对话框
+
+从CCommonDialog继承的一系列预定义通用对话框
+
+- CColorDialog
+- CFileDialog
+- CFindReplaceDialog
+- CPageSetupDialog
+- CFontDialog
+- CPrintDialog
+
+### 关于消息对话框
+
+- Win32`MessageBox()` 参数与MFC中的MessageBox不同
+- `AfxMessageBox()` 全程函数
+- `MessageBox()` 只能用在控件、对话框、窗口等一些地方
+
+## Chapter 3 常用控件
+
+用于与用户进行交互的基本单元
+
+创建控件的方式有主要有两种
+
+1. 在对话框模板中用编辑器指定控件
+2. 调用MFC相应控件类的Create()函数来创建
+
+### ON_COMMAND
+
+控件的通用消息，如果定义了ON_COMMAND消息的处理函数和其他消息的处理函数，那么先调用ON_COMMAND的处理函数再调用其他消息的处理函数
+
+### CWnd.`GetDlgItem()`
+
+通过控件id获取控件的类对象指针
+
+```mfc
+CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
+```
+
+### DDX和DDV
+
+- *Dynamic Data Exchange, DDX*
+- *Dynamic Data Validate, DDV*
+
+使用`UpdateData(TRUE)`或`UpdateData()`时，数据由控件向绑定的成员变量（Data）输出；使用`UpdateData(FALSE)`时，数据由成员变量向绑定的控件输出
+
+### 静态控件
+
+静态控件包括：静态文本，分组框以及静态图片
+
+### 按钮
+
+- 风格包括标准按键按钮和默认按钮（通过style属性调整）
+- 单选按钮
+- 复选按钮
+
+方法
+
+- `SetCheck()`, `GetCheck()`
+- 对于单选按钮组 `CheckRadioButton()`, `GetCheckedRadioButton()`
+
+### 编辑框和旋转按钮控件
+
+旋转按钮控件是一对箭头按钮
+
+### 列表框
+
+多种风格
+
+### 组合框
+
+简单组合框、下拉式组合框和列表框
+
+### 进度条、滚动条和滑动条
+
+### 日期时间控件
+
+### 列表控件和树控件
+
+## Chapter 4 菜单、工具栏和状态栏
+
+## Chapter 5 框架窗口、文档和视图
+
+### Section 1 框架窗口
+
+### Section 2 文档
+
+### Section 3 视图
+
+## Chapter 6 图形、文本和打印
+
+### Section 1 图形
+
+### Section 2 文本
+
+### Section 3 打印
+
 ## 附录 工具小结
 
 ### 宏
@@ -146,6 +255,16 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 - `HIBYTE()`, `LOBYTE()` 16位数值中的高位和低位
 - `TEXT()` UNICODE字符支持
 - `MAKEWORD()` 将两个16数值合成32位数值
+
+### 工具类
+
+#### CString
+
+方法
+
+- `Format()` 与printf()类似的格式化字符串的方法；由字符串转换成数值可以使用`atoi()`
+
+#### CPoint, CSize, CRect
 
 ## 链接
 
