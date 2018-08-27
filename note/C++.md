@@ -885,3 +885,15 @@ fout.close();
 fmtflags fmt = cout.flags();
 cout.flags(fmt);
 ```
+
+---
+
+## 命名约定
+
+<https://google.github.io/styleguide/cppguide.html#Naming>
+
+1. 文件名使用小写，并使用下划线分隔各个单词“_”；使用“cc”，“h”和“inc”作为拓展名 如`http_server_logs.h`
+2. 类型名的每个单词首字母大写，如`MyExcitingClass`
+3. 变量和数据成员名一律小写，单词之间使用下划线连接，类成员名后接下划线，结构体变量名不需要后接下划线
+4. 常量命名时以“k”开头，类似于匈牙利命名法，如`kDaysInWeek`
+5. 函数命名使用大小写混合风格，如`StartRpc()`
