@@ -234,15 +234,52 @@ CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
 
 ## Chapter 5 框架窗口、文档和视图
 
+框架窗口用于文档和视图的容器；文档是一个数据单元；视图是框架窗口的子窗口
+
 ### Section 1 框架窗口
 
-### Section 2 文档
+应用程序只能有一个主框架窗口；对于多文档程序，文档窗口是主框架窗口的子窗口。
+
+#### 窗口样式
+
+以`WS_`开头定义的常量
+
+### Section 2 文档和文档模板
+
+文档模板用于建立资源、文档类、视图类和若存在的子框架窗口类之间的关联
+
+```cpp
+CSingleDocTemplate* pDocTemplate;
+pDocTemplate = new CSingleDocTemplate(
+    IDR_MAINFRAME,                   // 资源类
+    RUNTIME_CLASS(CMyDoc),           // 文档类
+    RUNTIME_CLASS(CMainFrame),       // 主框架窗口类
+    RUNTIME_CLASS(CMyView));         // 试图类
+```
+
+### 文档序列化 CArchieve类
 
 ### Section 3 视图
 
+视图应用框架CView如`CEditView`, `CFormView`等
+
 ## Chapter 6 图形、文本和打印
 
+绘制基于图形设备环境，任何从CWnd派生而来的对话框、控件和视图等都可以作为绘图设备环境。
+
+MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边形、位图以及文本的操作。
+
+一般绘图代码添加到`OnPaint()`和`OnDraw()`虚函数中。
+
 ### Section 1 图形
+
+#### CDC Device Context 设备环境类
+
+派生类具有实用功能
+
+#### 坐标映射
+
+通过坐标映射实现高DPI适应
 
 ### Section 2 文本
 
@@ -265,6 +302,8 @@ CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
 - `Format()` 与printf()类似的格式化字符串的方法；由字符串转换成数值可以使用`atoi()`
 
 #### CPoint, CSize, CRect
+
+#### CFile
 
 ## 链接
 
