@@ -26,7 +26,7 @@ Python的表达式子可以省略分号；如果在一行中存在多个语句�
 
 六种基本数据类型
 
-- *Number* 包括`int`, `float`, `bool`以及`complex`，内建大整数支持
+- *Number* 包括`int`, `float`, `bool`以及`complex`
 - *String* 使用成对出现的单引号或双引号创建
 - *Tuple* 使用小括号`()`创建
 - *List* 使用中括号`[]`创建
@@ -61,6 +61,12 @@ a, b, c = 2, 3, "5"
 - 取模 浮点取模 `%`
 - 乘方 `**`
 
+工具函数
+
+- `min()`, `max()`
+- `abs()`
+- `sum([list])` 只适用于列表List
+
 ### String 字符串
 
 用`''`或`""`来声明，单引号与双引号作为定界符需要成对出现，两者无区别。
@@ -80,7 +86,10 @@ msg = "({x}, {y})".format(x=5, y=2)
 #### 字符串工具函数
 
 - `分隔符.join([字符串列表])` 形如PHP中的`implode()`，利用分割符合并字符串
-- `startswith()`, `endswith()`
+- `startswith()`, `endswith()` 返回真与假
+- `replace('what', 'with')` 将字符串中的所有`what`替换为`with`
+- `upper()`, `lower()` 字符串全文大小写转换
+- `split('separator')` 分割字符串为列表
 
 ### Tuple 元组
 
@@ -121,11 +130,12 @@ List间加法乘法操作有效。
 
 #### Slicing 切片
 
+注意到，Tuple及字符串也有类似方法
+
 - `[bgn:end:step]` 以步长step包含元素[bgn, end)，三个参数都不是必要的
 - 注意bgn可以大于end（所以上面那个区间的写法是错的😅），生成的方向总是从bgn到end，且不包含end
 - 如果索引index为负数，它是指从后往前数第index个字符；`[2:-2]`生成[2, 倒数第二个字符)
 - `[::-1]` 反转数组，如果步长为负数，那么List会反向生成
-- Tuple及字符串也有类似方法
 
 #### Comprehensions 列表解析器
 
@@ -137,6 +147,33 @@ evens = [i**2 for i in range(10) if i**2 % 2 == 0 ]  # [0, 4, 16, 36, 64]
 ```
 
 滥用列表解析器可能产生MemoryError，可使用generator缓解。
+
+#### 其他谓词
+
+- `all()`, `any()`
+
+  ```py
+  nums = [55, 44, 33, 22, 11]
+
+  if all([i > 5 for i in nums]):
+  print("All larger than 5")
+
+  if any([i % 2 == 0 for i in nums]):
+  print("At least one is even")
+  ```
+
+- `enumerate()` 按键值对的方式遍历列表，返回元组
+
+  ```py
+  for v in enumerate(nums):
+   print(v)
+  ```
+
+### Set 集合
+
+- 使用`set()`接受一个列表作为参数构建集合
+- `add()` 添加元素
+- 合并`|`, 同时存在`&`, 不同时存在`^`, 差（第一个集合中包含而第二个集合中不包含）`-`
 
 ### Dictionary 字典
 
@@ -275,6 +312,13 @@ open("filename.txt", "wb")
 file.close()
 ```
 
+### `with`
+
+```py
+with open(filename) as f:
+  text = f.read()
+```
+
 ### read()
 
 ```python
@@ -312,6 +356,221 @@ finally:
 ```python
 with open("in.txt") as file:
     printf(f.readlines())
+```
+
+## Chapter 8 函数式编程
+
+函数式编程，使用函数的编程。
+
+函数式编程尽量不适用全局变量使得其返回值只依赖于它的参数。
+
+### Lambda表达式
+
+创建函数而不使用标识符
+
+创建Lambda表达式并传入参数
+
+```py
+# named function
+def polynomial(x):
+    return x**2 + 5*x + 4
+print(polynomial(-4))
+
+# lambda
+print((lambda x: x**2 + 5*x + 4) (-4))
+```
+
+为Lambda表达式分配标识符 `double = lambda x: x * 2`
+
+#### `map(func, arg)`
+
+使用iterable对象作为第二个参数，返回对每个参数进行func后的iterable
+
+#### `filter(pred, arg)`
+
+返回满足谓词的iterable对象
+
+### Generator 生成器
+
+属于iteralbe，但不能随机存取
+
+使用`yield`关键字从生成器函数中返回值
+
+```py
+def countdown():
+  i = 5;
+  while i > 0:
+    yield i
+    i -= 1
+
+for v in countdown():
+  print(v)
+```
+
+### Decorator 装饰器
+
+不修改原始函数而拓展其功能的方法
+
+```py
+def decor(func):
+  def wrap():
+    print('=================')
+    func()
+    print('=================')
+  return wrap
+```
+
+使用`@`注记可以使函数包含在decorator中
+
+```py
+@decor
+def print_text():
+  print("Hello world!")
+```
+
+### itertools
+
+1. `count(value)` 从value开始向无穷计数
+2. `cycle(iterable)` 开始iterable的无穷循环
+3. `repeat()` 无限或有限次的重复
+
+```py
+from itertools import count;
+
+for i in count(3):
+  print(i);
+  if i > 10:
+    break
+```
+
+1. `takewhile(pred, iterable)` 当谓词为真时继续循环
+2. `chain()` 合并多个iterable
+3. `accumulate()` 返回累计值
+
+```py
+from itertools import accumulate, takewhile
+
+nums = list(accumulate(range(8)))
+print(nums)  # [0, 1, 3, 6, 10, 15, 21, 28]
+print(list(takewhile(lambda x: x<= 6, nums)))  # [0, 1, 3, 6]
+```
+
+1. `product()`
+2. `permutation()`
+
+```py
+from itertools import product, permutations
+
+letters = ("A", "B")
+print(list(product(letters, range(2))))  # [('A', 0), ('A', 1), ('B', 0), ('B', 1)]
+print(list(permutations(letters)))       # [('A', 'B'), ('B', 'A')]
+```
+
+## Chapter 9 面向对象编程
+
+### 类
+
+```py
+class Cat:
+  eyes = 'blue'
+
+  __init__(self, color, legs):
+    self.color = color
+    self.legs  = legs
+```
+
+### 构造器`__init__`
+
+使用`self`作为第一个参数
+
+### 静态方法与非静态方法
+
+非静态方法的一个参数总是`self`，没有`self`作为参数的方法是静态方法
+
+```py
+Obj().method()  # 非静态方法
+Obj.smethod()   # 静态方法
+```
+
+### 类方法
+
+类方法
+
+### 类继承
+
+```py
+class Animal:
+  def __init__(self, name, color):
+    self.name = name
+    self.color = color
+
+class Cat(Animal):
+  def purr(self):
+    print("Purr...")
+
+class Dog(Animal):
+  def bark(self):
+    print("Woof!")
+```
+
+### `super`
+
+使用`super`关键字调用同名的基类方法
+
+### 魔术方法
+
+方法名由两个下划线包围的方法称为魔术方法，如`__init__`和`__add__`
+
+### 操作符重载
+
+使用魔术方法来重载操作符
+
+- __sub__ for -
+- __mul__ for *
+- __truediv__ for /
+- __floordiv__ for //
+- __mod__ for %
+- __pow__ for **
+- __and__ for &
+- __xor__ for ^
+- __or__ for |
+
+重载比较
+
+- __lt__ for <
+- __le__ for <=
+- __eq__ for ==
+- __ne__ for !=
+- __gt__ for >
+- __ge__ for >=
+
+含有特殊功能的重载
+
+- __len__ for len()
+- __getitem__ for indexing
+- __setitem__ for assigning to indexed values
+- __delitem__ for deleting indexed values
+- __iter__ for iteration over objects (e.g., in for loops)
+- __contains__ for in
+
+### 封装
+
+The Python philosophy is slightly different. It is often stated as **"we are all consenting adults here"**, meaning that you shouldn't put arbitrary restrictions on accessing parts of a class. Hence there are no ways of enforcing a method or attribute be strictly private.
+
+以单下划线开头的类成员不会被和数据不会被`from module_name import *`自动导入
+
+**名称隐藏**：以双下划线开头的类成员在外部引用时需要使用不同的名称，形如`_classname__method`的形式
+
+```py
+class Spam:
+  __egg = 7
+  def print_egg(self):
+    print(self.__egg)
+
+s = Spam()
+s.print_egg()            # 7
+print(s._Spam__egg)      # 7
+print(s.__egg)           # AttributeError: 'Spam' object has no attribute '__egg'
 ```
 
 ## 链接
