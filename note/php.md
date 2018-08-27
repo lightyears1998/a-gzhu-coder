@@ -258,15 +258,25 @@ mbstring模块提供字符串函数的`mb_`版本
 #### 转义与反转义
 
 - `addslashes()`, `addcslashes()`, `stripslashes()`, `stripcslashes()`
-- `quotemeta()` 将`.\+*?[^]($)`前加反斜线转义
+- `quotemeta()` 将`.\+*?[^]($)`前加反斜线转义，转义在正则表达式中有特殊意义的字符
+
+`addslashes()`用于加反斜线转义单引号、双引号、反斜线和空字符，`addcslashes()`可以在自定义的字符集之前添加反斜线转义
 
 #### 进制转换
 
-- `bin2hex()`, `hex2bin()`
+- `bin2hex()`, `hex2bin()` 将**数据串** *（不是字符串）*转换成对应格式
+
+如果需要转化二进制字符，可以
+
+```php
+$binary = '11111001';
+$hex = dechex(bindec($binary));
+echo $hex;
+```
 
 #### 分割
 
-- `chunk_split()` 指定字串长度打断字符
+- `chunk_split()` 指定字串长度打断字符（插入换行符），在结合`base64_encode($data)`等函数时比较有用
 - `wordwrap()` 含有避免单词被打断的选项
 - `str_split()` 分割字符串，不需要指定分割符的`explode()`
 - `split()` 支持正则表达式的字符串分割
@@ -379,6 +389,8 @@ foreach($数组 as $键值 => $元素值) {
 
 ## Chapter 4 函数
 
+在函数中可以通过`global`关键字获取全局变量，使用`static`关键字定义静态变量。
+
 ```php
 function foo($arg1, $arg2, $arg3, ...)
 {
@@ -409,7 +421,7 @@ sum(1);  // raise ArgumentCountError
 function foo($var = 'default') {}  // 默认参数
 ```
 
-参数类型声明
+### 参数类型声明
 
 传入参数的类型错误时，PHP7抛出`Type Error`异常，PHP5报告致命错误。
 
@@ -421,19 +433,19 @@ function foo(int $var1, bool $var2, string $var3) {}
 
 `call_user_func($fun)` 运行回调函数
 
-可变参数列表
+### 可变参数列表
 
 ```php
 function foo(...$vars) {}
 ```
 
-返回值类型声明
+### 返回值类型声明
 
 ```php
 function foo() : int {}
 ```
 
-可变函数
+### 可变函数
 
 ```php
 $functions = ['fun1', 'fun2', 'fun3'];
@@ -443,15 +455,13 @@ foreach($functions as $fun)
 }
 ```
 
-匿名函数
+### 匿名函数
 
 ```php
 $myfunction = function() {
     // body
 };
 ```
-
-在函数中可以通过`global`关键字获取全局变量，使用`static`关键字定义静态变量。
 
 ## Chpater 5 表单处理
 
@@ -465,11 +475,14 @@ if (isset($_GET['name'])) {
 }
 ```
 
-单选按钮radiobutton，值由value属性设定
+### HTML接口
 
-复选框checkbox，值由value属性设定，name属性应该以“[]”结尾（使得PHP以数组方式解析，避免值覆盖的问题；注意PHP中的标识符不包括“[]”）。
+键名由name属性决定
 
-下拉列表，值由option的内容设定
+- 文本域 键由name属性决定，值由value属性决定
+- 单选按钮Radiobutton 值由value属性设定
+- 复选框Checkbox，值由value属性设定，name属性应该以“[]”结尾（使得PHP以数组方式解析，避免值覆盖的问题；注意PHP中的标识符不包括“[]”）。
+- 下拉列表，值由option的内容设定
 
 ## Chpater 6 Cookie
 
@@ -480,10 +493,16 @@ if (isset($_GET['name'])) {
 
 ## Chpater 7 Session
 
+可以通过设置`session.auto_start`为1来自动启用Session
+
 - 创建session `session_start()`
 - 终结session `session_destroy()`
 
-## Chpater 8 时间与日期
+## Chapter 8 面向对象编程
+
+<http://php.net/manual/zh/language.oop5.php>
+
+## Chpater 9 时间与日期
 
 > 格林尼治时间1970年1月1日0时0分0秒
 
@@ -491,16 +510,18 @@ if (isset($_GET['name'])) {
 
 PHP默认时区为格林尼治时间 GMT+0
 
+投入生产环境前注意检查日期和时间设定
+
 1. php.ini date.timezone Asia/Shanghai
 2. `date_default_timezone_set("Asia/Shanghai")`
 
 ### 工具函数2
 
 - `time()` 返回自Unix纪元到当前时间的秒数
-- `date(fromat [, timestamp])`
+- `date(format [, timestamp])`
 - `mktime(hour, minute, second, month, day, year)`
 - `strtotime(string, now当前时间戳)` 将字符串解析为Unix时间戳
-- `getdate(timestamp)` 获取包含日期信息的数组
+- `getdate(timestamp)` 获取包含日期信息的**数组**，获取日期字符串可以使用`date()`
 - `checkdate(month, day, year)` 确认日期是否有效
 - `strftime(format [, timestamp])` 输出指定格式的日期和时间
 
@@ -533,7 +554,7 @@ foreach ($date_period as $date)
 }
 ```
 
-## Chpater 9 文件和目录
+## Chpater 10 文件和目录
 
 文件资源
 
@@ -578,7 +599,11 @@ intl
 - NumberFormatter 中文数字大小写转换
 - IntlDateFormatter 中文日期和时间
 
-## Chpater 10 zip
+### 面向对象方法 Directory类
+
+<http://php.net/manual/zh/class.directory.php>
+
+## Chpater 11 压缩文件Zip
 
 - `zip_open()`, `zip_close()`
 
@@ -596,11 +621,11 @@ if ($zip) {
 
 ZipArchive类 强大的工具类
 
-## Chpater 11 图形图像处理
+## Chpater 12 图形图像处理 GD2
 
-GD2
+等待补充
 
-## Chapter 12 正则表达式
+## Chapter 13 正则表达式
 
 - int `preg_match(pattern, subject)` 搜索subject，如果搜索到返回1，否则返回0
 - string `preg_repalce(pattern, replacement, subject)` 搜索subject中的匹配串，并用replacemnet代替所有匹配串
@@ -625,7 +650,7 @@ GD2
 
 PHP还有自己的一套修正符可以使用
 
-## Chpater 13 数据库
+## Chpater 14 数据库
 
 ### Mysqli
 
@@ -653,7 +678,7 @@ while ($row = $result->fetch_row())
 
 CRUD：Create, retrieve, update, delete
 
-## Chapter 14 Composer 项目依赖管理
+## Chapter 15 Composer 项目依赖管理
 
 ## 源
 
