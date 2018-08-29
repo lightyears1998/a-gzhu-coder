@@ -62,7 +62,29 @@ Integer[] arr = {
 
 ### 枚举Enum
 
-@TODO To be continued
+```java
+public enum Currency {
+    ONE, TWO, THREE
+}
+```
+
+可以在switch中使用Enum，注意枚举中的使用不需要类型限定名
+
+```java
+public class ShowCurrency {
+    public static void main(String[] args)
+    {
+        Currency cur = Currency.ONE;
+        switch(cur)
+        {
+        case ONE:
+        case TWO:
+        case THREE:
+            System.out.println("This is a simple usage of Currency");
+        }
+    }
+}
+```
 
 ## Chapter 3 流程控制
 
@@ -167,3 +189,36 @@ void func(Object... objs) {
 Random rand = new Random(47);
 rand.nextInt(100);  // [0, 100) 左闭右开
 ```
+
+## Chapter 6 访问权限控制
+
+- Java没有条件编译，但可以通过import发行包和调试包来实现类似的功能
+
+### 访问权限修饰词
+
+- 包访问权限
+- *public* 接口访问权限
+- *protected* 继承访问权限
+- *private* 封闭的访问权限
+
+## Chapter 7 复用类
+
+组合、继承与代理
+
+### `final`关键子
+
+### final数据
+
+- static final 编译器常量
+- final 运行期常量
+- final参数 方法中不可改变参数
+
+### final方法
+
+- 禁用重载
+
+### final类
+
+- 禁止继承
+
+## Chapter 8 多态
