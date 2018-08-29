@@ -99,6 +99,95 @@ JavaScript中定义了7种数据类型
 
 由于历史原因，`typeof null`返回“object”
 
+### null与undefined
+
+if语句中两者都会自动被转换成false，使用`==`会报告两者相等
+
+Dart语言中只有null，没有undefined。
+
+null表示空对象，转换成数值时表示0；undefined表示未定义，转换成数值时表示NaN
+
+调用函数时，未提供参数时，该参数返回undefined；函数无返回值时返回undefined
+
+### 布尔值
+
+以下值被自动转换为false
+
+1. undefined和null
+2. false
+3. 0
+4. NaN
+5. 空字符串 ''
+
+### 数值
+
+在Javascript内部，所有数值（包括整数）使用64位浮点数储存
+
+由于64位浮点数的特性，绝对值小于2的53次方的整数都能精确地表示，即对15位的进制数都能精确处理
+
+数值范围是[0, Infinity)；`Number`对象提供`MaxValue`和`MinValue`方法。
+
+表示数值的字面值
+
+- 十进制：没有前导0的数值。
+- 八进制：有前缀0o或0O的数值，或者有前导0、且只用到0-7的八个阿拉伯数字的数值。
+- 十六进制：有前缀0x或0X的数值。
+- 二进制：有前缀0b或0B的数值。
+
+#### 正零与负零
+
+`toString()`方法都返回`0`
+
+唯一有区别的场合是作为分母时分别得到`+Infinity`和`-Infinity`
+
+#### NaN
+
+NaN参与的运算结果都是NaN
+
+NaN是唯一的不等于自身的值
+
+#### 与数值相关的全局方法
+
+1. `parseInt()` 用于将字符串转换成整数
+  自动去除空格，返回NaN或转换后的数值
+  注意到 对于那些会自动转为科学计数法的数字，parseInt会将科学计数法的表示方法视为字符串，因此导致一些奇怪的结果。
+
+  ```js
+  parseInt(1000000000000000000000.5) // 1
+  // 等同于
+  parseInt('1e+21') // 1
+
+  parseInt(0.0000008) // 8
+  // 等同于
+  parseInt('8e-7') // 8
+  ```
+
+  还可以附带第二个参数进行进制转换
+2. `parseFloat()`
+3. `isNaN()`, `isFinite()`
+
+### 字符串
+
+使用单引号或双引号均可，一般约定使用单引号。
+
+反斜线转义
+
+1. `\HHH` 八进制转义
+2. `\xHH` 十六进制转义
+3. `\uXXXX` Unicode转义
+
+可以使用方括号语法访问字符串中的单个字符，但*无法改变*单个字符。
+
+字符串具有`length`属性
+
+#### Base64
+
+`btoa()`, `atob()`
+
+### 对象
+
+从此处继续 <https://wangdoc.com/javascript/types/object.html>
+
 ## 链接
 
 - [ECMAScript文档](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf)
