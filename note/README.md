@@ -23,9 +23,9 @@
 ```bash
 git config "core.ignorecase" false
 git config "core.autocrlf" true
-git config "commit.gpgsign" true
-git config "gpg.program" "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
-git config "user.signingkey" "26D4F2F9"
+git config --global "commit.gpgsign" true
+git config --global "gpg.program" "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+git config --global "user.signingkey" "26D4F2F9"
 ```
 
 ### Editors
