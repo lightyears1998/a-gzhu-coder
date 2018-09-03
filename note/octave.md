@@ -11,6 +11,7 @@
 - 选择数值显示的方式 `format` `help format`
 - 保存和读取工作环境/变量 `save <filename> [var1] [var2] [...]` `load <filename>`
 - 在语句末尾使用分号 `;` 来隐藏显示
+- 保持语义的换行是`...`，不要在省略号后附加任何符号
 - 分屏显示 `more <off / on>` `space` 下一页 `b` 上一页 `q` 退出
 - `disp()` 显示字符串或变量的值
 
@@ -36,7 +37,7 @@
   - `logspace(x1, x2, N)`  创建N个元素的向量，指数均匀分布于x1和x2
 - 向量元素操作
   - 下标从1开始
-  - `a(3)` 取得第3个元素
+  - `a(3)` 取得第3个元素，注意没有使用中括号
   - `a(1:2:10)` 利用冒号表示法
 - 向量运算
   - `*` `/` `+` `-` 向量运算
@@ -50,7 +51,21 @@
 
 - `title('标题')`
 - `xlabel()` `ylabel()`
+- `axis(xbegin, xend, ybegin, yend)`
+
+### `plot(x, y)`
+
 - `plot(x, y)`
+- `plot(x, y, '+'`
+
+更多选项
+
+- `plot(t, nw, '+', 'MarkerSize', 12)`
+- `plot([25:1:55], fun(P, [25:1:55]), 'LineWidth', 5)`
+
+### 输出为图片
+
+`print('figure.png', '-dpng')`;
 
 ## Chapter 5 逻辑
 
