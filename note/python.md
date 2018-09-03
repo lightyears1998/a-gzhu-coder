@@ -492,9 +492,22 @@ Obj().method()  # 非静态方法
 Obj.smethod()   # 静态方法
 ```
 
-### 类方法
+与工厂方法统一，静态方法可以使用`@staticmethod`修饰符
 
-类方法
+### 类方法（工厂方法）
+
+类方法使用`@classmethod`修饰器，并接受`cls`作为第一个参数，返回类的一个实例
+
+```py
+class Square:
+  def __init__(self, width, length):
+    self.width = width
+    self.length = length
+
+@classmethod
+def new_square(cls, side_length):
+  return cls(side_length, side_length)
+```
 
 ### 类继承
 
