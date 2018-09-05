@@ -132,9 +132,9 @@ List间加法乘法操作有效。
 
 注意到，Tuple及字符串也有类似方法
 
-- `[bgn:end:step]` 以步长step包含元素[bgn, end)，三个参数都不是必要的
+- `[bgn:end:step]` 以步长step包含元素`[bgn, end)`，三个参数都不是必要的
 - 注意bgn可以大于end（所以上面那个区间的写法是错的😅），生成的方向总是从bgn到end，且不包含end
-- 如果索引index为负数，它是指从后往前数第index个字符；`[2:-2]`生成[2, 倒数第二个字符)
+- 如果索引index为负数，它是指从后往前数第index个字符；`[2:-2]`生成`[2, 倒数第二个字符)`
 - `[::-1]` 反转数组，如果步长为负数，那么List会反向生成
 
 #### Comprehensions 列表解析器
@@ -219,7 +219,7 @@ while i <= 5:
     i = i + 1
 ```
 
-### for
+### `for`
 
 Python中没有C语言风格的`for`，注意到Python中的`for`实际上为`foreach`
 
@@ -290,9 +290,9 @@ assert exp, "额外说明"
 
 ### range()
 
-- `range(n)` 生成[0, n)的列表
-- `range(i, j)` 生成[i, j)的列表
-- `range(i, j, k)` 生成[i, j)的等差列表，公差为k
+- `range(n)` 生成`[0, n)`的列表
+- `range(i, j)` 生成`[i, j)`的列表
+- `range(i, j, k)` 生成`[i, j)`的等差列表，公差为k
 
 ## Chapter 7 文件IO
 
@@ -504,9 +504,9 @@ class Square:
     self.width = width
     self.length = length
 
-@classmethod
-def new_square(cls, side_length):
-  return cls(side_length, side_length)
+  @classmethod
+  def new_square(cls, side_length):
+    return cls(side_length, side_length)
 ```
 
 ### 类继承
@@ -584,6 +584,37 @@ s = Spam()
 s.print_egg()            # 7
 print(s._Spam__egg)      # 7
 print(s.__egg)           # AttributeError: 'Spam' object has no attribute '__egg'
+```
+
+### 属性
+
+以字段的形式访问方法，从而使特定的字段只读或能通过方法自动生成。
+
+支持Setter语法
+
+```py
+class Pizza:
+    def __init__(self, toppings):
+        self.toppings = toppings
+        self._pineapple_allowed = False
+
+    @property
+    def pineapple_allowed(self):
+        return self._pineapple_allowed
+
+    @pineapple_allowed.setter
+    def pineapple_allowed(self, value):
+        if value:
+            password = input("Enter the password: ")
+            if password == "Sw0rdf1sh!":
+                self._pineapple_allowed = value
+            else:
+                raise ValueError("Alert! Intruder!")
+
+pizza = Pizza(["cheese", "tomato"])
+print(pizza.pineapple_allowed)
+pizza.pineapple_allowed = True
+print(pizza.pineapple_allowed)
 ```
 
 ## 链接
