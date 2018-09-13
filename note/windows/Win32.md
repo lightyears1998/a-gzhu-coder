@@ -2,8 +2,9 @@
 
 - [API List](https://docs.microsoft.com/zh-cn/windows/desktop/api/index)
 - [Playground](https://github.com/lightyears1998/quiet-space/tree/master/playground/w32)
+- [Getting started](https://docs.microsoft.com/en-us/windows/desktop/learnwin32/learn-to-program-for-windows)
 
-## [数据类型](https://docs.microsoft.com/zh-cn/windows/desktop/LearnWin32/windows-coding-conventions)
+## Chapter 1 [数据类型](https://docs.microsoft.com/zh-cn/windows/desktop/LearnWin32/windows-coding-conventions)
 
 ### 匈牙利命名法
 
@@ -28,25 +29,25 @@
 - `wparam`, `lparam` word or long as parameter
 - `cb` count bytes
 
-### HANDLE
+### HANDLE句柄
 
 - *INVALID_HANDLE_VALUE*
 - `GetStdHandle()` `STD_INPUT_HANDLE`, `STD_OUTPUT_HANDLE`
 
-## 头文件与工具函数
+**HWND**形似指针，但不是指针
 
-### windows.h
+## Chapter 2 基本概念
 
-同时引入了
+### 窗口Window
 
-- `windef.h` 基本类型定义
-- `winbase.h` 内核函数
-- `wingdi.h` 图形设备接口函数
-- `winuser.h` 用户接口函数，包括`MessageBox()`
+- 占据一定的屏幕空间
+- 在给定时间内可见或不可见
+- 具有绘制自己的方法
+- 能够处理来自用户或操作系统的输入
 
-#### 应用程序入口
+### 应用程序入口WinMain
 
-WinMain
+签名如下
 
 ```cpp
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow);
@@ -62,103 +63,62 @@ int WINAPI wWimMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
 若出现未加载符号的提示，在调试选项中选择加载符号即可。
 
-#### WNDCLASS与注册窗口
+- *hInstance* 指向实例的指针，操作系统用此区分加载到内存中的应用程序
+- *hPrevInstance* 无意义，总是0；源自16位Windows操作系统
+- *pCmdLine* 命令行参数
+- *nCmdShow* 最小化、最大化或正常显示
 
-WNDCLASS
+操作系统不会使用WinMain的返回值
 
-1. 每一个WNDCLASS都有一个相关联的窗口过程
+### 窗口类WNDCLASS
 
-```cpp
-typedef struct tagWNDCLASS {
-  UINT      style;
-  WNDPROC   lpfnWndProc;
-  int       cbClsExtra;        // 分配给窗口类结构之后的额外字节数
-  int       cbWndExtra;        // 分配给窗口类实例之后的额外字节数
-  HINSTANCE hInstance;         // 窗口过程所对应的实例句柄
-  HICON     hIcon;
-  HCURSOR   hCursor;
-  HBRUSH    hbrBackground;
-  LPCTSTR   lpszMenuName;
-  LPCTSTR   lpszClassName;
-} WNDCLASS, *PWNDCLASS;
+每个窗口都需要与一个窗口类相关联；窗口类并非C++中的“类”，而是操作系统使用的一种数据结构
 
-// 10成员
+可以将窗口类的多数字段留空以保持默认选项，但必须填写3个字段
+
+1. `lpfnWndProc` 窗口过程函数
+2. `hInstance` 应用程序实例句柄
+3. `lpszClassName` 窗口类的名称，在线程中保持唯一即可；注意不要与预定义的控件类等的名称冲突
+
+然后使用`RegisterClass(&wc)`注册窗口。
+
+调用`CreateWindowEx(...)`来创建窗口；此函数在`CreateWindow()`的基础提供更多拓展。
+
+创建完毕后使用`ShowWindow(hwnd, nCmdShow)`来显示窗口。
+
+### 窗口消息Window Message
+
+以`WM_`开头的宏定义是窗口消息
+
+通过`GetMessage(&msg, NULL, 0, 0)`来获取消息队列中的消息，如果消息队列中没有消息，此函数会被阻塞。
+
+获取到消息后，通过`TranslateMessage(&msg)`来翻译键盘消息，并通过`DispatchMessage(&msg)`来调用窗口过程函数。
+
+通过`PostQuitMessage(0)`来发送`WM_QUIT`消息，使应用程序退出消息循环。
+
+关于 **Post Message** 以及 **Sent Message**
+
+```quote
+The terminology for this distinction can be confusing:
+
+- Posting a message means the message goes on the message queue, and is dispatched through the message loop (GetMessage and DispatchMessage).
+- Sending a message means the message skips the queue, and the operating system calls the window procedure directly.
 ```
 
-注册窗口的过程
+### 窗口过程Window Procedure
 
-1. 填充`WNDCLASS`结构体
-2. 注册窗口 `RegisterClass()`
-3. 创建并显示窗口 `CreateWindow()`, `ShowWindow()`, `UpdateWindow()`
-4. 进入消息循环，发送特定消息与窗口过程
+使用默认的窗口过程函数`return DefWindowProc(hwnd, uMsg, wParam, lParam);`
 
-```cpp
-WNDCLASS wndclass;
-wndclass.style = CS_HREDRAW | CS_VREDRAW;
-wndclass.lpfnWndProc = WndProc;
-wndclass.cbClsExtra = 0;
-wndclass.cbWndExtra = 0;
-wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-wndclass.lpszMenuName = NULL;
-wndclass.hInstance = hInstance;
-wndclass.lpszClassName = TEXT("HelloWindow");
+## 附录：头文件与工具函数
 
-if (!RegisterClass(&wndclass)) {
-    MessageBox(NULL, TEXT("红牌警告：窗口注册失败啦"), TEXT("注册失败"), 0);
-    return 0;
-}
+### windows.h
 
-HWND hwnd = CreateWindow(
-    TEXT("HelloWindow"),
-    TEXT("我的窗口"),
-    WS_OVERLAPPEDWINDOW,
-    CW_USEDEFAULT,
-    CW_USEDEFAULT,
-    480,
-    320,
-    NULL,                    // 父窗口句柄
-    NULL,                    // 窗口菜单句柄
-    hInstance,               // 应用程序实例句柄
-    NULL                     // 创建窗口的参数
-);
+同时引入了
 
-ShowWindow(hwnd, nCmdShow);
-UpdateWindow(hwnd);
-
-MSG msg;
-while (GetMessage(&msg, NULL, 0, 0)) {
-    TranslateMessage(&msg);
-    DispatchMessage(&msg);
-}
-return msg.wParam;
-```
-
-窗口过程函数
-
-```cpp
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    HDC hdc;
-    PAINTSTRUCT ps;
-    RECT rc;
-    switch (message)
-    {
-    case WM_CREATE: return 0;
-    case WM_PAINT:
-        hdc = BeginPaint(hwnd, &ps);
-        GetClientRect(hwnd, &rc);
-        DrawText(hdc, TEXT("Hello Windows!"), -1, &rc, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
-        EndPaint(hwnd, &ps);
-        return 0;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        return 0;
-    }
-    return DefWindowProc(hwnd, message, wParam, lParam);
-}
-```
+- `windef.h` 基本类型定义
+- `winbase.h` 内核函数
+- `wingdi.h` 图形设备接口函数
+- `winuser.h` 用户接口函数，包括`MessageBox()`
 
 ### winuser.h
 

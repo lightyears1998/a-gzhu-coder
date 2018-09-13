@@ -195,7 +195,10 @@ CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
 - *Dynamic Data Exchange, DDX*
 - *Dynamic Data Validate, DDV*
 
-使用`UpdateData(TRUE)`或`UpdateData()`时，数据由控件向绑定的成员变量（Data）输出；使用`UpdateData(FALSE)`时，数据由成员变量向绑定的控件输出
+`UpdateData()` 先TRUE后FALSE即可取得数据后设置数据
+
+- 使用`UpdateData(TRUE)`或`UpdateData()`时，数据由控件向绑定的成员变量（Data）输出
+- 使用`UpdateData(FALSE)`时，数据由成员变量向绑定的控件输出
 
 ### 静态控件
 
@@ -304,6 +307,14 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 #### CPoint, CSize, CRect
 
 #### CFile
+
+### 处理键盘输入
+
+基于对话框的工程默认不能处理键盘输入
+
+参考
+
+- <https://blog.csdn.net/wwkaven/article/details/39935915>
 
 ## 链接
 
