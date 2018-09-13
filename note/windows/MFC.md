@@ -94,15 +94,15 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 有且只有一个应用程序类，并需要一个全局对象实例。
 
-1. .InitInstance()
+1. `InitInstance()`
     1. 创建主窗口
     2. 显示窗口，更新窗口
 
-2. .Run() 执行应用程序的消息循环
+2. `Run()` 执行应用程序的消息循环
 
-3. .Idle()
+3. `Idle()`
 
-4. .ExitInstance()
+4. `ExitInstance()`
 
 ### 消息映射
 
@@ -142,11 +142,11 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 消息
 
-- *WM_INITDIALOG* 对话框显示之前向父窗口发送的消息
+- `WM_INITDIALOG` 对话框显示之前向父窗口发送的消息
 
 方法
 
-- *DoModal()* 显示（和终止）模式对话框，返回`IDOK`, `IDCANCEL`等值
+- `DoModal()` 显示（和终止）模式对话框，返回`IDOK`, `IDCANCEL`等值
 
 ### 通用对话框
 
@@ -158,6 +158,21 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 - CPageSetupDialog
 - CFontDialog
 - CPrintDialog
+
+CFileDialog使用示例
+
+```cpp
+void CMyFileDialogDlg::OnBnClickedShowdlg()
+{
+    CString filter = TEXT("文本文件(*.txt)|*.txt|C++文件(*.h, *.cpp)|*.h;*.cpp|所有文件(*.*)|*.*|");  // 真的是Filter
+    CFileDialog dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, filter);
+    if (dlg.DoModal() == IDOK)
+    {
+        m_path = dlg.GetPathName();   // 完全限定路径
+        UpdateData(FALSE);
+    }
+}
+```
 
 ### 关于消息对话框
 
@@ -174,16 +189,26 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 1. 在对话框模板中用编辑器指定控件
 2. 调用MFC相应控件类的Create()函数来创建
 
-### ON_COMMAND
+消息
 
-控件的通用消息，如果定义了ON_COMMAND消息的处理函数和其他消息的处理函数，那么先调用ON_COMMAND的处理函数再调用其他消息的处理函数
+- ON_COMMAND 控件的通用消息，如果定义了ON_COMMAND消息的处理函数和其他消息的处理函数，那么先调用ON_COMMAND的处理函数再调用其他消息的处理函数
 
-### CWnd.`GetDlgItem()`
+方法
 
-通过控件id获取控件的类对象指针
+- CWnd.`GetDlgItem()` 通过控件id获取控件的类对象指针
+    ```mfc
+    CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
+    ```
 
-```mfc
-CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
+### 动态创建控件示例
+
+现在类向导中为添加控件成员变量，并在`OnInitDialog()`中添加初始化代码
+
+```cpp
+// 很丑，外观与众不同
+m_button.Create(TEXT("动态创建的按钮"), WS_CHILD | BS_PUSHBUTTON | WS_VISIBLE | WS_TABSTOP, CRect(20, 20, 120, 40), this, 201);
+// 设置字体之后好多了
+m_button.SetFont(this->GetFont());
 ```
 
 ### DDX和DDV
