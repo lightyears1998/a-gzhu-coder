@@ -16,8 +16,8 @@ MFC不适用于Windows RT（以Win8为代表的Metro UI）
 
 ### Static libarary and shared library
 
-- static library *.lib
-- shared library *.dll
+- Static library *.lib
+- Shared library *.dll
 
 ### MFC库
 
@@ -41,10 +41,6 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 - *文档模板 Document Template*  `CSingleDocTemplate`, `CMultiDocTemplate`
 - *The Application Object*
 - *Thread Object* `CWinApp`继承于`CWinThread`
-
-### 基于框架的生成：典型构建顺序
-
-<https://docs.microsoft.com/zh-cn/cpp/mfc/sequence-of-operations-for-building-mfc-applications>
 
 ### CWinApp：应用程序类
 
@@ -80,7 +76,7 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 层次结构图参见 <https://docs.microsoft.com/zh-cn/cpp/mfc/hierarchy-chart>
 
-![简明类层次结构图]](/camo/note/windows/hierarchy-chart.jpg)
+![简明类层次结构图](/camo/note/windows/hierarchy-chart.jpg)
 
 ## Chapter 1x 基础代码
 
@@ -154,7 +150,7 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 ### 通用对话框
 
-从CCommonDialog继承的一系列预定义通用对话框
+从`CCommonDialog`继承的一系列预定义通用对话框
 
 - CColorDialog
 - CFileDialog
@@ -316,6 +312,7 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 
 - <https://blog.csdn.net/wwkaven/article/details/39935915>
 
-## 链接
+## 参考资料
 
 - [Microsft基础类：MFC和ATL](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc-and-atl)
+- [创建MFC应用程序的一般工作流程](https://docs.microsoft.com/zh-cn/cpp/mfc/sequence-of-operations-for-building-mfc-applications)
