@@ -109,6 +109,26 @@ The terminology for this distinction can be confusing:
 
 使用默认的窗口过程函数`return DefWindowProc(hwnd, uMsg, wParam, lParam);`
 
+### 绘制窗口
+
+`WM_PAINT`消息通知窗口更新区域
+
+使用`BeginPaint(hwnd, &ps)`填充PAINTSTRUCT并获得hdc句柄，使用`EndPaint()`结束绘制
+
+### 关闭窗口
+
+接受到`WM_CLOSE`消息后可以选择提示用户是否真的关闭窗口，如果窗口过程返回0，操作系统不会关闭窗口
+
+使用`DestroyWindow()`来关闭窗口
+
+`WM_DESTROY`在窗口被销毁之后，其他析构开始（如，子窗口的销毁）之前调用，此时通常选择`PostQuitMessage()`
+
+### 应用程序状态
+
+`WM_NCCREATE`以及`WM_CREATE`在窗口创建之前调用，可用于初始化UI。
+
+具体参考　<https://docs.microsoft.com/en-us/windows/desktop/learnwin32/managing-application-state->
+
 ## 附录：头文件与工具函数
 
 ### windows.h
