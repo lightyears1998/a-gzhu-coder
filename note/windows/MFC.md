@@ -180,6 +180,10 @@ void CMyFileDialogDlg::OnBnClickedShowdlg()
 - `AfxMessageBox()` 全程函数
 - `MessageBox()` 只能用在控件、对话框、窗口等一些地方
 
+## Chapter 2x 窗口
+
+`CWnd`封装了Windows窗口对象，如无特殊需求，使用`CFrameWnd`更方便，因为省略了注册窗口类的步骤，`CFrameWnd`预先注册好了。
+
 ## Chapter 3 常用控件
 
 用于与用户进行交互的基本单元
@@ -436,5 +440,15 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 
 ## 参考资料
 
+### API索引
+
+<https://docs.microsoft.com/zh-cn/cpp/mfc/reference/mfc-classes>
+
+### 手册
+
 - [Microsft基础类：MFC和ATL](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc-and-atl)
 - [创建MFC应用程序的一般工作流程](https://docs.microsoft.com/zh-cn/cpp/mfc/sequence-of-operations-for-building-mfc-applications)
+
+## 指南
+
+- [黑马程序员MFC教程](https://www.bilibili.com/video/av20005978/)
