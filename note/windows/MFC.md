@@ -195,10 +195,13 @@ void CMyFileDialogDlg::OnBnClickedShowdlg()
 
 方法
 
-- CWnd.`GetDlgItem()` 通过控件id获取控件的类对象指针
+- CWnd.`GetDlgItem(nId)` 通过控件id获取控件的类对象指针
     ```mfc
     CButton * pBtn = (CButton *) GetDlgItem(IDC_BUTTON1);
     ```
+- `GetWindowsText(nId)`
+- `EnableWindow(BOOL)` 是否启用窗口
+- `Invalidate()` 使窗口无效，系统将重绘窗口
 
 ### 动态创建控件示例
 
@@ -227,22 +230,73 @@ m_button.SetFont(this->GetFont());
 
 ### 按钮
 
-- 风格包括标准按键按钮和默认按钮（通过style属性调整）
-- 单选按钮
-- 复选按钮
+- 风格包括标准按键按钮和默认按钮（通过Default Button属性调整）；可以将多个按钮设置为默认按钮，但最终只有一个会成为默认按钮
+- 单选按钮，分为一般按钮和自动按钮；自动类型保证同组的单选按钮至多只有一个可以被选中；在同一个组框中的单选按钮会自动成为关联的一组
+- 复选按钮，三态按钮（Tri-state）
+
+消息
+
+- *BN_CLICKED*
+- *BN_DOUBLE_CLICKED*
 
 方法
 
-- `SetCheck()`, `GetCheck()`
-- 对于单选按钮组 `CheckRadioButton()`, `GetCheckedRadioButton()`
+- `SetCheck(nCheck)`, `GetCheck()` `nCheck`可以是0不选，1选中和2不确定（仅适用于三态按钮）
+- 对于单选按钮组的设定和选取 `CheckRadioButton(nIdFirstButton, nIdLastButton, nIdCheckButton)`, `int GetCheckedRadioButton(nIdFirstButton, nIdLastButton)`
 
 ### 编辑框和旋转按钮控件
 
+#### 编辑框控件
+
+编辑框可以多行
+
+方法
+
+- `SetPasswordChar(ch)` ch为0时取消设置密码字符
+- `SetSel()`, `ReplaceSel()`, `GetSel()` 选择文本
+- `SetMargins(nLeft, nRight)` 设置边距
+- `Copy()`, `Paste()`, `Cut()`, `CanUndo()`, `Undo()`
+
+#### 获取多行编辑框文本示例
+
+可以使用DDX/DDV
+
+可以结合`GetLineCount()`, `GetLineLength(m_Edit.LineIndex(1))`, `GetLine(nLine, sBuff, nCharCount)`
+
+注意`GetLine()`不会自动添加结尾的空字符
+
+#### 旋转按钮控件 Spinner
+
+使用TAB次序将旋转按钮控件和编辑框控件编组
+
 旋转按钮控件是一对箭头按钮
 
-### 列表框
+属性
 
-多种风格
+- `Auto Buddy` 自动伙伴属性
+- `Set Buddy Integer` 设置结伴证书
+
+方法
+
+- `SetRange(nLower, nUpper)` 改变最大值和最小值
+- `SetBase(nBase)` 改变数字基数
+- `SetPos(nPos)` 当前数值
+
+### 列表框 CommoBox
+
+有单选、多选、拓展多选以及非选四种类型。
+
+方法
+
+- `AddString(lpszItem)`, `InsertString(nIndex, lpszItem)` 添加列表项目，成功时返回索引，失败时返回`LB_ERR`
+- `SetItemData(nIndex, dwItemData)`, `SetItemDataPtr(nIndex, pData)` 将列表项目与特定内容相关联
+- `GetItemData()`, `GetItemDataPtr()`
+- `DeleteString(nIndex)`, `ResetContent()` 删除字符串
+- `FindString(nStartAfter, lpszItem)`, `FindStringExact(nIndexStart, lpszItem)` 开始位置若为-1则从头到尾搜寻，查找列表项目，失败返回`LB_ERR`
+- `GetCurSel()`, `SetCurSel()` 设置单项选择列表框的选中选项
+- `GetText(nIndex, lpszBuffer)`, `GetText(nIndex, rString)`
+
+多项选择列表框的需要响应`LBN_SELCHANGE`消息并利用`GetSelCount()`获取选中项目的数量, `GetSelItem(nCount, buffer)`获取选中项目的索引来处理。
 
 ### 组合框
 
@@ -250,11 +304,54 @@ m_button.SetFont(this->GetFont());
 
 ### 进度条、滚动条和滑动条
 
+#### 进度条
+
+方法
+
+- `SetRange()`, `SetPos()`, `SetStep()`, `StepIt()`
+
+#### 滚动条
+
+方法
+
+- `SetScrollRange(nMinPos, nMaxPos, bReDraw = TRUE)`, `SetScrollPos()`
+
+消息
+
+- `WM_HSCROLL`, `WM_VSCROLL`
+
+#### 滑动条
+
+- `SetRange()`, `SetPos()`
+- `SetTic()`, `SetTicFreq()`, `ClearTic()` 刻度线相关设置
+- `SetSelection(nMin, nMax)`
+
 ### 日期时间控件
+
+- `SetTime()`, `GetTime()`
 
 ### 列表控件和树控件
 
+#### 图像列表控件 ImageList
+
+不能通过可视化编辑器创建
+
+#### 列表控件
+
+大图标、小图标、列表视图和报表视图4中风格。
+
+方法
+
+- `SetImageList()` 设置关联的图像列表
+- `InsertItem()`, `DeleteItem()`, `DeleteAllItems()`
+- `FindItem()`
+- `GetColumnCount()`, `InsertColumn()`
+
+#### 树控件
+
 ## Chapter 4 菜单、工具栏和状态栏
+
+使用CMenu类的`CreateMenu()`, `CreatePopupMenu()`来创建菜单，使用`LoadMenu()`装入菜单资源，使用`AppendMenu()`, `InsertMenu()`来添加菜单项
 
 ## Chapter 5 框架窗口、文档和视图
 
