@@ -34,6 +34,10 @@
 - *INVALID_HANDLE_VALUE*
 - `GetStdHandle()` `STD_INPUT_HANDLE`, `STD_OUTPUT_HANDLE`
 
+### WINAPI
+
+__stdcall参数的传递顺序，从右到左压入堆栈，并且在函数返回前清空堆栈
+
 **HWND**形似指针，但不是指针
 
 ## Chapter 2 基本概念
@@ -86,6 +90,13 @@ int WINAPI wWimMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
 创建完毕后使用`ShowWindow(hwnd, nCmdShow)`来显示窗口。
 
+其他属性
+
+1. cbClsExtra, cbWndExtra 为类或窗口分配的额外内存
+2. hbrBackground
+3. hCursor
+4. hIcon
+
 ### 窗口消息Window Message
 
 以`WM_`开头的宏定义是窗口消息
@@ -128,6 +139,15 @@ The terminology for this distinction can be confusing:
 `WM_NCCREATE`以及`WM_CREATE`在窗口创建之前调用，可用于初始化UI。
 
 具体参考　<https://docs.microsoft.com/en-us/windows/desktop/learnwin32/managing-application-state->
+
+## Chapter 3 创建窗口的基本过程
+
+1. 设计窗口 WNDCLASS
+2. 注册窗口 `RegisterClass()`
+3. 创建窗口 `CreateWindow()`
+4. 显示和更新窗口
+5. 取出消息 翻译消息 分发消息
+6. 
 
 ## 附录：头文件与工具函数
 
