@@ -132,7 +132,7 @@ The terminology for this distinction can be confusing:
 
 使用`DestroyWindow()`来关闭窗口
 
-`WM_DESTROY`在窗口被销毁之后，其他析构开始（如，子窗口的销毁）之前调用，此时通常选择`PostQuitMessage()`
+`WM_DESTROY`在窗口被销毁之后，其他析构开始（如，子窗口的销毁）之前调用，此时通常选择`PostQuitMessage()`来退出消息循环
 
 ### 应用程序状态
 
@@ -147,7 +147,7 @@ The terminology for this distinction can be confusing:
 3. 创建窗口 `CreateWindow()`
 4. 显示和更新窗口
 5. 取出消息 翻译消息 分发消息
-6. 
+6. 销毁窗口
 
 ## 附录：头文件与工具函数
 
