@@ -6,6 +6,8 @@ MFC头文件`\atlmfc\include`，实现文件`\atlmfc\mfc\src`，根目录类似�
 
 MFC不适用于Windows RT（以Win8为代表的Metro UI）
 
+源文件的后缀名为`cpp`
+
 ## Chapter 1 相关基本概念
 
 - *Win32* includes *Win95* and *WinNT*
@@ -33,6 +35,11 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 使用Unicode即使用UTF-16
 
+多字节字符（char）与宽字节字符（w_char）
+
+- 多字节 一个字符对应一个字节；注意到一个“字”可能由多个字节组成
+- 宽字节 一个字符对应多个字节，一个“字”对应一个字节
+
 ### [文档、视图与框架](https://docs.microsoft.com/zh-cn/cpp/mfc/documents-views-and-the-framework)
 
 - *文档* 类似于*\.docx*这样的，继承于`CDocument`
@@ -51,13 +58,15 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 - `ExitInstance()`
 - `OnIdle()`
 
-### InitInstance
+#### InitInstance
 
 - 中心工作：创建文档模板
 - 从ini文件或注册表中读取设置，最近使用的文件等
 - 注册文档模板
 - （MDI）创建Main frame window
 - 处理命令行
+
+初始化正确返回`TRUE`
 
 关于多线程的[一点注释](https://docs.microsoft.com/zh-cn/cpp/mfc/initinstance-member-function)
 
@@ -92,9 +101,9 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 ### CWinApp
 
-有且只有一个应用程序类，并需要一个全局对象实例。
+有且只有一个的应用程序类，并需要一个全局对象实例。
 
-1. `InitInstance()`
+1. virtual `BOOL InitInstance()`
     1. 创建主窗口
     2. 显示窗口，更新窗口
 
@@ -118,8 +127,9 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
         ON_WM_PAINT()
     END_MESSAGE_MAP()
     ```
-3. 定义消息处理函数
+3. 声明函数原型和定义消息处理函数
     ```cpp
+    // 省略函数原型声明
     void CMainFrame::OnPaint()
     {
         CPaintDC dc(this);
@@ -182,7 +192,18 @@ void CMyFileDialogDlg::OnBnClickedShowdlg()
 
 ## Chapter 2x 窗口
 
-`CWnd`封装了Windows窗口对象，如无特殊需求，使用`CFrameWnd`更方便，因为省略了注册窗口类的步骤，`CFrameWnd`预先注册好了。
+`CWnd`封装了Windows窗口对象，如无特殊需求，使用`CFrameWnd`更方便，因为省略了注册窗口类的步骤，`CFrameWnd`预先注册好了。`CWnd`需要额外的注册窗口的步骤。
+
+```cpp
+class MyWnd : public CFrameWnd
+{
+public:
+    MyWnd()
+    {
+        Create(NULL, TEXT("New Window"));
+    }
+};
+```
 
 ## Chapter 3 常用控件
 
@@ -427,6 +448,8 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 - `Format()` 与printf()类似的格式化字符串的方法；由字符串转换成数值可以使用`atoi()`
 
 #### CPoint, CSize, CRect
+
+#### CPaintDC
 
 #### CFile
 
