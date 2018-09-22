@@ -147,8 +147,8 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 从基类CDialog派生
 
-- **模式对话框**是当对话框弹出时，用户必须在对话框中做出相应的操作，在退出对话框之前，对话框所在的应用程序不能继续执行。
-- 相对应的概念是 **无模式对话框**
+- **模式对话框**是当对话框弹出时，用户必须在对话框中做出相应的操作，在退出对话框之前，对话框所在的应用程序不能继续执行。 `.DoModal()`
+- 相对应的概念是 **无模式对话框** `Create(IDD_...)`, `ShowWindow(SW_SHOWNORMAL)` 注意非模态对话框不会阻塞代码，从而作为局部变量的引用时会“一闪而过”；非模态对话框应该作为类的成员，并且在`OnInitDialog()`中被初始化
 
 消息
 
@@ -189,6 +189,10 @@ void CMyFileDialogDlg::OnBnClickedShowdlg()
 - Win32`MessageBox()` 参数与MFC中的MessageBox不同
 - `AfxMessageBox()` 全程函数
 - `MessageBox()` 只能用在控件、对话框、窗口等一些地方
+
+### 关联对话框资源到MFC类
+
+在资源设计视图中使用“添加类”来添加MFC类
 
 ## Chapter 2x 窗口
 
