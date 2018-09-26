@@ -157,6 +157,7 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 方法
 
 - `DoModal()` 显示（和终止）模式对话框，返回`IDOK`, `IDCANCEL`等值
+- `GetWindowText()`, `GetWindowRect()`
 
 ### 通用对话框
 
@@ -204,6 +205,10 @@ public:
     }
 };
 ```
+
+调用`CreateEx()`方法之前会先调用`PreCreateWindow(CREATESTRUCT)`，可在此方法中修改窗口给的外观；最后调用`CreateWindowEx()`完成窗口的创建。
+
+`OnCreate()`是对`Create()`方法产生的`WM_CREATE`消息的响应，不创建窗口，而是负责在窗口显示之前修改窗口的外观和位置等等。
 
 ## Chapter 3 常用控件
 
@@ -253,6 +258,15 @@ m_button.SetFont(this->GetFont());
 
 静态控件包括：静态文本，分组框以及静态图片
 
+#### 静态文本
+
+1. 可以通过关联变量来设置静态文本，注意ID不能以`STATIC`结尾，否则无法添加变量
+2. 可以通过`GetDlgItem(IDD)`
+
+通过`SetWindowText()`来修改显示的Caption，通过`GetWindowText(CString&)`来获取Caption
+
+甚至可以通过静态文本控件显示图片，通过`SetBitmap()`。
+
 ### 按钮
 
 - 风格包括标准按键按钮和默认按钮（通过Default Button属性调整）；可以将多个按钮设置为默认按钮，但最终只有一个会成为默认按钮
@@ -268,6 +282,7 @@ m_button.SetFont(this->GetFont());
 
 - `SetCheck(nCheck)`, `GetCheck()` `nCheck`可以是0不选，1选中和2不确定（仅适用于三态按钮）
 - 对于单选按钮组的设定和选取 `CheckRadioButton(nIdFirstButton, nIdLastButton, nIdCheckButton)`, `int GetCheckedRadioButton(nIdFirstButton, nIdLastButton)`
+- `EnableWindow(FALSE)` 可以禁用窗口
 
 ### 编辑框和旋转按钮控件
 
@@ -423,6 +438,17 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 
 派生类具有实用功能
 
+#### `OnDraw` vs `OnPaint`
+
+两个方法不要同时存在，否则`OnPaint`会把`OnDraw`覆盖（名字长的覆盖名字短的
+
+- `OnPaint()`是CWnd类的成员，负责响应`WM_PAINT`消息
+- `OnDraw()`是CView的成员函数，没有响应消息的功能
+
+视图无效之后，发送`WM_ONPAINT`消息，由视图的`OnPaint()`方法创建CPaintDC对象来响应响应消息并调用视图的OnDraw成员函数（因为OnPaint最后要调用OnDraw，一般在OnDraw中进行绘制）
+
+通常不需要编写OnPaint处理函数，当在视图类中添加了`OnPaint()`处理函数时，`OnPaint()`会覆盖掉`OnDraw()`
+
 #### 坐标映射
 
 通过坐标映射实现高DPI适应
@@ -433,19 +459,31 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 
 ## 附录 工具小结
 
+- Visual Studio 类视图
+- 以`Ex`是拓展函数
+- 以`AFX`开头的是全局函数；一个例子是`MessageBox()`是CWnd的方法，而`AfxMessageBox()`
+
 ### 宏
 
 - `HIBYTE()`, `LOBYTE()` 16位数值中的高位和低位
 - `TEXT()` UNICODE字符支持
 - `MAKEWORD()` 将两个16数值合成32位数值
 
+TCHAR 自适应编码转换字符
+
+wchar_t配套方法`wcslen()`
+
 ### 工具类
 
 #### CString
 
+有`CStringA`的变体
+
 方法
 
+- `CString(char *)` 由`char *`构造对象
 - `Format()` 与printf()类似的格式化字符串的方法；由字符串转换成数值可以使用`atoi()`
+- `GetBuffer()` 返回`char *`，此方法作为`std::string`与`CString`转换的桥梁
 
 #### CPoint, CSize, CRect
 
