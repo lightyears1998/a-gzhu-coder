@@ -158,6 +158,9 @@ MFC库会根据设置[自动链接](https://docs.microsoft.com/zh-cn/cpp/mfc/mfc
 
 - `DoModal()` 显示（和终止）模式对话框，返回`IDOK`, `IDCANCEL`等值
 - `GetWindowText()`, `GetWindowRect()`
+- `OnOK()`, `OnCancel()`
+
+通过重写`OnOK()`方法来解决对话框按下回车之后就退出对话框的问题。
 
 ### 通用对话框
 
@@ -253,6 +256,7 @@ m_button.SetFont(this->GetFont());
 
 - 使用`UpdateData(TRUE)`或`UpdateData()`时，数据由控件向绑定的成员变量（Data）输出
 - 使用`UpdateData(FALSE)`时，数据由成员变量向绑定的控件输出
+- 读作Update data from dialog
 
 ### 静态控件
 
