@@ -341,10 +341,14 @@ m_button.SetFont(this->GetFont());
 - `GetItemData()`, `GetItemDataPtr()`
 - `DeleteString(nIndex)`, `ResetContent()` 删除字符串
 - `FindString(nStartAfter, lpszItem)`, `FindStringExact(nIndexStart, lpszItem)` 开始位置若为-1则从头到尾搜寻，查找列表项目，失败返回`LB_ERR`
-- `GetCurSel()`, `SetCurSel()` 设置单项选择列表框的选中选项
+- `GetCurSel()`, `SetCurSel()` 设置单项选择列表框的选中选项，可以通过此函数来设置默认的值
 - `GetText(nIndex, lpszBuffer)`, `GetText(nIndex, rString)`
 
 多项选择列表框的需要响应`LBN_SELCHANGE`消息并利用`GetSelCount()`获取选中项目的数量, `GetSelItem(nCount, buffer)`获取选中项目的索引来处理。
+
+#### 单选式下拉框 Commobox
+
+在Data属性中使用分号分隔各个选项；Type“Drop List”属性可以使下拉框内容不能被用户修改；Sort“False”则不会自动排序
 
 ### 组合框
 
@@ -384,7 +388,7 @@ m_button.SetFont(this->GetFont());
 
 不能通过可视化编辑器创建
 
-#### 列表控件
+#### 列表控件 List Control
 
 大图标、小图标、列表视图和报表视图4中风格。
 
@@ -394,6 +398,11 @@ m_button.SetFont(this->GetFont());
 - `InsertItem()`, `DeleteItem()`, `DeleteAllItems()`
 - `FindItem()`
 - `GetColumnCount()`, `InsertColumn()`
+
+##### 报表模式
+
+- 整行的选中状态 `SetExtendedStyle(.GetExtendedStyle() | LVS_EX_FULLLINESELECT)`
+- 显示网格 `LVS_EX_GRIDLINES`
 
 #### 树控件
 
