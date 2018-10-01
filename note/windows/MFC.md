@@ -384,9 +384,9 @@ m_button.SetFont(this->GetFont());
 
 ### 列表控件和树控件
 
-#### 图像列表控件 ImageList
+#### 图像列表 ImageList
 
-不能通过可视化编辑器创建
+不能通过可视化编辑器创建；是在树控件中引用图片中所必须的。
 
 #### 列表控件 List Control
 
@@ -404,7 +404,27 @@ m_button.SetFont(this->GetFont());
 - 整行的选中状态 `SetExtendedStyle(.GetExtendedStyle() | LVS_EX_FULLLINESELECT)`
 - 显示网格 `LVS_EX_GRIDLINES`
 
-#### 树控件
+#### 树控件 TreeControl
+
+属性
+
+- HasLine, HasButton
+- RootAtLine
+
+方法
+
+1. `SetImageList()` 设置图标；注意ImageList不要开辟在栈空间中否则函数创建函数结束之后其控件会释放导致图片无法加载
+2. `HTreeItem InsertItem()` 设置节点
+3. `SetSelectedItem(hTreeItem)` 设置默认选项; `GetSelectedItem()`
+4. `GetItemText()`
+
+事件
+
+- TVN_SELECTCHANGED
+
+#### 标签页 TabControl
+
+基于对话框资源的深度定制
 
 ## Chapter 4 菜单、工具栏和状态栏
 
@@ -507,6 +527,16 @@ wchar_t配套方法`wcslen()`
 #### CPaintDC
 
 #### CFile
+
+#### CImageList
+
+1. 创建图片集合
+
+```cpp
+CImageList list;
+list.Create(...);  // 创建（开辟空间）
+list.Add(...);  // 添加具体的图像，可以是HICON
+```
 
 ### 处理键盘输入
 
