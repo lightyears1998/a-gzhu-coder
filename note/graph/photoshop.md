@@ -27,6 +27,13 @@
 
 - PPI vs DPI <http://blog.jeswang.org/blog/2013/08/07/ppi-vs-dpi-you-shi-yao-qu-bie/>
 
+### 色彩模式
+
+- HSB 基于人眼的色彩模式 色相 饱和度 明度
+- RGB 三色叠加 “加色模式”全混合产生白色
+- CMYK 油墨色彩 “减色模式”全混合产生黑色
+- Lab 照度与色彩的组合
+
 ### 2.3 图层
 
 `F7`
