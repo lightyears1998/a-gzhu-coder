@@ -422,7 +422,7 @@ m_button.SetFont(this->GetFont());
 
 - TVN_SELECTCHANGED
 
-#### 标签页 TabControl
+#### 标签页 TabControl, TabSheet
 
 基于对话框资源的深度定制
 
