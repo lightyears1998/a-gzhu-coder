@@ -471,20 +471,22 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 
 ### Section 1 图形
 
+注意所有的Device Context函数必须在`OnPaint()`方法中调用，在其他函数中调用是无效的。
+
 #### CDC Device Context 设备环境类
 
 派生类具有实用功能
 
 #### `OnDraw` vs `OnPaint`
 
-两个方法不要同时存在，否则`OnPaint`会把`OnDraw`覆盖（名字长的覆盖名字短的
+两个方法不要同时存在，否则`OnPaint`会把`OnDraw`覆盖（名字长的覆盖名字短的（实际上是自定的OnPaint()方法没有调用OnDraw虚函数
 
 - `OnPaint()`是CWnd类的成员，负责响应`WM_PAINT`消息
 - `OnDraw()`是CView的成员函数，没有响应消息的功能
 
 视图无效之后，发送`WM_ONPAINT`消息，由视图的`OnPaint()`方法创建CPaintDC对象来响应响应消息并调用视图的OnDraw成员函数（因为OnPaint最后要调用OnDraw，一般在OnDraw中进行绘制）
 
-通常不需要编写OnPaint处理函数，当在视图类中添加了`OnPaint()`处理函数时，`OnPaint()`会覆盖掉`OnDraw()`
+通常不需要编写OnPaint处理函数，当在CView视图类中添加了`OnPaint()`处理函数时，`OnPaint()`会覆盖掉`OnDraw()`
 
 #### 坐标映射
 
