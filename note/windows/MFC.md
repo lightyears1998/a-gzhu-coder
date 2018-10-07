@@ -496,7 +496,9 @@ MFC中的CDC类对绘图设备环境进行封装，提供画点、线、多边�
 
 ### Section 3 打印
 
-## 附录 工具小结
+## 常用工具类
+
+### 一般辨识
 
 - Visual Studio 类视图
 - 以`Ex`是拓展函数
@@ -529,6 +531,16 @@ wchar_t配套方法`wcslen()`
 #### CPaintDC
 
 #### CFile
+
+有`CStdioFile`的子类支持文件输出
+
+创建文件的模式 `CFile::modeXXX`
+
+使用`Write()`正确地输出`CString`的方法 `Write(str.GetBuffer(), sizeof(TCHAR) * str.GetLength());`
+
+#### CStdioFile
+
+本质上是对C的函数`fopen()`对应结构的封装，封装了`WriteString()`和`ReadString()`方法，注意两个版本的`ReadString()`对换行符的不同处理；
 
 #### CImageList
 
