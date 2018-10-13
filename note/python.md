@@ -617,6 +617,64 @@ pizza.pineapple_allowed = True
 print(pizza.pineapple_allowed)
 ```
 
+## Chapter 10 正则表达式
+
+```py
+import re
+pattern = r'regular_expression'
+```
+
+基本工具
+
+1. `re.match(pattern, string)` 从开始匹配字符串，返回可供操作的对象
+2. `re.serach(pattern, string)` 从任意位置开始匹配字符串
+3. `re.findall(pattern, string)` 返回所有匹配的子串
+
+match示例
+
+```py
+import re
+
+pattern = r"pam"
+
+match = re.search(pattern, "eggspamsausage")
+if match:
+   print(match.group())
+   print(match.start())
+   print(match.end())
+   print(match.span())
+
+"""
+>>>
+pam
+4
+7
+(4, 7)
+>>>
+"""
+```
+
+搜索和替换 `re.sub(pattern, repl, string, max=0)`
+
+```py
+import re
+
+str = "My name is David. Hi David."
+pattern = r"David"
+newstr = re.sub(pattern, "Amy", str)
+print(newstr)
+```
+
+### 正则元字符
+
+1. `.` 除换行符外的任意字符
+2. `^`, `$` 匹配字符串的开始和结束
+3. `[aeiou]`, `[a-z]`, `[0-9]` 匹配字符组中的一个；使用`[^A-Z]`来取反（排除大写字母）
+4. `*` 0个或更多前述字符
+5. `+` 1个或更多前述字符
+6. `?` 0个或1个前述字符 `pattern = r'ice(-)?cream'`
+7. `{x, y}` [x, y]个前述字符
+
 ## 链接
 
 - SoloLearn Python <https://www.sololearn.com/Play/Python>
