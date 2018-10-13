@@ -107,6 +107,22 @@ tuple = ("one", "two")
 tuple = "one", "two"
 ```
 
+Tuple Unpacking
+
+```py
+numbers = (1, 2, 3)
+a, b, c = numbers
+
+# a = 1, b = 2, c = 3
+```
+
+```py
+numbers = [1, 2, 3, 4, 5]
+a, *b, c = numbers
+
+# a = 1, b = [2, 3, 4], c = 5
+```
+
 ### List 列表
 
 List使用方括号`[]`定义，下标从0开始。
@@ -231,6 +247,18 @@ for i in range(5)
     # Something
 ```
 
+### 三元运算 Ternay Operator
+
+```py
+b = 1 if a >= 5 else 42
+```
+
+### 与其他语句块配对的`else`
+
+如果else与循环配对，如果循环不是以break方式退出，else语句块将被执行
+
+如果else与try块配对，仅当没有异常时会执行else里的语句
+
 ## Chpater 4 函数
 
 ```python
@@ -241,8 +269,36 @@ def fun(arg1, arg2):
 参数类型限定
 
 ```python
-def fun(arg:int):
+def fun(arg: int):
     # 函数体
+```
+
+默认参数
+
+```py
+def fun(arg="default"):
+    # 函数体
+```
+
+可变数量的参数
+
+```py
+def function(named_arg, *args):
+    print(named_arg)
+    print(args)  # args是一个tuple
+```
+
+关键字参数Key word arguments（未提前定义的具名参数）
+
+```py
+def my_func(x, y=7, *args, **kwargs):
+   print(kwargs)  # kwargs是一个字典
+
+my_func(2, 3, 4, 5, 6, a=7, b=8)
+
+"""
+{'a': 7, 'b': 8}
+"""
 ```
 
 ### Docstrings 函数注释
@@ -668,12 +724,55 @@ print(newstr)
 ### 正则元字符
 
 1. `.` 除换行符外的任意字符
-2. `^`, `$` 匹配字符串的开始和结束
+2. `^`, `$` 匹配行的开头和行的结尾
 3. `[aeiou]`, `[a-z]`, `[0-9]` 匹配字符组中的一个；使用`[^A-Z]`来取反（排除大写字母）
 4. `*` 0个或更多前述字符
 5. `+` 1个或更多前述字符
 6. `?` 0个或1个前述字符 `pattern = r'ice(-)?cream'`
 7. `{x, y}` [x, y]个前述字符
+8. `|` 或
+9. `\数字n` 匹配前一形式的n次后续重复 如`r"(.+)\1"`将匹配形如"word word", "abc abc"的字符串
+10. `\d`, `\s`, `\w` 数字，空白字符或word characters；`\D`, `\S`, `\W`前述功能的取反
+11. `\b` 匹配`\w`与`\W`之间的空字符串（non-word characters与word characters之间的空字符串）如`\bcat\b`会匹配“The cat sat!”和“We s>cat<\tered?”但不会匹配“We scattered.”
+12. `\A`与`\Z`分别输入的开头和结尾（与`^`和`$`区别）
+
+### Group
+
+`group(), group(0)`返回整个匹配，`group(n)`返回第n个匹配的组
+
+可以通过`(?<name>:...)`的形式声明命名的组，并通过`group('name')`来访问
+
+可以通过`(?:...)`的形式声明non-capture组，non-catpure组不能通过group函数来访问
+
+搜索邮件地址
+
+```py
+import re
+
+pattern = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)"
+str = "Please contact info@sololearn.com for assistance"
+
+match = re.search(pattern, str)
+if match:
+   print(match.group())
+```
+
+## Chapter 11 Zen of Python
+
+```py
+import this
+```
+
+## Chapter 12 包装
+
+## 主流第三方库
+
+- Django
+- BeautifulSoap 爬虫
+- matplotlib 数据图表生成
+- NumPy 多维数组
+- SciPy 拓展Numpy
+- Panda3D / pygame 3D/2D游戏开发
 
 ## 链接
 
