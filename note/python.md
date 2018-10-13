@@ -740,9 +740,9 @@ print(newstr)
 
 `group(), group(0)`返回整个匹配，`group(n)`返回第n个匹配的组
 
-可以通过`(?<name>:...)`的形式声明命名的组，并通过`group('name')`来访问
+可以通过`(?P<name>...)`的形式声明命名的组，并通过`group('name')`来访问
 
-可以通过`(?:...)`的形式声明non-capture组，non-catpure组不能通过group函数来访问
+可以通过`(?...)`的形式声明non-capture组，non-catpure组不能通过group函数来访问
 
 搜索邮件地址
 
