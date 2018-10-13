@@ -765,10 +765,25 @@ import this
 
 ## Chapter 12 包装
 
+示例层次结构
+
+```
+SoloLearn/
+   LICENSE.txt
+   README.txt
+   setup.py
+   sololearn/
+      __init__.py
+      sololearn.py
+      sololearn2.py
+```
+
+还有py2exe这样的神奇的存在
+
 ## 主流第三方库
 
 - Django
-- BeautifulSoap 爬虫
+- BeautifulSoup 爬虫
 - matplotlib 数据图表生成
 - NumPy 多维数组
 - SciPy 拓展Numpy
