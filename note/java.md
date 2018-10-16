@@ -222,3 +222,16 @@ rand.nextInt(100);  // [0, 100) 左闭右开
 - 禁止继承
 
 ## Chapter 8 多态
+
+## 常见问题处理方式
+
+### 数字格式
+
+`java.text.NumberFormat`, `java.text.DecimalFormat`
+
+每三位数字插入一个分隔符
+
+```java
+NumberFormat formatter = new DecimalFormat(",###");
+formatter.format(number)
+```
