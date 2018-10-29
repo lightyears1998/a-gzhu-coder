@@ -9,11 +9,11 @@ onCreate, onRestart, onStart, （可见时）onResume, （被其他Activity不�
 - Stopped 不可见
 - Destroyed 销毁
 
-重写生命周期方法时，需要显式调用父类方法
+重写生命周期方法时，在重载函数结束前显式调用父类方法。
 
 ## Intent
 
-六类信息：Component, Action, Category, Data, Extra and Flag
+Intentz中携带的六类信息：Component, Action, Category, Data, Extra and Flag
 
 ```java
 Intent intent = new Intent(this, NextActivity.class);

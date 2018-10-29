@@ -188,6 +188,10 @@ while (GetMessage(&msg, NULL, 0, 0)) {
 return msg.wParam;
 ```
 
+### `GetSystemMetrics()`
+
+获取系统设定相关数值
+
 ### [MessageBox](https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-messagebox)
 
 `MessageBox(HWND hParent, LPCSTR lpText, LPCSTR lpCaption, UINT uType)`
