@@ -430,6 +430,15 @@ m_button.SetFont(this->GetFont());
 
 使用CMenu类的`CreateMenu()`, `CreatePopupMenu()`来创建菜单，使用`LoadMenu()`装入菜单资源，使用`AppendMenu()`, `InsertMenu()`来添加菜单项
 
+### 右键菜单（快捷菜单）
+
+1. 定义框架类的`OnContextMenu(CWnd * pWnd, CPoint point)`的函数
+
+注释
+
+1. `OnContextMenu()`响应的是鼠标右键按下后弹起的消息，因此如果定义`OnRButton`函数，并且有模态对话框出现，则此函数不会执行
+2. `OnContextMenu()`中不需要使用`ScreenToClient()`转换坐标
+
 ## Chapter 5 框架窗口、文档和视图
 
 框架窗口用于文档和视图的容器；文档是一个数据单元；视图是框架窗口的子窗口
