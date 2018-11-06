@@ -219,6 +219,12 @@ var obj = {
 
 键值可以是任何数据类型，包括函数。
 
+## Chapter 4 浏览器模型
+
+### URLSearchParams
+
+构造、解析和处理URL的查询字符串。
+
 ## 链接
 
 - [ECMAScript文档](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf)
