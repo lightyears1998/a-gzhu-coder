@@ -22,6 +22,20 @@ html5允许空标签没有结束标签。
 
 块级元素`div`，内联显示元素`span`
 
+## 嵌入JavaScript
+
+可以省略`type="text/javascript"`标签，Js已成为默认的脚本语言
+
+```html
+<script type="text/javascript">
+...
+</script>
+```
+
+```html
+<script type="text/javascript" src="..." charset="utf8"></script>
+```
+
 ## 属性
 
 - title
