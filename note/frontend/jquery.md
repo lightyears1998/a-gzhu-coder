@@ -46,3 +46,19 @@ $(function() {
 回调函数必须为匿名函数的形式。
 
 ## Ajax
+
+### Get
+
+`$.get(url, callback);`
+
+示例
+
+```js
+$.get(url, function(data, status) {
+    concole.log(data + status);
+});
+```
+
+### Post
+
+`$.post(url, data, callback);`
