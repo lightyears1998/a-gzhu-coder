@@ -46,3 +46,16 @@ $(function() {
 回调函数必须为匿名函数的形式。
 
 ## Ajax
+
+###  `$(seletor).load(url, data, callback)`
+
+将内容加载到指定的元素中
+
+- `url`
+- `data` 查询键值对
+- `callback` `load()`完成后执行的回调函数
+
+示例
+
+1. `$('#div').load("content.txt")`
+2. `$('#div').load("content.txt p")` 可结合选择器使用，将content.txt中p标签的内容载入div元素中
