@@ -1,22 +1,10 @@
 # 笔记寄存器
 
-这里是我存放一些编程工具的笔记的地方。
+这里是我的笔记寄存器。
 
-关于编程语言的笔记会尽量以下面的形式组织：
+这里还存放着一套可操作的编程环境。
 
-- 语言起源 / 应用背景等
-- 概述 / 基本概念
-- 数据类型（常量书写、变量）
-- 运算符
-- 流程控制（循环、分支等）
-- 函数和模块等
-- 其他语言特定功能
-
-另外在下面简单记录一套可操作的工作环境。
-
-## 通用环境设置
-
-- **字体** Adobe Source Code Pro
+## 环境设定
 
 ### Git
 
@@ -31,4 +19,9 @@ git config --global "user.signingkey" "26D4F2F9"
 ### Editors
 
 - Notepad++
-- Visual Studio Code && Atom
+- Visual Studio Code && Atom || Sublime Text
+- HBuidlerX
+
+## 杂项
+
+- **字体** Adobe Source Code Pro
