@@ -4,25 +4,7 @@
 
 - `选择器 { 声明属性 : 声明值 }`
 - 内联样式 `<tag style="pro1: val; pro2: val" />`
-
-内嵌样式
-
-```html
-<head>
-<style>
-body {
-    background-color: #CCFFFF;
-    color: #000033;
-}
-</style>
-</head>
-```
-
-外部连接模式
-
-```html
-<link rel="stylesheet" href="linked.css" type="text/css" />
-```
+- `/* 注释 */`
 
 ### 选择器
 

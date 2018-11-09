@@ -1,11 +1,12 @@
-# Hyper Text Markup Language笔记
+# HTML: Hyper Text Markup Language 笔记
 
-## 参考资料
+## 链接
 
-- [语法验证](https://validator.w3.org/)
-- [Mozilla HTML参考](https://developer.mozilla.org/en-US/docs/Web/HTML)
+参考资料
 
-### 资源
+- [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+资源
 
 - [CSS禅意花园](http://csszengarden.com/)
 
@@ -21,6 +22,27 @@ html5允许空标签没有结束标签。
 - 水平线 `<hr>`
 
 块级元素`div`，内联显示元素`span`
+
+## 嵌入层叠样式表
+
+内嵌样式
+
+```html
+<head>
+<style>
+body {
+    background-color: #CCFFFF;
+    color: #000033;
+}
+</style>
+</head>
+```
+
+外部连接模式
+
+```html
+<link rel="stylesheet" href="linked.css" type="text/css" />
+```
 
 ## 嵌入JavaScript
 
@@ -79,7 +101,7 @@ abbr, acronym, address, bdo(bi-direction override), blockquote, q(quote), cite, 
 
 header, nav, main(div), footer
 
-## 链接
+## 超链接
 
 target: _blank（新页面打开） _top（跳出框架）
 name / id: label (href="#label")
