@@ -37,17 +37,15 @@ $(function() {
 });
 ```
 
-回调函数必须为匿名函数的形式。
+注意如不使用使用匿名函数，则应提供函数类型的参数，注意不是在参数位置调用函数。
 
 ## 事件
 
 - `.click()`  元素被点击时产生的事件
 
-回调函数必须为匿名函数的形式。
-
 ## Ajax
 
-###  `$(seletor).load(url, data, callback)`
+### Load `$(seletor).load(url, data, callback)`
 
 将内容加载到指定的元素中
 
@@ -59,3 +57,19 @@ $(function() {
 
 1. `$('#div').load("content.txt")`
 2. `$('#div').load("content.txt p")` 可结合选择器使用，将content.txt中p标签的内容载入div元素中
+
+### Get
+
+`$.get(url, callback);`
+
+示例
+
+```js
+$.get(url, function(data, status) {
+    concole.log(data + status);
+});
+```
+
+### Post
+
+`$.post(url, data, callback);`
