@@ -1,4 +1,4 @@
-# Resource资源管理笔记
+# Resource Management 资源管理笔记
 
 ## 资源限定符
 

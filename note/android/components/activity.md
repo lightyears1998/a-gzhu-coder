@@ -1,6 +1,6 @@
 # Activity笔记
 
-![Activity生命周期](/camo/note/android_activity.png)
+## 生命周期
 
 onCreate, onRestart, onStart, （可见时）onResume, （被其他Activity不完全遮挡，执行后可以被销毁）onPause, （不可见时）onStop, onDestroy
 
