@@ -431,6 +431,14 @@ ctx = canvas.getContext('2d');
 - `strokeRect(x, y, width, height);`
 - `clearRect(x, y, width, height);`
 
+绘制路径
+
+- `beginPath()`
+- `moveTo(x, y)`
+- `lineTo(x, y)`
+- `closePath()`
+- `storke()`, `fill()`
+
 ### URLSearchParams
 
 构造、解析和处理URL的查询字符串。
