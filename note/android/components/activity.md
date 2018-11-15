@@ -13,7 +13,7 @@ onCreate, onRestart, onStart, （可见时）onResume, （被其他Activity不�
 
 ## Intent
 
-Intentz中携带的六类信息：Component, Action, Category, Data, Extra and Flag
+Intent中携带的六类信息：Component, Action, Category, Data, Extra and Flag
 
 ```java
 Intent intent = new Intent(this, NextActivity.class);
