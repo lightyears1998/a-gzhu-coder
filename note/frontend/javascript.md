@@ -372,7 +372,72 @@ var v = new ChessBoard(arg);
 
 检查对象是否具有某个属性
 
-## Chapter 6 浏览器模型
+## Chapter 6 异步操作
+
+## Chapter 7 文档对象模型DOM
+
+### 节点Node
+
+DOM的最小组成单位，包括7种：
+
+1. Document 文档根节点
+2. DocumentType doctype标签
+3. Element html标签
+4. Attribute 元素属性
+5. Text 标签之间或标签包含的文本
+6. Comment 注释
+7. DocumentFragment 文档片段
+
+以上7种节点继承自Node对象
+
+### 节点树
+
+`document`节点代表整个文档
+
+节点之间的关系：父节点、子节点、同级节点。
+
+### Node接口
+
+### NodeList接口和HTMLCollection接口
+
+### ParentNode接口和ChildNode接口
+
+### 属性的操作
+
+- `getAttribute()`, `getAttributeNames()`
+- `setAttribute()`
+- `hasAttribute()`, `hasAttributes()`
+- `removeAttribute()`
+
+## Chapter 8 事件
+
+## Chapter 9 浏览器模型
+
+## Chapter 10 HTML接口
+
+### Canvas
+
+#### 绘图上下文
+
+```js
+ctx = canvas.getContext('2d');
+```
+
+#### 绘制图形
+
+绘制矩形
+
+- `fillRect(x, y, width, height);`
+- `strokeRect(x, y, width, height);`
+- `clearRect(x, y, width, height);`
+
+绘制路径
+
+- `beginPath()`
+- `moveTo(x, y)`
+- `lineTo(x, y)`
+- `closePath()`
+- `storke()`, `fill()`
 
 ### URLSearchParams
 
