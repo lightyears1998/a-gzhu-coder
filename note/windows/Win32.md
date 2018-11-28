@@ -1,8 +1,7 @@
 # Win32 API参考
 
-- [API List](https://docs.microsoft.com/zh-cn/windows/desktop/api/index)
-- [Playground](https://github.com/lightyears1998/quiet-space/tree/master/playground/w32)
-- [Getting started](https://docs.microsoft.com/en-us/windows/desktop/learnwin32/learn-to-program-for-windows)
+- [API完整索引](https://docs.microsoft.com/zh-cn/windows/desktop/api/index)
+- [新手入门](https://docs.microsoft.com/en-us/windows/desktop/learnwin32/learn-to-program-for-windows)
 
 ## Chapter 1 [数据类型](https://docs.microsoft.com/zh-cn/windows/desktop/LearnWin32/windows-coding-conventions)
 
@@ -149,7 +148,7 @@ The terminology for this distinction can be confusing:
 5. 取出消息 翻译消息 分发消息
 6. 销毁窗口
 
-## 附录：头文件与工具函数
+## Chpater X 重要API
 
 ### windows.h
 
@@ -203,7 +202,3 @@ uType常量定义以`MB_`开头，常用`MB_OK`
 #### GetStockObject
 
 `GetStockObject` 返回一个储藏的GDI对象
-
-## 示例
-
-1. 注册窗口，处理消息循环 <https://github.com/lightyears1998/quiet-space/blob/master/playground/mfc/ch1/ch1ex2WindowsAndMessage/%E6%BA%90.cpp>
