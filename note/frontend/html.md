@@ -5,14 +5,15 @@
 参考资料
 
 - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [W3C语法验证器](https://validator.w3.org)
 
 资源
 
 - [CSS禅意花园](http://csszengarden.com/)
 
-## 标签
+## 元素：标签
 
-html5允许空标签没有结束标签。
+html5允许空标签没有结束标签，这样的
 
 - 锚 `<a href="..."> </a>`
 - 注释 `<!-- 注释 -->`
@@ -23,7 +24,7 @@ html5允许空标签没有结束标签。
 
 块级元素`div`，内联显示元素`span`
 
-## 嵌入层叠样式表
+## 嵌入层叠样式表CSS
 
 内嵌样式
 
@@ -38,7 +39,7 @@ body {
 </head>
 ```
 
-外部连接模式
+外部链接模式
 
 ```html
 <link rel="stylesheet" href="linked.css" type="text/css" />
