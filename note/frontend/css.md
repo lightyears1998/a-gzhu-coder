@@ -1,5 +1,7 @@
 # Cascading Style Sheet笔记
 
+- [Mozilla CSS参考](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
 ## 基本格式
 
 - `选择器 { 声明属性 : 声明值 }`
@@ -107,6 +109,10 @@ margin, boarder, padding
 
 - background-image: linear-gradient(to bottom, #FFFFFF, #00FF00);
 
-## 链接
+## Grid
 
-- [Mozilla CSS参考](https://developer.mozilla.org/en-US/docs/Web/CSS)
+### 行与列
+
+使用负数来标定行或列，`-1`是指逆序第一个。
+
+1. `grid-column-start`, `grid-column-end`结合使用时，渲染结果是`[两者中较小值, 较大值)`
