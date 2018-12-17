@@ -1,7 +1,5 @@
 # HTML: Hyper Text Markup Language 笔记
 
-## 链接
-
 参考资料
 
 - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -11,9 +9,9 @@
 
 - [CSS禅意花园](http://csszengarden.com/)
 
-## 元素：标签
+## 标签（元素）
 
-html5允许空标签没有结束标签，这样的
+**空标签** / **自包含标签** Html5允许没有结束标签的标签
 
 - 锚 `<a href="..."> </a>`
 - 注释 `<!-- 注释 -->`
@@ -24,42 +22,13 @@ html5允许空标签没有结束标签，这样的
 
 块级元素`div`，内联显示元素`span`
 
-## 嵌入层叠样式表CSS
+### 含有语义的标签
 
-内嵌样式
+- 文本格式化标签 b, big, em, i, small, strong, sub, sup, ins, del
+- 计算机相关标签 code, kbd(keyboard document), samp(sample), tt(teletype text), var, pre
+- 引用标签 abbr, acronym, address, bdo(bi-direction override), blockquote, q(quote), cite, dfn(define)
 
-```html
-<head>
-<style>
-body {
-    background-color: #CCFFFF;
-    color: #000033;
-}
-</style>
-</head>
-```
-
-外部链接模式
-
-```html
-<link rel="stylesheet" href="linked.css" type="text/css" />
-```
-
-## 嵌入JavaScript
-
-可以省略`type="text/javascript"`标签，Js已成为默认的脚本语言
-
-```html
-<script type="text/javascript">
-...
-</script>
-```
-
-```html
-<script type="text/javascript" src="..." charset="utf8"></script>
-```
-
-## 属性
+### 标签属性
 
 - title
 - href
@@ -72,24 +41,37 @@ body {
 
 `<p style="font-family:arial; color:red; font-size:20px;">A paragraph.</p>`
 
-### 文本格式化标签
+## 嵌入层叠样式表CSS
 
-b, big, em, i, small, strong, sub, sup, ins, del
+1. 内嵌样式
+    ```html
+    <head>
+    <style>
+    body {
+        background-color: #CCFFFF;
+        color: #000033;
+    }
+    </style>
+    </head>
+    ```
+2. 外部链接
+    ```html
+    <link rel="stylesheet" href="linked.css" type="text/css" />
+    ```
 
-### 计算机相关标签
+## 嵌入JavaScript
 
-code, kbd(keyboard document), samp(sample), tt(teletype text), var, pre
+- 可以省略`<script>`标签中的`type="text/javascript"`属性，因为JavaScript已成为默认的脚本语言
 
-### 引用标签
+```html
+<script type="text/javascript">
+...
+</script>
+```
 
-abbr, acronym, address, bdo(bi-direction override), blockquote, q(quote), cite, dfn(define)
-
-`<p><abbr title="World Health Organization">WHO</abbr> 成立于 1948 年。</p>`
-
-### 列表
-
-- 列表 ol, ul, dl(description list)
-- 列表项目 li
+```html
+<script type="text/javascript" src="..." charset="utf8"></script>
+```
 
 ## 特殊字符
 
@@ -113,6 +95,11 @@ name / id: label (href="#label")
 <a href="mailto:someone@microsoft.com?cc=someoneelse@microsoft.com&bcc=andsomeoneelse2@microsoft.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!">发送邮件！</a>
 ```
 
+### 列表
+
+- 列表 ol, ul, dl(description list)
+- 列表项目 li
+
 ## 图像
 
 图标
@@ -132,7 +119,7 @@ figure
 
 进度条 progress
 
-## 图像映射
+### 图像映射
 
 ```html
 <img
@@ -168,6 +155,22 @@ alt="Sun" />
 
 ismap属性 `<img src="" ismap />`
 
+## 音频和视频
+
+```html
+<video controls="controls">
+    <source src="...mp3" type="audio/mpeg">
+    <source src="...ogg" type="audio/ogg">
+<video>
+```
+
+```html
+<audio controls="controls" poster="sparky.jpg">
+    <source src="...m4v" type="audio/mp4">
+    <source src="...ogv" type="audio/ogg">
+<audio>
+```
+
 ## 表单
 
 text, checkbox, radio, hidden, password, submit, reset
@@ -193,19 +196,3 @@ botton, textarea, select
 fieldset, legend
 
 tabindex, accesskey
-
-## 音频和视频
-
-```html
-<audio controls="controls">
-    <source src="...mp3" type="audio/mpeg">
-    <source src="...ogg" type="audio/ogg">
-<audio>
-```
-
-```html
-<audio controls="controls" poster="sparky.jpg">
-    <source src="...m4v" type="audio/mp4">
-    <source src="...ogv" type="audio/ogg">
-<audio>
-```
