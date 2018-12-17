@@ -472,6 +472,8 @@ null == undefined   // true
 
 `Number()`
 
+// todo
+
 ### 自动转换
 
 ## Chapter 4 异常处理机制
