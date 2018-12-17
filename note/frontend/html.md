@@ -4,6 +4,7 @@
 
 - [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [W3C语法验证器](https://validator.w3.org)
+- [HTML5 标准](http://www.w3.org/TR/html)
 
 资源
 
