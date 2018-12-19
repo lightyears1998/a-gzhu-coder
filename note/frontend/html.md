@@ -14,7 +14,7 @@
 
 **空标签** / **自包含标签** Html5允许没有结束标签的标签
 
-- 锚 `<a href="..."> </a>`
+- 锚anchor `<a href="..."> </a>`
 - 注释 `<!-- 注释 -->`
 - 标题“块级元素” `<h1>` ... `<h6>`
 - 段落 `<p>`
@@ -25,7 +25,7 @@
 
 ### 含有语义的标签
 
-- 文本格式化标签 b, big, em, i, small, strong, sub, sup, ins, del
+- 文本格式化标签 b, big, em(emphasis), i, small, strong, sub, sup, ins, del
 - 计算机相关标签 code, kbd(keyboard document), samp(sample), tt(teletype text), var, pre
 - 引用标签 abbr, acronym, address, bdo(bi-direction override), blockquote, q(quote), cite, dfn(define)
 
@@ -83,7 +83,7 @@
 
 ## 结构元素
 
-header, nav, main(div), footer
+div, header, nav, main, footer
 
 ## 超链接
 
@@ -96,7 +96,7 @@ name / id: label (href="#label")
 <a href="mailto:someone@microsoft.com?cc=someoneelse@microsoft.com&bcc=andsomeoneelse2@microsoft.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!">发送邮件！</a>
 ```
 
-### 列表
+## 列表
 
 - 列表 ol, ul, dl(description list)
 - 列表项目 li

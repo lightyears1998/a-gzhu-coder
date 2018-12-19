@@ -2,11 +2,27 @@
 
 - [Mozilla CSS参考](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-## 基本格式
+颜色选择工具
+
+1. [Colors on the Web](http://www.colorsontheweb.com/Color-Tools/Color-Wizard) 众多颜色工具
+2. [Paletton.com](http://paletton.com) 在色环上选择并且提供颜色使用示例
+3. [Adobe Color CC](https://color.adobe.com) 强大的色环工具，并且提供从图像中自动提取色彩的工具
+
+## 基本概念
 
 - `选择器 { 声明属性 : 声明值 }`
 - 内联样式 `<tag style="pro1: val; pro2: val" />`
 - `/* 注释 */`
+
+### “层叠”次序
+
+渲染方式优先级别
+
+- 浏览器默认设置
+- 外部样式
+- 嵌入式样式
+- 内联样式
+- html属性
 
 ### 选择器
 
@@ -33,16 +49,6 @@ main p {
     /* 省略内容 */
 }
 ```
-
-### 层叠
-
-渲染方式优先级别
-
-- 浏览器默认设置
-- 外部样式
-- 嵌入式样式
-- 内联样式
-- html属性
 
 ## 颜色
 
