@@ -49,6 +49,11 @@
 
 `graphics_toolkit("gnuplot")` 备选："qt"及"gnuplot"
 
+### 绘图指令
+
+- `figure()` 启动一个绘图环境
+- `hold on`, `hold off` 保持/不保持上个指令的绘制状态
+
 - `title('标题')`
 - `xlabel()` `ylabel()`
 - `axis(xbegin, xend, ybegin, yend)`
@@ -56,7 +61,7 @@
 ### `plot(x, y)`
 
 - `plot(x, y)`
-- `plot(x, y, '+'`
+- `plot(x, y, '+')`
 
 更多选项
 
