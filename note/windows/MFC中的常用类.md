@@ -23,3 +23,24 @@ MFC六大核心机制
 ### CArchive
 
 串行化神器。
+
+使用示例
+
+```cpp
+CFile file;
+file.Open(L"data.bin", CFile::modeCreate | CFile::modeReadWrite);
+CArchive ar1(&file, CArchive::store);
+
+ar1.WriteObject(&s1);
+ar1.WriteObject(&s2);
+ar1.WriteObject(&manager);
+ar1.Close();
+
+/* ====== */
+
+file.SeekToBegin();
+CArchive ar2(&file, CArchive::load);
+Student * s = (Student*)ar2.ReadObject(RUNTIME_CLASS(Student));
+Management * man = (Management*)ar2.ReadObject(RUNTIME_CLASS(Management));
+
+```
