@@ -472,7 +472,65 @@ $myfunction = function() {
 
 ## Chapter 4+ 面向对象
 
-TODO+
+### 定义
+
+```php
+class SimpleClass extends ParentClass {
+    public $var = 'default value';  // 定义属性
+
+    public function displayVar() {  // 定义方法
+        echo $this->$var;
+        echo self::class;  // 包含名称空间的完全限定名
+
+        // 在类的内部，
+        // self, parent, static关键字可用
+    }
+
+    function __construct() {  // 构造函数，旧式的构造函数与类名相同
+        parent::__construct();  // 不会自动调用父类的构造函数
+                                // 如果子类没有定义构造函数，则会自动从父类继承构造函数
+                                // （假设父类的构造函数没有定义为private）
+    }
+
+    function __destruct() {  // 析构函数
+        parent::__destruct();  // 不会自动调用父类的析构函数
+
+        // 析构函数即使在使用exit()关闭脚本时也会运行
+        // 析构函数中调用exit()会终止其他关闭操作的运行
+    }
+}
+```
+
+使用`new`创建类的实例。
+
+用`abstract`来创建抽象类；使用`extends`来继承类，PHP不支持多重继承。
+
+使用`interface`来定义接口（接口中所有的方法必须是公有的），并使用`implements`来实现接口。
+
+### 属性
+
+如果使用`var`声明属性，该属性会被视为`public`。
+
+属性中的变量可以初始化，但初始化的值必须是常数。（指PHP脚本在编译时期就能得到其值，而不依赖于运行时的信息。）
+
+### 类的自动加载
+
+使用`spl_autoload_register()`来定义自动加载类的函数。
+
+```php
+spl_autoload_register(function ($class_name) {
+    require_once $class_name . '.php';
+});
+
+```
+
+### 访问控制
+
+可以为`public`, `private`和`protected`。
+
+未设置方法的访问控制，则默认为公有。（与C++不同。）
+
+同一类的不同对象可以相互访问私有成员。
 
 ## Chpater 5 表单处理
 
