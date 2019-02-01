@@ -34,9 +34,49 @@ JavaScript的核心语法部分十分精简，只包含基本的语法构造和�
 
 ## Chpater 1 开发环境
 
-### 浏览器Console
+### 控制台与console对象
 
-开发人员工具中的Console
+向控制台输出信息，自动在连续两个参数产生的输出间添加空格，并在每次输出的结尾添加换行符
+
+1. `console.log()`, `console.debug()`, `console.info()`
+2. `console.warn()`
+3. `console.error()`
+
+支持格式字符串，如`%s`, `%d`或`%i`, `%f`, 对象的链接`%o`。在浏览器上还支持CSS格式字符串`%c`（用于对输出内容进行渲染）。
+
+可以按自己的需要覆盖console的方法，如为console的输出添加时间字符串。
+
+```js
+['log', 'warn', 'error'].forEach(function (method) {
+    console[method] = console[method].bind(
+        console,
+        new Date().toISOString()
+    );
+});
+```
+
+`console.table`可以将符合类型的数据转换为表格显示
+
+```js
+console.table(
+    {
+        Alice: { name: 'Alice Kane', score: 32 },
+        Bob: {name: 'Bob Kingdom', score: 44 }
+    } // 或数组类型
+);
+```
+
+`console.dir()`用于对对象进行审察，格式比直接使用console.log()美观。
+
+`console.count('tag')`用于计数，输出它被调用了多少次。
+
+`console.time('tag')`和`console.timeEnd('tag')`用于计算操作花费的时间。
+
+`console.group()`, `console.groupEnd()`和`console.groupCollapsed()`用于对大量信息进行分组。
+
+`console.trace()`用于显示调用栈。
+
+`console.clear()`用于清空输出。
 
 ## Chapter 2 基础语法
 
@@ -528,8 +568,54 @@ null == undefined   // true
 
 ## Chapter 4 异常处理机制
 
-// TODO
-// <https://wangdoc.com/javascript/features/error.html>
+`Error`实例对象具有错误消息`message`，通常还会具有错误名称`name`和调用栈`stack`信息。
+
+原生JavaScript存在6个`Error`类的派生对象。
+
+1. `SyntaxError`
+2. `ReferenceError`
+3. `RangeError`
+4. `TypeError`
+5. `URIError`
+6. 不再使用的`EvalError`
+
+可以自定义错误
+
+```js
+new Error('错误信息');
+
+function UserError(message) {
+    this.message = message || '默认信息';
+    this.name = 'UserError';
+}
+
+UserError.prototype = new Error();
+UserError.constructor.prototype = UserError;
+
+new UserError('自定义错误信息');
+
+```
+
+使用`throw`抛出错误，使用`try ... catch()`捕获错误。
+
+```js
+try {
+    // ...
+}
+catch (e) {
+    if (e instanceof EvalError) {
+        // ...
+    }
+    else if (e instanceof TypeError) {
+        // ...
+    }
+
+    // 如果catch块中存在return或throw，将延迟到finally块后执行
+}
+finally {
+    // 不管是否出错都在最后运行的语句
+}
+```
 
 ## Chapter 5 面向对象编程
 
