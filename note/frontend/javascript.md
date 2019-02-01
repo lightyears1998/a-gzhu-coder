@@ -32,6 +32,31 @@ JavaScript的核心语法部分十分精简，只包含基本的语法构造和�
 3. `switch... case`结构可以用面向对象结构替代。
 4. 严格模式，在产生任何实际运行效果的语句前添加`'use strict'`字符串
 
+`switch case`的面向对象风格替代
+
+```js
+function doActions(action) {
+    var actions = {
+        'one': function () {
+            return 1;
+        },
+        'two': function () {
+            return 2;
+        },
+        'run': function () {
+            return 'run';
+        }
+    };
+
+    if (typeof actions[action] !== 'function') {
+        throw new Error('Invalid action.');
+    }
+
+    return actions[action]();
+}
+
+```
+
 ## Chpater 1 开发环境
 
 ### 控制台与console对象
