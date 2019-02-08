@@ -776,7 +776,125 @@ var v = new ChessBoard(arg);
 
 ## Chapter 6 异步操作
 
-## Chapter 7 文档对象模型DOM
+## Chapter 7 标准库
+
+### Object
+
+Object所有其他对象继承自`Object`对象，所有对象都是`Object`的实例。
+
+#### `Object()`
+
+`Object()`将任意值转换为对象，常用于保证某一个值一定是对象。
+
+```js
+var obj = Object();
+// 等同于
+var obj = Object(null);
+var obj = Object(undefined);
+obj instanceof Object;
+
+// 如果参数是原始类型，则将其转换为对应包装器的类型
+var obj = Object('string');
+obj instanceof Object;
+obj instanceof String;
+
+// 如果方法的参数为对象，则不进行转换
+// 由此可写一个判断参数是否为对象的函数
+function isObject(value) {
+    return value === Object(value);
+}
+
+isObject([]);    // true
+isObject(true);  // false
+
+```
+
+`Object()`可以作为构造函数使用
+
+```js
+var obj = new Object();
+// 等价于
+var obj = {};
+
+// 如果构造函数的参数是一个对象，则直接返回该对象
+var o1 = { a: 1 };
+var o2 = new Object(o1);
+o1 === o2;  // true
+
+var obj = new Object(123);
+obj instanceof Number;  // true
+
+```
+
+#### Object的静态方法
+
+指部署在Object对象自身的方法。
+
+1. 遍历对象自身的属性（而不是继承的属性），可枚举属性`Object.keys()`，还包括不可枚举属性的`Object.getOwnPropertyNames()`
+2. 对象属性模型相关方法
+  1. `Object.getOwnPropertyDescriptor()` 获取某个属性的描述对象
+  2. `Object.defineProperty()` 通过描述对象定义属性
+  3. `Object.defineProperties()` 通过描述对象定义多个属性
+3. 控制对象状态的方法
+  1. `Object.preventExtensions()` 防止对象被拓展
+  2. `Object.isExtensible()` 判断对象是否可拓展
+  3. `Object.seal()` 禁止对象配置
+  4. `Object.isSealed()` 判断对象是否可配置
+  5. `Object.freeze()` 冻结对象
+  6. `Object.isFrozen()` 判断对象是否被冻结
+4. 原型链相关方法
+  1. `Object.create()` 可以指定原型对象和属性，返回新的对象
+  2. `Object.getPrototypeOf()` 获取对象的prototype对象
+
+#### Object的实例方法
+
+部署在`Object.prototype`对象的方法。
+
+1. `Object.prototype.valueOf()`返回当前对象对应的值。
+2. `Object.prototype.toString()`, `Object.prototype.toLocaleString()`返回当前对象对应的字符串形式。
+  通过Object.prototype.toString()可以判断一个对象的类型
+3. `Object.prototype.hasOwnProperty()`判断某个属性是否为当前对象自身的属性，还是继承自原型对象的属性。
+4. `Object.prototype.isPrototypeOf()`判断当前对象是否为另一个对象的原型对象
+5. `Object.prototype.propertyIsEnumerable()`某个属性是否可枚举
+
+### 属性描述对象 Atrributes Object
+
+JavaScript内部用于描述属性的对象，用于控制对象属性的行为等。
+
+属性描述对象的例子
+
+```js
+{
+  value: 123,
+  writable: false,      // 属性是否可改变
+  enumerable: true,     // 若不可枚举则在一些操作中会被跳过，如 (for ... in)和Object.keys()
+  configurable: false,  // 是否可删除该属性，是否可改变描述属性对象的值
+  get: undefined,       // getter
+  set: undefined
+}
+```
+
+```js
+var obj = { p: 'a' };
+
+Object.getOwnPropertyDescriptor(obj, 'p');
+```
+
+#### `Object.defineProperty(object, propertyName, attributesObject)`
+
+为object定义属性，并返回对该object的引用。
+
+```js
+var o = Object.defineProperty({}, 'p', {
+    value: 123,
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+
+```
+
+## Chapter 7+ 文档对象模型DOM
 
 ### 节点Node
 
