@@ -565,6 +565,8 @@ if (isset($_GET['name'])) {
 
 ## Chpater 7 Session
 
+超全局变量`$_SESSION[]`
+
 可以通过设置`session.auto_start`为1来自动启用Session
 
 - 创建session `session_start()`
