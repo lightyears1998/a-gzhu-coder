@@ -27,6 +27,8 @@ PHP通过PHP解释器解释执行，通常是结合Apache或Nginx在Linux或Wind
 
 用`empty()`检查变量是否为空值（空字符串，0，NULL或False）。
 
+建议使用`$GLOBALS[]`设置全局变量。
+
 ### 可变变量
 
 变量的变量名可以动态地设置和使用
