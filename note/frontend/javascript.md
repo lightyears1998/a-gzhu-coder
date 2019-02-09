@@ -4,9 +4,6 @@
 
 - [ECMAScript文档](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf)
 - [Mozilla JavaSript参考](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-入门
-
 - [Wangdoc.com](https://wangdoc.com/javascript/)
 
 ## Chapter 0 概述
@@ -893,6 +890,172 @@ var o = Object.defineProperty({}, 'p', {
 });
 
 ```
+
+### Array对象
+
+`Array`既是原生对象，又是构造函数。
+
+#### 构造函数
+
+不同参数时行为不同。
+
+1. 无参数返回空数组。
+2. 单一数值参数返回指定长度的空数组；负值参数报错。
+3. 单一非数值参数，将该参数作为返回新数组的成员。
+4. 多参数，将参数作为返回数组的成员。
+
+#### `isArray()`
+
+用于判定指定参数是否为数组，弥补`typeof`的不足。
+
+```js
+var arr = [1, 2, 3];
+
+typeof arr;  // object
+Array.isArray();
+```
+
+#### 实例方法
+
+1. `valueOf()`, `toString()` `valueOf()`返回数组本身，`toString()`返回数组的字符串形式。
+2. `push()`, `pop()` 添加或弹出数组中的最后一个元素；对空数组使用`pop()`将不报错而返回`undefined`
+3. `shift()`, `unshift()` 在数组的第一个位置删除或添加元素。
+4. `join(separator = ',')` 将数组的所有元素以指定分隔符连接为字符串。
+5. `concat()` 将参数数组的成员合并到原数组中；**原数组不变**，返回合并后的新数组。
+6. `reverse()` 颠倒原数组。
+7. `slice(start, end)` 提取目标数组的一部分，返回新数组，**原数组不变**。可以接受负数的参数。若没有参数，实际上时创建元素组的拷贝；因此可以借助此方法将类似数组的对象转换为真正的数组。
+8. `splice(start, end, addElement1, addElement2, ...)` **改变原素组** 拼接；删除指定位置的元素，并将后续参数加入原数组。
+9. `sort()` 将数组元素进行排序。默认按字典序进行排序（注意数值将被转换为字符串再进行排序）。可以传入函数作为参数，按自定义方法进行排序。
+
+    `sort`自定义排序与C++ STL的`sort()`返回值的意义相反，注意区分。
+
+    ```js
+    [1, 2, 3].sort(function (cur, nxt) {
+        return nxt > cur;  // 若返回的数值大于0，则表示nxt的位置应排在cur前；否则均排在cur后面。
+    });  // [3, 2, 1]
+
+    ```
+10. `map()` 将数组的每一个成员依次传入参数函数，并将执行的结果合并成一个数组返回。`forEach()`类似于`map()`但是不获取返回值，仅仅用于操纵数据。这两种方法都会跳过数组中的空位，但不会跳过`undefined`和`null`。
+    
+    ```js
+    var out = [];
+
+    [1, 2, 3].forEach(function (elem, index, arr) {
+        this.push(2 * elem + index);
+    }, out);
+    ```
+
+11. `filter()` 对每个元素执行filter中的函数，将函数返回结果为`true`的元素组成新的数组，返回新的数组。
+
+    ```js
+    [1, 2, 3].forEach(function (elem, index, arr) {
+        return true;
+    }, /* 可绑定函数中的this变量 */)
+
+    ```
+12. `some()`, `every()` 对数组中的每个元素执行函数，若某些/每个元素的执行结果为`true`，则返回`true`。
+13. `reduce()`, `reduceRight()` 对数组中的每个元素执行函数，`reduceRight()`从右往左执行，函数接受四个参数
+
+    ```js
+    var arr = [1, 2, 3, 4, 5];
+
+    arr.reduce(function (prev /*积累变量，默认值为arr[0] */, cur /* 当前变量，默认为arr[1] */, index, arr) {
+        return prev + cur;  // 返回值作为下一次执行函数时的prev值
+    });  // 数组求和
+    ```
+
+    `reduce()`函数的第二个参数可对积累变量赋初始值，注意此时`cur`变量为数组中的第一个元素。这里可以避免由于空数组无法取得初始值时出错。
+14. `indexOf()`, `lastIndexOf()` 给出给定元素在数组中出现的位置，如果没有出现则返回`-1`。第二个参数表示开始搜索的位置。
+    注意此方法不能用于搜索`NaN`的位置，因为`NaN`是唯一自身不等于自身的值。
+
+### 包装对象
+
+数值、字符串和布尔值有对应的包装对象`Number`, `String`和`Boolean`。
+
+自动转换生成的包装对象是只读的；自动转换调用完毕后包装对象会自动销毁。
+
+可以在包装对象的原型上定义新的方法。
+
+### Number对象
+
+具有一些有用的静态属性，如`Number.MAX_SAFE_INTEGER`, `Number.POSITIVE_INFINITY`
+
+有用的实例方法：
+
+1. `toString(不大于16的进制数)`
+2. `toFixed(指定小数位数)`
+3. `toExponential(小数位数)`
+4. `toPrecision(指定位数的有效数字)`
+
+### String对象
+
+静态方法
+
+1. `fromCharCode(unicode1, unicode2, ...)` 返回对应码点组成的字符串。码点大于0xFFFF的字符需要连续使用两次或以上此方法
+2. `charCodeAt()` 上述方法的逆方法
+3. `trim()` 去除字符串两端的空白字符，返回新字符串，**不改变原字符串**。
+4. `toLowerCase()`, `toUpperCase()`
+5. `match()`, `search()`, `replace()` 正则方法
+6. `split()` 使用指定分隔符分割字符串，返回包含分割字符串的属猪；如果未指定分隔符，则返回数组的唯一成员为原字符串；如果指定分隔符为空字符串，则返回数组成员为原字符串的每一个字符。
+
+具有类似数组的方法。
+
+注意到`substring()`或`substr()`与`slice()`不同，会自动将参数中的负数转换为0，违反直觉。因此建议使用`slice()`
+
+### Math对象
+
+不是构造函数，所有属性和方法都必须在Math对象上调用。
+
+### Date对象
+
+1. 直接调用 无论有没有参数，`Date()`都返回代表当前时间的字符串
+2. 构造函数用法
+    1. 可以被`Date.parse()`解析的字符串都可以作为字符串参数
+    2. 单一数值为毫秒数
+    3. `new Date(year, month, day, hour, minute, second, microsecond0~999)` 参数可以使用0和负数；注意月份从0开始计算，但天数从1开始计算
+
+注意日期的直接运算，相加为字符串的拼接，相减为毫秒数的相差（参考自动类型转换）
+
+静态方法
+
+1. `Date.now()` 当前时间的毫秒数。
+2. `Date.parse()` 通常是`YYYY-MM-DDTHH:mm:ss.sssZ`格式，最后的Z表示时区；其他格式也能被解析。解析成功返回毫秒数，解析失败返回`NaN`
+3. `Date.UTC()` 将参数当成UTC时间进行解释。其他与Date构造函数相同。
+
+实例方法
+
+1. `toString`, `toISOString`(等价于`toJSON`)
+2. `toDateString`, `toTimeString`
+3. `getDate()`等
+4. `setDate()`等
+
+### JSON对象
+
+对值的类型和格式有严格的规定
+
+1. `JSON.stringnify()`
+2. `JSON.parse()`
+
+### RegExp对象
+
+Perl 5体系的正则表达式
+
+```js
+var reg1 = /reg/igm                   // 字面值
+var reg2 = new RegExp('reg', 'igm');  // 对象形式
+
+```
+
+#### 实例属性
+
+1. 只读
+    - 与修饰符相关的`RegExp.prototype.ignoreCase`, `global`, `multiline`。
+    - 返回正则表达式的字符串形式 `RegExp.prototype.source`。
+2. 可写 下一次搜索时开始的位置，`RegExp.prototype.lastIndex`，只在进行连续搜索时有意义。
+
+#### 实例方法
+
+1. `test` 当前模式是否能匹配参数字符串
 
 ## Chapter 7+ 文档对象模型DOM
 
