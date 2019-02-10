@@ -2,8 +2,6 @@
 
 这里是我的笔记寄存器。
 
-这里还存放着一套可操作的编程环境。
-
 ## 环境设定
 
 ### Git
@@ -21,6 +19,7 @@ git config --global "user.signingkey" "26D4F2F9"
 - Notepad++
 - Visual Studio Code && Atom || Sublime Text
 - HBuidlerX
+- Typora *Markdown编辑器*
 
 ## 杂项
 
