@@ -231,8 +231,8 @@ NaN是唯一的不等于自身的值，`(NaN == NaN) === false`, `(NaN === NaN) 
 #### 与数值相关的全局方法
 
 1. `parseInt()` 用于将字符串转换成整数
-  自动去除空格，返回NaN或转换后的数值
-  注意到 对于那些会自动转为科学计数法的数字，parseInt会将科学计数法的表示方法视为字符串，因此导致**一些奇怪的结果**。
+    自动去除空格，返回NaN或转换后的数值
+    注意到 对于那些会自动转为科学计数法的数字，parseInt会将科学计数法的表示方法视为字符串，因此导致**一些奇怪的结果**。
 
   ```js
   parseInt(1000000000000000000000.5) // 1
@@ -773,6 +773,8 @@ var v = new ChessBoard(arg);
 
 ## Chapter 6 异步操作
 
+见javacript-async.md
+
 ## Chapter 7 标准库
 
 ### Object
@@ -849,7 +851,7 @@ obj instanceof Number;  // true
 
 1. `Object.prototype.valueOf()`返回当前对象对应的值。
 2. `Object.prototype.toString()`, `Object.prototype.toLocaleString()`返回当前对象对应的字符串形式。
-  通过Object.prototype.toString()可以判断一个对象的类型
+    通过Object.prototype.toString()可以判断一个对象的类型
 3. `Object.prototype.hasOwnProperty()`判断某个属性是否为当前对象自身的属性，还是继承自原型对象的属性。
 4. `Object.prototype.isPrototypeOf()`判断当前对象是否为另一个对象的原型对象
 5. `Object.prototype.propertyIsEnumerable()`某个属性是否可枚举
