@@ -62,10 +62,12 @@ main p {
 
 - 图像互换格式 GIF 256色 透明 动画 无损 交错
 - 联合照片专家小组 JEPG 数百万色 无透明 无动画 有损 渐进式
-- 可移植网络图形格式 PNG 数百外色 透明 无动画 无损 交错
+- 可移植网络图形格式 PNG 数百万色 透明 无动画 无损 交错
 - webp
 
 ## 盒 border
+
+border
 
 - border-width
 - border-style
@@ -146,3 +148,51 @@ margin, boarder, padding
 1. `repeat(5, 20%)`展开为`20% 20% 20% 20% 20%`
 
 这个参数顺序挺满足英语简单部分前置的风格的。
+
+## Flex
+
+`display: flex;`
+
+### `justify-content` 在以方向为基准的水平位置上调整元素
+
+- `center`
+- `flex-start`, `flex-end`
+- `space-between`
+- `space-around` 第一个容器与元素之间也有空位
+
+### `align-items` 在以方向为基准的垂直位置上调整元素
+
+- `center`
+- `flex-start`, `flex-end`
+- `baseline`
+- `stretch`
+
+### `align-content` 调整每行元素之间的行间距
+
+接受的参数与`justify-content`相同。
+
+当只有一行时，此属性不起作用。
+
+### `flex-direction` 设置容器排列元素的方向
+
+- `row`
+- `row-reverse`
+- `column`
+- `column-reverse`
+
+当设置顺序为`reverse`时，`start`与`end`属性也会反转。通常先设置`flex-dirction`属性。
+
+### `flex-wrap` 元素溢出样式控制
+
+- `nowrap` 默认值
+- `wrap`
+- `wrap-reverse`
+
+### 简略写法
+
+- `flex-flow` `flex-dirction`与`flex-wrap`的组合，如`flex-flow: row wrap;`
+
+### 元素属性控制
+
+- `order` 控制元素的排列顺序，默认为`0`
+- `align-self`

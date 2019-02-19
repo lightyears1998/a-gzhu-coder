@@ -20,9 +20,9 @@ It's fancy meetting you here! (ง •̀_•́)ง
 
 - [X] 成为ACM校队的一员，[参加ICPC竞赛](https://blog.qfstudio.net/2018/08/a-journey-to-the-west/)
 - [X] 设置宿舍的路由器
-- [ ] 补全基础技能：英语、数学和物理
-- [ ] 学习工具语言：C++, Java, Python, PHP和C#
-- [ ] 学习html, CSS和javascript
+- [X] 补全基础技能：英语、数学和物理
+- [X] 学习工具语言：C++, Java, Python, PHP和C#
+- [X] 学习html, CSS和javascript
 - [ ] 打造键盘速度练习工具和一套练习文本
 - [ ] 在Windows上写一个坦克大战，并且移植到Linux上
 - [ ] 写一套健壮的多端同步软件

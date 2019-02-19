@@ -1,8 +1,8 @@
 # 笔记寄存器
 
-这里是我的笔记寄存器。
+这里是我的旧笔记寄存器，新的笔记本位于[notebook仓库](https://github.com/lightyears1998/notebook)。
 
-这里还存放着一套可操作的编程环境。
+---
 
 ## 环境设定
 
@@ -21,6 +21,7 @@ git config --global "user.signingkey" "26D4F2F9"
 - Notepad++
 - Visual Studio Code && Atom || Sublime Text
 - HBuidlerX
+- Typora *Markdown编辑器*
 
 ## 杂项
 

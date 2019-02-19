@@ -23,7 +23,11 @@ PHP通过PHP解释器解释执行，通常是结合Apache或Nginx在Linux或Wind
 - 以美元符号开头
 - 标识符由字母数字或下划线组成，不能以数字开头
 
-变量在声明时不需要附加类型信息。
+变量在声明时不需要附加类型信息。用`isset()`检查变量是否已经定义且不是NULL。
+
+用`empty()`检查变量是否为空值（空字符串，0，NULL或False）。
+
+建议使用`$GLOBALS[]`设置全局变量。
 
 ### 可变变量
 
@@ -264,7 +268,7 @@ mbstring模块提供字符串函数的`mb_`版本
 
 #### 进制转换
 
-- `bin2hex()`, `hex2bin()` 将**数据串** *（不是字符串）*转换成对应格式
+- `bin2hex()`, `hex2bin()` 将**数据串** *（不是字符串）* 转换成对应格式
 
 如果需要转化二进制字符，可以
 
@@ -387,6 +391,14 @@ foreach($数组 as $键值 => $元素值) {
 }
 ```
 
+```php
+include 'some_file.php';
+require 'some_file.php';
+
+include_once 'some_file.php';
+require_once 'some_file.php';
+```
+
 ## Chapter 4 函数
 
 在函数中可以通过`global`关键字获取全局变量，使用`static`关键字定义静态变量。
@@ -409,12 +421,11 @@ function foo(&$var){
 缺省参数只能位于函数参数表末端
 
 ```php
-<?php
 function sum($c=5, $b=3, $a) {
     echo$a."+ ".$b." + ".$c." = ".($a+$b+$c);
 }
 sum(1);  // raise ArgumentCountError
-?>
+
 ```
 
 ```php
@@ -463,6 +474,68 @@ $myfunction = function() {
 };
 ```
 
+## Chapter 4+ 面向对象
+
+### 定义
+
+```php
+class SimpleClass extends ParentClass {
+    public $var = 'default value';  // 定义属性
+
+    public function displayVar() {  // 定义方法
+        echo $this->$var;
+        echo self::class;  // 包含名称空间的完全限定名
+
+        // 在类的内部，
+        // self, parent, static关键字可用
+    }
+
+    function __construct() {  // 构造函数，旧式的构造函数与类名相同
+        parent::__construct();  // 不会自动调用父类的构造函数
+                                // 如果子类没有定义构造函数，则会自动从父类继承构造函数
+                                // （假设父类的构造函数没有定义为private）
+    }
+
+    function __destruct() {  // 析构函数
+        parent::__destruct();  // 不会自动调用父类的析构函数
+
+        // 析构函数即使在使用exit()关闭脚本时也会运行
+        // 析构函数中调用exit()会终止其他关闭操作的运行
+    }
+}
+```
+
+使用`new`创建类的实例。
+
+用`abstract`来创建抽象类；使用`extends`来继承类，PHP不支持多重继承。
+
+使用`interface`来定义接口（接口中所有的方法必须是公有的），并使用`implements`来实现接口。
+
+### 属性
+
+如果使用`var`声明属性，该属性会被视为`public`。
+
+属性中的变量可以初始化，但初始化的值必须是常数。（指PHP脚本在编译时期就能得到其值，而不依赖于运行时的信息。）
+
+### 类的自动加载
+
+使用`spl_autoload_register()`来定义自动加载类的函数。
+
+```php
+spl_autoload_register(function ($class_name) {
+    require_once $class_name . '.php';
+});
+
+```
+
+### 访问控制
+
+可以为`public`, `private`和`protected`。
+
+未设置方法的访问控制，则默认为公有。（与C++不同。）
+
+同一类的不同对象可以相互访问私有成员。
+
 ## Chpater 5 表单处理
 
 全局变量 `$_GET`, `$_POST`, `$_REQUEST`(GET，POST和COOKIE)
@@ -473,6 +546,7 @@ $myfunction = function() {
 if (isset($_GET['name'])) {
     // ...
 }
+
 ```
 
 ### HTML接口
@@ -492,6 +566,8 @@ if (isset($_GET['name'])) {
 - `setcookie("user", "", time()-3600);` 删除Cookie
 
 ## Chpater 7 Session
+
+超全局变量`$_SESSION[]`
 
 可以通过设置`session.auto_start`为1来自动启用Session
 
@@ -678,7 +754,7 @@ while ($row = $result->fetch_row())
 
 CRUD：Create, retrieve, update, delete
 
-## Chapter 15 Composer 项目依赖管理
+## Composer 项目依赖管理
 
 ## 源
 

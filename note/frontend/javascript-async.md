@@ -59,3 +59,35 @@ functionHasReturned = true;
 ### 用回调储存取缔异步递归
 
 避免使用“异步递归”
+
+## 异步操作的模式
+
+1. 回调函数
+
+   ```js
+   function (callback) {
+       callback();
+   }
+   ```
+
+2. 事件监听
+
+3. 发布/订阅模式（观察者模式）
+
+## 异步操作的流程控制
+
+https://wangdoc.com/javascript/async/general.html#%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C%E7%9A%84%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6
+
+### 串行执行
+
+### 并行执行
+
+### 并行与串行的结合
+
+## 定时器
+
+1. 单次执行 `var timerId = setTimeout(func|code, delay);`
+
+2. 无限次数执行 `var timerId = setInterval(func|code, delay);`
+
+3. `claerTiemout(id)`, `clearInterval(id)`
