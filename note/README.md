@@ -1,6 +1,8 @@
 # 笔记寄存器
 
-这里是我的笔记寄存器。
+这里是我的旧笔记寄存器，新的笔记本位于[notebook仓库](https://github.com/lightyears1998/notebook)。
+
+---
 
 ## 环境设定
 
