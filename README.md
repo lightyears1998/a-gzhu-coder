@@ -31,7 +31,8 @@ It's fancy meetting you here! (ง •̀_•́)ง
 
 - [X] 了解MIT App Inventor，完成[KanaAnki日语假名记忆工具](https://github.com/lightyears1998/kana-anki)
 - [X] 完成C++课程设计，选题“[简单几何图形管理](https://github.com/lightyears1998/geometry-sketchpad)”
-- [X] [导出教务处的课表为iCal文件](https://github.com/lightyears1998/gzhu-schedule-export)，方便导入日历软件（Python）
+- [X] 使用Python[导出教务处的课表为iCal文件](https://github.com/lightyears1998/gzhu-schedule-export)，方便导入日历软件
+- [X] 将笔记迁移到[独立仓库](https://github.com/lightyears1998/notebook)
 
 ### 尚未实现的愿望
 
