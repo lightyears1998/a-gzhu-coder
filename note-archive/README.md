@@ -1,6 +1,6 @@
 # 笔记寄存器
 
-这里是我的旧笔记寄存器，**新的笔记本**位于[notebook仓库](https://github.com/lightyears1998/notebook)。
+这里是我的旧笔记寄存器，**新的笔记本**迁移到了[notebook仓库](https://github.com/lightyears1998/notebook)。
 
 ---
 
