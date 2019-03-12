@@ -21,7 +21,7 @@ It's fancy meetting you here! (ง •̀_•́)ง
 ### 大一
 
 - [X] 成为ACM校队的一员，[参加ICPC竞赛](https://blog.qfstudio.net/2018/08/a-journey-to-the-west/)
-- [X] 设置宿舍的路由器
+- [X] 为寝室的路由器安装OpenWRT
 - [X] 认真补全基础技能，比如数学、英语和物理
 - [X] 了解工具语言：C++, Java, Python, PHP和C#
 - [X] 了解html, CSS和javascript
