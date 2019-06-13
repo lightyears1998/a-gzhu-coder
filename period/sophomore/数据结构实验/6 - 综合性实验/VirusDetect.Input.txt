@@ -1,0 +1,7 @@
+6
+baa bbaabbba
+baa aaabbbba
+aabb abceaabb
+aabb abaabcea
+abcd cdabbbab
+abcd cabbbbab
