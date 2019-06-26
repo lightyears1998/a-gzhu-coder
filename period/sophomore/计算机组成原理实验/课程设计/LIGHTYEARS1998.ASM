@@ -7,5 +7,8 @@
 org 0
 
 lda r0,0260h
+lda r1,0262h
+lda r2,0264h
+lda r3,0266h
 
 end
