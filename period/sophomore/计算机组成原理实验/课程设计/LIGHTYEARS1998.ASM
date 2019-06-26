@@ -6,10 +6,4 @@
 
 org 0
 
-rr r1
-rr r1
-rr r1
-rr r1
-rr r1
-
 end

@@ -1758,7 +1758,7 @@
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
-00015F F9 EDSTA [addr],R0
+0001F0 F9 EDMOV Rd,Rs
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
@@ -2121,3 +2121,20 @@ RR      R0                  60     1    ;Rd循环右移1位→Rd
 RR      R1                  64     1
 RR      R2                  68     1
 RR      R3                  6c     1
+
+MOV     R0,R0               70     1    ;Rs→Rd
+MOV     R0,R1               71     1
+MOV     R0,R2               72     1
+MOV     R0,R3               73     1
+MOV     R1,R0               74     1
+MOV     R1,R1               75     1
+MOV     R1,R2               76     1
+MOV     R1,R3               77     1
+MOV     R2,R0               78     1
+MOV     R2,R1               79     1
+MOV     R2,R2               7a     1
+MOV     R2,R3               7b     1
+MOV     R3,R0               7c     1
+MOV     R3,R1               7d     1
+MOV     R3,R2               7e     1
+MOV     R3,R3               7f     1
