@@ -6,4 +6,9 @@
 
 org 0
 
+ldi r0,00h
+ldi r1,01h
+ldi r2,02h
+ldi r3,03h
+
 end

@@ -1534,7 +1534,7 @@
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
-+1  F8 F9 7FRR Rd
++1  F8 F9 7FSUB Rd,Rs
 +1  FA F9 FF
 0001F0 6E 6D
 +1  <未使用>
@@ -1790,9 +1790,9 @@
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
-+1  FA FB DFOUT [addr],IOH
-+1  BB FB DF
-0720BC C6 0F
++1  F8 FB DFLDI Rd,*
+0001B0 FE 4D
++1  <未使用>
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
@@ -2138,3 +2138,8 @@ MOV     R3,R0               7c     1
 MOV     R3,R1               7d     1
 MOV     R3,R2               7e     1
 MOV     R3,R3               7f     1
+
+LDI     R0,*                80     2    ;将指令中的立即数（第二字节）送入Rd
+LDI     R1,*                84     2
+LDI     R2,*                88     2
+LDI     R3,*                8c     2
