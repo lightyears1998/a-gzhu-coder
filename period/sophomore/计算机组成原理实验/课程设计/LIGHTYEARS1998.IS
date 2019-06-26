@@ -1822,7 +1822,7 @@
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
-000175 FB EDOUT [addr],IOH
+0001F5 F9 EDOUT IOH,Rs
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
@@ -1854,10 +1854,10 @@
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
-+1  FA FB DFJMP addr
-+1  BB FB DF
-+1  3F C6 0D
-+1  <未使用>
++1  F8 FB FFLDA Rd,M
++1  B9 FB FF
++1  FC FE 3F
++1  70 FB 6D
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
@@ -2143,3 +2143,18 @@ LDI     R0,*                80     2    ;将指令中的立即数（第二字节）送入Rd
 LDI     R1,*                84     2
 LDI     R2,*                88     2
 LDI     R3,*                8c     2
+
+OUT     IOH,R0              90     1    ;Rs→i/o(数据开关)高字节
+OUT     IOH,R1              91     1
+OUT     IOH,R2              92     1
+OUT     IOH,R3              93     1
+
+LDA     R0,*                a0     3    ;[M] →Rd（内存单元为8位）
+LDA     R1,*                a4     3
+LDA     R2,*                a8     3
+LDA     R3,*                ac     3
+
+STA     *,R0                b0     3    ;Rs→[M]
+STA     *,R1                b1     3
+STA     *,R2                b2     3
+STA     *,R3                b3     3
