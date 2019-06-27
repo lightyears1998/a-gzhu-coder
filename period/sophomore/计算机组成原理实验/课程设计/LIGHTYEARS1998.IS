@@ -2166,3 +2166,4 @@ JZ      *                   d0     3    ;当Z=1时，跳转到Addr
 JC      *                   e0     3    ;当CY=1时，跳转到Addr
 
 HALT    ""                  f0     1    ;停机
+HLT     ""                  f0     1    ;停机
