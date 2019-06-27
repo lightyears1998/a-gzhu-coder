@@ -6,20 +6,14 @@
 
 org 0
 
-ldi r3,12h
-
 tag1:
-add r0,r1
-
-sub r0,r0
-jz tag2
-jmp tag1
-
+ldi r0,01h
+ldi r1,01h
+add r0,r0
+jc tag1
 halt
 
-tag2:
-ldi r0,22h
-add r0,r0
+
 
 halt
 

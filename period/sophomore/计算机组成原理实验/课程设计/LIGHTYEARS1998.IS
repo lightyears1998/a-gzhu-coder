@@ -1982,12 +1982,12 @@
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
-+1  FE FF B7IRET
-+1  FC FD 1F
-+1  F8 FD 1F
-+1  F8 F6 1F
-+1  F6 F6 1F
-00013F FB 0D
++1  FA FB FFJC Addr
++1  BB FB FF
+07C5BC C6 3D
++1  <未使用>
+0001FF FF ED
+00013F C6 2D
 +1  <未使用>
 +1  <未使用>
 +1  <未使用>
@@ -2163,6 +2163,6 @@ JMP     *                   c0     3    ;Addr→PC,即跳转到Addr
 
 JZ      *                   d0     3    ;当Z=1时，跳转到Addr
 
-JC      *                   e0     3    ;当CY=1时，跳转到Addr(not yet)
+JC      *                   e0     3    ;当CY=1时，跳转到Addr
 
 HALT    ""                  f0     1    ;停机
