@@ -1,3 +1,0 @@
-Name: Zhangshan, Math 72pt, Physics 67pt, English 70pt.
-Name: Lisi, Math 92pt, Physics 98pt, English 88pt.
-Name: Wangwu, Math 68pt, Physics 80pt, English 77pt.
