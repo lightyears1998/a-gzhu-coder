@@ -21,3 +21,16 @@
 ---
 
 Analog-to-digital converter, ADC
+Bit Rate，Baut Rate, 波特率
+
+---
+
+## 实时笔记
+
+### 4.20
+
+1. <https://www.icourse163.org/learn/XMU-1001766012?tid=1450373443#/learn/content>
+2. UART
+3. 115200b/s coom1, coom2, 不要选中Flow Control
+4. rs232与rs485只有高低电平不同；rs232 5V传输距离2M；rs485 12V距离可达100M。
+5.重点SSI
