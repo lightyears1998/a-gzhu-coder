@@ -1,0 +1,17 @@
+flowchart TB
+    register_chrdev["register_chrdev(major, name, fops)"]
+    __register_chrdev["__register_chrdev(major, baseminor: 0, count: 256, name, fops)"]
+
+    subgraph inside__register_chrdev
+        __register_chrdev_region["__register_chrdev_region"]
+        cdev_alloc["cdev_alloc()"]
+        kobject_set_name["kobject_set_name"]
+        cdev_add["cdev_add"]
+
+        __register_chrdev_region --> cdev_alloc
+        cdev_alloc --> kobject_set_name
+        kobject_set_name --> cdev_add
+    end
+
+    register_chrdev --> __register_chrdev
+    __register_chrdev --> inside__register_chrdev
